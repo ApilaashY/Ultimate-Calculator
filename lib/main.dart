@@ -64,7 +64,7 @@ class _HomeState extends State<Home> {
   initState() {
     super.initState();
     Random randomnum = Random();
-    if (randomnum.nextInt(1) == 0 &&
+    if (randomnum.nextInt(10) == 0 &&
         defaultTargetPlatform == TargetPlatform.android) {
       Future.delayed(Duration.zero, () {
         showDialog(

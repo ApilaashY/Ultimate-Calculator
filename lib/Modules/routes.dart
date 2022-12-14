@@ -1,5 +1,6 @@
 import 'package:app/Pages/Physics/physics.dart';
 import 'package:app/Pages/Physics/vectoraddition.dart';
+import 'package:app/Pages/Physics/work.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/main.dart';
@@ -58,6 +59,8 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => Home());
   } else if (settings.name == 'Settings') {
     return MaterialPageRoute(builder: (context) => const Settings());
+  } else if (settings.name == 'Work') {
+    return MaterialPageRoute(builder: (context) => const Work());
   } else {
     throw 'Page Not Found';
   }
