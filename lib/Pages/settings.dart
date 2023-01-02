@@ -1,6 +1,7 @@
 import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 
@@ -15,11 +16,14 @@ class _SettingsState extends State<Settings> {
   _SettingsState() {
     void setup() async {
       var _tempdata = await savedata.getString('SettingsSave');
-      _data =
-          ((_tempdata == null) ? {'RoundingNumber': 4} : jsonDecode(_tempdata));
-      _checkdata =
-          ((_tempdata == null) ? {'RoundingNumber': 4} : jsonDecode(_tempdata));
+      _data = ((_tempdata == null)
+          ? {'RoundingNumber': 4, 'sigfigrounding': false}
+          : jsonDecode(_tempdata));
+      _checkdata = _data;
       roundingcontroller.text = _data['RoundingNumber'].toString();
+      _sigfig =
+          (_data['sigfigrounding'] != null) ? _data['sigfigrounding'] : false;
+      setState(() {});
     }
 
     setup();
@@ -27,6 +31,7 @@ class _SettingsState extends State<Settings> {
   Map _data = {};
   Map _checkdata = {};
   TextEditingController roundingcontroller = TextEditingController();
+  bool _sigfig = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,20 +82,43 @@ class _SettingsState extends State<Settings> {
               inputFormatters: <TextInputFormatter>[
                 FilteringTextInputFormatter.digitsOnly
               ],
+              enabled: !_sigfig,
               decoration: const InputDecoration(
                   labelText: 'How many digits to round answers'),
             ),
+            /*
+            Row(
+              children: [
+                const Text("Round to Significant Figures"),
+                Checkbox(
+                    value: _sigfig,
+                    onChanged: (value) {
+                      setState(() {
+                        if (value != null) {
+                          _sigfig = value;
+                        }
+                      });
+                    })
+              ],
+            ),*/
             ElevatedButton(
               onPressed: () async {
-                _data['RoundingNumber'] = int.parse(roundingcontroller.text);
-                await savedata.setString('SettingsSave', jsonEncode(_data));
-                _checkdata = _data;
-                showDialog(
-                  context: context,
-                  builder: (context) => const AlertDialog(
-                    title: Text('Changes Saved'),
-                  ),
-                );
+                try {
+                  _data['RoundingNumber'] = int.parse(roundingcontroller.text);
+                  _data['sigfigrounding'] = _sigfig;
+                  await savedata.setString('SettingsSave', jsonEncode(_data));
+                  _checkdata = _data;
+                  roundingnumber = int.parse(roundingcontroller.text);
+                  sigfigrounding = _sigfig;
+                  showDialog(
+                    context: context,
+                    builder: (context) => const AlertDialog(
+                      title: Text('Changes Saved'),
+                    ),
+                  );
+                } catch (e) {
+                  Fluttertoast.showToast(msg: 'Error');
+                }
               },
               child: const Text('Save'),
             )

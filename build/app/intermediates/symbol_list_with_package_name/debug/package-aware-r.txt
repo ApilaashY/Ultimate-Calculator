@@ -226,6 +226,7 @@ layout notification_template_part_chronometer
 layout notification_template_part_time
 layout toast_custom
 mipmap ic_launcher
+mipmap ic_launcher_monochrome
 raw firebase_common_keep
 string androidx_startup
 string common_google_play_services_enable_button

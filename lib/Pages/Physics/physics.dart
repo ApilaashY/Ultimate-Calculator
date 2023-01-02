@@ -32,6 +32,10 @@ class Physics extends StatelessWidget {
             children: [
               PhysicsButton(text: 'Vector Addition'),
               PhysicsButton(text: 'Work'),
+              PhysicsButton(text: 'Gravitational Potential Energy'),
+              PhysicsButton(text: 'Kinetic Energy'),
+              PhysicsButton(text: 'Coefficient of Friction'),
+              PhysicsButton(text: "Ohm's Law"),
             ]),
       ),
     );

@@ -1,3 +1,7 @@
+import 'package:app/Pages/Physics/Eg.dart';
+import 'package:app/Pages/Physics/Ek.dart';
+import 'package:app/Pages/Physics/cooffriction.dart';
+import 'package:app/Pages/Physics/ohm.dart';
 import 'package:app/Pages/Physics/physics.dart';
 import 'package:app/Pages/Physics/vectoraddition.dart';
 import 'package:app/Pages/Physics/work.dart';
@@ -10,7 +14,6 @@ import 'package:app/Pages/finance.dart';
 import 'package:app/Pages/gcf.dart';
 import 'package:app/Pages/lcm.dart';
 import 'package:app/Pages/pythagorean.dart';
-import 'package:app/Pages/quadratics.dart';
 import 'package:app/Pages/rootfinder.dart';
 import 'package:app/Pages/surfacearea.dart';
 import 'package:app/Pages/trigonometry.dart';
@@ -41,8 +44,6 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const Pythagorean());
   } else if (settings.name == 'Trigonometry') {
     return MaterialPageRoute(builder: (context) => const Trigonometry());
-  } else if (settings.name == 'Quadratics') {
-    return MaterialPageRoute(builder: (context) => Quadratics());
   } else if (settings.name == 'Root Finder') {
     return MaterialPageRoute(builder: (context) => RootFinder());
   } else if (settings.name == 'Finance') {
@@ -61,6 +62,16 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const Settings());
   } else if (settings.name == 'Work') {
     return MaterialPageRoute(builder: (context) => const Work());
+  } else if (settings.name == 'Gravitational Potential Energy') {
+    return MaterialPageRoute(
+        builder: (context) => const GravitationalPotentialEnergy());
+  } else if (settings.name == 'Coefficient of Friction') {
+    return MaterialPageRoute(
+        builder: (context) => const CoefficientofFriction());
+  } else if (settings.name == 'Kinetic Energy') {
+    return MaterialPageRoute(builder: (context) => const KineticEnergy());
+  } else if (settings.name == "Ohm's Law") {
+    return MaterialPageRoute(builder: (context) => const Ohm());
   } else {
     throw 'Page Not Found';
   }

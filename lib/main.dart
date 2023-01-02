@@ -17,13 +17,44 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 var savedata;
 int roundingnumber = 4;
+bool sigfigrounding = false;
 int points = 0;
 double pointsleft = 0;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await MobileAds.instance.initialize();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
+}
+
+Future setup() async {
+  // Setting up shared preferences
+  savedata = await SharedPreferences.getInstance();
+  DateTime now = DateTime.now();
+  var temppoints = await savedata.getInt('points');
+  var todaysave = await savedata.getString('today');
+  var todaylength = await savedata.getInt('todaylength');
+  temppoints ??= 0;
+  todaylength ??= 0;
+
+  if (todaysave != DateTime(now.year, now.month, now.day).toString()) {
+    todaylength = 0;
+  }
+  pointsleft = todaylength / 10;
+  points = temppoints;
+  (savedata.getString('SettingsSave') != null)
+      ? roundingnumber =
+          jsonDecode(savedata.getString('SettingsSave'))['RoundingNumber']
+      : roundingnumber = 4;
+  (savedata.getString('SettingsSave') != null)
+      ? sigfigrounding =
+          jsonDecode(savedata.getString('SettingsSave'))['sigfigrounding']
+      : sigfigrounding = false;
+
+  return 'done';
 }
 
 class MyApp extends StatefulWidget {
@@ -60,7 +91,6 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  @override
   initState() {
     super.initState();
     Random randomnum = Random();
@@ -94,32 +124,7 @@ class _HomeState extends State<Home> {
         );
       });
     }
-    showinter();
-  }
-
-  Future setup() async {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
-    // Setting up shared preferences
-    savedata = await SharedPreferences.getInstance();
-    DateTime now = DateTime.now();
-    var temppoints = await savedata.getInt('points');
-    var todaysave = await savedata.getString('today');
-    var todaylength = await savedata.getInt('todaylength');
-    temppoints ??= 0;
-    todaylength ??= 0;
-
-    if (todaysave != DateTime(now.year, now.month, now.day).toString()) {
-      todaylength = 0;
-    }
-    pointsleft = todaylength / 10;
-    points = temppoints;
-    (savedata.getString('SettingsSave') != null)
-        ? roundingnumber =
-            jsonDecode(savedata.getString('SettingsSave'))['RoundingNumber']
-        : roundingnumber = 4;
-    return 'done';
+    //showinter();
   }
 
   bool suggestion = true;
@@ -270,7 +275,7 @@ class _HomeState extends State<Home> {
                       text: 'Science',
                     ),
                     CardButton(
-                      text: 'Quadratics',
+                      text: 'Root Finder',
                     ),
                     CardButton(
                       text: 'Pythagorean',
@@ -294,6 +299,10 @@ class _HomeState extends State<Home> {
                   ],
                 ),
               ),
+            );
+          } else if (snap.hasError) {
+            return const Scaffold(
+              body: Center(child: CircularProgressIndicator()),
             );
           }
           return const Scaffold(

@@ -406,16 +406,14 @@ class _ConverterState extends State<Converter> {
                   rates[(firsttypevalue.split(' - '))[0]] *
                   rates[(secondtypevalue.split(' - '))[0]])
               .toString();
-          answer = roundto(answer);
         } else {
           answer = (double.parse(firstnumbercontroller.text) /
                   unitmap[firsttypevalue]! *
                   unitmap[secondtypevalue]!)
               .toString();
         }
-        answer = answer.replaceAll('.0', '');
         setState(() {
-          secondnumbercontroller.text = answer;
+          secondnumbercontroller.text = roundto(answer);
         });
       }
     } catch (e) {

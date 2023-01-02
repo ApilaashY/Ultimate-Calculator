@@ -31,6 +31,8 @@ class _WorkState extends State<Work> {
       } else if (Displacement.text.isEmpty) {
         Displacement.text = roundto(
             (double.parse(Work.text) / double.parse(Force.text)).toString());
+      } else {
+        throw 'Not Enough Data';
       }
       addpoints(1);
     } catch (e) {
@@ -56,7 +58,7 @@ class _WorkState extends State<Work> {
           Align(
             alignment: const Alignment(0.0, 0.2),
             child: FractionallySizedBox(
-              heightFactor: 0.6,
+              heightFactor: 0.8,
               widthFactor: 0.8,
               child: Card(
                 shape: RoundedRectangleBorder(
@@ -68,24 +70,10 @@ class _WorkState extends State<Work> {
                   child: ListView(
                     children: [
                       Inputfield(
-                        controller: Work,
-                        hintText: 'Work',
-                        keyboardType: TextInputType.number,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
-                        ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: Work.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
                         controller: Force,
                         hintText: 'Force',
                         keyboardType: TextInputType.number,
+                        suffixText: 'N',
                       ),
                       IconButton(
                         icon: const Icon(
@@ -101,6 +89,7 @@ class _WorkState extends State<Work> {
                         controller: Displacement,
                         hintText: 'Displacement',
                         keyboardType: TextInputType.number,
+                        suffixText: 'm',
                       ),
                       IconButton(
                         icon: const Icon(
@@ -112,16 +101,29 @@ class _WorkState extends State<Work> {
                           Fluttertoast.showToast(msg: 'Saved to Clipboard');
                         },
                       ),
+                      Inputfield(
+                        controller: Work,
+                        hintText: 'Work',
+                        keyboardType: TextInputType.number,
+                        suffixText: 'J',
+                      ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.copy,
+                        ),
+                        onPressed: () async {
+                          await Clipboard.setData(
+                              ClipboardData(text: Work.text));
+                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                        },
+                      ),
                       FractionallySizedBox(
                         widthFactor: 0.65,
                         child: ElevatedButton(
                           onPressed: calc,
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
-                                  (MediaQuery.of(context).platformBrightness ==
-                                          Brightness.light)
-                                      ? const Color.fromARGB(255, 165, 226, 255)
-                                      : const Color.fromARGB(255, 0, 135, 197)),
+                                  const Color.fromARGB(255, 0, 135, 197)),
                           child: const Text('Solve'),
                         ),
                       ),

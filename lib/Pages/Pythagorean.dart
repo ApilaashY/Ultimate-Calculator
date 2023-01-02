@@ -26,9 +26,9 @@ class _PythagoreanState extends State<Pythagorean> {
 
   void calc() {
     try {
-      var ad = double.tryParse(adjacent.text);
-      var op = double.tryParse(opposite.text);
-      var hy = double.tryParse(hypotenuse.text);
+      var ad = double.parse(adjacent.text);
+      var op = double.parse(opposite.text);
+      var hy = double.parse(hypotenuse.text);
       if (ad != null && op != null && hy == null) {
         hypotenuse.text = sqrt(pow(ad, 2) + pow(op, 2)).toString();
         hypotenuse.text = roundto(hypotenuse.text);
