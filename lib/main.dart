@@ -124,7 +124,7 @@ class _HomeState extends State<Home> {
         );
       });
     }
-    //showinter();
+    showinter();
   }
 
   bool suggestion = true;
@@ -142,6 +142,30 @@ class _HomeState extends State<Home> {
                     : Colors.white,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
+                actions: [
+                  IconButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: const Text(
+                                      "The Ultimate Calculator will be removed from the Samsung Galaxy Store on March 1st, 2022, if you wish to continue using it, download it from the Ultimate Calculator website."),
+                                  actions: [
+                                    ElevatedButton(
+                                        onPressed: () async {
+                                          try {
+                                            await launchUrl(Uri.parse(
+                                                'https://ultimatecalculator.netlify.app'));
+                                          } catch (e) {
+                                            Navigator.pop(context);
+                                          }
+                                        },
+                                        child: const Text("Website"))
+                                  ],
+                                ));
+                      },
+                      icon: const Icon(Icons.question_mark_rounded))
+                ],
                 leading: IconButton(
                   icon: const Icon(Icons.settings),
                   onPressed: () => Navigator.pushNamed(context, "Settings"),
