@@ -177,12 +177,12 @@ class _VectorAdditionState extends State<VectorAddition> {
             alignment: (MediaQuery.of(context).size.height >
                     MediaQuery.of(context).size.width)
                 ? const Alignment(0, -1)
-                : const Alignment(-1, 0),
+                : const Alignment(-0.95, 0),
             child: FractionallySizedBox(
               widthFactor: (MediaQuery.of(context).size.height >
                       MediaQuery.of(context).size.width)
                   ? 0.8
-                  : 0.5,
+                  : 0.425,
               heightFactor: (MediaQuery.of(context).size.height >
                       MediaQuery.of(context).size.width)
                   ? 0.15

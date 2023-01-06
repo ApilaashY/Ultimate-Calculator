@@ -1,14 +1,14 @@
 [
     {
-        "merged": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/cloud_firestore/intermediates/merged_res/release/color/common_google_signin_btn_text_dark.xml",
-        "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/59114c253665b8f496180c0f3bbb39ed/transformed/jetified-play-services-base-18.0.1/res/color/common_google_signin_btn_text_dark.xml"
+        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\cloud_firestore\\intermediates\\merged_res\\release\\color\\common_google_signin_btn_text_light.xml",
+        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\59114c253665b8f496180c0f3bbb39ed\\transformed\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_text_light.xml"
     },
     {
-        "merged": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/cloud_firestore/intermediates/merged_res/release/color/common_google_signin_btn_text_light.xml",
-        "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/59114c253665b8f496180c0f3bbb39ed/transformed/jetified-play-services-base-18.0.1/res/color/common_google_signin_btn_text_light.xml"
+        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\cloud_firestore\\intermediates\\merged_res\\release\\color\\common_google_signin_btn_text_dark.xml",
+        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\59114c253665b8f496180c0f3bbb39ed\\transformed\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_text_dark.xml"
     },
     {
-        "merged": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/cloud_firestore/intermediates/merged_res/release/color/common_google_signin_btn_tint.xml",
-        "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/59114c253665b8f496180c0f3bbb39ed/transformed/jetified-play-services-base-18.0.1/res/color/common_google_signin_btn_tint.xml"
+        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\cloud_firestore\\intermediates\\merged_res\\release\\color\\common_google_signin_btn_tint.xml",
+        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\59114c253665b8f496180c0f3bbb39ed\\transformed\\jetified-play-services-base-18.0.1\\res\\color\\common_google_signin_btn_tint.xml"
     }
 ]
