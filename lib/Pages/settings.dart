@@ -83,6 +83,11 @@ class _SettingsState extends State<Settings> {
                 FilteringTextInputFormatter.digitsOnly
               ],
               enabled: !_sigfig,
+              style: TextStyle(
+                  color: (MediaQuery.of(context).platformBrightness ==
+                          Brightness.light)
+                      ? Colors.black
+                      : Colors.white),
               decoration: const InputDecoration(
                   labelText: 'How many digits to round answers'),
             ),

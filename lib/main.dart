@@ -45,11 +45,11 @@ Future setup() async {
   }
   pointsleft = todaylength / 10;
   points = temppoints;
-  (savedata.getString('SettingsSave') != null)
+  (jsonDecode(savedata.getString('SettingsSave'))['RoundingNumber'] != null)
       ? roundingnumber =
           jsonDecode(savedata.getString('SettingsSave'))['RoundingNumber']
       : roundingnumber = 4;
-  (savedata.getString('SettingsSave') != null)
+  (jsonDecode(savedata.getString('SettingsSave'))['sigfigrounding'] != null)
       ? sigfigrounding =
           jsonDecode(savedata.getString('SettingsSave'))['sigfigrounding']
       : sigfigrounding = false;
