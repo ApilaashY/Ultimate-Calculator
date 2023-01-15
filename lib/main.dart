@@ -45,14 +45,21 @@ Future setup() async {
   }
   pointsleft = todaylength / 10;
   points = temppoints;
-  (jsonDecode(savedata.getString('SettingsSave'))['RoundingNumber'] != null)
-      ? roundingnumber =
-          jsonDecode(savedata.getString('SettingsSave'))['RoundingNumber']
-      : roundingnumber = 4;
-  (jsonDecode(savedata.getString('SettingsSave'))['sigfigrounding'] != null)
-      ? sigfigrounding =
-          jsonDecode(savedata.getString('SettingsSave'))['sigfigrounding']
-      : sigfigrounding = false;
+  if (savedata.getString('SettingsSave') != null) {
+    roundingnumber =
+        (jsonDecode(savedata.getString('SettingsSave'))['RoundingNumber'] !=
+                null)
+            ? jsonDecode(savedata.getString('SettingsSave'))['RoundingNumber']
+            : 4;
+    sigfigrounding =
+        (jsonDecode(savedata.getString('SettingsSave'))['sigfigrounding'] !=
+                null)
+            ? jsonDecode(savedata.getString('SettingsSave'))['sigfigrounding']
+            : false;
+  } else {
+    roundingnumber = 4;
+    sigfigrounding = false;
+  }
 
   return 'done';
 }
@@ -91,9 +98,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Random randomnum = Random();
+  RewardedAd? ad = null;
   initState() {
     super.initState();
-    Random randomnum = Random();
     if (randomnum.nextInt(10) == 0 &&
         defaultTargetPlatform == TargetPlatform.android) {
       Future.delayed(Duration.zero, () {
@@ -124,7 +132,33 @@ class _HomeState extends State<Home> {
         );
       });
     }
-    showinter();
+    //showinter();
+    loadrewardedad();
+  }
+
+  void loadrewardedad() async {
+    await RewardedAd.load(
+      adUnitId: (defaultTargetPlatform == TargetPlatform.android)
+          ? 'ca-app-pub-4914732861439858/8814232396'
+          : (defaultTargetPlatform == TargetPlatform.iOS)
+              ? 'ca-app-pub-4914732861439858/8194257629'
+              : '',
+      request: AdRequest(),
+      rewardedAdLoadCallback: RewardedAdLoadCallback(
+        onAdLoaded: (RewardedAd a) {
+          ad = a;
+        },
+        onAdFailedToLoad: (LoadAdError error) {
+          showDialog(
+            context: context,
+            builder: (builder) => const AlertDialog(
+              title: Text("Ad Not Avaliable"),
+            ),
+          );
+          print("AD NOT GOT");
+        },
+      ),
+    );
   }
 
   bool suggestion = true;
@@ -248,6 +282,7 @@ class _HomeState extends State<Home> {
                       : Axis.horizontal,
                   children: [
                     Card(
+                      key: UniqueKey(),
                       elevation: 0,
                       color: (MediaQuery.of(context).platformBrightness ==
                               Brightness.light)
@@ -259,17 +294,78 @@ class _HomeState extends State<Home> {
                       child: FractionallySizedBox(
                         widthFactor: 0.85,
                         heightFactor: 0.85,
-                        child: FittedBox(
-                            child: Text(
-                          'Points:\n$points',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: (MediaQuery.of(context).platformBrightness ==
-                                    Brightness.light)
-                                ? Colors.black
-                                : Colors.white,
-                          ),
-                        )),
+                        child: Column(
+                          children: [
+                            Expanded(
+                              child: FittedBox(
+                                  child: Text(
+                                'Points:\n$points',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  color: (MediaQuery.of(context)
+                                              .platformBrightness ==
+                                          Brightness.light)
+                                      ? Colors.black
+                                      : Colors.white,
+                                ),
+                              )),
+                            ),
+                            ElevatedButton(
+                                style: ButtonStyle(
+                                  backgroundColor: MaterialStateProperty.all(
+                                      (MediaQuery.of(context)
+                                                  .platformBrightness ==
+                                              Brightness.dark)
+                                          ? const Color.fromARGB(
+                                              255, 165, 226, 255)
+                                          : const Color.fromARGB(
+                                              255, 0, 135, 197)),
+                                ),
+                                onPressed: () {
+                                  int gotpoints = randomnum.nextInt(5) + 1;
+                                  ad!.show(
+                                    onUserEarnedReward: (ad, point) async {
+                                      print('got');
+                                      points += gotpoints;
+                                      await savedata.setInt('points', points);
+                                      showDialog(
+                                        context: context,
+                                        builder: (builder) => AlertDialog(
+                                          title:
+                                              Text("You got $gotpoints points"),
+                                        ),
+                                      );
+                                    },
+                                  );
+
+                                  ad!.fullScreenContentCallback =
+                                      FullScreenContentCallback(
+                                    onAdShowedFullScreenContent:
+                                        (RewardedAd ad) => print(
+                                            '$ad onAdShowedFullScreenContent.'),
+                                    onAdDismissedFullScreenContent:
+                                        (RewardedAd ad) {
+                                      print(
+                                          '$ad onAdDismissedFullScreenContent.');
+                                      ad.dispose();
+                                    },
+                                    onAdFailedToShowFullScreenContent:
+                                        (RewardedAd ad, AdError error) {
+                                      print(
+                                          '$ad onAdFailedToShowFullScreenContent: $error');
+                                      ad.dispose();
+                                    },
+                                    onAdImpression: (RewardedAd ad) =>
+                                        print('$ad impression occurred.'),
+                                  );
+
+                                  setState(() {});
+                                  ad!.dispose();
+                                  loadrewardedad();
+                                },
+                                child: const Text("Get Points"))
+                          ],
+                        ),
                       ),
                     ),
                     Card(
