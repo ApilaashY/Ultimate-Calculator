@@ -133,32 +133,6 @@ class _HomeState extends State<Home> {
       });
     }
     //showinter();
-    loadrewardedad();
-  }
-
-  void loadrewardedad() async {
-    await RewardedAd.load(
-      adUnitId: (defaultTargetPlatform == TargetPlatform.android)
-          ? 'ca-app-pub-4914732861439858/8814232396'
-          : (defaultTargetPlatform == TargetPlatform.iOS)
-              ? 'ca-app-pub-4914732861439858/8194257629'
-              : '',
-      request: AdRequest(),
-      rewardedAdLoadCallback: RewardedAdLoadCallback(
-        onAdLoaded: (RewardedAd a) {
-          ad = a;
-        },
-        onAdFailedToLoad: (LoadAdError error) {
-          showDialog(
-            context: context,
-            builder: (builder) => const AlertDialog(
-              title: Text("Ad Not Avaliable"),
-            ),
-          );
-          print("AD NOT GOT");
-        },
-      ),
-    );
   }
 
   bool suggestion = true;
@@ -313,55 +287,56 @@ class _HomeState extends State<Home> {
                             ElevatedButton(
                                 style: ButtonStyle(
                                   backgroundColor: MaterialStateProperty.all(
-                                      (MediaQuery.of(context)
-                                                  .platformBrightness ==
-                                              Brightness.dark)
-                                          ? const Color.fromARGB(
-                                              255, 165, 226, 255)
-                                          : const Color.fromARGB(
-                                              255, 0, 135, 197)),
+                                      const Color.fromARGB(255, 0, 135, 197)),
                                 ),
                                 onPressed: () {
-                                  int gotpoints = randomnum.nextInt(5) + 1;
-                                  ad!.show(
-                                    onUserEarnedReward: (ad, point) async {
-                                      print('got');
-                                      points += gotpoints;
-                                      await savedata.setInt('points', points);
-                                      showDialog(
-                                        context: context,
-                                        builder: (builder) => AlertDialog(
-                                          title:
-                                              Text("You got $gotpoints points"),
-                                        ),
-                                      );
-                                    },
-                                  );
+                                  var rewardedAd;
+                                  RewardedAd.load(
+                                    adUnitId: (defaultTargetPlatform ==
+                                            TargetPlatform.android)
+                                        ? 'ca-app-pub-4914732861439858/8814232396'
+                                        : (defaultTargetPlatform ==
+                                                TargetPlatform.iOS)
+                                            ? 'ca-app-pub-4914732861439858/8194257629'
+                                            : '',
+                                    request: const AdRequest(),
+                                    rewardedAdLoadCallback:
+                                        RewardedAdLoadCallback(
+                                      onAdLoaded: (ad) {
+                                        rewardedAd = ad;
+                                        rewardedAd?.show(
+                                          onUserEarnedReward: ((ad, reward) {
+                                            debugPrint(
+                                                "My Reward Amount -> ${reward.amount}");
+                                          }),
+                                        );
 
-                                  ad!.fullScreenContentCallback =
-                                      FullScreenContentCallback(
-                                    onAdShowedFullScreenContent:
-                                        (RewardedAd ad) => print(
-                                            '$ad onAdShowedFullScreenContent.'),
-                                    onAdDismissedFullScreenContent:
-                                        (RewardedAd ad) {
-                                      print(
-                                          '$ad onAdDismissedFullScreenContent.');
-                                      ad.dispose();
-                                    },
-                                    onAdFailedToShowFullScreenContent:
-                                        (RewardedAd ad, AdError error) {
-                                      print(
-                                          '$ad onAdFailedToShowFullScreenContent: $error');
-                                      ad.dispose();
-                                    },
-                                    onAdImpression: (RewardedAd ad) =>
-                                        print('$ad impression occurred.'),
+                                        rewardedAd?.fullScreenContentCallback =
+                                            FullScreenContentCallback(
+                                                onAdFailedToShowFullScreenContent:
+                                                    (RewardedAd ad, err) {
+                                          ad.dispose();
+                                        }, onAdDismissedFullScreenContent:
+                                                    (RewardedAd ad) {
+                                          ad.dispose();
+                                          int gotpoints =
+                                              randomnum.nextInt(5) + 1;
+                                          points += gotpoints;
+                                          savedata.setInt('points', points);
+                                          showDialog(
+                                            context: context,
+                                            builder: (builder) => AlertDialog(
+                                              title: Text(
+                                                  "You got $gotpoints points"),
+                                            ),
+                                          );
+                                        });
+                                      },
+                                      onAdFailedToLoad: (err) {
+                                        debugPrint(err.message);
+                                      },
+                                    ),
                                   );
-
-                                  setState(() {});
-                                  ad!.dispose();
-                                  loadrewardedad();
                                 },
                                 child: const Text("Get Points"))
                           ],

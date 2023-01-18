@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-lt\\values-lt.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-lt/values-lt.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\0bd8328ecae7b2049cc36045c08ced4b\\transformed\\browser-1.4.0\\res\\values-lt\\values-lt.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/0bd8328ecae7b2049cc36045c08ced4b/transformed/browser-1.4.0/res/values-lt/values-lt.xml",
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\59114c253665b8f496180c0f3bbb39ed\\transformed\\jetified-play-services-base-18.0.1\\res\\values-lt\\values.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/59114c253665b8f496180c0f3bbb39ed/transformed/jetified-play-services-base-18.0.1/res/values-lt/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\5ad2e7faa439e30de30c954b1c2fd894\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-lt\\values.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/5ad2e7faa439e30de30c954b1c2fd894/transformed/jetified-play-services-basement-18.1.0/res/values-lt/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -55,24 +55,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\ede6181101ca6c29d3ee0dc5d6cf6505\\transformed\\core-1.6.0\\res\\values-lt\\values-lt.xml",
-                    "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
-                    },
-                    "to": {
-                        "startLines": "38",
-                        "startColumns": "4",
-                        "startOffsets": "3789",
-                        "endColumns": "100",
-                        "endOffsets": "3885"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\eb962dc53b328d861dd9c8fd382ad0d0\\transformed\\jetified-play-services-ads-21.2.0\\res\\values-lt\\values.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/eb962dc53b328d861dd9c8fd382ad0d0/transformed/jetified-play-services-ads-21.2.0/res/values-lt/values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -86,6 +69,23 @@
                         "startOffsets": "2751,2844,2959,3016,3124,3184,3296,3390,3438,3525,3564,3603,3661,3737",
                         "endColumns": "92,114,56,107,59,111,93,47,86,38,38,57,75,51",
                         "endOffsets": "2839,2954,3011,3119,3179,3291,3385,3433,3520,3559,3598,3656,3732,3784"
+                    }
+                },
+                {
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/ede6181101ca6c29d3ee0dc5d6cf6505/transformed/core-1.6.0/res/values-lt/values-lt.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    },
+                    "to": {
+                        "startLines": "38",
+                        "startColumns": "4",
+                        "startOffsets": "3789",
+                        "endColumns": "100",
+                        "endOffsets": "3885"
                     }
                 }
             ]

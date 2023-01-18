@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\fluttertoast\\intermediates\\merged_res\\release\\values-bg\\values-bg.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/fluttertoast/intermediates/merged_res/release/values-bg/values-bg.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\ede6181101ca6c29d3ee0dc5d6cf6505\\transformed\\core-1.6.0\\res\\values-bg\\values-bg.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/ede6181101ca6c29d3ee0dc5d6cf6505/transformed/core-1.6.0/res/values-bg/values-bg.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\fluttertoast\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-bg\\values-bg.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/fluttertoast/intermediates/incremental/mergeReleaseResources/merged.dir/values-bg/values-bg.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\ede6181101ca6c29d3ee0dc5d6cf6505\\transformed\\core-1.6.0\\res\\values-bg\\values-bg.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/ede6181101ca6c29d3ee0dc5d6cf6505/transformed/core-1.6.0/res/values-bg/values-bg.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

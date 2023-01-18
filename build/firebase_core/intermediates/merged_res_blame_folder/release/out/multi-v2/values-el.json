@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\firebase_core\\intermediates\\merged_res\\release\\values-el\\values-el.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/firebase_core/intermediates/merged_res/release/values-el/values-el.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\ede6181101ca6c29d3ee0dc5d6cf6505\\transformed\\core-1.6.0\\res\\values-el\\values-el.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/ede6181101ca6c29d3ee0dc5d6cf6505/transformed/core-1.6.0/res/values-el/values-el.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\5ad2e7faa439e30de30c954b1c2fd894\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-el\\values.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/5ad2e7faa439e30de30c954b1c2fd894/transformed/jetified-play-services-basement-18.1.0/res/values-el/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -40,10 +40,10 @@
             ]
         },
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\firebase_core\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-el\\values-el.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/firebase_core/intermediates/incremental/mergeReleaseResources/merged.dir/values-el/values-el.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\ede6181101ca6c29d3ee0dc5d6cf6505\\transformed\\core-1.6.0\\res\\values-el\\values-el.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/ede6181101ca6c29d3ee0dc5d6cf6505/transformed/core-1.6.0/res/values-el/values-el.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -60,7 +60,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\5ad2e7faa439e30de30c954b1c2fd894\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-el\\values.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/5ad2e7faa439e30de30c954b1c2fd894/transformed/jetified-play-services-basement-18.1.0/res/values-el/values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",

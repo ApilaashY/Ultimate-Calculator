@@ -1,11 +1,11 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\flutter"
-export "FLUTTER_APPLICATION_PATH=D:\Creations\Github\Ultimate-Calculator"
+export "FLUTTER_ROOT=/Users/apilaashyoharan/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/apilaashyoharan/Documents/Ultimate-Calculator"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
-export "FLUTTER_BUILD_NAME=2.2.0"
-export "FLUTTER_BUILD_NUMBER=10"
+export "FLUTTER_BUILD_NAME=2.2.2"
+export "FLUTTER_BUILD_NUMBER=12"
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"

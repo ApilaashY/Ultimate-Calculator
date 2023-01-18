@@ -37,6 +37,7 @@
   <androidx.coordinatorlayout/>
   <androidx.core/>
   <androidx.core.uwb/>
+  <androidx.credentials/>
   <androidx.cursoradapter/>
   <androidx.customview/>
   <androidx.databinding/>
@@ -81,6 +82,8 @@
   <androidx.percentlayout/>
   <androidx.preference/>
   <androidx.print/>
+  <androidx.privacysandbox.ads/>
+  <androidx.privacysandbox.sdkruntime/>
   <androidx.privacysandbox.tools/>
   <androidx.profileinstaller/>
   <androidx.recommendation/>
@@ -115,6 +118,7 @@
   <androidx.viewpager2/>
   <androidx.wear/>
   <androidx.wear.compose/>
+  <androidx.wear.protolayout/>
   <androidx.wear.tiles/>
   <androidx.wear.watchface/>
   <androidx.webkit/>
