@@ -139,270 +139,269 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: setup(),
-        builder: (context, snap) {
-          if (snap.hasData) {
-            return Scaffold(
-              appBar: AppBar(
-                foregroundColor: (MediaQuery.of(context).platformBrightness ==
+      future: setup(),
+      builder: (context, snap) {
+        if (snap.hasData) {
+          return Scaffold(
+            appBar: AppBar(
+              foregroundColor: (MediaQuery.of(context).platformBrightness ==
+                      Brightness.light)
+                  ? Colors.black
+                  : Colors.white,
+              backgroundColor: Colors.transparent,
+              elevation: 0,
+              actions: [
+                IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) => AlertDialog(
+                                title: const Text(
+                                    "The Ultimate Calculator will be removed from the Samsung Galaxy Store on March 1st, 2022, if you wish to continue using it, download it from the Ultimate Calculator website."),
+                                actions: [
+                                  ElevatedButton(
+                                      onPressed: () async {
+                                        try {
+                                          await launchUrl(Uri.parse(
+                                              'https://ultimatecalculator.netlify.app'));
+                                        } catch (e) {
+                                          Navigator.pop(context);
+                                        }
+                                      },
+                                      child: const Text("Website"))
+                                ],
+                              ));
+                    },
+                    icon: const Icon(Icons.question_mark_rounded))
+              ],
+              leading: IconButton(
+                icon: const Icon(Icons.settings),
+                onPressed: () => Navigator.pushNamed(context, "Settings"),
+              ),
+            ),
+            floatingActionButton: FloatingActionButton(
+              backgroundColor: (MediaQuery.of(context).platformBrightness ==
+                      Brightness.light)
+                  ? const Color.fromARGB(255, 165, 226, 255)
+                  : const Color.fromARGB(255, 0, 135, 197),
+              child: Icon(
+                Icons.add_rounded,
+                color: (MediaQuery.of(context).platformBrightness ==
                         Brightness.light)
                     ? Colors.black
                     : Colors.white,
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                actions: [
-                  IconButton(
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                                  title: const Text(
-                                      "The Ultimate Calculator will be removed from the Samsung Galaxy Store on March 1st, 2022, if you wish to continue using it, download it from the Ultimate Calculator website."),
-                                  actions: [
-                                    ElevatedButton(
-                                        onPressed: () async {
-                                          try {
-                                            await launchUrl(Uri.parse(
-                                                'https://ultimatecalculator.netlify.app'));
-                                          } catch (e) {
-                                            Navigator.pop(context);
-                                          }
-                                        },
-                                        child: const Text("Website"))
-                                  ],
-                                ));
-                      },
-                      icon: const Icon(Icons.question_mark_rounded))
-                ],
-                leading: IconButton(
-                  icon: const Icon(Icons.settings),
-                  onPressed: () => Navigator.pushNamed(context, "Settings"),
-                ),
               ),
-              floatingActionButton: FloatingActionButton(
-                backgroundColor: (MediaQuery.of(context).platformBrightness ==
-                        Brightness.light)
-                    ? const Color.fromARGB(255, 165, 226, 255)
-                    : const Color.fromARGB(255, 0, 135, 197),
-                child: Icon(
-                  Icons.add_rounded,
-                  color: (MediaQuery.of(context).platformBrightness ==
-                          Brightness.light)
-                      ? Colors.black
-                      : Colors.white,
-                ),
-                onPressed: () {
-                  TextEditingController newone = TextEditingController();
-                  showDialog(
-                    context: context,
-                    builder: (context) => SimpleDialog(
-                      title: Text(
-                        'Add Function or Report Bug',
-                        style: TextStyle(
-                            color: (MediaQuery.of(context).platformBrightness ==
-                                    Brightness.light)
-                                ? Colors.black
-                                : Colors.white),
-                      ),
-                      children: [
-                        FractionallySizedBox(
-                          widthFactor: 0.8,
-                          child: TextField(
-                            controller: newone,
-                          ),
+              onPressed: () {
+                TextEditingController newone = TextEditingController();
+                showDialog(
+                  context: context,
+                  builder: (context) => SimpleDialog(
+                    title: Text(
+                      'Add Function or Report Bug',
+                      style: TextStyle(
+                          color: (MediaQuery.of(context).platformBrightness ==
+                                  Brightness.light)
+                              ? Colors.black
+                              : Colors.white),
+                    ),
+                    children: [
+                      FractionallySizedBox(
+                        widthFactor: 0.8,
+                        child: TextField(
+                          controller: newone,
                         ),
-                        FractionallySizedBox(
-                          widthFactor: 0.65,
-                          child: ElevatedButton(
-                            onPressed: () {
-                              try {
-                                if (newone.text.isNotEmpty) {
-                                  FirebaseFirestore.instance
-                                      .collection('Function Suggestions')
-                                      .add({'New Function': newone.text});
-                                  Navigator.pop(context);
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) => const AlertDialog(
-                                            title: Text(
-                                                'Thank you for your request'),
-                                          ));
-                                }
-                              } catch (e) {
+                      ),
+                      FractionallySizedBox(
+                        widthFactor: 0.65,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            try {
+                              if (newone.text.isNotEmpty) {
+                                FirebaseFirestore.instance
+                                    .collection('Function Suggestions')
+                                    .add({'New Function': newone.text});
+                                Navigator.pop(context);
                                 showDialog(
                                     context: context,
                                     builder: (context) => const AlertDialog(
-                                          title: Text('Failed to send request'),
+                                          title: Text(
+                                              'Thank you for your request'),
                                         ));
                               }
-                            },
-                            child: const Text('Add'),
+                            } catch (e) {
+                              showDialog(
+                                  context: context,
+                                  builder: (context) => const AlertDialog(
+                                        title: Text('Failed to send request'),
+                                      ));
+                            }
+                          },
+                          child: const Text('Add'),
+                        ),
+                      )
+                    ],
+                  ),
+                );
+              },
+            ),
+            body: Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20),
+              child: GridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                scrollDirection: (MediaQuery.of(context).size.height >
+                        MediaQuery.of(context).size.width)
+                    ? Axis.vertical
+                    : Axis.horizontal,
+                children: [
+                  Card(
+                    key: UniqueKey(),
+                    elevation: 0,
+                    color: (MediaQuery.of(context).platformBrightness ==
+                            Brightness.light)
+                        ? const Color.fromARGB(255, 165, 226, 255)
+                        : const Color.fromARGB(255, 0, 135, 197),
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    child: FractionallySizedBox(
+                      widthFactor: 0.85,
+                      heightFactor: 0.85,
+                      child: Column(
+                        children: [
+                          Expanded(
+                            child: FittedBox(
+                                child: Text(
+                              'Points:\n$points',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: (MediaQuery.of(context)
+                                            .platformBrightness ==
+                                        Brightness.light)
+                                    ? Colors.black
+                                    : Colors.white,
+                              ),
+                            )),
                           ),
-                        )
-                      ],
-                    ),
-                  );
-                },
-              ),
-              body: Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20),
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  scrollDirection: (MediaQuery.of(context).size.height >
-                          MediaQuery.of(context).size.width)
-                      ? Axis.vertical
-                      : Axis.horizontal,
-                  children: [
-                    Card(
-                      key: UniqueKey(),
-                      elevation: 0,
-                      color: (MediaQuery.of(context).platformBrightness ==
-                              Brightness.light)
-                          ? const Color.fromARGB(255, 165, 226, 255)
-                          : const Color.fromARGB(255, 0, 135, 197),
-                      shape: const RoundedRectangleBorder(
-                        borderRadius: BorderRadius.all(Radius.circular(20)),
-                      ),
-                      child: FractionallySizedBox(
-                        widthFactor: 0.85,
-                        heightFactor: 0.85,
-                        child: Column(
-                          children: [
-                            Expanded(
-                              child: FittedBox(
-                                  child: Text(
-                                'Points:\n$points',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: (MediaQuery.of(context)
-                                              .platformBrightness ==
-                                          Brightness.light)
-                                      ? Colors.black
-                                      : Colors.white,
-                                ),
-                              )),
-                            ),
-                            ElevatedButton(
-                                style: ButtonStyle(
-                                  backgroundColor: MaterialStateProperty.all(
-                                      const Color.fromARGB(255, 0, 135, 197)),
-                                ),
-                                onPressed: () {
-                                  var rewardedAd;
-                                  RewardedAd.load(
-                                    adUnitId: (defaultTargetPlatform ==
-                                            TargetPlatform.android)
-                                        ? 'ca-app-pub-4914732861439858/8814232396'
-                                        : (defaultTargetPlatform ==
-                                                TargetPlatform.iOS)
-                                            ? 'ca-app-pub-4914732861439858/8194257629'
-                                            : '',
-                                    request: const AdRequest(),
-                                    rewardedAdLoadCallback:
-                                        RewardedAdLoadCallback(
-                                      onAdLoaded: (ad) {
-                                        rewardedAd = ad;
-                                        rewardedAd?.show(
-                                          onUserEarnedReward: ((ad, reward) {
-                                            debugPrint(
-                                                "My Reward Amount -> ${reward.amount}");
-                                          }),
-                                        );
+                          ElevatedButton(
+                              style: ButtonStyle(
+                                backgroundColor: MaterialStateProperty.all(
+                                    const Color.fromARGB(255, 0, 135, 197)),
+                              ),
+                              onPressed: () {
+                                var rewardedAd;
+                                RewardedAd.load(
+                                  adUnitId: (defaultTargetPlatform ==
+                                          TargetPlatform.android)
+                                      ? 'ca-app-pub-4914732861439858/8814232396'
+                                      : (defaultTargetPlatform ==
+                                              TargetPlatform.iOS)
+                                          ? 'ca-app-pub-4914732861439858/8194257629'
+                                          : '',
+                                  request: const AdRequest(),
+                                  rewardedAdLoadCallback:
+                                      RewardedAdLoadCallback(
+                                    onAdLoaded: (ad) {
+                                      rewardedAd = ad;
+                                      rewardedAd?.show(
+                                        onUserEarnedReward: ((ad, reward) {
+                                          debugPrint(
+                                              "My Reward Amount -> ${reward.amount}");
+                                        }),
+                                      );
 
-                                        rewardedAd?.fullScreenContentCallback =
-                                            FullScreenContentCallback(
-                                                onAdFailedToShowFullScreenContent:
-                                                    (RewardedAd ad, err) {
-                                          ad.dispose();
-                                        }, onAdDismissedFullScreenContent:
-                                                    (RewardedAd ad) {
-                                          ad.dispose();
-                                          int gotpoints =
-                                              randomnum.nextInt(5) + 1;
-                                          points += gotpoints;
-                                          savedata.setInt('points', points);
-                                          showDialog(
-                                            context: context,
-                                            builder: (builder) => AlertDialog(
-                                              title: Text(
-                                                  "You got $gotpoints points"),
-                                            ),
-                                          );
-                                        });
-                                      },
-                                      onAdFailedToLoad: (err) {
-                                        debugPrint(err.message);
-                                      },
-                                    ),
-                                  );
-                                },
-                                child: const Text("Get Points"))
-                          ],
-                        ),
+                                      rewardedAd?.fullScreenContentCallback =
+                                          FullScreenContentCallback(
+                                              onAdFailedToShowFullScreenContent:
+                                                  (RewardedAd ad, err) {
+                                        ad.dispose();
+                                      }, onAdDismissedFullScreenContent:
+                                                  (RewardedAd ad) {
+                                        ad.dispose();
+                                        int gotpoints =
+                                            randomnum.nextInt(5) + 1;
+                                        points += gotpoints;
+                                        savedata.setInt('points', points);
+                                        showDialog(
+                                          context: context,
+                                          builder: (builder) => AlertDialog(
+                                            title: Text(
+                                                "You got $gotpoints points"),
+                                          ),
+                                        );
+                                      });
+                                    },
+                                    onAdFailedToLoad: (err) {
+                                      debugPrint(err.message);
+                                    },
+                                  ),
+                                );
+                              },
+                              child: const Text("Get Points"))
+                        ],
                       ),
                     ),
-                    Card(
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                      elevation: 0,
-                      child: RotatedBox(
-                        quarterTurns: -1,
-                        child: LinearProgressIndicator(
-                          value: pointsleft,
-                        ),
+                  ),
+                  Card(
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    elevation: 0,
+                    child: RotatedBox(
+                      quarterTurns: -1,
+                      child: LinearProgressIndicator(
+                        value: pointsleft,
                       ),
                     ),
-                    CardButton(
-                      text: 'Calculator',
-                    ),
-                    CardButton(
-                      text: 'Converter',
-                    ),
-                    /*CardButton(
+                  ),
+                  CardButton(
+                    text: 'Calculator',
+                  ),
+                  CardButton(
+                    text: 'Converter',
+                  ),
+                  /*CardButton(
                   text: 'Surface Area',
                 ),
                 CardButton(
                   text: 'Volume',
                 ),*/
-                    CardButton(
-                      text: 'Science',
-                    ),
-                    CardButton(
-                      text: 'Root Finder',
-                    ),
-                    CardButton(
-                      text: 'Pythagorean',
-                    ),
-                    CardButton(
-                      text: 'Trigonometry',
-                    ),
-                    CardButton(
-                      text: 'GCF',
-                    ),
-                    CardButton(
-                      text: 'LCM',
-                    ),
-                    /*
-                CardButton(
-                  text: 'Graphs',
-                ),
-                CardButton(
-                  text: 'Finance',
-                ),*/
-                  ],
-                ),
+                  CardButton(
+                    text: 'Science',
+                  ),
+                  CardButton(
+                    text: 'Root Finder',
+                  ),
+                  CardButton(
+                    text: 'Pythagorean',
+                  ),
+                  CardButton(
+                    text: 'Trigonometry',
+                  ),
+                  CardButton(
+                    text: 'GCF',
+                  ),
+                  CardButton(
+                    text: 'LCM',
+                  ),
+                  CardButton(
+                    text: 'Sequences',
+                  ),
+                  CardButton(
+                    text: 'Series',
+                  ),
+                  CardButton(
+                    text: 'Finance',
+                  ),
+                ],
               ),
-            );
-          } else if (snap.hasError) {
-            return const Scaffold(
-              body: Center(child: CircularProgressIndicator()),
-            );
-          }
-          return const Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+            ),
           );
-        });
+        }
+        return const Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        );
+      },
+    );
   }
 }
