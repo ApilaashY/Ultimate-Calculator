@@ -18,22 +18,57 @@ class _SimpleInterestState extends State<SimpleInterest> {
   TextEditingController Total = TextEditingController();
   TextEditingController Time = TextEditingController();
   String currenttime = "Yearly";
+  Map times = {
+    "Yearly": 1,
+    "Semi-Annually": 2,
+    "Quarterly": 4,
+    "Monthly": 12,
+    "Biweekly": 26,
+    "Weekly": 52,
+    "Daily": 365,
+  };
   void calc() {
-    try {} catch (e) {
+    try {
+      if (Principal.text.isNotEmpty &&
+          Rate.text.isNotEmpty &&
+          Time.text.isNotEmpty) {
+        Interest.text = (double.parse(Principal.text) *
+                (double.parse(Rate.text) / times[currenttime]) *
+                double.parse(Time.text))
+            .toString();
+        Total.text =
+            (double.parse(Interest.text) + double.parse(Principal.text))
+                .toString();
+      } else if (Total.text.isNotEmpty &&
+          Rate.text.isNotEmpty &&
+          Time.text.isNotEmpty) {
+        Principal.text = (double.parse(Total.text) /
+                ((double.parse(Rate.text) / times[currenttime]) *
+                        double.parse(Time.text) +
+                    1))
+            .toString();
+        Interest.text = (double.parse(Principal.text) *
+                (double.parse(Rate.text) / times[currenttime]) *
+                double.parse(Time.text))
+            .toString();
+      } else if (Interest.text.isNotEmpty &&
+          Rate.text.isNotEmpty &&
+          Time.text.isNotEmpty) {
+        Principal.text = (double.parse(Interest.text) /
+                ((double.parse(Rate.text) / times[currenttime]) *
+                    double.parse(Time.text)))
+            .toString();
+        Total.text =
+            (double.parse(Interest.text) + double.parse(Principal.text))
+                .toString();
+      } else {
+        Fluttertoast.showToast(msg: "Not Enough Information");
+      }
+    } catch (e) {
       Fluttertoast.showToast(msg: 'Error');
     }
     setState(() {});
   }
-
-  List times = [
-    "Yearly",
-    "Quarterly",
-    "Semi-Annually",
-    "Monthly",
-    "Biweekly",
-    "Weekly",
-    "Daily"
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +88,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
             alignment: const Alignment(0.0, 0.2),
             child: FractionallySizedBox(
               heightFactor: 0.8,
-              widthFactor: 0.8,
+              widthFactor: 0.85,
               child: Card(
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
@@ -101,16 +136,16 @@ class _SimpleInterestState extends State<SimpleInterest> {
                             flex: 1,
                             child: Inputfield(
                               controller: Time,
-                              hintText: 'Time',
+                              hintText: 'Times Compounded',
                               keyboardType: TextInputType.number,
                             ),
                           ),
                           DropdownButton(
                             value: currenttime,
-                            items: times
+                            items: times.keys
                                 .map((e) => DropdownMenuItem(
                                       value: e,
-                                      child: Text(e),
+                                      child: Text(e.toString()),
                                     ))
                                 .toList(),
                             onChanged: (newval) {

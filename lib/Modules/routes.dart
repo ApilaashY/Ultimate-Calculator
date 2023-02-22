@@ -12,7 +12,6 @@ import 'package:app/Pages/Finance/Finance.dart';
 import 'package:app/main.dart';
 import 'package:app/Pages/calculator.dart';
 import 'package:app/Pages/converter.dart';
-import 'package:app/Pages/finance.dart';
 import 'package:app/Pages/gcf.dart';
 import 'package:app/Pages/lcm.dart';
 import 'package:app/Pages/pythagorean.dart';
@@ -26,7 +25,6 @@ import 'package:app/Pages/science.dart';
 import 'package:app/Pages/graph.dart';
 
 Route<dynamic> controller(RouteSettings settings) {
-  print(settings.name == "Finance");
   if (settings.name == 'Home') {
     return MaterialPageRoute(builder: (context) => const Home());
   } else if (settings.name == 'Calculator') {
@@ -80,7 +78,7 @@ Route<dynamic> controller(RouteSettings settings) {
   } else if (settings.name == "Series") {
     return MaterialPageRoute(builder: (context) => const Ohm());
   } else if (settings.name == "Finance") {
-    return MaterialPageRoute(builder: (context) => const Ohm());
+    return MaterialPageRoute(builder: (context) => const Finance());
   } else if (settings.name == "Simple Interest") {
     return MaterialPageRoute(builder: (context) => const SimpleInterest());
   } else if (settings.name == "Compound Interest") {
