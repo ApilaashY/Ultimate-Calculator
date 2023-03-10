@@ -135,7 +135,6 @@ class _HomeState extends State<Home> {
     //showinter();
   }
 
-  bool suggestion = true;
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -266,6 +265,7 @@ class _HomeState extends State<Home> {
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
                     child: FractionallySizedBox(
+                      key: const ObjectKey("points"),
                       widthFactor: 0.85,
                       heightFactor: 0.85,
                       child: Column(
@@ -323,6 +323,7 @@ class _HomeState extends State<Home> {
                                             randomnum.nextInt(5) + 1;
                                         points += gotpoints;
                                         savedata.setInt('points', points);
+                                        setState(() {});
                                         showDialog(
                                           context: context,
                                           builder: (builder) => AlertDialog(
