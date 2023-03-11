@@ -347,11 +347,11 @@ class _ConverterState extends State<Converter> {
       final response = await http.get(baseUri);
       Map<String, dynamic> jsonResponse =
           json.decode(response.body) as Map<String, dynamic>;
-      print(jsonResponse['timestamp']);
-      timestamp = jsonResponse['timestamp'];
+      timestamp = jsonResponse['timestamp'] * 1000;
       rates = jsonResponse.remove("rates") as Map<String, dynamic>;
       icontype = 'Good';
       savedata.setString('rates', json.encode(rates));
+      savedata.setInt('timestamp', timestamp);
     } catch (er) {
       var strrates = savedata.getString('rates');
       if (strrates != null) {
@@ -359,6 +359,9 @@ class _ConverterState extends State<Converter> {
         icontype = 'Caution';
       } else {
         icontype = 'Warning';
+      }
+      if (savedata.getInt('timestamp') != null) {
+        timestamp = savedata.getInt('timestamp');
       }
     }
     return 'done';
@@ -435,10 +438,12 @@ class _ConverterState extends State<Converter> {
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                                title: Text("Currency Dated on " +
-                                    DateTime.fromMillisecondsSinceEpoch(
-                                            timestamp * 1000)
-                                        .toString()),
+                                title: Text((() {
+                                  if (timestamp > 0) {
+                                    return "Currency Dated on ${DateTime.fromMillisecondsSinceEpoch(timestamp)}";
+                                  }
+                                  return "Timestamp not known";
+                                })()),
                               ));
                     },
                     icon: const Icon(Icons.timer))
@@ -447,7 +452,13 @@ class _ConverterState extends State<Converter> {
             body: Stack(
               children: [
                 Align(
-                  alignment: const Alignment(0, -0.8),
+                  alignment: (() {
+                    if (MediaQuery.of(context).size.height >
+                        MediaQuery.of(context).size.width) {
+                      return const Alignment(0, -0.8);
+                    }
+                    return const Alignment(-0.8, -0.7);
+                  })(),
                   child: FractionallySizedBox(
                     heightFactor: 0.2,
                     widthFactor: 0.4,
@@ -465,7 +476,13 @@ class _ConverterState extends State<Converter> {
                   ),
                 ),
                 Align(
-                  alignment: const Alignment(0, -0.9),
+                  alignment: (() {
+                    if (MediaQuery.of(context).size.height >
+                        MediaQuery.of(context).size.width) {
+                      return const Alignment(0, -0.9);
+                    }
+                    return const Alignment(-0.5, -0.3);
+                  })(),
                   child: FractionallySizedBox(
                     child: Opacity(
                       opacity: double.parse(wifiopac.toString()),
@@ -505,7 +522,7 @@ class _ConverterState extends State<Converter> {
                             content: (() {
                               if (icontype == 'Caution') {
                                 return const Text(
-                                    'You do not have a stable internet conection at the moment, so the rates will be of the same from when you last opened the converter. Therefore the rates will not be exact.');
+                                    'You do not have a stable internet conection at the moment, so the rates will be of the same from when you last opened the converter. Therefore the rates will not be exact. To check when the rates were refreshed, click on the clock icon on the top right corner.');
                               } else if (icontype == 'Warning') {
                                 return const Text(
                                     'You do not have a stable internet connection at the moment and can not make conversions');
@@ -519,7 +536,13 @@ class _ConverterState extends State<Converter> {
                   ),
                 ),
                 Align(
-                  alignment: const Alignment(0.0, -0.5),
+                  alignment: (() {
+                    if (MediaQuery.of(context).size.height >
+                        MediaQuery.of(context).size.width) {
+                      return const Alignment(0, -0.5);
+                    }
+                    return const Alignment(-0.5, 0);
+                  })(),
                   child: DropdownButton(
                     style: TextStyle(
                       color: (MediaQuery.of(context).platformBrightness ==
@@ -549,10 +572,28 @@ class _ConverterState extends State<Converter> {
                   ),
                 ),
                 Align(
-                  alignment: const Alignment(0.0, 0.4),
+                  alignment: (() {
+                    if (MediaQuery.of(context).size.height >
+                        MediaQuery.of(context).size.width) {
+                      return const Alignment(0.0, 0.4);
+                    }
+                    return const Alignment(0.9, 0.0);
+                  })(),
                   child: FractionallySizedBox(
-                    widthFactor: 0.85,
-                    heightFactor: 0.5,
+                    widthFactor: (() {
+                      if (MediaQuery.of(context).size.height >
+                          MediaQuery.of(context).size.width) {
+                        return 0.85;
+                      }
+                      return 0.5;
+                    })(),
+                    heightFactor: (() {
+                      if (MediaQuery.of(context).size.height >
+                          MediaQuery.of(context).size.width) {
+                        return 0.5;
+                      }
+                      return 0.8;
+                    })(),
                     child: Opacity(
                       opacity:
                           (icontype == 'Warning' && unittypevalue == "Currency")
@@ -564,7 +605,7 @@ class _ConverterState extends State<Converter> {
                         ),
                         elevation: 20,
                         child: ListView(
-                          //padding: EdgeInsets.all(10),
+                          padding: const EdgeInsets.all(10),
                           children: [
                             Center(
                               child: DropdownButton(

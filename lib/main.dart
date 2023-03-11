@@ -179,10 +179,7 @@ class _HomeState extends State<Home> {
               ),
             ),
             floatingActionButton: FloatingActionButton(
-              backgroundColor: (MediaQuery.of(context).platformBrightness ==
-                      Brightness.light)
-                  ? const Color.fromARGB(255, 165, 226, 255)
-                  : const Color.fromARGB(255, 0, 135, 197),
+              backgroundColor: const Color.fromARGB(255, 255, 184, 0),
               child: Icon(
                 Icons.add_rounded,
                 color: (MediaQuery.of(context).platformBrightness ==
@@ -246,7 +243,8 @@ class _HomeState extends State<Home> {
             body: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: GridView.count(
-                crossAxisCount: 2,
+                crossAxisCount: 1,
+                childAspectRatio: 2,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
                 scrollDirection: (MediaQuery.of(context).size.height >
@@ -255,7 +253,6 @@ class _HomeState extends State<Home> {
                     : Axis.horizontal,
                 children: [
                   Card(
-                    key: UniqueKey(),
                     elevation: 0,
                     color: (MediaQuery.of(context).platformBrightness ==
                             Brightness.light)
@@ -367,32 +364,167 @@ class _HomeState extends State<Home> {
                 CardButton(
                   text: 'Volume',
                 ),*/
+                  Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    color: (MediaQuery.of(context).platformBrightness ==
+                            Brightness.light)
+                        ? const Color.fromARGB(255, 165, 226, 255)
+                        : const Color.fromARGB(255, 0, 135, 197),
+                    child: Column(children: [
+                      Expanded(
+                        flex: 1,
+                        child: FittedBox(
+                            child: Text(
+                          "Physics",
+                          style: TextStyle(
+                            color: (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light)
+                                ? Colors.black
+                                : Colors.white,
+                          ),
+                        )),
+                      ),
+                      Expanded(
+                          flex: 3,
+                          child: GridView.count(
+                            crossAxisCount: 1,
+                            padding: const EdgeInsets.all(10),
+                            mainAxisSpacing: 10,
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              SectionButton(text: "Vector Addition"),
+                              SectionButton(text: 'Work'),
+                              SectionButton(
+                                  text: 'Gravitational Potential Energy'),
+                              SectionButton(text: 'Kinetic Energy'),
+                              SectionButton(text: 'Coefficient of Friction'),
+                              SectionButton(text: "Ohm's Law"),
+                            ],
+                          )),
+                    ]),
+                  ),
                   CardButton(
-                    text: 'Science',
+                    text: 'Periodic Table',
+                  ),
+                  Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    color: (MediaQuery.of(context).platformBrightness ==
+                            Brightness.light)
+                        ? const Color.fromARGB(255, 165, 226, 255)
+                        : const Color.fromARGB(255, 0, 135, 197),
+                    child: Column(children: [
+                      Expanded(
+                        flex: 1,
+                        child: FittedBox(
+                            child: Text(
+                          "Triangles",
+                          style: TextStyle(
+                            color: (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light)
+                                ? Colors.black
+                                : Colors.white,
+                          ),
+                        )),
+                      ),
+                      Expanded(
+                          flex: 3,
+                          child: GridView.count(
+                            crossAxisCount: 1,
+                            padding: const EdgeInsets.all(10),
+                            mainAxisSpacing: 10,
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              SectionButton(text: "Trigonometry"),
+                              SectionButton(text: 'Pythagorean'),
+                            ],
+                          )),
+                    ]),
+                  ),
+                  Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    color: (MediaQuery.of(context).platformBrightness ==
+                            Brightness.light)
+                        ? const Color.fromARGB(255, 165, 226, 255)
+                        : const Color.fromARGB(255, 0, 135, 197),
+                    child: Column(children: [
+                      Expanded(
+                        flex: 1,
+                        child: FittedBox(
+                            child: Text(
+                          "Finance",
+                          style: TextStyle(
+                            color: (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light)
+                                ? Colors.black
+                                : Colors.white,
+                          ),
+                        )),
+                      ),
+                      Expanded(
+                          flex: 3,
+                          child: GridView.count(
+                            crossAxisCount: 1,
+                            padding: const EdgeInsets.all(10),
+                            mainAxisSpacing: 10,
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              SectionButton(text: "Simple Interest"),
+                              SectionButton(text: 'Compound Interest'),
+                              SectionButton(text: 'Annuity'),
+                            ],
+                          )),
+                    ]),
+                  ),
+                  Card(
+                    shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20)),
+                    ),
+                    color: (MediaQuery.of(context).platformBrightness ==
+                            Brightness.light)
+                        ? const Color.fromARGB(255, 165, 226, 255)
+                        : const Color.fromARGB(255, 0, 135, 197),
+                    child: Column(children: [
+                      Expanded(
+                        flex: 1,
+                        child: FittedBox(
+                            child: Text(
+                          "Sequences and Series",
+                          style: TextStyle(
+                            color: (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light)
+                                ? Colors.black
+                                : Colors.white,
+                          ),
+                        )),
+                      ),
+                      Expanded(
+                          flex: 3,
+                          child: GridView.count(
+                            crossAxisCount: 1,
+                            padding: const EdgeInsets.all(10),
+                            mainAxisSpacing: 10,
+                            scrollDirection: Axis.horizontal,
+                            children: [
+                              SectionButton(text: "Sequences"),
+                              SectionButton(text: 'Series'),
+                            ],
+                          )),
+                    ]),
                   ),
                   CardButton(
                     text: 'Root Finder',
-                  ),
-                  CardButton(
-                    text: 'Pythagorean',
-                  ),
-                  CardButton(
-                    text: 'Trigonometry',
                   ),
                   CardButton(
                     text: 'GCF',
                   ),
                   CardButton(
                     text: 'LCM',
-                  ),
-                  CardButton(
-                    text: 'Sequences',
-                  ),
-                  CardButton(
-                    text: 'Series',
-                  ),
-                  CardButton(
-                    text: 'Finance',
                   ),
                 ],
               ),

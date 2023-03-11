@@ -68,3 +68,41 @@ class ColorText extends StatelessWidget {
     );
   }
 }
+
+class SectionButton extends StatefulWidget {
+  SectionButton({super.key, required text}) {
+    this.text = text;
+  }
+  String text = 'Unknown';
+
+  @override
+  State<SectionButton> createState() => _SectionButtonState(text: text);
+}
+
+class _SectionButtonState extends State<SectionButton> {
+  _SectionButtonState({required text}) {
+    this.text = text;
+  }
+
+  String text = 'Unknown';
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      style: ElevatedButton.styleFrom(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
+          backgroundColor: const Color.fromARGB(255, 35, 206, 107)),
+      onPressed: () {
+        Navigator.pushNamed(context, text);
+      },
+      child: Text(text.replaceAll(" ", "\n"),
+          style: TextStyle(
+            color:
+                (MediaQuery.of(context).platformBrightness == Brightness.dark)
+                    ? Colors.white
+                    : Colors.black,
+          )),
+    );
+  }
+}
