@@ -5,6 +5,7 @@ import 'package:app/Pages/Physics/cooffriction.dart';
 import 'package:app/Pages/Physics/ohm.dart';
 import 'package:app/Pages/Physics/vectoraddition.dart';
 import 'package:app/Pages/Physics/work.dart';
+import 'package:app/Pages/SequenceAndSeries/Sequence.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/main.dart';
@@ -65,7 +66,7 @@ Route<dynamic> controller(RouteSettings settings) {
   } else if (settings.name == "Ohm's Law") {
     return MaterialPageRoute(builder: (context) => const Ohm());
   } else if (settings.name == "Sequences") {
-    return MaterialPageRoute(builder: (context) => const Ohm());
+    return MaterialPageRoute(builder: (context) => const Sequence());
   } else if (settings.name == "Series") {
     return MaterialPageRoute(builder: (context) => const Ohm());
   } else if (settings.name == "Simple Interest") {

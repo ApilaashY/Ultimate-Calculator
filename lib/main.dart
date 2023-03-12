@@ -78,12 +78,10 @@ class _MyAppState extends State<MyApp> {
       debugShowCheckedModeBanner: true,
       theme: ThemeData.light().copyWith(
           primaryColor: const Color.fromARGB(255, 0, 135, 197),
-          textTheme:
-              GoogleFonts.robotoMonoTextTheme(Theme.of(context).textTheme)),
+          textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme)),
       darkTheme: ThemeData.dark().copyWith(
           primaryColor: const Color.fromARGB(255, 0, 135, 197),
-          textTheme:
-              GoogleFonts.robotoMonoTextTheme(Theme.of(context).textTheme)),
+          textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme)),
       onGenerateRoute: routes.controller,
       initialRoute: 'Home',
     );
@@ -99,7 +97,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Random randomnum = Random();
-  RewardedAd? ad = null;
+  RewardedAd? ad;
   initState() {
     super.initState();
     if (randomnum.nextInt(10) == 0 &&

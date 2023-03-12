@@ -1,4 +1,7 @@
+import 'dart:math';
+
 import 'package:app/Modules/input_field.dart';
+import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,15 +20,15 @@ class _SimpleInterestState extends State<SimpleInterest> {
   TextEditingController Interest = TextEditingController();
   TextEditingController Total = TextEditingController();
   TextEditingController Time = TextEditingController();
-  String currenttime = "Yearly";
-  Map times = {
-    "Yearly": 1,
-    "Semi-Annually": 2,
-    "Quarterly": 4,
-    "Monthly": 12,
-    "Biweekly": 26,
-    "Weekly": 52,
-    "Daily": 365,
+  String _currenttime = "Years";
+  final Map _times = {
+    "Years": 1,
+    "Semi-Years": 2,
+    "Quarters": 4,
+    "Months": 12,
+    "Biweeks": 26,
+    "Weeks": 52,
+    "Days": 365,
   };
   void calc() {
     try {
@@ -33,40 +36,86 @@ class _SimpleInterestState extends State<SimpleInterest> {
           Rate.text.isNotEmpty &&
           Time.text.isNotEmpty) {
         Interest.text = (double.parse(Principal.text) *
-                (double.parse(Rate.text) / times[currenttime]) *
+                (double.parse(Rate.text) / 100 / _times[_currenttime]) *
                 double.parse(Time.text))
-            .toString();
+            .toStringAsFixed(roundingnumber);
         Total.text =
             (double.parse(Interest.text) + double.parse(Principal.text))
-                .toString();
-      } else if (Total.text.isNotEmpty &&
-          Rate.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Principal.text = (double.parse(Total.text) /
-                ((double.parse(Rate.text) / times[currenttime]) *
-                        double.parse(Time.text) +
-                    1))
-            .toString();
-        Interest.text = (double.parse(Principal.text) *
-                (double.parse(Rate.text) / times[currenttime]) *
-                double.parse(Time.text))
-            .toString();
+                .toStringAsFixed(roundingnumber);
       } else if (Interest.text.isNotEmpty &&
           Rate.text.isNotEmpty &&
           Time.text.isNotEmpty) {
         Principal.text = (double.parse(Interest.text) /
-                ((double.parse(Rate.text) / times[currenttime]) *
-                    double.parse(Time.text)))
-            .toString();
+                ((double.parse(Rate.text) / 100 / _times[_currenttime]) *
+                    (double.parse(Time.text) * _times[_currenttime])))
+            .toStringAsFixed(roundingnumber);
         Total.text =
             (double.parse(Interest.text) + double.parse(Principal.text))
-                .toString();
+                .toStringAsFixed(roundingnumber);
+      } else if (Total.text.isNotEmpty &&
+          Rate.text.isNotEmpty &&
+          Time.text.isNotEmpty) {
+        Principal.text = (double.parse(Total.text) /
+                ((double.parse(Rate.text) / 100 / _times[_currenttime]) *
+                        (double.parse(Time.text) * _times[_currenttime]) +
+                    1))
+            .toStringAsFixed(roundingnumber);
+        Interest.text = (double.parse(Principal.text) *
+                (double.parse(Rate.text) / _times[_currenttime]) *
+                double.parse(Time.text))
+            .toStringAsFixed(roundingnumber);
+      } else if (Interest.text.isNotEmpty &&
+          Principal.text.isNotEmpty &&
+          Time.text.isNotEmpty) {
+        Total.text =
+            (double.parse(Interest.text) + double.parse(Principal.text))
+                .toStringAsFixed(roundingnumber);
+        Rate.text = ((double.parse(Interest.text) /
+                    (double.parse(Principal.text) *
+                        double.parse(Time.text) *
+                        _times[_currenttime])) *
+                pow(_times[_currenttime], 2) *
+                100)
+            .toStringAsFixed(roundingnumber);
+      } else if (Total.text.isNotEmpty &&
+          Principal.text.isNotEmpty &&
+          Time.text.isNotEmpty) {
+        Rate.text =
+            ((double.parse(Total.text) / double.parse(Principal.text) - 1) /
+                    (double.parse(Time.text) * _times[_currenttime]) *
+                    pow(_times[_currenttime], 2) *
+                    100)
+                .toStringAsFixed(roundingnumber);
+        Interest.text =
+            (double.parse(Total.text) - double.parse(Principal.text))
+                .toStringAsFixed(roundingnumber);
+      } else if (Interest.text.isNotEmpty &&
+          Principal.text.isNotEmpty &&
+          Rate.text.isNotEmpty) {
+        Total.text =
+            (double.parse(Interest.text) + double.parse(Principal.text))
+                .toStringAsFixed(roundingnumber);
+        Time.text = (double.parse(Interest.text) /
+                (double.parse(Principal.text) *
+                    (double.parse(Rate.text) / 100 / _times[_currenttime])))
+            .toStringAsFixed(roundingnumber);
+      } else if (Total.text.isNotEmpty &&
+          Principal.text.isNotEmpty &&
+          Rate.text.isNotEmpty) {
+        Time.text =
+            ((double.parse(Total.text) / double.parse(Principal.text) - 1) /
+                    (double.parse(Rate.text) / 100 / _times[_currenttime]))
+                .toStringAsFixed(roundingnumber);
+        Interest.text =
+            (double.parse(Total.text) - double.parse(Principal.text))
+                .toStringAsFixed(roundingnumber);
       } else {
         Fluttertoast.showToast(msg: "Not Enough Information");
       }
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error');
     }
+    addpoints(1);
     setState(() {});
   }
 
@@ -141,15 +190,15 @@ class _SimpleInterestState extends State<SimpleInterest> {
                             ),
                           ),
                           DropdownButton(
-                            value: currenttime,
-                            items: times.keys
+                            value: _currenttime,
+                            items: _times.keys
                                 .map((e) => DropdownMenuItem(
                                       value: e,
                                       child: Text(e.toString()),
                                     ))
                                 .toList(),
                             onChanged: (newval) {
-                              currenttime = newval.toString();
+                              _currenttime = newval.toString();
                               setState(() {});
                             },
                           )

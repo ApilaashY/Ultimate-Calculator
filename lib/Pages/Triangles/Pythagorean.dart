@@ -64,6 +64,7 @@ class _PythagoreanState extends State<Pythagorean> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Pythagorean"),
         foregroundColor:
             (MediaQuery.of(context).platformBrightness == Brightness.light)
                 ? Colors.black

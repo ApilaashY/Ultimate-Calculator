@@ -308,6 +308,7 @@ class _TrigonometryState extends State<Trigonometry> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text("Trigonometry"),
         foregroundColor:
             (MediaQuery.of(context).platformBrightness == Brightness.light)
                 ? Colors.black

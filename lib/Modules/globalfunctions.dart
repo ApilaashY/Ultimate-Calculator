@@ -32,9 +32,9 @@ void addpoints(int pointnumber) async {
   if (todaylength < 10) {
     await savedata.setString('today', today.toString());
     await savedata.setInt('points', points + pointnumber);
-    await savedata.setInt('todaylength', todaylength + 1);
+    await savedata.setInt('todaylength', todaylength + pointnumber);
     points += pointnumber;
-    pointsleft = (todaylength + 1) / 10;
+    pointsleft = (todaylength + pointsleft) / 10;
     Fluttertoast.showToast(msg: 'Added 1 Point');
   } else {
     if (todaylimitshown == false) {
