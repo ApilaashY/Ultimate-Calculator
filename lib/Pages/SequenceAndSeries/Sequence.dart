@@ -1,5 +1,7 @@
+import 'dart:math';
+
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
+import 'package:app/Modules/globalfunctions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -22,50 +24,70 @@ class _SequenceState extends State<Sequence> {
     try {
       if (change == "Arithmetic") {
         if (first.text.isNotEmpty && nth.text.isNotEmpty && n.text.isNotEmpty) {
-          difference.text =
+          difference.text = roundto(
               ((double.parse(nth.text) - double.parse(first.text)) /
                       (double.parse(n.text) - 1))
-                  .toStringAsFixed(roundingnumber);
+                  .toString());
         } else if (difference.text.isNotEmpty &&
             nth.text.isNotEmpty &&
             n.text.isNotEmpty) {
-          first.text = (double.parse(nth.text) -
+          first.text = roundto((double.parse(nth.text) -
                   double.parse(difference.text) * (double.parse(n.text) - 1))
-              .toStringAsFixed(roundingnumber);
+              .toString());
         } else if (first.text.isNotEmpty &&
             difference.text.isNotEmpty &&
             n.text.isNotEmpty) {
-          nth.text = (double.parse(first.text) +
+          nth.text = roundto((double.parse(first.text) +
                   double.parse(difference.text) * (double.parse(n.text) - 1))
-              .toStringAsFixed(roundingnumber);
+              .toString());
         } else if (first.text.isNotEmpty &&
             nth.text.isNotEmpty &&
             difference.text.isNotEmpty) {
-          n.text = ((double.parse(nth.text) - double.parse(first.text)) /
-                      double.parse(difference.text) +
-                  1)
-              .toStringAsFixed(roundingnumber);
+          n.text = roundto(
+              ((double.parse(nth.text) - double.parse(first.text)) /
+                          double.parse(difference.text) +
+                      1)
+                  .toString());
         } else {
           Fluttertoast.showToast(msg: "Not Enough Information");
         }
       } else if (change == "Geometric") {
         if (first.text.isNotEmpty && nth.text.isNotEmpty && n.text.isNotEmpty) {
+          difference.text = roundto((pow(
+                  double.parse(nth.text) / double.parse(first.text),
+                  (1 / (double.parse(n.text) - 1))))
+              .toString());
         } else if (difference.text.isNotEmpty &&
             nth.text.isNotEmpty &&
             n.text.isNotEmpty) {
+          first.text = roundto((double.parse(nth.text) /
+                  pow(double.parse(difference.text),
+                      (double.parse(n.text) - 1)))
+              .toString());
         } else if (first.text.isNotEmpty &&
             difference.text.isNotEmpty &&
             n.text.isNotEmpty) {
+          nth.text = roundto((double.parse(first.text) *
+                  pow(double.parse(difference.text),
+                      (double.parse(n.text) - 1)))
+              .toString());
         } else if (first.text.isNotEmpty &&
             nth.text.isNotEmpty &&
             difference.text.isNotEmpty) {
+          n.text = roundto(
+              (log(double.parse(nth.text) / double.parse(first.text)) /
+                          log(double.parse(difference.text)) +
+                      1)
+                  .toString());
         } else {
           Fluttertoast.showToast(msg: "Not Enough Information");
         }
+        addpoints(1);
       }
     } catch (e) {
       Fluttertoast.showToast(msg: "Error");
     }
+    setState(() {});
   }
 
   @override
@@ -113,6 +135,7 @@ class _SequenceState extends State<Sequence> {
                 Inputfield(
                   controller: first,
                   hintText: "First Value",
+                  keyboardType: TextInputType.number,
                 ),
                 IconButton(
                   icon: const Icon(
@@ -126,6 +149,7 @@ class _SequenceState extends State<Sequence> {
                 Inputfield(
                   controller: nth,
                   hintText: "Nth term",
+                  keyboardType: TextInputType.number,
                 ),
                 IconButton(
                   icon: const Icon(
@@ -139,6 +163,7 @@ class _SequenceState extends State<Sequence> {
                 Inputfield(
                   controller: n,
                   hintText: "N",
+                  keyboardType: TextInputType.number,
                 ),
                 IconButton(
                   icon: const Icon(
@@ -152,6 +177,7 @@ class _SequenceState extends State<Sequence> {
                 Inputfield(
                   controller: difference,
                   hintText: "Common Difference",
+                  keyboardType: TextInputType.number,
                 ),
                 IconButton(
                   icon: const Icon(

@@ -20,7 +20,7 @@ class _CardButtonState extends State<CardButton> {
     return ElevatedButton(
       onPressed: (() => Navigator.pushNamed(context, text)),
       style: ElevatedButton.styleFrom(
-        elevation: 0,
+        elevation: 10,
         backgroundColor:
             (MediaQuery.of(context).platformBrightness == Brightness.light)
                 ? const Color.fromARGB(255, 165, 226, 255)
@@ -103,6 +103,57 @@ class _SectionButtonState extends State<SectionButton> {
                     ? Colors.white
                     : Colors.black,
           )),
+    );
+  }
+}
+
+class ExtendedButton extends StatefulWidget {
+  ExtendedButton({super.key, required this.text, this.children = const []});
+  String text;
+  List<Widget> children;
+
+  @override
+  State<ExtendedButton> createState() =>
+      _ExtendedButtonState(text: text, children: children);
+}
+
+class _ExtendedButtonState extends State<ExtendedButton> {
+  _ExtendedButtonState({required this.text, this.children = const []});
+  String text;
+  List<Widget> children;
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+      ),
+      color: (MediaQuery.of(context).platformBrightness == Brightness.light)
+          ? const Color.fromARGB(255, 165, 226, 255)
+          : const Color.fromARGB(255, 0, 135, 197),
+      child: Column(children: [
+        Expanded(
+          flex: 1,
+          child: FittedBox(
+              child: Text(
+            text,
+            style: TextStyle(
+              color: (MediaQuery.of(context).platformBrightness ==
+                      Brightness.light)
+                  ? Colors.black
+                  : Colors.white,
+            ),
+          )),
+        ),
+        Expanded(
+            flex: 3,
+            child: GridView.count(
+              crossAxisCount: 1,
+              padding: const EdgeInsets.all(10),
+              mainAxisSpacing: 10,
+              scrollDirection: Axis.horizontal,
+              children: children,
+            )),
+      ]),
     );
   }
 }

@@ -51,10 +51,10 @@ class _InputfieldState extends State<Inputfield> {
     return FractionallySizedBox(
       widthFactor: 0.8,
       child: TextField(
+        onChanged: (value) => setState(() {}),
         controller: controller,
         keyboardType: keyboardtype,
         textAlign: alignment,
-        focusNode: FocusNode(),
         style: TextStyle(
             color:
                 (MediaQuery.of(context).platformBrightness == Brightness.light)

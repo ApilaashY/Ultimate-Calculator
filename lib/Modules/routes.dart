@@ -6,6 +6,7 @@ import 'package:app/Pages/Physics/ohm.dart';
 import 'package:app/Pages/Physics/vectoraddition.dart';
 import 'package:app/Pages/Physics/work.dart';
 import 'package:app/Pages/SequenceAndSeries/Sequence.dart';
+import 'package:app/Pages/SequenceAndSeries/Series.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/main.dart';
@@ -68,7 +69,7 @@ Route<dynamic> controller(RouteSettings settings) {
   } else if (settings.name == "Sequences") {
     return MaterialPageRoute(builder: (context) => const Sequence());
   } else if (settings.name == "Series") {
-    return MaterialPageRoute(builder: (context) => const Ohm());
+    return MaterialPageRoute(builder: (context) => const Series());
   } else if (settings.name == "Simple Interest") {
     return MaterialPageRoute(builder: (context) => const SimpleInterest());
   } else if (settings.name == "Compound Interest") {
