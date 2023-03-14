@@ -24,7 +24,99 @@ class _SeriesState extends State<Series> {
   void calc() {
     try {
       if (change == "Arithmetic") {
-        if (true) {
+        if (n.text.isNotEmpty && first.text.isNotEmpty && nth.text.isNotEmpty) {
+          sum.text = roundto(
+              ((double.parse(first.text) + double.parse(nth.text)) /
+                      2 *
+                      double.parse(n.text))
+                  .toString());
+          difference.text = roundto(
+              ((double.parse(nth.text) - double.parse(first.text)) /
+                      (double.parse(n.text) - 1))
+                  .toString());
+        } else if (sum.text.isNotEmpty &&
+            first.text.isNotEmpty &&
+            nth.text.isNotEmpty) {
+          n.text = roundto((double.parse(sum.text) /
+                  ((double.parse(first.text) + double.parse(nth.text)) / 2))
+              .toString());
+          difference.text = roundto(
+              ((double.parse(nth.text) - double.parse(first.text)) /
+                      (double.parse(n.text) - 1))
+                  .toString());
+        } else if (n.text.isNotEmpty &&
+            sum.text.isNotEmpty &&
+            nth.text.isNotEmpty) {
+          first.text = roundto(
+              (double.parse(sum.text) / double.parse(n.text) * 2 -
+                      double.parse(nth.text))
+                  .toString());
+          difference.text = roundto(
+              ((double.parse(nth.text) - double.parse(first.text)) /
+                      (double.parse(n.text) - 1))
+                  .toString());
+        } else if (n.text.isNotEmpty &&
+            first.text.isNotEmpty &&
+            sum.text.isNotEmpty) {
+          nth.text = roundto(
+              (double.parse(sum.text) / double.parse(n.text) * 2 -
+                      double.parse(first.text))
+                  .toString());
+          difference.text = roundto(
+              ((double.parse(nth.text) - double.parse(first.text)) /
+                      (double.parse(n.text) - 1))
+                  .toString());
+        } else if (n.text.isNotEmpty &&
+            first.text.isNotEmpty &&
+            difference.text.isNotEmpty) {
+          sum.text = roundto(((double.parse(n.text) / 2) *
+                  (2 * double.parse(first.text) +
+                      double.parse(difference.text) *
+                          (double.parse(n.text) - 1)))
+              .toString());
+          nth.text = roundto((double.parse(first.text) +
+                  double.parse(difference.text) * (double.parse(n.text) - 1))
+              .toString());
+        } else if (sum.text.isNotEmpty &&
+            first.text.isNotEmpty &&
+            difference.text.isNotEmpty) {
+          n.text = roundto(((-2 * double.parse(first.text) +
+                      double.parse(difference.text) +
+                      sqrt(pow(
+                              (2 * double.parse(first.text) -
+                                  double.parse(difference.text)),
+                              2) +
+                          (8 *
+                              double.parse(difference.text) *
+                              double.parse(sum.text)))) /
+                  (2 * double.parse(difference.text)))
+              .toString());
+          nth.text = roundto((double.parse(first.text) +
+                  double.parse(difference.text) * (double.parse(n.text) - 1))
+              .toString());
+        } else if (n.text.isNotEmpty &&
+            sum.text.isNotEmpty &&
+            difference.text.isNotEmpty) {
+          first.text = roundto(
+              ((double.parse(sum.text) / (double.parse(n.text) / 2) -
+                          double.parse(difference.text) *
+                              (double.parse(n.text) - 1)) /
+                      2)
+                  .toString());
+          nth.text = roundto((double.parse(first.text) +
+                  double.parse(difference.text) * (double.parse(n.text) - 1))
+              .toString());
+        } else if (n.text.isNotEmpty &&
+            first.text.isNotEmpty &&
+            sum.text.isNotEmpty) {
+          difference.text = roundto(
+              ((double.parse(sum.text) / (double.parse(n.text) / 2) -
+                          double.parse(first.text) * 2) /
+                      (double.parse(n.text) - 1))
+                  .toString());
+          nth.text = roundto((double.parse(first.text) +
+                  double.parse(difference.text) * (double.parse(n.text) - 1))
+              .toString());
         } else {
           Fluttertoast.showToast(msg: "Not Enough Information");
         }
@@ -141,9 +233,8 @@ class _SeriesState extends State<Series> {
                   },
                 ),
                 Inputfield(
-                  controller: difference,
-                  hintText:
-                      "Sum of ${(int.tryParse(n.text) != null) ? int.parse(n.text) : "0"} terms",
+                  controller: sum,
+                  hintText: "Sum of N terms",
                   keyboardType: TextInputType.number,
                 ),
                 IconButton(
