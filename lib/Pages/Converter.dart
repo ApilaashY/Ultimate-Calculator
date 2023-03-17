@@ -1,5 +1,3 @@
-// ignore_for_file: avoid_print, empty_catches, library_private_types_in_public_api
-
 import 'dart:convert';
 import 'dart:io';
 
@@ -413,7 +411,6 @@ class _ConverterState extends State<Converter> {
         secondnumbercontroller.text = roundto(answer);
       });
     } catch (e) {
-      print(e);
       secondnumbercontroller.text = '0';
     }
   }
@@ -561,12 +558,15 @@ class _ConverterState extends State<Converter> {
                       setState(() {
                         unittypevalue = newValue.toString();
                         wifiopac = 0;
+                        types = typeMap[unittypevalue];
                         if (unittypevalue == 'Currency') {
                           wifiopac = 1;
+                          firsttypevalue = firstCurrencyValue;
+                          secondtypevalue = secondCurrencyValue;
+                        } else {
+                          firsttypevalue = types![0];
+                          secondtypevalue = types![0];
                         }
-                        types = typeMap[unittypevalue];
-                        firsttypevalue = types![0];
-                        secondtypevalue = types![0];
                       });
                     },
                   ),

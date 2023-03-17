@@ -23,7 +23,7 @@ class _TrigonometryState extends State<Trigonometry> {
     TextEditingController(),
     TextEditingController()
   ];
-  bool degreemode = true;
+  bool degreemode = degreeDefault;
   var vector = DegreeRad(true);
   void calc() {
     try {

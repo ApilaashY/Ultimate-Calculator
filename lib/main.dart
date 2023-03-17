@@ -18,6 +18,9 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 var savedata;
 int roundingnumber = 4;
 bool sigfigrounding = false;
+String firstCurrencyValue = "AED - United Arab Emirates Dirham";
+String secondCurrencyValue = "AED - United Arab Emirates Dirham";
+bool degreeDefault = true;
 int points = 0;
 double pointsleft = 0;
 
@@ -45,20 +48,23 @@ Future setup() async {
   }
   pointsleft = todaylength / 10;
   points = temppoints;
-  if (savedata.getString('SettingsSave') != null) {
+  String _settingsSave = await savedata.getString('SettingsSave');
+  Map? _settings = (_settingsSave != null) ? jsonDecode(_settingsSave) : null;
+  if (_settings != null) {
     roundingnumber =
-        (jsonDecode(savedata.getString('SettingsSave'))['RoundingNumber'] !=
-                null)
-            ? jsonDecode(savedata.getString('SettingsSave'))['RoundingNumber']
-            : 4;
-    sigfigrounding =
-        (jsonDecode(savedata.getString('SettingsSave'))['sigfigrounding'] !=
-                null)
-            ? jsonDecode(savedata.getString('SettingsSave'))['sigfigrounding']
-            : false;
-  } else {
-    roundingnumber = 4;
-    sigfigrounding = false;
+        (_settings['RoundingNumber'] != null) ? _settings['RoundingNumber'] : 4;
+    sigfigrounding = (_settings['sigfigrounding'] != null)
+        ? _settings['sigfigrounding']
+        : false;
+    firstCurrencyValue = (_settings['firstCurrency'] != null)
+        ? _settings['firstCurrency']
+        : "AED - United Arab Emirates Dirham";
+    secondCurrencyValue = (_settings['secondCurrency'] != null)
+        ? _settings['secondCurrency']
+        : "AED - United Arab Emirates Dirham";
+    degreeDefault = (_settings['degreeDefault'] != null)
+        ? _settings['degreeDefault']
+        : true;
   }
 
   return 'done';

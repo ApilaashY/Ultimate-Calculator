@@ -8,7 +8,7 @@ import 'package:function_tree/function_tree.dart';
 import 'package:app/Modules/globalfunctions.dart';
 
 TextEditingController _controller = TextEditingController();
-bool degreemode = true;
+bool degreemode = degreeDefault;
 bool deciasfrac = false;
 String letters = 'abcdefghijklmnopqrstuvwxyz';
 
@@ -18,6 +18,10 @@ class Calculator extends StatefulWidget {
 }
 
 class CalculatorState extends State<Calculator> {
+  CalculatorState() {
+    degreemode = degreeDefault;
+    print(degreemode);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
