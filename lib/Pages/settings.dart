@@ -143,6 +143,7 @@ class _SettingsState extends State<Settings> {
                             );
                           }).toList(),
                           onChanged: (newValue) {
+                            print(newValue.toString());
                             setState(() {
                               _firstCurrencyValue = newValue.toString();
                             });

@@ -367,6 +367,17 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                         ),
+                        // Align(
+                        //   alignment: Alignment(0, ((pointsleft * 2) - 1) / 2),
+                        //   child: FractionallySizedBox(
+                        //     widthFactor: 0.95,
+                        //     heightFactor: pointsleft,
+                        //     child: FittedBox(
+                        //       child: Text(
+                        //           "${(pointsleft * 10).toStringAsFixed(0)}/10 points left to collect todaypo"),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
