@@ -136,7 +136,7 @@ class _HomeState extends State<Home> {
         );
       });
     }
-    //showinter();
+    showinter();
   }
 
   @override
@@ -253,14 +253,13 @@ class _HomeState extends State<Home> {
             body: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
               child: GridView.count(
-                crossAxisCount: 1,
+                crossAxisCount: (MediaQuery.of(context).size.height >
+                        MediaQuery.of(context).size.width)
+                    ? 1
+                    : 2,
                 childAspectRatio: 2,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
-                scrollDirection: (MediaQuery.of(context).size.height >
-                        MediaQuery.of(context).size.width)
-                    ? Axis.vertical
-                    : Axis.horizontal,
                 children: [
                   Card(
                     elevation: 10,
@@ -416,6 +415,7 @@ class _HomeState extends State<Home> {
                     children: [
                       SectionButton(text: "Trigonometry"),
                       SectionButton(text: 'Pythagorean'),
+                      SectionButton(text: 'Degree Radian Converter'),
                     ],
                   ),
                   ExtendedButton(

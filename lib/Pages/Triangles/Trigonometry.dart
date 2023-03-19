@@ -226,17 +226,14 @@ class _TrigonometryState extends State<Trigonometry> {
                           style: ElevatedButton.styleFrom(
                               backgroundColor:
                                   const Color.fromARGB(255, 0, 135, 197)),
-                          child: Text((() {
-                            return (degreemode == true)
-                                ? 'Degree Mode'
-                                : 'Radian Mode';
-                          })()),
+                          child: Text(
+                              "${((degreemode) ? 'Degree' : 'Radian')} Mode"),
                         ),
                       ),
                       const SizedBox(height: 10),
                       Inputfield(
                         controller: controllers[0],
-                        hintText: 'A',
+                        hintText: 'A (Angle)',
                         keyboardType: TextInputType.number,
                       ),
                       IconButton(
@@ -251,7 +248,7 @@ class _TrigonometryState extends State<Trigonometry> {
                       ),
                       Inputfield(
                         controller: controllers[1],
-                        hintText: 'a',
+                        hintText: 'a (Side)',
                         keyboardType: TextInputType.number,
                       ),
                       IconButton(
@@ -266,7 +263,7 @@ class _TrigonometryState extends State<Trigonometry> {
                       ),
                       Inputfield(
                         controller: controllers[2],
-                        hintText: 'B',
+                        hintText: 'B (Angle)',
                         keyboardType: TextInputType.number,
                       ),
                       IconButton(
@@ -281,7 +278,7 @@ class _TrigonometryState extends State<Trigonometry> {
                       ),
                       Inputfield(
                         controller: controllers[3],
-                        hintText: 'b',
+                        hintText: 'b (Side)',
                         keyboardType: TextInputType.number,
                       ),
                       IconButton(
@@ -296,7 +293,7 @@ class _TrigonometryState extends State<Trigonometry> {
                       ),
                       Inputfield(
                         controller: controllers[4],
-                        hintText: 'C',
+                        hintText: 'C (Angle)',
                         keyboardType: TextInputType.number,
                       ),
                       IconButton(
@@ -311,7 +308,7 @@ class _TrigonometryState extends State<Trigonometry> {
                       ),
                       Inputfield(
                         controller: controllers[5],
-                        hintText: 'c',
+                        hintText: 'c (Side)',
                         keyboardType: TextInputType.number,
                       ),
                       IconButton(

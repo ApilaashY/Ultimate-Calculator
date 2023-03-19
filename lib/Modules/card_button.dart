@@ -117,13 +117,19 @@ class _SectionButtonState extends State<SectionButton> {
                                 : Colors.white)),
                   ))
           : 0,
-      child: Text(text.replaceAll(" ", "\n"),
-          style: TextStyle(
-            color:
-                (MediaQuery.of(context).platformBrightness == Brightness.dark)
+      child: FractionallySizedBox(
+        widthFactor: 0.9,
+        heightFactor: 0.9,
+        child: FittedBox(
+          child: Text(text.replaceAll(" ", "\n"),
+              style: TextStyle(
+                color: (MediaQuery.of(context).platformBrightness ==
+                        Brightness.dark)
                     ? Colors.white
                     : Colors.black,
-          )),
+              )),
+        ),
+      ),
     );
   }
 }
