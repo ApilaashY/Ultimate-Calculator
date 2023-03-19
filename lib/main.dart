@@ -367,19 +367,6 @@ class _HomeState extends State<Home> {
                             ),
                           ),
                         ),
-                        Align(
-                          alignment: Alignment(0.0, 0 - (1 * 2) / 2),
-                          child: FractionallySizedBox(
-                              child: Text(
-                            "${pointsleft * 10}/10",
-                            style: TextStyle(
-                                color: (MediaQuery.of(context)
-                                            .platformBrightness ==
-                                        Brightness.light)
-                                    ? Colors.black
-                                    : Colors.white),
-                          )),
-                        )
                       ],
                     ),
                   ),
