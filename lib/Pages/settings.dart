@@ -88,7 +88,10 @@ class _SettingsState extends State<Settings> {
                       }
                     },
                     icon: const Icon(Icons.arrow_back)),
-                foregroundColor: Colors.black,
+                foregroundColor: (MediaQuery.of(context).platformBrightness ==
+                        Brightness.light)
+                    ? Colors.black
+                    : Colors.white,
                 backgroundColor: Colors.transparent,
                 elevation: 0,
               ),
@@ -117,7 +120,13 @@ class _SettingsState extends State<Settings> {
                     ),
                     Column(
                       children: [
-                        const Text("Default Currencies"),
+                        Text("Default Currencies",
+                            style: TextStyle(
+                                color: (MediaQuery.of(context)
+                                            .platformBrightness ==
+                                        Brightness.light)
+                                    ? Colors.black
+                                    : Colors.white)),
                         DropdownButton(
                           style: TextStyle(
                             color: (MediaQuery.of(context).platformBrightness ==
@@ -167,7 +176,13 @@ class _SettingsState extends State<Settings> {
                     ),
                     Row(
                       children: [
-                        const Text("Degree Mode Default"),
+                        Text("Degree Mode Default",
+                            style: TextStyle(
+                                color: (MediaQuery.of(context)
+                                            .platformBrightness ==
+                                        Brightness.light)
+                                    ? Colors.black
+                                    : Colors.white)),
                         Switch.adaptive(
                             value: _degreeDefault,
                             onChanged: (val) {

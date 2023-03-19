@@ -48,7 +48,7 @@ Future setup() async {
   }
   pointsleft = todaylength / 10;
   points = temppoints;
-  String _settingsSave = await savedata.getString('SettingsSave');
+  String? _settingsSave = await savedata.getString('SettingsSave');
   Map? _settings = (_settingsSave != null) ? jsonDecode(_settingsSave) : null;
   if (_settings != null) {
     roundingnumber =
@@ -159,8 +159,14 @@ class _HomeState extends State<Home> {
                       showDialog(
                           context: context,
                           builder: (context) => AlertDialog(
-                                title: const Text(
-                                    "The Ultimate Calculator will be removed from the Samsung Galaxy Store on March 1st, 2022, if you wish to continue using it, download it from the Ultimate Calculator website."),
+                                title: Text(
+                                    "Some Things can be Long Pressed to get Details\n\n\n\nThe Ultimate Calculator will be removed from the Samsung Galaxy Store on March 1st, 2022, if you wish to continue using it, download it from the Ultimate Calculator website.",
+                                    style: TextStyle(
+                                        color: (MediaQuery.of(context)
+                                                    .platformBrightness ==
+                                                Brightness.light)
+                                            ? Colors.black
+                                            : Colors.white)),
                                 actions: [
                                   ElevatedButton(
                                       onPressed: () async {
@@ -349,11 +355,32 @@ class _HomeState extends State<Home> {
                     elevation: 10,
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10)),
-                    child: RotatedBox(
-                      quarterTurns: -1,
-                      child: LinearProgressIndicator(
-                        value: pointsleft,
-                      ),
+                    child: Stack(
+                      children: [
+                        FractionallySizedBox(
+                          widthFactor: 1,
+                          heightFactor: 1,
+                          child: RotatedBox(
+                            quarterTurns: -1,
+                            child: LinearProgressIndicator(
+                              value: pointsleft,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment(0.0, 0 - (1 * 2) / 2),
+                          child: FractionallySizedBox(
+                              child: Text(
+                            "${pointsleft * 10}/10",
+                            style: TextStyle(
+                                color: (MediaQuery.of(context)
+                                            .platformBrightness ==
+                                        Brightness.light)
+                                    ? Colors.black
+                                    : Colors.white),
+                          )),
+                        )
+                      ],
                     ),
                   ),
                   CardButton(
@@ -361,6 +388,7 @@ class _HomeState extends State<Home> {
                   ),
                   CardButton(
                     text: 'Converter',
+                    menu: "Converts numbers to different types",
                   ),
                   /*CardButton(
                   text: 'Surface Area',
@@ -371,7 +399,10 @@ class _HomeState extends State<Home> {
                   ExtendedButton(
                     text: "Physics",
                     children: [
-                      SectionButton(text: "Vector Addition"),
+                      SectionButton(
+                        text: "Vector Addition",
+                        menu: "Add one or more vectors together",
+                      ),
                       SectionButton(text: 'Work'),
                       SectionButton(text: 'Gravitational Potential Energy'),
                       SectionButton(text: 'Kinetic Energy'),
@@ -394,7 +425,12 @@ class _HomeState extends State<Home> {
                     children: [
                       SectionButton(text: "Simple Interest"),
                       SectionButton(text: 'Compound Interest'),
-                      SectionButton(text: 'Annuity'),
+                      SectionButton(
+                          text: 'Ordinary Annuity',
+                          menu: "Compounds after payment"),
+                      SectionButton(
+                          text: 'Annuity Due',
+                          menu: "Compounds before payment"),
                     ],
                   ),
                   ExtendedButton(

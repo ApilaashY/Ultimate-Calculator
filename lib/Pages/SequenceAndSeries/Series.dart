@@ -17,53 +17,56 @@ class _SeriesState extends State<Series> {
   TextEditingController first = TextEditingController();
   TextEditingController sum = TextEditingController();
   TextEditingController n = TextEditingController();
-  TextEditingController nth = TextEditingController();
+  TextEditingController finalValue = TextEditingController();
   TextEditingController difference = TextEditingController();
   String change = "Arithmetic";
 
   void calc() {
     try {
       if (change == "Arithmetic") {
-        if (n.text.isNotEmpty && first.text.isNotEmpty && nth.text.isNotEmpty) {
+        if (n.text.isNotEmpty &&
+            first.text.isNotEmpty &&
+            finalValue.text.isNotEmpty) {
           sum.text = roundto(
-              ((double.parse(first.text) + double.parse(nth.text)) /
+              ((double.parse(first.text) + double.parse(finalValue.text)) /
                       2 *
                       double.parse(n.text))
                   .toString());
           difference.text = roundto(
-              ((double.parse(nth.text) - double.parse(first.text)) /
+              ((double.parse(finalValue.text) - double.parse(first.text)) /
                       (double.parse(n.text) - 1))
                   .toString());
         } else if (sum.text.isNotEmpty &&
             first.text.isNotEmpty &&
-            nth.text.isNotEmpty) {
+            finalValue.text.isNotEmpty) {
           n.text = roundto((double.parse(sum.text) /
-                  ((double.parse(first.text) + double.parse(nth.text)) / 2))
+                  ((double.parse(first.text) + double.parse(finalValue.text)) /
+                      2))
               .toString());
           difference.text = roundto(
-              ((double.parse(nth.text) - double.parse(first.text)) /
+              ((double.parse(finalValue.text) - double.parse(first.text)) /
                       (double.parse(n.text) - 1))
                   .toString());
         } else if (n.text.isNotEmpty &&
             sum.text.isNotEmpty &&
-            nth.text.isNotEmpty) {
+            finalValue.text.isNotEmpty) {
           first.text = roundto(
               (double.parse(sum.text) / double.parse(n.text) * 2 -
-                      double.parse(nth.text))
+                      double.parse(finalValue.text))
                   .toString());
           difference.text = roundto(
-              ((double.parse(nth.text) - double.parse(first.text)) /
+              ((double.parse(finalValue.text) - double.parse(first.text)) /
                       (double.parse(n.text) - 1))
                   .toString());
         } else if (n.text.isNotEmpty &&
             first.text.isNotEmpty &&
             sum.text.isNotEmpty) {
-          nth.text = roundto(
+          finalValue.text = roundto(
               (double.parse(sum.text) / double.parse(n.text) * 2 -
                       double.parse(first.text))
                   .toString());
           difference.text = roundto(
-              ((double.parse(nth.text) - double.parse(first.text)) /
+              ((double.parse(finalValue.text) - double.parse(first.text)) /
                       (double.parse(n.text) - 1))
                   .toString());
         } else if (n.text.isNotEmpty &&
@@ -73,9 +76,6 @@ class _SeriesState extends State<Series> {
                   (2 * double.parse(first.text) +
                       double.parse(difference.text) *
                           (double.parse(n.text) - 1)))
-              .toString());
-          nth.text = roundto((double.parse(first.text) +
-                  double.parse(difference.text) * (double.parse(n.text) - 1))
               .toString());
         } else if (sum.text.isNotEmpty &&
             first.text.isNotEmpty &&
@@ -91,9 +91,6 @@ class _SeriesState extends State<Series> {
                               double.parse(sum.text)))) /
                   (2 * double.parse(difference.text)))
               .toString());
-          nth.text = roundto((double.parse(first.text) +
-                  double.parse(difference.text) * (double.parse(n.text) - 1))
-              .toString());
         } else if (n.text.isNotEmpty &&
             sum.text.isNotEmpty &&
             difference.text.isNotEmpty) {
@@ -103,9 +100,6 @@ class _SeriesState extends State<Series> {
                               (double.parse(n.text) - 1)) /
                       2)
                   .toString());
-          nth.text = roundto((double.parse(first.text) +
-                  double.parse(difference.text) * (double.parse(n.text) - 1))
-              .toString());
         } else if (n.text.isNotEmpty &&
             first.text.isNotEmpty &&
             sum.text.isNotEmpty) {
@@ -114,14 +108,43 @@ class _SeriesState extends State<Series> {
                           double.parse(first.text) * 2) /
                       (double.parse(n.text) - 1))
                   .toString());
-          nth.text = roundto((double.parse(first.text) +
-                  double.parse(difference.text) * (double.parse(n.text) - 1))
-              .toString());
         } else {
           Fluttertoast.showToast(msg: "Not Enough Information");
         }
       } else if (change == "Geometric") {
-        if (true) {
+        if (n.text.isNotEmpty &&
+            first.text.isNotEmpty &&
+            finalValue.text.isNotEmpty) {
+          print(double.parse(finalValue.text) / double.parse(first.text));
+          difference.text = roundto((pow(
+                  double.parse(finalValue.text) / double.parse(first.text),
+                  1 / (double.parse(n.text) - 1)))
+              .toString());
+        } else if (n.text.isNotEmpty &&
+            first.text.isNotEmpty &&
+            difference.text.isNotEmpty) {
+          sum.text = roundto(
+              ((pow(double.parse(difference.text), double.parse(n.text)) - 1) *
+                      double.parse(first.text) /
+                      (double.parse(difference.text) - 1))
+                  .toString());
+        } else if (sum.text.isNotEmpty &&
+            first.text.isNotEmpty &&
+            difference.text.isNotEmpty) {
+          n.text = roundto((log(double.parse(sum.text) *
+                          (double.parse(difference.text) - 1) /
+                          double.parse(first.text) +
+                      1) /
+                  log(double.parse(difference.text)))
+              .toString());
+        } else if (n.text.isNotEmpty &&
+            sum.text.isNotEmpty &&
+            difference.text.isNotEmpty) {
+          first.text = roundto((double.parse(sum.text) *
+                  (double.parse(difference.text) - 1) /
+                  (pow(double.parse(difference.text), double.parse(n.text)) -
+                      1))
+              .toString());
         } else {
           Fluttertoast.showToast(msg: "Not Enough Information");
         }
@@ -158,6 +181,11 @@ class _SeriesState extends State<Series> {
               children: [
                 Center(
                   child: DropdownButton(
+                    style: TextStyle(
+                        color: (MediaQuery.of(context).platformBrightness ==
+                                Brightness.light)
+                            ? Colors.black
+                            : Colors.white),
                     items: const [
                       DropdownMenuItem(
                         value: "Arithmetic",
@@ -167,6 +195,10 @@ class _SeriesState extends State<Series> {
                         value: "Geometric",
                         child: Text("Geometric"),
                       ),
+                      // DropdownMenuItem(
+                      //   value: "Fibonacci",
+                      //   child: Text("Fibonacci"),
+                      // ),
                     ],
                     onChanged: (val) {
                       change = val.toString();
@@ -190,20 +222,6 @@ class _SeriesState extends State<Series> {
                   },
                 ),
                 Inputfield(
-                  controller: nth,
-                  hintText: "Nth term",
-                  keyboardType: TextInputType.number,
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.copy,
-                  ),
-                  onPressed: () async {
-                    await Clipboard.setData(ClipboardData(text: nth.text));
-                    Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                  },
-                ),
-                Inputfield(
                   controller: n,
                   hintText: "N",
                   keyboardType: TextInputType.number,
@@ -214,6 +232,21 @@ class _SeriesState extends State<Series> {
                   ),
                   onPressed: () async {
                     await Clipboard.setData(ClipboardData(text: n.text));
+                    Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                  },
+                ),
+                Inputfield(
+                  controller: finalValue,
+                  hintText: "Final Term",
+                  keyboardType: TextInputType.number,
+                ),
+                IconButton(
+                  icon: const Icon(
+                    Icons.copy,
+                  ),
+                  onPressed: () async {
+                    await Clipboard.setData(
+                        ClipboardData(text: finalValue.text));
                     Fluttertoast.showToast(msg: 'Saved to Clipboard');
                   },
                 ),

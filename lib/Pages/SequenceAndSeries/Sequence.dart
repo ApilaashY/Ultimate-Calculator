@@ -115,6 +115,11 @@ class _SequenceState extends State<Sequence> {
               children: [
                 Center(
                   child: DropdownButton(
+                    style: TextStyle(
+                        color: (MediaQuery.of(context).platformBrightness ==
+                                Brightness.light)
+                            ? Colors.black
+                            : Colors.white),
                     items: const [
                       DropdownMenuItem(
                         value: "Arithmetic",
@@ -148,7 +153,7 @@ class _SequenceState extends State<Sequence> {
                 ),
                 Inputfield(
                   controller: nth,
-                  hintText: "Nth term",
+                  hintText: "Nth Term",
                   keyboardType: TextInputType.number,
                 ),
                 IconButton(

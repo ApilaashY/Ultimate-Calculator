@@ -1,24 +1,36 @@
 import 'package:flutter/material.dart';
 
 class CardButton extends StatefulWidget {
-  CardButton({super.key, required text}) {
+  CardButton({super.key, required text, this.menu}) {
     this.text = text;
   }
   String text = 'Unknown';
+  String? menu;
 
   @override
-  State<CardButton> createState() => _CardButtonState(text);
+  State<CardButton> createState() => _CardButtonState(text: text, menu: menu);
 }
 
 class _CardButtonState extends State<CardButton> {
-  _CardButtonState(words) {
-    text = words;
-  }
+  _CardButtonState({required this.text, this.menu});
   String text = 'Unknown';
+  String? menu;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: (() => Navigator.pushNamed(context, text)),
+      onLongPress: () => (menu != null)
+          ? showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: Text(menu!,
+                        style: TextStyle(
+                            color: (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light)
+                                ? Colors.black
+                                : Colors.white)),
+                  ))
+          : 0,
       style: ElevatedButton.styleFrom(
         elevation: 10,
         backgroundColor:
@@ -70,21 +82,20 @@ class ColorText extends StatelessWidget {
 }
 
 class SectionButton extends StatefulWidget {
-  SectionButton({super.key, required text}) {
-    this.text = text;
-  }
+  SectionButton({super.key, required this.text, this.menu});
   String text = 'Unknown';
+  String? menu;
 
   @override
-  State<SectionButton> createState() => _SectionButtonState(text: text);
+  State<SectionButton> createState() =>
+      _SectionButtonState(text: text, menu: menu);
 }
 
 class _SectionButtonState extends State<SectionButton> {
-  _SectionButtonState({required text}) {
-    this.text = text;
-  }
-
+  _SectionButtonState({required this.text, this.menu});
   String text = 'Unknown';
+  String? menu;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -93,9 +104,19 @@ class _SectionButtonState extends State<SectionButton> {
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
           backgroundColor: const Color.fromARGB(255, 35, 206, 107)),
-      onPressed: () {
-        Navigator.pushNamed(context, text);
-      },
+      onPressed: () => Navigator.pushNamed(context, text),
+      onLongPress: () => (menu != null)
+          ? showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+                    title: Text(menu!,
+                        style: TextStyle(
+                            color: (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light)
+                                ? Colors.black
+                                : Colors.white)),
+                  ))
+          : 0,
       child: Text(text.replaceAll(" ", "\n"),
           style: TextStyle(
             color:

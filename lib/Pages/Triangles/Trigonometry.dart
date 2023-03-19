@@ -27,278 +27,163 @@ class _TrigonometryState extends State<Trigonometry> {
   var vector = DegreeRad(true);
   void calc() {
     try {
+      double one = (controllers[0].text.isNotEmpty)
+          ? double.parse(controllers[0].text)
+          : 0;
+      double two = (controllers[1].text.isNotEmpty)
+          ? double.parse(controllers[1].text)
+          : 0;
+      double three = (controllers[2].text.isNotEmpty)
+          ? double.parse(controllers[2].text)
+          : 0;
+      double four = (controllers[3].text.isNotEmpty)
+          ? double.parse(controllers[3].text)
+          : 0;
+      double five = (controllers[4].text.isNotEmpty)
+          ? double.parse(controllers[4].text)
+          : 0;
+      double six = (controllers[5].text.isNotEmpty)
+          ? double.parse(controllers[5].text)
+          : 0;
       // Get all angles
       if (controllers[0].text.isNotEmpty && controllers[2].text.isNotEmpty) {
-        controllers[4].text = (vector.fulltriangle(180) -
-            double.parse(controllers[0].text) -
-            double.parse(controllers[2].text));
+        five = (vector.fulltriangle(180) - one - three);
       } else if (controllers[2].text.isNotEmpty &&
           controllers[4].text.isNotEmpty) {
-        controllers[0].text = (vector.fulltriangle(180) -
-            double.parse(controllers[2].text) -
-            double.parse(controllers[4].text));
+        one = (vector.fulltriangle(180) - three - five);
       } else if (controllers[0].text.isNotEmpty &&
           controllers[4].text.isNotEmpty) {
-        controllers[4].text = (vector.fulltriangle(180) -
-            double.parse(controllers[0].text) -
-            double.parse(controllers[4].text));
+        five = (vector.fulltriangle(180) - one - five);
       }
       // Cosline Law
       if (controllers[1].text.isNotEmpty &&
           controllers[3].text.isNotEmpty &&
           controllers[4].text.isNotEmpty) {
-        controllers[5].text = (sqrt(pow(double.parse(controllers[1].text), 2) +
-                pow(double.parse(controllers[3].text), 2) -
-                (2 *
-                    double.parse(controllers[1].text) *
-                    double.parse(controllers[3].text) *
-                    vector.degrees(cos(
-                        vector.radians(double.parse(controllers[4].text)))))))
-            .toString();
+        six = (sqrt(pow(two, 2) +
+            pow(four, 2) -
+            (2 * two * four * vector.degrees(cos(vector.radians(five))))));
       } else if (controllers[3].text.isNotEmpty &&
           controllers[5].text.isNotEmpty &&
           controllers[0].text.isNotEmpty) {
-        controllers[1].text = (sqrt(pow(double.parse(controllers[3].text), 2) +
-                pow(double.parse(controllers[5].text), 2) -
-                (2 *
-                    double.parse(controllers[3].text) *
-                    double.parse(controllers[5].text) *
-                    vector.degrees(cos(
-                        vector.radians(double.parse(controllers[0].text)))))))
-            .toString();
+        two = (sqrt(pow(four, 2) +
+            pow(six, 2) -
+            (2 * four * six * vector.degrees(cos(vector.radians(one))))));
       } else if (controllers[5].text.isNotEmpty &&
           controllers[1].text.isNotEmpty &&
           controllers[2].text.isNotEmpty) {
-        controllers[3].text = (sqrt(pow(double.parse(controllers[5].text), 2) +
-                pow(double.parse(controllers[1].text), 2) -
-                (2 *
-                    double.parse(controllers[5].text) *
-                    double.parse(controllers[1].text) *
-                    vector.degrees(cos(
-                        vector.radians(double.parse(controllers[2].text)))))))
-            .toString();
+        four = (sqrt(pow(six, 2) +
+            pow(two, 2) -
+            (2 * six * two * vector.degrees(cos(vector.radians(three))))));
       } else if (controllers[1].text.isNotEmpty &&
           controllers[3].text.isNotEmpty &&
           controllers[5].text.isNotEmpty) {
-        controllers[4].text = (vector.degrees(acos(vector.radians(
-                    (pow(double.parse(controllers[1].text), 2) +
-                            pow(double.parse(controllers[3].text), 2) -
-                            pow(double.parse(controllers[5].text), 2))
-                        .toDouble()) /
-                vector.radians(2 *
-                    double.parse(controllers[1].text) *
-                    double.parse(controllers[3].text)))))
-            .toString();
+        five = (vector.degrees(acos(vector.radians(
+                (pow(two, 2) + pow(four, 2) - pow(six, 2)).toDouble()) /
+            vector.radians(2 * two * four))));
       }
       // Sin Law
       if (controllers[0].text.isNotEmpty && controllers[1].text.isNotEmpty) {
         if (controllers[2].text.isNotEmpty) {
-          controllers[3].text = (double.parse(controllers[1].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))))
-              .toString();
-          controllers[4].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[0].text) -
-                  double.parse(controllers[2].text))
-              .toString();
-          controllers[5].text = (double.parse(controllers[1].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))))
-              .toString();
+          four = (two /
+              vector.degrees(sin(vector.radians(one))) *
+              vector.degrees(sin(vector.radians(three))));
+          five = (vector.fulltriangle(180) - one - three);
+          six = (two /
+              vector.degrees(sin(vector.radians(one))) *
+              vector.degrees(sin(vector.radians(five))));
         } else if (controllers[3].text.isNotEmpty) {
-          controllers[2].text = (vector.degrees(asin(
-                  sin(vector.radians(double.parse(controllers[0].text))) /
-                      double.parse(controllers[1].text) *
-                      double.parse(controllers[3].text))))
-              .toString();
-          controllers[4].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[0].text) -
-                  double.parse(controllers[2].text))
-              .toString();
-          controllers[5].text = (double.parse(controllers[1].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))))
-              .toString();
+          three = (vector.degrees(asin(sin(vector.radians(one)) / two * four)));
+          five = (vector.fulltriangle(180) - one - three);
+          six = (two /
+              vector.degrees(sin(vector.radians(one))) *
+              vector.degrees(sin(vector.radians(five))));
         } else if (controllers[4].text.isNotEmpty) {
-          controllers[5].text = (double.parse(controllers[1].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))))
-              .toString();
-          controllers[2].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[0].text) -
-                  double.parse(controllers[4].text))
-              .toString();
-          controllers[3].text = (double.parse(controllers[1].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))))
-              .toString();
+          six = (two /
+              vector.degrees(sin(vector.radians(one))) *
+              vector.degrees(sin(vector.radians(five))));
+          three = (vector.fulltriangle(180) - one - five);
+          four = (two /
+              vector.degrees(sin(vector.radians(one))) *
+              vector.degrees(sin(vector.radians(three))));
         } else if (controllers[5].text.isNotEmpty) {
-          controllers[4].text = (vector.degrees(asin(
-                  sin(vector.radians(double.parse(controllers[0].text))) /
-                      double.parse(controllers[1].text) *
-                      double.parse(controllers[5].text))))
-              .toString();
-          controllers[2].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[0].text) -
-                  double.parse(controllers[4].text))
-              .toString();
-          controllers[3].text = (double.parse(controllers[1].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))))
-              .toString();
+          five = (vector.degrees(asin(sin(vector.radians(one)) / two * six)));
+          three = (vector.fulltriangle(180) - one - five);
+          four = (two /
+              vector.degrees(sin(vector.radians(one))) *
+              vector.degrees(sin(vector.radians(three))));
         }
       } else if (controllers[2].text.isNotEmpty &&
           controllers[3].text.isNotEmpty) {
         if (controllers[0].text.isNotEmpty) {
-          controllers[1].text = (double.parse(controllers[3].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))))
-              .toString();
-          controllers[4].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[0].text) -
-                  double.parse(controllers[2].text))
-              .toString();
-          controllers[5].text = (double.parse(controllers[3].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))))
-              .toString();
+          two = (four /
+              vector.degrees(sin(vector.radians(three))) *
+              vector.degrees(sin(vector.radians(one))));
+          five = (vector.fulltriangle(180) - one - three);
+          six = (four /
+              vector.degrees(sin(vector.radians(three))) *
+              vector.degrees(sin(vector.radians(five))));
         } else if (controllers[1].text.isNotEmpty) {
-          controllers[0].text = (vector.degrees(asin(
-                  sin(vector.radians(double.parse(controllers[2].text))) /
-                      double.parse(controllers[3].text) *
-                      double.parse(controllers[1].text))))
-              .toString();
-          controllers[4].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[0].text) -
-                  double.parse(controllers[2].text))
-              .toString();
-          controllers[5].text = (double.parse(controllers[3].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))))
-              .toString();
+          one = (vector.degrees(asin(sin(vector.radians(three)) / four * two)));
+          five = (vector.fulltriangle(180) - one - three);
+          six = (four /
+              vector.degrees(sin(vector.radians(three))) *
+              vector.degrees(sin(vector.radians(five))));
         } else if (controllers[4].text.isNotEmpty) {
-          controllers[5].text = (double.parse(controllers[3].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))))
-              .toString();
-          controllers[0].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[2].text) -
-                  double.parse(controllers[4].text))
-              .toString();
-          controllers[1].text = (double.parse(controllers[3].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))))
-              .toString();
+          six = (four /
+              vector.degrees(sin(vector.radians(three))) *
+              vector.degrees(sin(vector.radians(five))));
+          one = (vector.fulltriangle(180) - three - five);
+          two = (four /
+              vector.degrees(sin(vector.radians(three))) *
+              vector.degrees(sin(vector.radians(one))));
         } else if (controllers[5].text.isNotEmpty) {
-          controllers[4].text = (vector.degrees(asin(
-                  sin(vector.radians(double.parse(controllers[2].text))) /
-                      double.parse(controllers[3].text) *
-                      double.parse(controllers[5].text))))
-              .toString();
-          controllers[0].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[2].text) -
-                  double.parse(controllers[4].text))
-              .toString();
-          controllers[1].text = (double.parse(controllers[3].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))))
-              .toString();
+          five =
+              (vector.degrees(asin(sin(vector.radians(three)) / four * six)));
+          one = (vector.fulltriangle(180) - three - five);
+          two = (four /
+              vector.degrees(sin(vector.radians(three))) *
+              vector.degrees(sin(vector.radians(one))));
         }
       } else if (controllers[4].text.isNotEmpty &&
           controllers[5].text.isNotEmpty) {
         if (controllers[0].text.isNotEmpty) {
-          controllers[1].text = (double.parse(controllers[5].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))))
-              .toString();
-          controllers[2].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[0].text) -
-                  double.parse(controllers[4].text))
-              .toString();
-          controllers[3].text = (double.parse(controllers[5].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))))
-              .toString();
+          two = (six /
+              vector.degrees(sin(vector.radians(five))) *
+              vector.degrees(sin(vector.radians(one))));
+          three = (vector.fulltriangle(180) - one - five);
+          four = (six /
+              vector.degrees(sin(vector.radians(five))) *
+              vector.degrees(sin(vector.radians(three))));
         } else if (controllers[1].text.isNotEmpty) {
-          controllers[0].text = (vector.degrees(asin(
-                  sin(vector.radians(double.parse(controllers[4].text))) /
-                      double.parse(controllers[5].text) *
-                      double.parse(controllers[1].text))))
-              .toString();
-          controllers[2].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[0].text) -
-                  double.parse(controllers[4].text))
-              .toString();
-          controllers[3].text = (double.parse(controllers[5].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))))
-              .toString();
+          one = (vector.degrees(asin(sin(vector.radians(five)) / six * two)));
+          three = (vector.fulltriangle(180) - one - five);
+          four = (six /
+              vector.degrees(sin(vector.radians(five))) *
+              vector.degrees(sin(vector.radians(three))));
         } else if (controllers[2].text.isNotEmpty) {
-          controllers[3].text = (double.parse(controllers[5].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[2].text)))))
-              .toString();
-          controllers[0].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[2].text) -
-                  double.parse(controllers[4].text))
-              .toString();
-          controllers[1].text = (double.parse(controllers[5].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))))
-              .toString();
+          four = (six /
+              vector.degrees(sin(vector.radians(five))) *
+              vector.degrees(sin(vector.radians(three))));
+          one = (vector.fulltriangle(180) - three - five);
+          two = (six /
+              vector.degrees(sin(vector.radians(five))) *
+              vector.degrees(sin(vector.radians(one))));
         } else if (controllers[3].text.isNotEmpty) {
-          controllers[2].text = (vector.degrees(asin(
-                  (sin(vector.radians(double.parse(controllers[4].text)))) /
-                      double.parse(controllers[5].text) *
-                      double.parse(controllers[3].text))))
-              .toString();
-          controllers[0].text = (vector.fulltriangle(180) -
-                  double.parse(controllers[2].text) -
-                  double.parse(controllers[4].text))
-              .toString();
-          controllers[1].text = (double.parse(controllers[5].text) /
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[4].text)))) *
-                  vector.degrees(
-                      sin(vector.radians(double.parse(controllers[0].text)))))
-              .toString();
+          three =
+              (vector.degrees(asin((sin(vector.radians(five))) / six * four)));
+          one = (vector.fulltriangle(180) - three - five);
+          two = (six /
+              vector.degrees(sin(vector.radians(five))) *
+              vector.degrees(sin(vector.radians(one))));
         }
       }
       addpoints(1);
+      controllers[0].text = one.toString();
+      controllers[1].text = two.toString();
+      controllers[2].text = three.toString();
+      controllers[3].text = four.toString();
+      controllers[4].text = five.toString();
+      controllers[5].text = six.toString();
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error');
     }

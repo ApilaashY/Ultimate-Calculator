@@ -35,80 +35,80 @@ class _SimpleInterestState extends State<SimpleInterest> {
       if (Principal.text.isNotEmpty &&
           Rate.text.isNotEmpty &&
           Time.text.isNotEmpty) {
-        Interest.text = (double.parse(Principal.text) *
+        Interest.text = roundto((double.parse(Principal.text) *
                 (double.parse(Rate.text) / 100 / _times[_currenttime]) *
                 double.parse(Time.text))
-            .toStringAsFixed(roundingnumber);
-        Total.text =
+            .toString());
+        Total.text = roundto(
             (double.parse(Interest.text) + double.parse(Principal.text))
-                .toStringAsFixed(roundingnumber);
+                .toString());
       } else if (Interest.text.isNotEmpty &&
           Rate.text.isNotEmpty &&
           Time.text.isNotEmpty) {
-        Principal.text = (double.parse(Interest.text) /
+        Principal.text = roundto((double.parse(Interest.text) /
                 ((double.parse(Rate.text) / 100 / _times[_currenttime]) *
                     (double.parse(Time.text) * _times[_currenttime])))
-            .toStringAsFixed(roundingnumber);
-        Total.text =
+            .toString());
+        Total.text = roundto(
             (double.parse(Interest.text) + double.parse(Principal.text))
-                .toStringAsFixed(roundingnumber);
+                .toString());
       } else if (Total.text.isNotEmpty &&
           Rate.text.isNotEmpty &&
           Time.text.isNotEmpty) {
-        Principal.text = (double.parse(Total.text) /
+        Principal.text = roundto((double.parse(Total.text) /
                 ((double.parse(Rate.text) / 100 / _times[_currenttime]) *
                         (double.parse(Time.text) * _times[_currenttime]) +
                     1))
-            .toStringAsFixed(roundingnumber);
-        Interest.text = (double.parse(Principal.text) *
+            .toString());
+        Interest.text = roundto((double.parse(Principal.text) *
                 (double.parse(Rate.text) / _times[_currenttime]) *
                 double.parse(Time.text))
-            .toStringAsFixed(roundingnumber);
+            .toString());
       } else if (Interest.text.isNotEmpty &&
           Principal.text.isNotEmpty &&
           Time.text.isNotEmpty) {
-        Total.text =
+        Total.text = roundto(
             (double.parse(Interest.text) + double.parse(Principal.text))
-                .toStringAsFixed(roundingnumber);
-        Rate.text = ((double.parse(Interest.text) /
+                .toString());
+        Rate.text = roundto(((double.parse(Interest.text) /
                     (double.parse(Principal.text) *
                         double.parse(Time.text) *
                         _times[_currenttime])) *
                 pow(_times[_currenttime], 2) *
                 100)
-            .toStringAsFixed(roundingnumber);
+            .toString());
       } else if (Total.text.isNotEmpty &&
           Principal.text.isNotEmpty &&
           Time.text.isNotEmpty) {
-        Rate.text =
+        Rate.text = roundto(
             ((double.parse(Total.text) / double.parse(Principal.text) - 1) /
                     (double.parse(Time.text) * _times[_currenttime]) *
                     pow(_times[_currenttime], 2) *
                     100)
-                .toStringAsFixed(roundingnumber);
-        Interest.text =
+                .toString());
+        Interest.text = roundto(
             (double.parse(Total.text) - double.parse(Principal.text))
-                .toStringAsFixed(roundingnumber);
+                .toString());
       } else if (Interest.text.isNotEmpty &&
           Principal.text.isNotEmpty &&
           Rate.text.isNotEmpty) {
-        Total.text =
+        Total.text = roundto(
             (double.parse(Interest.text) + double.parse(Principal.text))
-                .toStringAsFixed(roundingnumber);
-        Time.text = (double.parse(Interest.text) /
+                .toString());
+        Time.text = roundto((double.parse(Interest.text) /
                 (double.parse(Principal.text) *
                     (double.parse(Rate.text) / 100 / _times[_currenttime])))
-            .toStringAsFixed(roundingnumber);
+            .toString());
       } else if (Total.text.isNotEmpty &&
           Principal.text.isNotEmpty &&
           Rate.text.isNotEmpty) {
-        Time.text =
+        Time.text = roundto(
             ((double.parse(Total.text) / double.parse(Principal.text) - 1) /
                     (double.parse(Rate.text) / 100 / _times[_currenttime]))
-                .toStringAsFixed(roundingnumber);
-        Interest.text =
+                .toString());
+        Interest.text = roundto(
             (double.parse(Total.text) - double.parse(Principal.text))
-                .toStringAsFixed(roundingnumber);
+                .toString());
       } else {
         Fluttertoast.showToast(msg: "Not Enough Information");
       }
@@ -191,6 +191,12 @@ class _SimpleInterestState extends State<SimpleInterest> {
                           ),
                           DropdownButton(
                             value: _currenttime,
+                            style: TextStyle(
+                                color: (MediaQuery.of(context)
+                                            .platformBrightness ==
+                                        Brightness.light)
+                                    ? Colors.black
+                                    : Colors.white),
                             items: _times.keys
                                 .map((e) => DropdownMenuItem(
                                       value: e,

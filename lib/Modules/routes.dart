@@ -1,4 +1,7 @@
+import 'package:app/Pages/Finance/AnnuityDue.dart';
+import 'package:app/Pages/Finance/CompoundInterest.dart';
 import 'package:app/Pages/Finance/SimpleInterest.dart';
+import 'package:app/Pages/Finance/OrdinaryAnnuity.dart';
 import 'package:app/Pages/Physics/Eg.dart';
 import 'package:app/Pages/Physics/Ek.dart';
 import 'package:app/Pages/Physics/cooffriction.dart';
@@ -73,9 +76,11 @@ Route<dynamic> controller(RouteSettings settings) {
   } else if (settings.name == "Simple Interest") {
     return MaterialPageRoute(builder: (context) => const SimpleInterest());
   } else if (settings.name == "Compound Interest") {
-    return MaterialPageRoute(builder: (context) => const Ohm());
-  } else if (settings.name == "Annuity") {
-    return MaterialPageRoute(builder: (context) => const Ohm());
+    return MaterialPageRoute(builder: (context) => const CompoundInterest());
+  } else if (settings.name == "Ordinary Annuity") {
+    return MaterialPageRoute(builder: (context) => const OrdinaryAnnuity());
+  } else if (settings.name == "Annuity Due") {
+    return MaterialPageRoute(builder: (context) => const AnnuityDue());
   } else {
     throw 'Page Not Found';
   }
