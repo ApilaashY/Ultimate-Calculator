@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'dart:math';
+import 'package:app/Modules/periodtabledata.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -31,43 +32,6 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
-}
-
-Future setup() async {
-  // Setting up shared preferences
-  savedata = await SharedPreferences.getInstance();
-  DateTime now = DateTime.now();
-  var temppoints = await savedata.getInt('points');
-  var todaysave = await savedata.getString('today');
-  var todaylength = await savedata.getInt('todaylength');
-  temppoints ??= 0;
-  todaylength ??= 0;
-
-  if (todaysave != DateTime(now.year, now.month, now.day).toString()) {
-    todaylength = 0;
-  }
-  pointsleft = todaylength / 10;
-  points = temppoints;
-  String? _settingsSave = await savedata.getString('SettingsSave');
-  Map? _settings = (_settingsSave != null) ? jsonDecode(_settingsSave) : null;
-  if (_settings != null) {
-    roundingnumber =
-        (_settings['RoundingNumber'] != null) ? _settings['RoundingNumber'] : 4;
-    sigfigrounding = (_settings['sigfigrounding'] != null)
-        ? _settings['sigfigrounding']
-        : false;
-    firstCurrencyValue = (_settings['firstCurrency'] != null)
-        ? _settings['firstCurrency']
-        : "AED - United Arab Emirates Dirham";
-    secondCurrencyValue = (_settings['secondCurrency'] != null)
-        ? _settings['secondCurrency']
-        : "AED - United Arab Emirates Dirham";
-    degreeDefault = (_settings['degreeDefault'] != null)
-        ? _settings['degreeDefault']
-        : true;
-  }
-
-  return 'done';
 }
 
 class MyApp extends StatefulWidget {
@@ -102,6 +66,49 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  Future setup() async {
+    Future<DocumentSnapshot> snap =
+        FirebaseFirestore.instance.collection('News').doc('Current News').get();
+    var data = snap;
+
+    String news = "";
+    // Setting up shared preferences
+    savedata = await SharedPreferences.getInstance();
+    DateTime now = DateTime.now();
+    var temppoints = await savedata.getInt('points');
+    var todaysave = await savedata.getString('today');
+    var todaylength = await savedata.getInt('todaylength');
+    temppoints ??= 0;
+    todaylength ??= 0;
+
+    if (todaysave != DateTime(now.year, now.month, now.day).toString()) {
+      todaylength = 0;
+    }
+    pointsleft = todaylength / 10;
+    points = temppoints;
+    String? _settingsSave = await savedata.getString('SettingsSave');
+    Map? _settings = (_settingsSave != null) ? jsonDecode(_settingsSave) : null;
+    if (_settings != null) {
+      roundingnumber = (_settings['RoundingNumber'] != null)
+          ? _settings['RoundingNumber']
+          : 4;
+      sigfigrounding = (_settings['sigfigrounding'] != null)
+          ? _settings['sigfigrounding']
+          : false;
+      firstCurrencyValue = (_settings['firstCurrency'] != null)
+          ? _settings['firstCurrency']
+          : "AED - United Arab Emirates Dirham";
+      secondCurrencyValue = (_settings['secondCurrency'] != null)
+          ? _settings['secondCurrency']
+          : "AED - United Arab Emirates Dirham";
+      degreeDefault = (_settings['degreeDefault'] != null)
+          ? _settings['degreeDefault']
+          : true;
+    }
+
+    return news;
+  }
+
   Random randomnum = Random();
   RewardedAd? ad;
   initState() {
@@ -136,7 +143,7 @@ class _HomeState extends State<Home> {
         );
       });
     }
-    showinter();
+    //showinter();
   }
 
   @override
@@ -157,29 +164,33 @@ class _HomeState extends State<Home> {
                 IconButton(
                     onPressed: () {
                       showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                title: Text(
-                                    "Some Things can be Long Pressed to get Details\n\n\n\nThe Ultimate Calculator will be removed from the Samsung Galaxy Store on March 1st, 2022, if you wish to continue using it, download it from the Ultimate Calculator website.",
-                                    style: TextStyle(
-                                        color: (MediaQuery.of(context)
-                                                    .platformBrightness ==
-                                                Brightness.light)
-                                            ? Colors.black
-                                            : Colors.white)),
-                                actions: [
-                                  ElevatedButton(
-                                      onPressed: () async {
-                                        try {
-                                          await launchUrl(Uri.parse(
-                                              'https://ultimatecalculator.netlify.app'));
-                                        } catch (e) {
-                                          Navigator.pop(context);
-                                        }
-                                      },
-                                      child: const Text("Website"))
-                                ],
-                              ));
+                        context: context,
+                        builder: (context) {
+                          print("HI" + snap.data.toString());
+                          return AlertDialog(
+                            title: Text(
+                                "Some Things can be Long Pressed to get Details\n\n\n\nThe Ultimate Calculator will be removed from the Samsung Galaxy Store on March 1st, 2022, if you wish to continue using it, download it from the Ultimate Calculator website.",
+                                style: TextStyle(
+                                    color: (MediaQuery.of(context)
+                                                .platformBrightness ==
+                                            Brightness.light)
+                                        ? Colors.black
+                                        : Colors.white)),
+                            actions: [
+                              ElevatedButton(
+                                  onPressed: () async {
+                                    try {
+                                      await launchUrl(Uri.parse(
+                                          'https://ultimatecalculator.netlify.app'));
+                                    } catch (e) {
+                                      Navigator.pop(context);
+                                    }
+                                  },
+                                  child: const Text("Website"))
+                            ],
+                          );
+                        },
+                      );
                     },
                     icon: const Icon(Icons.question_mark_rounded))
               ],
@@ -446,6 +457,9 @@ class _HomeState extends State<Home> {
                   ),
                   CardButton(
                     text: 'LCM',
+                  ),
+                  CardButton(
+                    text: 'Simplifying Radicals',
                   ),
                 ],
               ),

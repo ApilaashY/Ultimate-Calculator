@@ -10,6 +10,7 @@ import 'package:app/Pages/Physics/vectoraddition.dart';
 import 'package:app/Pages/Physics/work.dart';
 import 'package:app/Pages/SequenceAndSeries/Sequence.dart';
 import 'package:app/Pages/SequenceAndSeries/Series.dart';
+import 'package:app/Pages/SimplifyingRadicals.dart';
 import 'package:app/Pages/Triangles/DegandRad.dart';
 import 'package:flutter/material.dart';
 
@@ -84,6 +85,8 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const AnnuityDue());
   } else if (settings.name == "Degree Radian Converter") {
     return MaterialPageRoute(builder: (context) => const DegAndRad());
+  } else if (settings.name == "Simplifying Radicals") {
+    return MaterialPageRoute(builder: (context) => const SimplifyingRadicals());
   } else {
     throw 'Page Not Found';
   }

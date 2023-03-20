@@ -11,6 +11,7 @@ class Inputfield extends StatefulWidget {
     this.prefixText = '',
     this.alignment = TextAlign.left,
     this.keyboardType = TextInputType.name,
+    this.onChanged,
   });
   TextEditingController controller = TextEditingController();
   String hintText = '';
@@ -18,16 +19,17 @@ class Inputfield extends StatefulWidget {
   String prefixText = '';
   TextAlign alignment = TextAlign.left;
   TextInputType keyboardType = TextInputType.name;
+  Function(String)? onChanged;
 
   @override
   State<Inputfield> createState() => _InputfieldState(
-        controller: controller,
-        hinttext: hintText,
-        suffixtext: suffixText,
-        prefixtext: prefixText,
-        alignment: alignment,
-        keyboardtype: keyboardType,
-      );
+      controller: controller,
+      hinttext: hintText,
+      suffixtext: suffixText,
+      prefixtext: prefixText,
+      alignment: alignment,
+      keyboardtype: keyboardType,
+      onChanged: (onChanged != null) ? onChanged : ((str) => null));
 }
 
 class _InputfieldState extends State<Inputfield> {
@@ -38,6 +40,7 @@ class _InputfieldState extends State<Inputfield> {
     required this.prefixtext,
     required this.keyboardtype,
     required this.alignment,
+    required this.onChanged,
   });
   TextEditingController controller = TextEditingController();
   String hinttext = '';
@@ -45,13 +48,14 @@ class _InputfieldState extends State<Inputfield> {
   String prefixtext = '';
   TextAlign alignment = TextAlign.left;
   TextInputType keyboardtype = TextInputType.name;
+  Function(String)? onChanged;
 
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
       widthFactor: 0.8,
       child: TextField(
-        onChanged: (value) => setState(() {}),
+        onChanged: onChanged,
         controller: controller,
         keyboardType: keyboardtype,
         textAlign: alignment,

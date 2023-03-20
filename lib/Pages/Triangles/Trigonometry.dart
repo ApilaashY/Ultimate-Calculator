@@ -45,6 +45,15 @@ class _TrigonometryState extends State<Trigonometry> {
       double six = (controllers[5].text.isNotEmpty)
           ? double.parse(controllers[5].text)
           : 0;
+      void updateNumbers() {
+        controllers[0].text = (one != 0) ? roundto(one.toString()) : "";
+        controllers[1].text = (two != 0) ? roundto(two.toString()) : "";
+        controllers[2].text = (three != 0) ? roundto(three.toString()) : "";
+        controllers[3].text = (four != 0) ? roundto(four.toString()) : "";
+        controllers[4].text = (five != 0) ? roundto(five.toString()) : "";
+        controllers[5].text = (six != 0) ? roundto(six.toString()) : "";
+      }
+
       // Get all angles
       if (controllers[0].text.isNotEmpty && controllers[2].text.isNotEmpty) {
         five = (vector.fulltriangle(180) - one - three);
@@ -55,6 +64,7 @@ class _TrigonometryState extends State<Trigonometry> {
           controllers[4].text.isNotEmpty) {
         five = (vector.fulltriangle(180) - one - five);
       }
+      updateNumbers();
       // Cosline Law
       if (controllers[1].text.isNotEmpty &&
           controllers[3].text.isNotEmpty &&
@@ -81,6 +91,7 @@ class _TrigonometryState extends State<Trigonometry> {
                 (pow(two, 2) + pow(four, 2) - pow(six, 2)).toDouble()) /
             vector.radians(2 * two * four))));
       }
+      updateNumbers();
       // Sin Law
       if (controllers[0].text.isNotEmpty && controllers[1].text.isNotEmpty) {
         if (controllers[2].text.isNotEmpty) {
@@ -178,12 +189,7 @@ class _TrigonometryState extends State<Trigonometry> {
         }
       }
       addpoints(1);
-      controllers[0].text = one.toString();
-      controllers[1].text = two.toString();
-      controllers[2].text = three.toString();
-      controllers[3].text = four.toString();
-      controllers[4].text = five.toString();
-      controllers[5].text = six.toString();
+      updateNumbers();
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error');
     }
@@ -352,6 +358,41 @@ class _TrigonometryState extends State<Trigonometry> {
           )
         ],
       ),
+    );
+  }
+}
+
+class TrigTeaching extends StatefulWidget {
+  const TrigTeaching({super.key});
+
+  @override
+  State<TrigTeaching> createState() => _TrigTeachingState();
+}
+
+class _TrigTeachingState extends State<TrigTeaching> {
+  Future<String> setup() async {
+    String text = "";
+    return text;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder(
+      future: setup(),
+      builder: (context, snapshop) {
+        if (snapshop.hasData) {
+          return Scaffold(
+            body: Center(
+              child: Text(snapshop.data as String),
+            ),
+          );
+        }
+        return const Scaffold(
+          body: Center(
+            child: CircularProgressIndicator.adaptive(),
+          ),
+        );
+      },
     );
   }
 }
