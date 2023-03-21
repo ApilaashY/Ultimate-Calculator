@@ -11,6 +11,7 @@ class Inputfield extends StatefulWidget {
     this.prefixText = '',
     this.alignment = TextAlign.left,
     this.keyboardType = TextInputType.name,
+    this.enabled = true,
     this.onChanged,
   });
   TextEditingController controller = TextEditingController();
@@ -19,17 +20,20 @@ class Inputfield extends StatefulWidget {
   String prefixText = '';
   TextAlign alignment = TextAlign.left;
   TextInputType keyboardType = TextInputType.name;
+  bool enabled = true;
   Function(String)? onChanged;
 
   @override
   State<Inputfield> createState() => _InputfieldState(
-      controller: controller,
-      hinttext: hintText,
-      suffixtext: suffixText,
-      prefixtext: prefixText,
-      alignment: alignment,
-      keyboardtype: keyboardType,
-      onChanged: (onChanged != null) ? onChanged : ((str) => null));
+        controller: controller,
+        hinttext: hintText,
+        suffixtext: suffixText,
+        prefixtext: prefixText,
+        alignment: alignment,
+        keyboardtype: keyboardType,
+        onChanged: (onChanged != null) ? onChanged : ((str) => null),
+        enabled: enabled,
+      );
 }
 
 class _InputfieldState extends State<Inputfield> {
@@ -41,6 +45,7 @@ class _InputfieldState extends State<Inputfield> {
     required this.keyboardtype,
     required this.alignment,
     required this.onChanged,
+    required this.enabled,
   });
   TextEditingController controller = TextEditingController();
   String hinttext = '';
@@ -48,6 +53,7 @@ class _InputfieldState extends State<Inputfield> {
   String prefixtext = '';
   TextAlign alignment = TextAlign.left;
   TextInputType keyboardtype = TextInputType.name;
+  bool enabled = true;
   Function(String)? onChanged;
 
   @override
@@ -59,6 +65,7 @@ class _InputfieldState extends State<Inputfield> {
         controller: controller,
         keyboardType: keyboardtype,
         textAlign: alignment,
+        enabled: enabled,
         style: TextStyle(
             color:
                 (MediaQuery.of(context).platformBrightness == Brightness.light)

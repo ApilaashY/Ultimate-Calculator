@@ -67,9 +67,16 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Future setup() async {
-    Future<DocumentSnapshot> snap =
-        FirebaseFirestore.instance.collection('News').doc('Current News').get();
-    var data = snap;
+    var snap;
+    try {
+      snap = await FirebaseFirestore.instance
+          .collection('News')
+          .doc('CurrentNews')
+          .get();
+      print(snap.data);
+    } catch (e) {
+      snap = "Some Things can be Long Pressed to get Details";
+    }
 
     String news = "";
     // Setting up shared preferences
@@ -168,8 +175,7 @@ class _HomeState extends State<Home> {
                         builder: (context) {
                           print("HI" + snap.data.toString());
                           return AlertDialog(
-                            title: Text(
-                                "Some Things can be Long Pressed to get Details\n\n\n\nThe Ultimate Calculator will be removed from the Samsung Galaxy Store on March 1st, 2022, if you wish to continue using it, download it from the Ultimate Calculator website.",
+                            title: Text(snap.data.toString(),
                                 style: TextStyle(
                                     color: (MediaQuery.of(context)
                                                 .platformBrightness ==
