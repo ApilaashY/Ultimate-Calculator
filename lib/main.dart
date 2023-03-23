@@ -73,10 +73,9 @@ class _HomeState extends State<Home> {
           .collection('News')
           .doc('CurrentNews')
           .get();
-      snap = snap.data();
-      print(snap);
+      snap = snap.data()['News'].replaceAll("\\n",'\n');
     } catch (e) {
-      snap = "Some Things can be Long Pressed to get Details";
+      snap = "News not avaliable\n\nSome Things can be Long Pressed to get Details";
     }
 
     String news = "";
@@ -114,7 +113,7 @@ class _HomeState extends State<Home> {
           : true;
     }
 
-    return news;
+    return snap;
   }
 
   Random randomnum = Random();
@@ -151,7 +150,7 @@ class _HomeState extends State<Home> {
         );
       });
     }
-    Showinter();
+    showinter();
   }
 
   @override
@@ -174,7 +173,6 @@ class _HomeState extends State<Home> {
                       showDialog(
                         context: context,
                         builder: (context) {
-                          print("HI" + snap.data.toString());
                           return AlertDialog(
                             title: Text(snap.data.toString(),
                                 style: TextStyle(
@@ -411,6 +409,9 @@ class _HomeState extends State<Home> {
                 CardButton(
                   text: 'Volume',
                 ),*/
+                  CardButton(
+                    text: 'Simplifying Radicals',
+                  ),
                   ExtendedButton(
                     text: "Physics",
                     children: [
@@ -464,9 +465,6 @@ class _HomeState extends State<Home> {
                   ),
                   CardButton(
                     text: 'LCM',
-                  ),
-                  CardButton(
-                    text: 'Simplifying Radicals',
                   ),
                 ],
               ),

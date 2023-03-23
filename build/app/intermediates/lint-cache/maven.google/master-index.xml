@@ -15,6 +15,10 @@
   <androidx.arch.core/>
   <androidx.asynclayoutinflater/>
   <androidx.autofill/>
+  <androidx.baselineprofile/>
+  <androidx.baselineprofile.apptarget/>
+  <androidx.baselineprofile.consumer/>
+  <androidx.baselineprofile.producer/>
   <androidx.benchmark/>
   <androidx.biometric/>
   <androidx.browser/>
