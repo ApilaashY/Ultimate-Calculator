@@ -151,7 +151,7 @@ class _HomeState extends State<Home> {
         );
       });
     }
-    //showinter();
+    Showinter();
   }
 
   @override
@@ -398,9 +398,9 @@ class _HomeState extends State<Home> {
                       ],
                     ),
                   ),
-                  CardButton(
+                  /*CardButton(
                     text: 'Calculator',
-                  ),
+                  ),*/
                   CardButton(
                     text: 'Converter',
                     menu: "Converts numbers to different types",
