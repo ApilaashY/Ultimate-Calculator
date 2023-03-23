@@ -73,7 +73,8 @@ class _HomeState extends State<Home> {
           .collection('News')
           .doc('CurrentNews')
           .get();
-      print(snap.data);
+      snap = snap.data();
+      print(snap);
     } catch (e) {
       snap = "Some Things can be Long Pressed to get Details";
     }

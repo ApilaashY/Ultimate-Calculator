@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:app/Modules/globalfunctions.dart';
-import 'CompoundInterest.dart' as Compound;
 
 class OrdinaryAnnuity extends StatefulWidget {
   const OrdinaryAnnuity({super.key});
@@ -16,68 +15,41 @@ class OrdinaryAnnuity extends StatefulWidget {
 }
 
 class _OrdinaryAnnuityState extends State<OrdinaryAnnuity> {
+  final Map compoundPeriods = {
+  "Year": 1,
+  "Semi-Year": 2,
+  "Quarter": 4,
+  "Month": 12,
+  "Biweek": 26,
+  "Week": 52,
+  "Day": 365,
+};
   TextEditingController Addition = TextEditingController();
   TextEditingController Rate = TextEditingController();
   TextEditingController Total = TextEditingController();
   TextEditingController Time = TextEditingController();
-  String _currenttime = "Yearly";
+  String _currenttime = "Year";
   void calc() {
     try {
       if (Addition.text.isNotEmpty &&
           Rate.text.isNotEmpty &&
           Time.text.isNotEmpty) {
-        Total.text = roundto((((pow(
-                        double.parse(Rate.text) /
-                                100 /
-                                Compound.compoundPeriods[_currenttime] +
-                            1,
-                        double.parse(Time.text) *
-                            Compound.compoundPeriods[_currenttime]) -
-                    1)) /
-                (double.parse(Rate.text) /
-                    100 /
-                    Compound.compoundPeriods[_currenttime]) *
-                Compound.compoundPeriods[_currenttime] *
-                double.parse(Addition.text))
-            .toString());
+        Total.text = roundto(((double.parse(Addition.text)*(pow(double.parse(Rate.text)/100/compoundPeriods[_currenttime]+1,double.parse(Time.text))-1))/(double.parse(Rate.text)/100/compoundPeriods[_currenttime])).toString());
       } else if (Total.text.isNotEmpty &&
           Rate.text.isNotEmpty &&
           Time.text.isNotEmpty) {
-        Addition.text = roundto((double.parse(Total.text) *
-                double.parse(Rate.text) /
-                100 /
-                Compound.compoundPeriods[_currenttime] /
-                (pow(
-                        double.parse(Rate.text) /
-                                100 /
-                                Compound.compoundPeriods[_currenttime] +
-                            1,
-                        double.parse(Time.text) *
-                            Compound.compoundPeriods[_currenttime]) -
-                    1))
-            .toString());
+        Addition.text = roundto(((double.parse(Total.text)*(double.parse(Rate.text)/100/compoundPeriods[_currenttime]))/((pow(double.parse(Rate.text)/100/compoundPeriods[_currenttime]+1,double.parse(Time.text))-1))).toString());
       } else if (Total.text.isNotEmpty &&
           Addition.text.isNotEmpty &&
           Rate.text.isNotEmpty) {
-        Time.text = roundto((log(double.parse(Total.text) *
-                        double.parse(Rate.text) /
-                        100 /
-                        Compound.compoundPeriods[_currenttime] /
-                        double.parse(Addition.text) +
-                    1) /
-                log(1 +
-                    double.parse(Rate.text) /
-                        100 /
-                        Compound.compoundPeriods[_currenttime]) /
-                Compound.compoundPeriods[_currenttime])
-            .toString());
+        Time.text = roundto((log((double.parse(Total.text)*(double.parse(Rate.text)/100/compoundPeriods[_currenttime]))/double.parse(Addition.text)+1)/log(double.parse(Rate.text)/100/compoundPeriods[_currenttime]+1)).toString());
       } else {
         Fluttertoast.showToast(msg: "Not Enough Information");
       }
+    addpoints(1);
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error');
     }
-    addpoints(1);
     setState(() {});
   }
 
@@ -141,17 +113,8 @@ class _OrdinaryAnnuityState extends State<OrdinaryAnnuity> {
                           Fluttertoast.showToast(msg: 'Saved to Clipboard');
                         },
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Inputfield(
-                              controller: Time,
-                              hintText: 'Payments',
-                              keyboardType: TextInputType.number,
-                            ),
-                          ),
-                          DropdownButton(
+                      Center(child:Text("Compounded Every")),
+                      Center(child:DropdownButton(
                             style: TextStyle(
                                 color: (MediaQuery.of(context)
                                             .platformBrightness ==
@@ -159,7 +122,7 @@ class _OrdinaryAnnuityState extends State<OrdinaryAnnuity> {
                                     ? Colors.black
                                     : Colors.white),
                             value: _currenttime,
-                            items: Compound.compoundPeriods.keys
+                            items: compoundPeriods.keys
                                 .map((e) => DropdownMenuItem(
                                       value: e,
                                       child: Text(e.toString()),
@@ -169,9 +132,14 @@ class _OrdinaryAnnuityState extends State<OrdinaryAnnuity> {
                               _currenttime = newval.toString();
                               setState(() {});
                             },
-                          )
-                        ],
-                      ),
+                          ),),
+                      Inputfield(
+                              controller: Time,
+                              hintText: 'Total Number of Payments',
+                              keyboardType: TextInputType.number,
+                            ),
+                          
+
                       IconButton(
                         icon: const Icon(
                           Icons.copy,
