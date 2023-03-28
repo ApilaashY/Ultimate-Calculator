@@ -248,6 +248,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.8.13"
+  galaxy_store_in_app_review:
+    dependency: "direct main"
+    description:
+      name: galaxy_store_in_app_review
+      sha256: "2ef48dafe758a77950b7723a6066427fc764e2e9b52e37089602f74d055d308f"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   google_fonts:
     dependency: "direct main"
     description:

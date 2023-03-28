@@ -194,6 +194,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "galaxy_store_in_app_review",
+      "rootUri": "file:///C:/Users/apila/AppData/Local/Pub/Cache/hosted/pub.dev/galaxy_store_in_app_review-0.0.3",
+      "packageUri": "lib/",
+      "languageVersion": "2.16"
+    },
+    {
       "name": "google_fonts",
       "rootUri": "file:///C:/Users/apila/AppData/Local/Pub/Cache/hosted/pub.dev/google_fonts-4.0.3",
       "packageUri": "lib/",
@@ -542,7 +548,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-03-23T20:53:39.389965Z",
+  "generated": "2023-03-28T23:18:40.280218Z",
   "generator": "pub",
   "generatorVersion": "2.19.2"
 }

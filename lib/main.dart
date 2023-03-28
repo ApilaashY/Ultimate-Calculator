@@ -15,6 +15,7 @@ import 'Modules/card_button.dart';
 import 'Modules/loadas.dart';
 import 'firebase_options.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:galaxy_store_in_app_review/galaxy_store_in_app_review.dart';
 
 var savedata;
 int roundingnumber = 4;
@@ -120,36 +121,13 @@ class _HomeState extends State<Home> {
   RewardedAd? ad;
   initState() {
     super.initState();
-    if (randomnum.nextInt(10) == 0 &&
-        defaultTargetPlatform == TargetPlatform.android) {
-      Future.delayed(Duration.zero, () {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text(
-              'Would you like to rate my app',
-              style: TextStyle(
-                  color: (MediaQuery.of(context).platformBrightness ==
-                          Brightness.light)
-                      ? Colors.black
-                      : Colors.white),
-            ),
-            actions: [
-              ElevatedButton(
-                  onPressed: () async {
-                    try {
-                      await launchUrl(Uri.parse(
-                          'https://apps.samsung.com/appquery/appDetail.as?appId=app.ultimatecalculator.www'));
-                    } catch (e) {
-                      Navigator.pop(context);
-                    }
-                  },
-                  child: const Text('Rate'))
-            ],
-          ),
-        );
-      });
+    void rate() async {
+      if (randomnum.nextInt(10) == 0 &&
+          defaultTargetPlatform == TargetPlatform.android && await GalaxyStoreInAppReview.isAvailable()) {
+            await GalaxyStoreInAppReview.requestReview();
+      }
     }
+    rate();
     showinter();
   }
 

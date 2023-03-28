@@ -31,6 +31,11 @@ public final class GeneratedPluginRegistrant {
       Log.e(TAG, "Error registering plugin fluttertoast, io.github.ponnamkarthik.toast.fluttertoast.FlutterToastPlugin", e);
     }
     try {
+      flutterEngine.getPlugins().add(new kr.youngminz.galaxy_store_in_app_review.GalaxyStoreInAppReviewPlugin());
+    } catch(Exception e) {
+      Log.e(TAG, "Error registering plugin galaxy_store_in_app_review, kr.youngminz.galaxy_store_in_app_review.GalaxyStoreInAppReviewPlugin", e);
+    }
+    try {
       flutterEngine.getPlugins().add(new io.flutter.plugins.googlemobileads.GoogleMobileAdsPlugin());
     } catch(Exception e) {
       Log.e(TAG, "Error registering plugin google_mobile_ads, io.flutter.plugins.googlemobileads.GoogleMobileAdsPlugin", e);
