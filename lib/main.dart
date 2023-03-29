@@ -74,9 +74,10 @@ class _HomeState extends State<Home> {
           .collection('News')
           .doc('CurrentNews')
           .get();
-      snap = snap.data()['News'].replaceAll("\\n",'\n');
+      snap = snap.data()['News'].replaceAll("\\n", '\n');
     } catch (e) {
-      snap = "News not avaliable\n\nSome Things can be Long Pressed to get Details";
+      snap =
+          "News not avaliable\n\nSome Things can be Long Pressed to get Details";
     }
 
     String news = "";
@@ -123,10 +124,12 @@ class _HomeState extends State<Home> {
     super.initState();
     void rate() async {
       if (randomnum.nextInt(10) == 0 &&
-          defaultTargetPlatform == TargetPlatform.android && await GalaxyStoreInAppReview.isAvailable()) {
-            await GalaxyStoreInAppReview.requestReview();
+          defaultTargetPlatform == TargetPlatform.android &&
+          await GalaxyStoreInAppReview.isAvailable()) {
+        await GalaxyStoreInAppReview.requestReview();
       }
     }
+
     rate();
     showinter();
   }
