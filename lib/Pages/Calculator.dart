@@ -1,10 +1,8 @@
-import 'dart:convert';
 import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fraction/fraction.dart';
-import 'package:function_tree/function_tree.dart';
 import 'package:app/Modules/globalfunctions.dart';
 import 'package:app/Modules/solver.dart';
 
@@ -118,9 +116,13 @@ class CalculatorState extends State<Calculator> {
                         ),
                       );
                     }),
-                    child: FractionallySizedBox(widthFactor:0.7,heightFactor:0.5,child: FittedBox(child: Text(
-                      (deciasfrac == true) ? 'Frac' : 'Deci',
-                    ))),
+                    child: FractionallySizedBox(
+                        widthFactor: 0.7,
+                        heightFactor: 0.5,
+                        child: FittedBox(
+                            child: Text(
+                          (deciasfrac == true) ? 'Frac' : 'Deci',
+                        ))),
                   ),
                   ElevatedButton(
                     style: ButtonStyle(
@@ -132,10 +134,13 @@ class CalculatorState extends State<Calculator> {
                       degreemode = !degreemode;
                       setState(() {});
                     },
-                    child: FractionallySizedBox(widthFactor:0.7,heightFactor:0.5,child: FittedBox(child: Text(
-                      (degreemode == true) ? 'Deg' : 'Rad',
-                      
-                    ))),
+                    child: FractionallySizedBox(
+                        widthFactor: 0.7,
+                        heightFactor: 0.5,
+                        child: FittedBox(
+                            child: Text(
+                          (degreemode == true) ? 'Deg' : 'Rad',
+                        ))),
                   ),
                   FunctionButton(
                     name: 'Clear',
@@ -161,14 +166,12 @@ class CalculatorState extends State<Calculator> {
                     name: 'sin(',
                     child: Text(
                       'sin',
-                      
                     ),
                   ),
                   FunctionButton(
                     name: 'cos(',
                     child: Text(
                       'cos',
-                      
                     ),
                   ),
                   FunctionButton(
@@ -205,21 +208,18 @@ class CalculatorState extends State<Calculator> {
                     name: '√(',
                     child: Text(
                       'x√',
-                      
                     ),
                   ),
                   FunctionButton(
                     name: 'log(',
                     child: Text(
                       'log',
-                      
                     ),
                   ),
                   FunctionButton(
                     name: 'ln(',
                     child: Text(
                       'ln',
-                      
                     ),
                   ),
                   FunctionButton(
@@ -290,13 +290,17 @@ class FunctionButton extends StatelessWidget {
           backgroundColor: MaterialStateProperty.all<Color>(
               const Color.fromARGB(255, 0, 135, 197)),
           shape: MaterialStateProperty.all<CircleBorder>(const CircleBorder())),
-      child: FractionallySizedBox(heightFactor:0.5, widthFactor:0.7,child: FittedBox(child: child)),
+      child: FractionallySizedBox(
+          heightFactor: 0.5, widthFactor: 0.7, child: FittedBox(child: child)),
       onPressed: () {
         if (name == 'Equal') {
-          String parseText = _controller.text.replaceAll("X","*").replaceAll("÷","/");
+          String parseText =
+              _controller.text.replaceAll("X", "*").replaceAll("÷", "/");
           parseText = solver.fixBrackets(parseText);
           List<String> translation = solver.translate(parseText);
-          String answer = solver.solve(translation, (degreemode)?"Degree":"Radian").toString();
+          String answer = solver
+              .solve(translation, (degreemode) ? "Degree" : "Radian")
+              .toString();
           answer = roundto(answer);
           _controller.text = answer;
         } else if (name == 'Clear') {
@@ -320,7 +324,6 @@ class FunctionButton extends StatelessWidget {
           }
         } else {
           _controller.text += name.toString();
-        
         }
       },
     );

@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
     }
 
     rate();
-    showinter();
+    //showinter();
   }
 
   @override
@@ -189,10 +189,6 @@ class _HomeState extends State<Home> {
               backgroundColor: const Color.fromARGB(255, 255, 184, 0),
               child: Icon(
                 Icons.add_rounded,
-                color: (MediaQuery.of(context).platformBrightness ==
-                        Brightness.light)
-                    ? Colors.black
-                    : Colors.white,
               ),
               onPressed: () {
                 TextEditingController newone = TextEditingController();
@@ -260,10 +256,7 @@ class _HomeState extends State<Home> {
                 children: [
                   Card(
                     elevation: 10,
-                    color: (MediaQuery.of(context).platformBrightness ==
-                            Brightness.light)
-                        ? const Color.fromARGB(255, 165, 226, 255)
-                        : const Color.fromARGB(255, 0, 135, 197),
+                    color: const Color.fromARGB(255, 0, 135, 197),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
@@ -279,11 +272,7 @@ class _HomeState extends State<Home> {
                               'Points:\n$points',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: (MediaQuery.of(context)
-                                            .platformBrightness ==
-                                        Brightness.light)
-                                    ? Colors.black
-                                    : Colors.white,
+                                color: Colors.white,
                               ),
                             )),
                           ),
@@ -379,10 +368,15 @@ class _HomeState extends State<Home> {
                   ),
                   CardButton(
                     text: 'Calculator',
+                    menu: "A normal calculator",
                   ),
                   CardButton(
                     text: 'Converter',
                     menu: "Converts numbers to different types",
+                  ),
+                  CardButton(
+                    text: 'Custom Formulas',
+                    menu: "Create, save, and use your own formulas",
                   ),
                   /*CardButton(
                   text: 'Surface Area',

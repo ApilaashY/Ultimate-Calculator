@@ -44,7 +44,6 @@ dependencies:
   firebase_core: ^2.5.0
   vector_math: ^2.1.2
   syncfusion_flutter_charts: ^20.3.58
-  function_tree: ^0.8.13
   fraction: ^4.1.4
   url_launcher: ^6.1.7
   introduction_screen: ^3.1.1

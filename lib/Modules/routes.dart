@@ -1,3 +1,4 @@
+import 'package:app/Pages/CustomFormulas.dart';
 import 'package:app/Pages/Finance/AnnuityDue.dart';
 import 'package:app/Pages/Finance/CompoundInterest.dart';
 import 'package:app/Pages/Finance/SimpleInterest.dart';
@@ -87,6 +88,10 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const DegAndRad());
   } else if (settings.name == "Simplifying Radicals") {
     return MaterialPageRoute(builder: (context) => const SimplifyingRadicals());
+  } else if (settings.name == "Custom Formulas") {
+    return MaterialPageRoute(builder: (context) => CustomFormulas());
+  } else if (settings.name == "FormulaMaker") {
+    return MaterialPageRoute(builder: (context) => FormulaMaker());
   } else {
     throw 'Page Not Found';
   }
