@@ -1,16 +1,4 @@
-import 'dart:convert';
-
-import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
-
-Map<String, String> data = {
-  "one": "1",
-  "two": "1",
-  "three": "1",
-  "four": "1",
-};
 
 class CustomFormulas extends StatefulWidget {
   const CustomFormulas({super.key});
@@ -20,100 +8,38 @@ class CustomFormulas extends StatefulWidget {
 }
 
 class _CustomFormulasState extends State<CustomFormulas> {
-  Future<String> getSaves() async {
-    String? encodedData = await savedata.getString("CustomFormulas");
-    if (encodedData != null) {
-      data = json.decode(encodedData);
-    }
-    return "Done";
+  Future getFormulas() async {
+    return "done";
   }
 
-  TextEditingController name = TextEditingController();
-
+  Map<String, String> formulas = {
+    "one": "1",
+    "two": "2",
+    "three": "3",
+  };
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getSaves(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Scaffold(
-              appBar: AppBar(
-                title: Text("Custom Formulas"),
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                foregroundColor: (MediaQuery.of(context).platformBrightness ==
-                        Brightness.light)
-                    ? Colors.black
-                    : Colors.white,
-              ),
-              floatingActionButton: FloatingActionButton(
-                child: Icon(Icons.add_rounded),
-                backgroundColor: const Color.fromARGB(255, 255, 184, 0),
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                            actions: [
-                              const Center(
-                                  child: FractionallySizedBox(
-                                      widthFactor: 0.9,
-                                      child: FittedBox(
-                                          child: Text(
-                                              "Enter the name of your new formula")))),
-                              Padding(padding: EdgeInsets.all(10)),
-                              Center(
-                                  child: Inputfield(
-                                controller: name,
-                              )),
-                              ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor:
-                                        const Color.fromARGB(255, 0, 135, 197),
-                                  ),
-                                  onPressed: () {
-                                    if (name.text.isEmpty) {
-                                      Fluttertoast.showToast(msg: "Name empty");
-                                    } else if (data.keys.contains(name.text)) {
-                                      Fluttertoast.showToast(
-                                          msg: "That name already exists");
-                                    } else {
-                                      Navigator.pop(context);
-                                      Navigator.pushNamed(
-                                          context, "FormulaMaker");
-                                    }
-                                  },
-                                  child: const Text("Create"))
-                            ],
-                          ));
-                },
-              ),
-              body: GridView.builder(
-                itemBuilder: (context, index) {
-                  return FractionallySizedBox(
+      future: getFormulas(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Scaffold(
+            appBar: AppBar(
+              elevation: 0,
+              backgroundColor: Colors.transparent,
+              foregroundColor: (MediaQuery.of(context).platformBrightness ==
+                      Brightness.light)
+                  ? Colors.black
+                  : Colors.white,
+            ),
+            body: GridView.builder(
+              itemBuilder: (context, index) {
+                return FractionallySizedBox(
                     widthFactor: 0.9,
                     heightFactor: 0.9,
                     child: ElevatedButton(
                       onPressed: () {},
-                      onLongPress: () => showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                title: Text(data.values.elementAt(index),
-                                    style: TextStyle(
-                                        color: (MediaQuery.of(context)
-                                                    .platformBrightness ==
-                                                Brightness.light)
-                                            ? Colors.black
-                                            : Colors.white)),
-                              )),
-                      child: FractionallySizedBox(
-                        widthFactor: 0.7,
-                        heightFactor: 0.5,
-                        child: FittedBox(
-                          child: Text(
-                            data.keys.elementAt(index),
-                          ),
-                        ),
-                      ),
+                      child: Text(formulas.keys.toList()[index]),
                       style: ElevatedButton.styleFrom(
                         elevation: 10,
                         backgroundColor: const Color.fromARGB(255, 0, 135, 197),
@@ -121,20 +47,19 @@ class _CustomFormulasState extends State<CustomFormulas> {
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                         ),
                       ),
-                    ),
-                  );
-                },
-                itemCount: data.length,
-                semanticChildCount: 50,
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2),
-              ),
-            );
-          }
-          return Scaffold(
-            body: Center(child: CircularProgressIndicator()),
+                    ));
+              },
+              gridDelegate:
+                  SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+              itemCount: formulas.length,
+            ),
           );
-        });
+        }
+        return Scaffold(
+          body: Center(child: CircularProgressIndicator()),
+        );
+      },
+    );
   }
 }
 
@@ -142,12 +67,12 @@ class FormulaMaker extends StatefulWidget {
   const FormulaMaker({Key? key}) : super(key: key);
 
   @override
-  State<FormulaMaker> createState() => _FormulaMakerState();
+  State<CustomFormulas> createState() => _CustomFormulasState();
 }
 
-class _FormulaMakerState extends State<FormulaMaker> {
+class _FormulaMakerState extends State<CustomFormulas> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Container();
   }
 }

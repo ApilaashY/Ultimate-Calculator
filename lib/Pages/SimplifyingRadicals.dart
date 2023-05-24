@@ -42,24 +42,25 @@ class _SimplifyingRadicalsState extends State<SimplifyingRadicals> {
                   widthFactor: 0.8,
                   child: TextField(
                     onChanged: (val) {
-                      int num = 0;
+                      int num = 1;
+                      int rad = int.parse(radController.text);
+
+                      int start = rad;
+                      int startSq = sqrt(start).floor() + 1;
+                      start = int.parse(pow(startSq - 1, 2).toString());
                       try {
-                        for (int i = int.parse(radController.text);
-                            i > 0;
-                            i--) {
+                        for (int i = rad; i > 0; i -= startSq * 2 - 1) {
                           if (sqrt(i) == sqrt(i).round() &&
-                              (int.parse(radController.text) / i) ==
-                                  (int.parse(radController.text) / i).round()) {
+                              (rad / i) == (rad / i).round()) {
                             num = sqrt(i).round();
                             break;
                           }
                         }
-                        answerController.text = ((num > 1)
-                                ? (num).toString()
-                                : '') +
-                            (((int.parse(radController.text) / (num * num)) > 1)
-                                ? "√${(int.parse(radController.text) / (num * num)).round()}"
-                                : '');
+                        answerController.text =
+                            ((num > 1) ? (num).toString() : '') +
+                                (((rad / (num * num)) > 1)
+                                    ? "√${(rad / (num * num)).round()}"
+                                    : '');
                       } catch (e) {
                         answerController.text = '0';
                       }

@@ -90,7 +90,7 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const SimplifyingRadicals());
   } else if (settings.name == "Custom Formulas") {
     return MaterialPageRoute(builder: (context) => CustomFormulas());
-  } else if (settings.name == "FormulaMaker") {
+  } else if (settings.name == "Formula Maker") {
     return MaterialPageRoute(builder: (context) => FormulaMaker());
   } else {
     throw 'Page Not Found';

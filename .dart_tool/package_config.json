@@ -224,12 +224,6 @@
       "languageVersion": "2.18"
     },
     {
-      "name": "function_tree",
-      "rootUri": "file:///C:/Users/apila/AppData/Local/Pub/Cache/hosted/pub.dev/function_tree-0.8.13",
-      "packageUri": "lib/",
-      "languageVersion": "2.12"
-    },
-    {
       "name": "galaxy_store_in_app_review",
       "rootUri": "file:///C:/Users/apila/AppData/Local/Pub/Cache/hosted/pub.dev/galaxy_store_in_app_review-0.0.3",
       "packageUri": "lib/",
@@ -584,7 +578,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-05-17T01:02:53.878625Z",
+  "generated": "2023-05-22T18:09:47.391256Z",
   "generator": "pub",
   "generatorVersion": "3.0.0"
 }
