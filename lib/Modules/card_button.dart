@@ -33,18 +33,26 @@ class _CardButtonState extends State<CardButton> {
           : 0,
       style: ElevatedButton.styleFrom(
         elevation: 10,
-        backgroundColor: const Color.fromARGB(255, 0, 135, 197),
+        backgroundColor:
+            (MediaQuery.of(context).platformBrightness == Brightness.light)
+                ? const Color.fromARGB(255, 165, 226, 255)
+                : const Color.fromARGB(255, 0, 135, 197),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20)),
         ),
       ),
       child: FractionallySizedBox(
-        widthFactor: 0.9,
-        heightFactor: 0.9,
+        widthFactor: 0.8,
+        heightFactor: 0.8,
         child: FittedBox(
           child: Text(
             text.replaceAll(' ', '\n'),
             textAlign: TextAlign.center,
+            style: TextStyle(
+                color: (MediaQuery.of(context).platformBrightness ==
+                        Brightness.light)
+                    ? Colors.black
+                    : Colors.white),
           ),
         ),
       ),
@@ -109,9 +117,9 @@ class _SectionButtonState extends State<SectionButton> {
                   ))
           : 0,
       child: FractionallySizedBox(
-        widthFactor: 0.9,
-        heightFactor: 0.9,
-        child: Text(text.replaceAll(" ", "\n")),
+        widthFactor: 0.8,
+        heightFactor: 0.8,
+        child: FittedBox(child: Text(text.replaceAll(" ", "\n"))),
       ),
     );
   }
@@ -143,16 +151,21 @@ class _ExtendedButtonState extends State<ExtendedButton> {
       child: Column(children: [
         Expanded(
           flex: 1,
-          child: FittedBox(
+          child: FractionallySizedBox(
+            widthFactor: 0.8,
+            heightFactor: 0.8,
+            child: FittedBox(
               child: Text(
-            text,
-            style: TextStyle(
-              color: (MediaQuery.of(context).platformBrightness ==
-                      Brightness.light)
-                  ? Colors.black
-                  : Colors.white,
+                text,
+                style: TextStyle(
+                  color: (MediaQuery.of(context).platformBrightness ==
+                          Brightness.light)
+                      ? Colors.black
+                      : Colors.white,
+                ),
+              ),
             ),
-          )),
+          ),
         ),
         Expanded(
             flex: 3,

@@ -256,7 +256,10 @@ class _HomeState extends State<Home> {
                 children: [
                   Card(
                     elevation: 10,
-                    color: const Color.fromARGB(255, 0, 135, 197),
+                    color: (MediaQuery.of(context).platformBrightness ==
+                            Brightness.light)
+                        ? const Color.fromARGB(255, 165, 226, 255)
+                        : const Color.fromARGB(255, 0, 135, 197),
                     shape: const RoundedRectangleBorder(
                       borderRadius: BorderRadius.all(Radius.circular(20)),
                     ),
@@ -272,7 +275,11 @@ class _HomeState extends State<Home> {
                               'Points:\n$points',
                               textAlign: TextAlign.center,
                               style: TextStyle(
-                                color: Colors.white,
+                                color: (MediaQuery.of(context)
+                                            .platformBrightness ==
+                                        Brightness.light)
+                                    ? Colors.black
+                                    : Colors.white,
                               ),
                             )),
                           ),

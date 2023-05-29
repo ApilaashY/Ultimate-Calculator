@@ -62,7 +62,6 @@ class CalculatorState extends State<Calculator> {
                   : 0.3,
               child: TextField(
                 scrollController: ScrollController(keepScrollOffset: false),
-                autofocus: true,
                 textAlign: TextAlign.end,
                 controller: _controller,
                 keyboardType: TextInputType.number,
