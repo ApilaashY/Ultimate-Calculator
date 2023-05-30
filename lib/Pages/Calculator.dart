@@ -222,9 +222,45 @@ class CalculatorState extends State<Calculator> {
                     ),
                   ),
                   FunctionButton(
+                    name: '7',
+                    child: const Text(
+                      '7',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '8',
+                    child: const Text(
+                      '8',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '9',
+                    child: const Text(
+                      '9',
+                    ),
+                  ),
+                  FunctionButton(
                     name: 'π',
                     child: const Text(
                       'π',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '4',
+                    child: const Text(
+                      '4',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '5',
+                    child: const Text(
+                      '5',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '6',
+                    child: const Text(
+                      '6',
                     ),
                   ),
                   FunctionButton(
@@ -234,21 +270,27 @@ class CalculatorState extends State<Calculator> {
                     ),
                   ),
                   FunctionButton(
+                    name: '1',
+                    child: const Text(
+                      '1',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '2',
+                    child: const Text(
+                      '2',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '3',
+                    child: const Text(
+                      '3',
+                    ),
+                  ),
+                  FunctionButton(
                     name: 'X',
                     child: const Text(
                       'X',
-                    ),
-                  ),
-                  FunctionButton(
-                    name: '-',
-                    child: const Text(
-                      '-',
-                    ),
-                  ),
-                  FunctionButton(
-                    name: '+',
-                    child: const Text(
-                      '+',
                     ),
                   ),
                   FunctionButton(
@@ -261,6 +303,18 @@ class CalculatorState extends State<Calculator> {
                     name: 'Equal',
                     child: const Text(
                       '=',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '+',
+                    child: const Text(
+                      '+',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '-',
+                    child: const Text(
+                      '-',
                     ),
                   ),
                 ],
@@ -297,11 +351,17 @@ class FunctionButton extends StatelessWidget {
               _controller.text.replaceAll("X", "*").replaceAll("÷", "/");
           parseText = solver.fixBrackets(parseText);
           List<String> translation = solver.translate(parseText);
-          String answer = solver
-              .solve(translation, (degreemode) ? "Degree" : "Radian")
-              .toString();
-          answer = roundto(answer);
-          _controller.text = answer;
+          double answer =
+              solver.solve(translation, (degreemode) ? "Degree" : "Radian");
+          _controller.text = roundto(answer.floor().toString());
+
+          print(deciasfrac && answer != answer.floorToDouble());
+          if (deciasfrac && answer != answer.floorToDouble()) {
+            _controller.text += (answer > 0) ? "+(" : "-(";
+            _controller.text +=
+                Fraction.fromDouble(answer - answer.floorToDouble()).toString();
+            _controller.text += ")";
+          }
         } else if (name == 'Clear') {
           _controller.text = '';
         } else if (name == 'modeselect') {

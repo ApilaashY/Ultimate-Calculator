@@ -84,12 +84,30 @@ class _CustomFormulasState extends State<CustomFormulas> {
                         Navigator.pushNamed(context, "Formula Calculator",
                             arguments: formulas.keys.toList()[index]);
                       },
-                      child: Text(formulas.keys.toList()[index]),
                       style: ElevatedButton.styleFrom(
                         elevation: 10,
-                        backgroundColor: const Color.fromARGB(255, 0, 135, 197),
+                        backgroundColor:
+                            (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light)
+                                ? const Color.fromARGB(255, 165, 226, 255)
+                                : const Color.fromARGB(255, 0, 135, 197),
                         shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
+                        ),
+                      ),
+                      child: FractionallySizedBox(
+                        widthFactor: 0.6,
+                        heightFactor: 0.6,
+                        child: FittedBox(
+                          child: Text(
+                            formulas.keys.toList()[index],
+                            style: TextStyle(
+                                color: (MediaQuery.of(context)
+                                            .platformBrightness ==
+                                        Brightness.light)
+                                    ? Colors.black
+                                    : Colors.white),
+                          ),
                         ),
                       ),
                     ));
@@ -288,64 +306,124 @@ class _FormulaMakerState extends State<FormulaMaker> {
                       'tan^-1',
                     ),
                   ),
-                  _FunctionButton(
+                  FunctionButton(
                     name: '^',
                     child: const Text(
                       'x^y',
                     ),
                   ),
-                  _FunctionButton(
+                  FunctionButton(
                     name: '√(',
-                    child: const Text(
+                    child: Text(
                       'x√',
                     ),
                   ),
-                  _FunctionButton(
+                  FunctionButton(
                     name: 'log(',
-                    child: const Text(
+                    child: Text(
                       'log',
                     ),
                   ),
-                  _FunctionButton(
+                  FunctionButton(
                     name: 'ln(',
-                    child: const Text(
+                    child: Text(
                       'ln',
                     ),
                   ),
-                  _FunctionButton(
+                  FunctionButton(
+                    name: '7',
+                    child: const Text(
+                      '7',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '8',
+                    child: const Text(
+                      '8',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '9',
+                    child: const Text(
+                      '9',
+                    ),
+                  ),
+                  FunctionButton(
                     name: 'π',
                     child: const Text(
                       'π',
                     ),
                   ),
-                  _FunctionButton(
+                  FunctionButton(
+                    name: '4',
+                    child: const Text(
+                      '4',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '5',
+                    child: const Text(
+                      '5',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '6',
+                    child: const Text(
+                      '6',
+                    ),
+                  ),
+                  FunctionButton(
                     name: '÷',
                     child: const Text(
                       '÷',
                     ),
                   ),
-                  _FunctionButton(
-                    name: '*',
+                  FunctionButton(
+                    name: '1',
                     child: const Text(
-                      '*',
+                      '1',
                     ),
                   ),
-                  _FunctionButton(
-                    name: '-',
+                  FunctionButton(
+                    name: '2',
                     child: const Text(
-                      '-',
+                      '2',
                     ),
                   ),
-                  _FunctionButton(
+                  FunctionButton(
+                    name: '3',
+                    child: const Text(
+                      '3',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: 'X',
+                    child: const Text(
+                      'X',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: '.',
+                    child: const Text(
+                      '.',
+                    ),
+                  ),
+                  FunctionButton(
+                    name: 'Equal',
+                    child: const Text(
+                      '=',
+                    ),
+                  ),
+                  FunctionButton(
                     name: '+',
                     child: const Text(
                       '+',
                     ),
                   ),
-                  _FunctionButton(
-                    name: '.',
+                  FunctionButton(
+                    name: '-',
                     child: const Text(
-                      '.',
+                      '-',
                     ),
                   ),
                 ],
@@ -409,62 +487,66 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
     formula = formulas[name];
     print(name);
     print(solver.translate(formula));
+    list = [
+      Inputfield(
+        controller: TextEditingController(text: formula),
+        enabled: false,
+        suffixText: "Formula",
+      ),
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Text((degree) ? "Degree Mode" : "Radian Mode"),
+        Switch.adaptive(
+            value: degree,
+            onChanged: (val) {
+              degree = val;
+              setState(() {});
+            })
+      ]),
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Text((deciAsFrac) ? "Decimals" : "Fractions"),
+        Switch.adaptive(
+            value: deciAsFrac,
+            onChanged: (val) {
+              deciAsFrac = val;
+              setState(() {});
+            })
+      ]),
+    ];
   }
   Solver solver = new Solver();
   String name;
   String formula = "";
   bool degree = true;
   bool deciAsFrac = false;
+  List<Widget> list = []
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Colors.transparent,
-          foregroundColor:
-              (MediaQuery.of(context).platformBrightness == Brightness.light)
-                  ? Colors.black
-                  : Colors.white,
-          title: Text(name),
-        ),
-        body: Center(
-          child: FractionallySizedBox(
-            widthFactor: 0.8,
-            heightFactor: 0.5,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              elevation: 20,
-              child: ListView(
-                children: [
-                  Inputfield(
-                    controller: TextEditingController(text: formula),
-                    enabled: false,
-                    suffixText: "Formula",
-                  ),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Text((degree) ? "Degree Mode" : "Radian Mode"),
-                    Switch.adaptive(
-                        value: degree,
-                        onChanged: (val) {
-                          degree = val;
-                          setState(() {});
-                        })
-                  ]),
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Text((deciAsFrac) ? "Decimals" : "Fractions"),
-                    Switch.adaptive(
-                        value: deciAsFrac,
-                        onChanged: (val) {
-                          deciAsFrac = val;
-                          setState(() {});
-                        })
-                  ]),
-                ],
-              ),
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        foregroundColor:
+            (MediaQuery.of(context).platformBrightness == Brightness.light)
+                ? Colors.black
+                : Colors.white,
+        title: Text(name),
+      ),
+      body: Center(
+        child: FractionallySizedBox(
+          widthFactor: 0.8,
+          heightFactor: 0.5,
+          child: Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            elevation: 20,
+            child: ListView.builder(
+              children:
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
