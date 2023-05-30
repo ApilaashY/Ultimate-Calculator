@@ -92,6 +92,10 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => CustomFormulas());
   } else if (settings.name == "Formula Maker") {
     return MaterialPageRoute(builder: (context) => FormulaMaker());
+  } else if (settings.name == "Formula Calculator") {
+    return MaterialPageRoute(
+        builder: (context) =>
+            FormulaCalculator(name: settings.arguments.toString()));
   } else {
     throw 'Page Not Found';
   }

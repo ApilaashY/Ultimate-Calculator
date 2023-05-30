@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class Inputfield extends StatefulWidget {
   Inputfield({
     super.key,
-    required this.controller,
+    this.controller,
     this.hintText = '',
     this.suffixText = '',
     this.prefixText = '',
@@ -13,8 +13,12 @@ class Inputfield extends StatefulWidget {
     this.keyboardType = TextInputType.name,
     this.enabled = true,
     this.onChanged,
-  });
-  TextEditingController controller = TextEditingController();
+  }) {
+    if (controller == null) {
+      controller = TextEditingController();
+    }
+  }
+  TextEditingController? controller = TextEditingController();
   String hintText = '';
   String suffixText = '';
   String prefixText = '';
@@ -25,7 +29,7 @@ class Inputfield extends StatefulWidget {
 
   @override
   State<Inputfield> createState() => _InputfieldState(
-        controller: controller,
+        controller: controller!,
         hinttext: hintText,
         suffixtext: suffixText,
         prefixtext: prefixText,

@@ -29,7 +29,7 @@ class Solver {
     List<String> elements = [];
     String number = "", last = "";
     for (int i = 0; i < equation.length; i++) {
-      if ("+-*/^√()".contains(equation[i])) {
+      if ("+-*/^√()abcdefghijklmnopqrstuvwxyz".contains(equation[i])) {
         bool numBesideBracket = (i > 0 &&
             equation[i] == '(' &&
             !"+-*/^√()".contains(equation[i - 1]));

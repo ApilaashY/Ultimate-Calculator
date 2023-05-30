@@ -68,6 +68,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Future setup() async {
+    savedata = await SharedPreferences.getInstance();
     var snap;
     try {
       snap = await FirebaseFirestore.instance
@@ -82,7 +83,6 @@ class _HomeState extends State<Home> {
 
     String news = "";
     // Setting up shared preferences
-    savedata = await SharedPreferences.getInstance();
     DateTime now = DateTime.now();
     var temppoints = await savedata.getInt('points');
     var todaysave = await savedata.getString('today');

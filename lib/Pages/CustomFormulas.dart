@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:app/Modules/input_field.dart';
 import 'package:app/Modules/solver.dart';
 import 'package:app/Pages/Calculator.dart';
 import 'package:app/main.dart';
@@ -7,11 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-Map<String, String> formulas = {
-  "one": "1",
-  "two": "2",
-  "three": "3",
-};
+Map formulas = {};
 TextEditingController functionName = TextEditingController();
 
 class CustomFormulas extends StatefulWidget {
@@ -25,18 +22,11 @@ class _CustomFormulasState extends State<CustomFormulas> {
   Future getFormulas() async {
     String? tempData = await savedata.getString("formulas");
     if (tempData != null) {
-      print("Gettings");
       formulas = jsonDecode(tempData);
-      print("Gettings");
     }
     return "done";
   }
 
-  Map<String, String> formulas = {
-    "one": "1",
-    "two": "2",
-    "three": "3",
-  };
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
@@ -85,13 +75,15 @@ class _CustomFormulasState extends State<CustomFormulas> {
               },
             ),
             body: GridView.builder(
-              key: UniqueKey(),
               itemBuilder: (context, index) {
                 return FractionallySizedBox(
                     widthFactor: 0.9,
                     heightFactor: 0.9,
                     child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.pushNamed(context, "Formula Calculator",
+                            arguments: formulas.keys.toList()[index]);
+                      },
                       child: Text(formulas.keys.toList()[index]),
                       style: ElevatedButton.styleFrom(
                         elevation: 10,
@@ -401,5 +393,78 @@ class _FunctionButton extends StatelessWidget {
         }
       },
     );
+  }
+}
+
+class FormulaCalculator extends StatefulWidget {
+  FormulaCalculator({required this.name});
+  String name;
+
+  @override
+  State<FormulaCalculator> createState() => _FormulaCalculatorState(name: name);
+}
+
+class _FormulaCalculatorState extends State<FormulaCalculator> {
+  _FormulaCalculatorState({required this.name}) {
+    formula = formulas[name];
+    print(name);
+    print(solver.translate(formula));
+  }
+  Solver solver = new Solver();
+  String name;
+  String formula = "";
+  bool degree = true;
+  bool deciAsFrac = false;
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Colors.transparent,
+          foregroundColor:
+              (MediaQuery.of(context).platformBrightness == Brightness.light)
+                  ? Colors.black
+                  : Colors.white,
+          title: Text(name),
+        ),
+        body: Center(
+          child: FractionallySizedBox(
+            widthFactor: 0.8,
+            heightFactor: 0.5,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              elevation: 20,
+              child: ListView(
+                children: [
+                  Inputfield(
+                    controller: TextEditingController(text: formula),
+                    enabled: false,
+                    suffixText: "Formula",
+                  ),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Text((degree) ? "Degree Mode" : "Radian Mode"),
+                    Switch.adaptive(
+                        value: degree,
+                        onChanged: (val) {
+                          degree = val;
+                          setState(() {});
+                        })
+                  ]),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    Text((deciAsFrac) ? "Decimals" : "Fractions"),
+                    Switch.adaptive(
+                        value: deciAsFrac,
+                        onChanged: (val) {
+                          deciAsFrac = val;
+                          setState(() {});
+                        })
+                  ]),
+                ],
+              ),
+            ),
+          ),
+        ));
   }
 }
