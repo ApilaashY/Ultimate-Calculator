@@ -2,13 +2,16 @@ import 'dart:convert';
 
 import 'package:app/Modules/input_field.dart';
 import 'package:app/Modules/solver.dart';
-import 'package:app/Pages/Calculator.dart';
 import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fraction/fraction.dart';
+
+import '../Modules/globalfunctions.dart';
 
 Map formulas = {};
+Solver solver = new Solver();
 TextEditingController functionName = TextEditingController();
 
 class CustomFormulas extends StatefulWidget {
@@ -150,11 +153,11 @@ class _FormulaMakerState extends State<FormulaMaker> {
           IconButton(
               onPressed: () {
                 if (_controller.text.isNotEmpty) {
-                  formulas[functionName.text] = _controller.text;
+                  formulas[functionName.text] =
+                      solver.fixBrackets(_controller.text);
                   savedata.setString("formulas", jsonEncode(formulas));
                   Navigator.pop(context);
                   Navigator.pop(context);
-                  print("Saved");
                 } else {
                   Fluttertoast.showToast(msg: "Formula empty or invalid");
                 }
@@ -167,21 +170,6 @@ class _FormulaMakerState extends State<FormulaMaker> {
           Align(
             alignment: (MediaQuery.of(context).size.height >
                     MediaQuery.of(context).size.width)
-                ? const Alignment(0.0, -0.9)
-                : const Alignment(-0.7, -0.7),
-            child: IconButton(
-              icon: const Icon(
-                Icons.copy,
-              ),
-              onPressed: () async {
-                await Clipboard.setData(ClipboardData(text: _controller.text));
-                Fluttertoast.showToast(msg: 'Saved to Clipboard');
-              },
-            ),
-          ),
-          Align(
-            alignment: (MediaQuery.of(context).size.height >
-                    MediaQuery.of(context).size.width)
                 ? const Alignment(0.0, -0.8)
                 : const Alignment(-0.9, -0.3),
             child: FractionallySizedBox(
@@ -190,10 +178,14 @@ class _FormulaMakerState extends State<FormulaMaker> {
                   ? 0.95
                   : 0.3,
               child: TextField(
+                enabled: false,
                 scrollController: ScrollController(keepScrollOffset: false),
                 textAlign: TextAlign.end,
                 controller: _controller,
                 keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                    border:
+                        OutlineInputBorder(borderSide: BorderSide(width: 10))),
                 style: TextStyle(
                     fontSize: 35,
                     color: (MediaQuery.of(context).platformBrightness ==
@@ -306,121 +298,121 @@ class _FormulaMakerState extends State<FormulaMaker> {
                       'tan^-1',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '^',
                     child: const Text(
                       'x^y',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '√(',
                     child: Text(
                       'x√',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: 'log(',
                     child: Text(
                       'log',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: 'ln(',
                     child: Text(
                       'ln',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '7',
                     child: const Text(
                       '7',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '8',
                     child: const Text(
                       '8',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '9',
                     child: const Text(
                       '9',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: 'π',
                     child: const Text(
                       'π',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '4',
                     child: const Text(
                       '4',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '5',
                     child: const Text(
                       '5',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '6',
                     child: const Text(
                       '6',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '÷',
                     child: const Text(
                       '÷',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '1',
                     child: const Text(
                       '1',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '2',
                     child: const Text(
                       '2',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '3',
                     child: const Text(
                       '3',
                     ),
                   ),
-                  FunctionButton(
-                    name: 'X',
+                  _FunctionButton(
+                    name: '*',
                     child: const Text(
-                      'X',
+                      '*',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '.',
                     child: const Text(
                       '.',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: 'Equal',
                     child: const Text(
                       '=',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '+',
                     child: const Text(
                       '+',
                     ),
                   ),
-                  FunctionButton(
+                  _FunctionButton(
                     name: '-',
                     child: const Text(
                       '-',
@@ -436,9 +428,22 @@ class _FormulaMakerState extends State<FormulaMaker> {
   }
 }
 
-class _FunctionButton extends StatelessWidget {
+class _FunctionButton extends StatefulWidget {
   _FunctionButton({
     super.key,
+    this.child = const Text('Hi'),
+    this.name = 'Nothing',
+  });
+  Widget child;
+  String name;
+
+  @override
+  State<_FunctionButton> createState() =>
+      __FunctionButtonState(child: child, name: name);
+}
+
+class __FunctionButtonState extends State<_FunctionButton> {
+  __FunctionButtonState({
     this.child = const Text('Hi'),
     this.name = 'Nothing',
   });
@@ -469,6 +474,7 @@ class _FunctionButton extends StatelessWidget {
         } else {
           _controller.text += name.toString();
         }
+        setState(() {});
       },
     );
   }
@@ -483,70 +489,160 @@ class FormulaCalculator extends StatefulWidget {
 }
 
 class _FormulaCalculatorState extends State<FormulaCalculator> {
-  _FormulaCalculatorState({required this.name}) {
+  _FormulaCalculatorState({required this.name});
+
+  Future setup() async {
     formula = formulas[name];
     print(name);
-    print(solver.translate(formula));
+    List<String> translation = solver.translate(formula);
+    print(translation);
     list = [
       Inputfield(
         controller: TextEditingController(text: formula),
         enabled: false,
         suffixText: "Formula",
       ),
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text((degree) ? "Degree Mode" : "Radian Mode"),
-        Switch.adaptive(
-            value: degree,
-            onChanged: (val) {
-              degree = val;
-              setState(() {});
-            })
-      ]),
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Text((deciAsFrac) ? "Decimals" : "Fractions"),
-        Switch.adaptive(
-            value: deciAsFrac,
-            onChanged: (val) {
-              deciAsFrac = val;
-              setState(() {});
-            })
-      ]),
+      const SizedBox(
+        height: 30,
+      )
     ];
+
+    for (int i = 0; i < translation.length; i++) {
+      if ("abcdefghijklmnopqrstuvwxyzABCDEGHIJKLMNOPQRSTUVWXYZ"
+          .contains(translation[i])) {
+        controllers.add(TextEditingController());
+        positions.add(i);
+        list.add(
+          Inputfield(
+            keyboardType: TextInputType.number,
+            controller: controllers[i],
+            hintText: translation[i],
+            onChanged: (String _) {
+              try {
+                List<String> newTranslation = List.from(translation);
+                for (int i = 0; i < positions.length; i++) {
+                  print(controllers[i].text);
+                  newTranslation[positions[i]] = controllers[i].text;
+                }
+                newTranslation = solver.putMultiplyBetweenNums(newTranslation);
+                print(newTranslation);
+                double numAnswer = solver.solve(
+                    newTranslation, (degree) ? "Degree" : "Radian");
+                print("CHECK");
+
+                if (deciAsFrac) {
+                  answer.text = numAnswer.floor().toString();
+                  if (numAnswer != numAnswer.floorToDouble()) {
+                    answer.text += (numAnswer > 0) ? "+" : "-";
+                    answer.text += Fraction.fromDouble(
+                            numAnswer - numAnswer.floorToDouble())
+                        .toString();
+                  }
+                } else {
+                  answer.text = roundto(numAnswer.toString());
+                }
+              } catch (e) {
+                print(e);
+                answer.text = "0";
+              }
+            },
+          ),
+        );
+        list.add(const SizedBox(
+          height: 20,
+        ));
+      }
+    }
+
+    list.add(
+        Inputfield(controller: answer, hintText: "Answer", enabled: false));
+    list.add(
+      IconButton(
+        icon: const Icon(
+          Icons.copy,
+        ),
+        onPressed: () async {
+          await Clipboard.setData(ClipboardData(text: answer.text));
+          Fluttertoast.showToast(msg: 'Saved to Clipboard');
+        },
+      ),
+    );
+    return "done";
   }
-  Solver solver = new Solver();
+
   String name;
   String formula = "";
   bool degree = true;
   bool deciAsFrac = false;
-  List<Widget> list = []
+  List<Widget> list = [];
+  List<int> positions = [];
+  List<TextEditingController> controllers = [];
+  TextEditingController answer = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.transparent,
-        foregroundColor:
-            (MediaQuery.of(context).platformBrightness == Brightness.light)
-                ? Colors.black
-                : Colors.white,
-        title: Text(name),
-      ),
-      body: Center(
-        child: FractionallySizedBox(
-          widthFactor: 0.8,
-          heightFactor: 0.5,
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
+    return FutureBuilder(
+        future: setup(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return Scaffold(
+              appBar: AppBar(
+                elevation: 0,
+                backgroundColor: Colors.transparent,
+                foregroundColor: (MediaQuery.of(context).platformBrightness ==
+                        Brightness.light)
+                    ? Colors.black
+                    : Colors.white,
+                title: Text(name),
+              ),
+              body: Stack(
+                children: [
+                  Column(children: [
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Text((degree) ? "Degree Mode" : "Radian Mode"),
+                      Switch.adaptive(
+                          value: degree,
+                          onChanged: (val) {
+                            degree = val;
+                            setState(() {});
+                          })
+                    ]),
+                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      Text((deciAsFrac) ? "Fractions" : "Decimals"),
+                      Switch.adaptive(
+                          value: deciAsFrac,
+                          onChanged: (val) {
+                            deciAsFrac = val;
+                            setState(() {});
+                          })
+                    ]),
+                  ]),
+                  Align(
+                    alignment: const Alignment(0.0, 0.2),
+                    child: FractionallySizedBox(
+                      widthFactor: 0.8,
+                      heightFactor: 0.5,
+                      child: Card(
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+                        elevation: 20,
+                        child: ListView.builder(
+                          itemBuilder: (context, index) => list[index],
+                          itemCount: list.length,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          }
+          return const Scaffold(
+            body: Center(
+              child: CircularProgressIndicator.adaptive(),
             ),
-            elevation: 20,
-            child: ListView.builder(
-              children:
-            ),
-          ),
-        ),
-      ),
-    );
+          );
+        });
   }
 }

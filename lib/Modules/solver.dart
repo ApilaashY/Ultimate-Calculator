@@ -24,6 +24,17 @@ class Solver {
     return equation;
   }
 
+  List<String> putMultiplyBetweenNums(List<String> equation) {
+    for (int i = 0; i < equation.length - 1; i++) {
+      try {
+        double.parse(equation[i]);
+        double.parse(equation[i + 1]);
+        equation.insert(i + 1, "*");
+      } catch (e) {}
+    }
+    return equation;
+  }
+
   List<String> translate(String equation) {
     equation = equation.replaceAll(" ", "").toLowerCase();
     List<String> elements = [];

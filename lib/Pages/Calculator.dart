@@ -61,10 +61,14 @@ class CalculatorState extends State<Calculator> {
                   ? 0.95
                   : 0.3,
               child: TextField(
+                enabled: false,
                 scrollController: ScrollController(keepScrollOffset: false),
                 textAlign: TextAlign.end,
                 controller: _controller,
                 keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                    border:
+                        OutlineInputBorder(borderSide: BorderSide(width: 10))),
                 style: TextStyle(
                     fontSize: 35,
                     color: (MediaQuery.of(context).platformBrightness ==
