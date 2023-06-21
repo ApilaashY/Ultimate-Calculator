@@ -36,19 +36,26 @@ class Solver {
   }
 
   List<String> translate(String equation) {
-    equation = equation.replaceAll(" ", "").toLowerCase();
+    equation = equation
+        .replaceAll(" ", "")
+        .toLowerCase()
+        .replaceAll("π", "(${math.pi})");
+    print(equation);
     List<String> elements = [];
     String number = "", last = "";
     for (int i = 0; i < equation.length; i++) {
       if ("+-*/^√()abcdefghijklmnopqrstuvwxyz".contains(equation[i])) {
-        bool numBesideBracket = (i > 0 &&
+        bool numBeforeBracket = (i > 0 &&
             equation[i] == '(' &&
             !"+-*/^√()".contains(equation[i - 1]));
+        bool numAfterBracket = (i < equation.length &&
+            equation[i] == ')' &&
+            !"+-*/^√()".contains(equation[i + 1]));
 
         if (number.isNotEmpty) {
           elements.add(number);
         }
-        if (numBesideBracket) {
+        if (numBeforeBracket) {
           elements.add("*");
         }
 
@@ -57,6 +64,10 @@ class Solver {
           elements.add("2");
         }
         elements.add(equation[i]);
+
+        if (numAfterBracket || (i < equation.length-1 && equation[i]==")" && equation[i+1]=="(")) {
+          elements.add("*");
+        }
 
         number = "";
       } else {
@@ -97,7 +108,7 @@ class Solver {
     while (equation.contains("(") && equation.contains(")")) {
       //int front = equation.lastIndexOf("(");
       int end = equation.indexOf(")");
-      int front = highestIndexBefore(indexesOf(equation, "("), end);
+      int front = _highestIndexBefore(_indexesOf(equation, "("), end);
       if (end - front >= 1) {
         double solveBracket =
             solve(equation.sublist(front + 1, end), angleMode);
@@ -118,7 +129,7 @@ class Solver {
       print(equation);
       for (int i = 0; i < equation.length; i++) {
         if ("sin cos tan".contains(equation[i])) {
-          String answer = (adjustableSinCosTan(
+          String answer = (_adjustableSinCosTan(
                   double.parse(equation[i + 2]), equation[i], angleMode))
               .toString();
           equation[i] = answer;
@@ -221,7 +232,7 @@ class Solver {
     return double.parse(equation[0]);
   }
 
-  List<int> indexesOf(List<String> list, String search) {
+  List<int> _indexesOf(List<String> list, String search) {
     List<int> x = [];
     for (int i = 0; i < list.length; i++) {
       if (list[i] == search) {
@@ -231,7 +242,7 @@ class Solver {
     return x;
   }
 
-  int highestIndexBefore(List<int> indexes, int high) {
+  int _highestIndexBefore(List<int> indexes, int high) {
     for (int i = 0; i < indexes.length; i++) {
       if (indexes[i] > high && i == 0) {
         return -1;
@@ -244,7 +255,7 @@ class Solver {
     return indexes[indexes.length - 1];
   }
 
-  double adjustableSinCosTan(
+  double _adjustableSinCosTan(
       double number, String operation, String angleMode) {
     operation = operation.toLowerCase();
     if (operation == "sin") {

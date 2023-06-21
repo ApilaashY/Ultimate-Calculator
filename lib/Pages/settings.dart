@@ -167,6 +167,7 @@ class _SettingsState extends State<Settings> {
                     padding: EdgeInsets.all(10),
                   ),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text("Degree Mode Default",
                           style: TextStyle(

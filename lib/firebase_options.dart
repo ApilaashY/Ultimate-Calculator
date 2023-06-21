@@ -25,7 +25,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -45,13 +48,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions web = FirebaseOptions(
     apiKey: 'AIzaSyCREs5m5x2H5AZvvGEwbVlE8uWGU0zY8Dg',
-    appId: '1:678733943298:web:7712ec60f2024a81628d1b',
+    appId: '1:678733943298:web:8744f04f949a917d628d1b',
     messagingSenderId: '678733943298',
     projectId: 'ultimate-calculator-20b8c',
     authDomain: 'ultimate-calculator-20b8c.firebaseapp.com',
     databaseURL: 'https://ultimate-calculator-20b8c-default-rtdb.firebaseio.com',
     storageBucket: 'ultimate-calculator-20b8c.appspot.com',
-    measurementId: 'G-5VYYP1JFCW',
+    measurementId: 'G-HTEB9RZDDE',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
@@ -72,16 +75,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'ultimate-calculator-20b8c.appspot.com',
     iosClientId: '678733943298-s5vhh4p2epir8j6rsfuhv9lomu7sni1k.apps.googleusercontent.com',
     iosBundleId: 'com.ultimatecalculator.app',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyBItctK0RL_ttjTQMowvjxH_kFaitVn3IE',
-    appId: '1:678733943298:ios:e315b9929adc7447628d1b',
-    messagingSenderId: '678733943298',
-    projectId: 'ultimate-calculator-20b8c',
-    databaseURL: 'https://ultimate-calculator-20b8c-default-rtdb.firebaseio.com',
-    storageBucket: 'ultimate-calculator-20b8c.appspot.com',
-    iosClientId: '678733943298-gbuo5l1q96c09trkcvamrhd9odijm4l9.apps.googleusercontent.com',
-    iosBundleId: 'com.example.app',
   );
 }

@@ -153,11 +153,27 @@ class _FormulaMakerState extends State<FormulaMaker> {
           IconButton(
               onPressed: () {
                 if (_controller.text.isNotEmpty) {
-                  formulas[functionName.text] =
-                      solver.fixBrackets(_controller.text);
-                  savedata.setString("formulas", jsonEncode(formulas));
-                  Navigator.pop(context);
-                  Navigator.pop(context);
+                  bool containsVariable = false;
+                  for (String x in _controller.text.split("")) {
+                    if ("abcdefghijklmnopqrstuvwxyz"
+                        .contains(x.toLowerCase())) {
+                      containsVariable = true;
+                      break;
+                    }
+                  }
+                  if (containsVariable) {
+                    formulas[functionName.text] =
+                        solver.fixBrackets(_controller.text);
+                    savedata.setString("formulas", jsonEncode(formulas));
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  } else {
+                    showDialog(
+                        context: context,
+                        builder: (context) => const AlertDialog(
+                            title: Text(
+                                "The given input is a equation and not a formula, there needs to be at least one variable present for it to be a formula.")));
+                  }
                 } else {
                   Fluttertoast.showToast(msg: "Formula empty or invalid");
                 }
@@ -210,10 +226,6 @@ class _FormulaMakerState extends State<FormulaMaker> {
                   ? 0.95
                   : 0.6,
               child: GridView.count(
-                scrollDirection: (MediaQuery.of(context).size.height >
-                        MediaQuery.of(context).size.width)
-                    ? Axis.vertical
-                    : Axis.horizontal,
                 crossAxisCount: 4,
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5,
@@ -401,9 +413,9 @@ class _FormulaMakerState extends State<FormulaMaker> {
                     ),
                   ),
                   _FunctionButton(
-                    name: 'Equal',
+                    name: '0',
                     child: const Text(
-                      '=',
+                      '0',
                     ),
                   ),
                   _FunctionButton(
@@ -492,11 +504,44 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
   _FormulaCalculatorState({required this.name});
 
   Future setup() async {
+    controllerPosition = 0;
     formula = formulas[name];
     print(name);
     List<String> translation = solver.translate(formula);
     print(translation);
     list = [
+      const SizedBox(
+        height: 15,
+      ),
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Text((degree) ? "Degree Mode" : "Radian Mode",
+        style: TextStyle(color: (MediaQuery.of(context).platformBrightness == Brightness.light)?Colors.black:Colors.white)),
+        Switch.adaptive(
+            value: degree,
+            onChanged: (val) {
+              degree = val;
+              solve(translation);
+              setState(() {});
+            })
+      ]),
+      const SizedBox(
+        height: 15,
+      ),
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        Text((deciAsFrac) ? "Fractions" : "Decimals",
+        style: TextStyle(color: (MediaQuery.of(context).platformBrightness == Brightness.light)?Colors.black:Colors.white)
+        ),
+        Switch.adaptive(
+            value: deciAsFrac,
+            onChanged: (val) {
+              deciAsFrac = val;
+              solve(translation);
+              setState(() {});
+            })
+      ]),
+      const SizedBox(
+        height: 15,
+      ),
       Inputfield(
         controller: TextEditingController(text: formula),
         enabled: false,
@@ -510,50 +555,28 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
     for (int i = 0; i < translation.length; i++) {
       if ("abcdefghijklmnopqrstuvwxyzABCDEGHIJKLMNOPQRSTUVWXYZ"
           .contains(translation[i])) {
-        controllers.add(TextEditingController());
-        positions.add(i);
+        if (!alreadySet) {
+          controllers.add(TextEditingController());
+          positions.add(i);
+        }
+
         list.add(
           Inputfield(
             keyboardType: TextInputType.number,
-            controller: controllers[i],
+            controller: controllers[controllerPosition],
             hintText: translation[i],
-            onChanged: (String _) {
-              try {
-                List<String> newTranslation = List.from(translation);
-                for (int i = 0; i < positions.length; i++) {
-                  print(controllers[i].text);
-                  newTranslation[positions[i]] = controllers[i].text;
-                }
-                newTranslation = solver.putMultiplyBetweenNums(newTranslation);
-                print(newTranslation);
-                double numAnswer = solver.solve(
-                    newTranslation, (degree) ? "Degree" : "Radian");
-                print("CHECK");
-
-                if (deciAsFrac) {
-                  answer.text = numAnswer.floor().toString();
-                  if (numAnswer != numAnswer.floorToDouble()) {
-                    answer.text += (numAnswer > 0) ? "+" : "-";
-                    answer.text += Fraction.fromDouble(
-                            numAnswer - numAnswer.floorToDouble())
-                        .toString();
-                  }
-                } else {
-                  answer.text = roundto(numAnswer.toString());
-                }
-              } catch (e) {
-                print(e);
-                answer.text = "0";
-              }
+            onChanged: (String z) {
+              solve(translation);
             },
           ),
         );
+
         list.add(const SizedBox(
           height: 20,
         ));
+        controllerPosition++;
       }
     }
-
     list.add(
         Inputfield(controller: answer, hintText: "Answer", enabled: false));
     list.add(
@@ -567,13 +590,43 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
         },
       ),
     );
+    alreadySet = true;
+
     return "done";
+  }
+
+  void solve(List<String> translation) {
+    try {
+      List<String> newTranslation = List.from(translation);
+      for (int x = 0; x < positions.length; x++) {
+        newTranslation[positions[x]] = controllers[x].text;
+      }
+      newTranslation = solver.putMultiplyBetweenNums(newTranslation);
+      double numAnswer =
+          solver.solve(newTranslation, (degree) ? "Degree" : "Radian");
+
+      if (deciAsFrac) {
+        answer.text = numAnswer.floor().toString();
+        if (numAnswer != numAnswer.floorToDouble()) {
+          answer.text += (numAnswer > 0) ? "+" : "-";
+          answer.text +=
+              Fraction.fromDouble(numAnswer - numAnswer.floorToDouble())
+                  .toString();
+        }
+      } else {
+        answer.text = roundto(numAnswer.toString());
+      }
+    } catch (e) {
+      answer.text = "0";
+    }
   }
 
   String name;
   String formula = "";
-  bool degree = true;
+  int controllerPosition = 0;
+  bool degree = degreeDefault;
   bool deciAsFrac = false;
+  bool alreadySet = false;
   List<Widget> list = [];
   List<int> positions = [];
   List<TextEditingController> controllers = [];
@@ -595,46 +648,21 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
                     : Colors.white,
                 title: Text(name),
               ),
-              body: Stack(
-                children: [
-                  Column(children: [
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text((degree) ? "Degree Mode" : "Radian Mode"),
-                      Switch.adaptive(
-                          value: degree,
-                          onChanged: (val) {
-                            degree = val;
-                            setState(() {});
-                          })
-                    ]),
-                    Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                      Text((deciAsFrac) ? "Fractions" : "Decimals"),
-                      Switch.adaptive(
-                          value: deciAsFrac,
-                          onChanged: (val) {
-                            deciAsFrac = val;
-                            setState(() {});
-                          })
-                    ]),
-                  ]),
-                  Align(
-                    alignment: const Alignment(0.0, 0.2),
-                    child: FractionallySizedBox(
-                      widthFactor: 0.8,
-                      heightFactor: 0.5,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        elevation: 20,
-                        child: ListView.builder(
-                          itemBuilder: (context, index) => list[index],
-                          itemCount: list.length,
-                        ),
-                      ),
+              body: Center(
+                child: FractionallySizedBox(
+                  widthFactor: 0.8,
+                  heightFactor: 0.5,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 20,
+                    child: ListView.builder(
+                      itemBuilder: (context, index) => list[index],
+                      itemCount: list.length,
                     ),
                   ),
-                ],
+                ),
               ),
             );
           }

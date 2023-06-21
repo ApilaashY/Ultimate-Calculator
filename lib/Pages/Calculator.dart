@@ -93,10 +93,6 @@ class CalculatorState extends State<Calculator> {
                   ? 0.95
                   : 0.6,
               child: GridView.count(
-                scrollDirection: (MediaQuery.of(context).size.height >
-                        MediaQuery.of(context).size.width)
-                    ? Axis.vertical
-                    : Axis.horizontal,
                 crossAxisCount: 4,
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5,
@@ -351,20 +347,25 @@ class FunctionButton extends StatelessWidget {
           heightFactor: 0.5, widthFactor: 0.7, child: FittedBox(child: child)),
       onPressed: () {
         if (name == 'Equal') {
-          String parseText =
-              _controller.text.replaceAll("X", "*").replaceAll("÷", "/");
-          parseText = solver.fixBrackets(parseText);
-          List<String> translation = solver.translate(parseText);
-          double answer =
-              solver.solve(translation, (degreemode) ? "Degree" : "Radian");
-          _controller.text = roundto(answer.floor().toString());
+          try {
+            String parseText =
+                _controller.text.replaceAll("X", "*").replaceAll("÷", "/");
+            parseText = solver.fixBrackets(parseText);
+            List<String> translation = solver.translate(parseText);
+            double answer =
+                solver.solve(translation, (degreemode) ? "Degree" : "Radian");
+            _controller.text = roundto(answer.floor().toString());
 
-          print(deciasfrac && answer != answer.floorToDouble());
-          if (deciasfrac && answer != answer.floorToDouble()) {
-            _controller.text += (answer > 0) ? "+(" : "-(";
-            _controller.text +=
-                Fraction.fromDouble(answer - answer.floorToDouble()).toString();
-            _controller.text += ")";
+            print(deciasfrac && answer != answer.floorToDouble());
+            if (deciasfrac && answer != answer.floorToDouble()) {
+              _controller.text += (answer > 0) ? "+(" : "-(";
+              _controller.text +=
+                  Fraction.fromDouble(answer - answer.floorToDouble())
+                      .toString();
+              _controller.text += ")";
+            }
+          } catch (e) {
+            _controller.text = 'Error';
           }
         } else if (name == 'Clear') {
           _controller.text = '';

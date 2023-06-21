@@ -29,6 +29,7 @@ class Inputfield extends StatefulWidget {
 
   @override
   State<Inputfield> createState() => _InputfieldState(
+        super.key,
         controller: controller!,
         hinttext: hintText,
         suffixtext: suffixText,
@@ -41,7 +42,8 @@ class Inputfield extends StatefulWidget {
 }
 
 class _InputfieldState extends State<Inputfield> {
-  _InputfieldState({
+  _InputfieldState(
+    Key? key, {
     required this.controller,
     required this.hinttext,
     required this.suffixtext,

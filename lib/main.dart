@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_typing_uninitialized_variables
 
 import 'dart:convert';
+import 'dart:io' show Platform;
 import 'dart:math';
+import 'dart:html' as html;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -24,10 +26,19 @@ String secondCurrencyValue = "AED - United Arab Emirates Dirham";
 bool degreeDefault = true;
 int points = 0;
 double pointsleft = 0;
+bool webMode = false;
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await MobileAds.instance.initialize();
+  try {
+    if (Platform.isAndroid || Platform.isIOS) {
+      webMode = false;
+    }
+    WidgetsFlutterBinding.ensureInitialized();
+    await MobileAds.instance.initialize();
+  } catch (e) {
+    webMode = true;
+    print("Webmode Activated");
+  }
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -46,12 +57,20 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: true,
-      theme: ThemeData.light().copyWith(
-          primaryColor: const Color.fromARGB(255, 0, 135, 197),
-          textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme)),
-      darkTheme: ThemeData.dark().copyWith(
-          primaryColor: const Color.fromARGB(255, 0, 135, 197),
-          textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme)),
+      theme: (!webMode)
+          ? ThemeData.light().copyWith(
+              primaryColor: const Color.fromARGB(255, 0, 135, 197),
+              textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme))
+          : ThemeData.light().copyWith(
+              primaryColor: const Color.fromARGB(255, 0, 135, 197),
+            ),
+      darkTheme: (!webMode)
+          ? ThemeData.dark().copyWith(
+              primaryColor: const Color.fromARGB(255, 0, 135, 197),
+              textTheme: GoogleFonts.latoTextTheme(Theme.of(context).textTheme))
+          : ThemeData.dark().copyWith(
+              primaryColor: const Color.fromARGB(255, 0, 135, 197),
+            ),
       onGenerateRoute: routes.controller,
       initialRoute: 'Home',
     );
@@ -130,7 +149,9 @@ class _HomeState extends State<Home> {
     }
 
     rate();
-    //showinter();
+    if (!webMode) {
+      showinter();
+    }
   }
 
   @override
@@ -139,6 +160,35 @@ class _HomeState extends State<Home> {
       future: setup(),
       builder: (context, snap) {
         if (snap.hasData) {
+          if (webMode && defaultTargetPlatform == TargetPlatform.android) {
+            return Scaffold(
+              body: Center(
+                child: FractionallySizedBox(
+                  widthFactor: 0.5,
+                  heightFactor: 0.3,
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      elevation: 10,
+                      backgroundColor: const Color.fromARGB(255, 0, 135, 197),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.all(Radius.circular(20)),
+                      ),
+                    ),
+                    onPressed: () {
+                      html.AnchorElement anchorElement =
+                          html.AnchorElement(href: 'ultimatecalculator.apk');
+                      anchorElement.download = 'ultimatecalculator.apk';
+                      anchorElement.click();
+                    },
+                    child: const FractionallySizedBox(
+                        widthFactor: 0.9,
+                        heightFactor: 0.9,
+                        child: FittedBox(child: Text("Download for Android"))),
+                  ),
+                ),
+              ),
+            );
+          }
           return Scaffold(
             appBar: AppBar(
               foregroundColor: (MediaQuery.of(context).platformBrightness ==
@@ -244,14 +294,12 @@ class _HomeState extends State<Home> {
             ),
             body: Padding(
               padding: const EdgeInsets.only(left: 20, right: 20),
-              child: GridView.count(
-                crossAxisCount: (MediaQuery.of(context).size.height >
-                        MediaQuery.of(context).size.width)
-                    ? 1
-                    : 2,
+              child: GridView.extent(
+                shrinkWrap: true,
                 childAspectRatio: 2,
                 mainAxisSpacing: 10,
                 crossAxisSpacing: 10,
+                maxCrossAxisExtent: 1500,
                 children: [
                   Card(
                     elevation: 10,
@@ -264,11 +312,12 @@ class _HomeState extends State<Home> {
                     ),
                     child: FractionallySizedBox(
                       key: const ObjectKey("points"),
-                      widthFactor: 0.85,
-                      heightFactor: 0.85,
+                      widthFactor: 0.9,
+                      heightFactor: 0.9,
                       child: Column(
                         children: [
                           Expanded(
+                            flex: 3,
                             child: FittedBox(
                                 child: Text(
                               'Points:\n$points',
@@ -282,62 +331,84 @@ class _HomeState extends State<Home> {
                               ),
                             )),
                           ),
-                          ElevatedButton(
-                              style: ButtonStyle(
-                                backgroundColor: MaterialStateProperty.all(
-                                    const Color.fromARGB(255, 0, 135, 197)),
-                              ),
-                              onPressed: () {
-                                var rewardedAd;
-                                RewardedAd.load(
-                                  adUnitId: (defaultTargetPlatform ==
-                                          TargetPlatform.android)
-                                      ? 'ca-app-pub-4914732861439858/8814232396'
-                                      : (defaultTargetPlatform ==
-                                              TargetPlatform.iOS)
-                                          ? 'ca-app-pub-4914732861439858/8194257629'
-                                          : '',
-                                  request: const AdRequest(),
-                                  rewardedAdLoadCallback:
-                                      RewardedAdLoadCallback(
-                                    onAdLoaded: (ad) {
-                                      rewardedAd = ad;
-                                      rewardedAd?.show(
-                                        onUserEarnedReward: ((ad, reward) {
-                                          debugPrint(
-                                              "My Reward Amount -> ${reward.amount}");
-                                        }),
-                                      );
+                          (() {
+                            if (!webMode) {
+                              return Expanded(
+                                flex: 1,
+                                child: FractionallySizedBox(
+                                  widthFactor: 0.5,
+                                  child: ElevatedButton(
+                                    style: ButtonStyle(
+                                      backgroundColor:
+                                          MaterialStateProperty.all(
+                                              const Color.fromARGB(
+                                                  255, 0, 135, 197)),
+                                    ),
+                                    onPressed: () {
+                                      var rewardedAd;
+                                      RewardedAd.load(
+                                        adUnitId: (defaultTargetPlatform ==
+                                                TargetPlatform.android)
+                                            ? 'ca-app-pub-4914732861439858/8814232396'
+                                            : (defaultTargetPlatform ==
+                                                    TargetPlatform.iOS)
+                                                ? 'ca-app-pub-4914732861439858/8194257629'
+                                                : '',
+                                        request: const AdRequest(),
+                                        rewardedAdLoadCallback:
+                                            RewardedAdLoadCallback(
+                                          onAdLoaded: (ad) {
+                                            rewardedAd = ad;
+                                            rewardedAd?.show(
+                                              onUserEarnedReward:
+                                                  ((ad, reward) {
+                                                debugPrint(
+                                                    "My Reward Amount -> ${reward.amount}");
+                                              }),
+                                            );
 
-                                      rewardedAd?.fullScreenContentCallback =
-                                          FullScreenContentCallback(
-                                              onAdFailedToShowFullScreenContent:
-                                                  (RewardedAd ad, err) {
-                                        ad.dispose();
-                                      }, onAdDismissedFullScreenContent:
-                                                  (RewardedAd ad) {
-                                        ad.dispose();
-                                        int gotpoints =
-                                            randomnum.nextInt(5) + 1;
-                                        points += gotpoints;
-                                        savedata.setInt('points', points);
-                                        setState(() {});
-                                        showDialog(
-                                          context: context,
-                                          builder: (builder) => AlertDialog(
-                                            title: Text(
-                                                "You got $gotpoints points"),
-                                          ),
-                                        );
-                                      });
+                                            rewardedAd
+                                                    ?.fullScreenContentCallback =
+                                                FullScreenContentCallback(
+                                                    onAdFailedToShowFullScreenContent:
+                                                        (RewardedAd ad, err) {
+                                              ad.dispose();
+                                            }, onAdDismissedFullScreenContent:
+                                                        (RewardedAd ad) {
+                                              ad.dispose();
+                                              int gotpoints =
+                                                  randomnum.nextInt(5) + 1;
+                                              points += gotpoints;
+                                              savedata.setInt('points', points);
+                                              setState(() {});
+                                              showDialog(
+                                                context: context,
+                                                builder: (builder) =>
+                                                    AlertDialog(
+                                                  title: Text(
+                                                      "You got $gotpoints points"),
+                                                ),
+                                              );
+                                            });
+                                          },
+                                          onAdFailedToLoad: (err) {
+                                            debugPrint(err.message);
+                                          },
+                                        ),
+                                      );
                                     },
-                                    onAdFailedToLoad: (err) {
-                                      debugPrint(err.message);
-                                    },
+                                    child: const FractionallySizedBox(
+                                      widthFactor: 0.5,
+                                      heightFactor: 0.5,
+                                      child:
+                                          FittedBox(child: Text("Get Points")),
+                                    ),
                                   ),
-                                );
-                              },
-                              child: const Text("Get Points"))
+                                ),
+                              );
+                            }
+                            return const SizedBox();
+                          })()
                         ],
                       ),
                     ),
@@ -447,11 +518,33 @@ class _HomeState extends State<Home> {
                   CardButton(
                     text: 'LCM',
                   ),
+                  (() {
+                    if (webMode) {
+                      return Card(
+                        elevation: 10,
+                        color: (MediaQuery.of(context).platformBrightness ==
+                                Brightness.light)
+                            ? const Color.fromARGB(255, 165, 226, 255)
+                            : const Color.fromARGB(255, 0, 135, 197),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: const FractionallySizedBox(
+                          widthFactor: 0.9,
+                          heightFactor: 0.9,
+                          child: FittedBox(
+                              child:
+                                  Text("Updated June 21, 2023\nVersion 3.2.2")),
+                        ),
+                      );
+                    }
+                    return const SizedBox();
+                  })(),
                 ],
               ),
             ),
           );
         }
+
         return const Scaffold(
           body: Center(child: CircularProgressIndicator()),
         );

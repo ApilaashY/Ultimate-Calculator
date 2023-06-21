@@ -42,8 +42,8 @@ class _CardButtonState extends State<CardButton> {
         ),
       ),
       child: FractionallySizedBox(
-        widthFactor: 0.8,
-        heightFactor: 0.8,
+        widthFactor: 0.6,
+        heightFactor: 0.6,
         child: FittedBox(
           child: Text(
             text.replaceAll(' ', '\n'),
