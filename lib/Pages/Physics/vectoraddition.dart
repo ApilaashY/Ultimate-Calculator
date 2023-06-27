@@ -227,18 +227,21 @@ class _VectorAdditionState extends State<VectorAddition> {
                       MediaQuery.of(context).size.width)
                   ? 0.7
                   : 0.9,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                elevation: 20,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: ListView.builder(
-                    itemCount: additionlist.length,
-                    itemBuilder: ((context, index) {
-                      return additionlist[index];
-                    }),
+              child: Hero(
+                tag: "Vector Addition",
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: ListView.builder(
+                      itemCount: additionlist.length,
+                      itemBuilder: ((context, index) {
+                        return additionlist[index];
+                      }),
+                    ),
                   ),
                 ),
               ),

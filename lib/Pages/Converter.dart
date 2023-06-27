@@ -417,343 +417,351 @@ class _ConverterState extends State<Converter> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: setMoney(),
-      builder: (context, snap) {
-        if (snap.hasData) {
-          return Scaffold(
-            appBar: AppBar(
-              foregroundColor: (MediaQuery.of(context).platformBrightness ==
-                      Brightness.light)
-                  ? Colors.black
-                  : Colors.white,
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              actions: [
-                IconButton(
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                                title: Text((() {
-                                  if (timestamp > 0) {
-                                    return "Currency Dated on ${DateTime.fromMillisecondsSinceEpoch(timestamp)}";
-                                  }
-                                  return "Timestamp not known";
-                                })()),
-                              ));
-                    },
-                    icon: const Icon(Icons.timer))
-              ],
-            ),
-            body: Stack(
-              children: [
-                Align(
-                  alignment: (() {
-                    if (MediaQuery.of(context).size.height >
-                        MediaQuery.of(context).size.width) {
-                      return const Alignment(0, -0.8);
-                    }
-                    return const Alignment(-0.8, -0.7);
-                  })(),
-                  child: FractionallySizedBox(
-                    heightFactor: 0.2,
-                    widthFactor: 0.4,
-                    child: FittedBox(
-                      child: Text(
-                        'Unit Type',
-                        style: TextStyle(
-                          color: (MediaQuery.of(context).platformBrightness ==
-                                  Brightness.light)
-                              ? Colors.black
-                              : Colors.white,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: (() {
-                    if (MediaQuery.of(context).size.height >
-                        MediaQuery.of(context).size.width) {
-                      return const Alignment(0, -0.9);
-                    }
-                    return const Alignment(-0.5, -0.3);
-                  })(),
-                  child: FractionallySizedBox(
-                    child: Opacity(
-                      opacity: double.parse(wifiopac.toString()),
-                      child: IconButton(icon: (() {
-                        if (icontype == 'Good') {
-                          return const Icon(
-                            Icons.check,
-                            color: Colors.green,
-                          );
-                        } else if (icontype == 'Caution') {
-                          return const Icon(
-                            Icons.warning,
-                            color: Colors.yellow,
-                          );
-                        } else if (icontype == 'Warning') {
-                          return const Icon(
-                            Icons.circle,
-                            color: Colors.red,
-                          );
-                        } else {
-                          return const Icon(Icons.question_mark);
-                        }
-                      })(), onPressed: () {
+    return Hero(
+      tag: "Converter",
+      child: FutureBuilder(
+        future: setMoney(),
+        builder: (context, snap) {
+          if (snap.hasData) {
+            return Scaffold(
+              appBar: AppBar(
+                foregroundColor: (MediaQuery.of(context).platformBrightness ==
+                        Brightness.light)
+                    ? Colors.black
+                    : Colors.white,
+                backgroundColor: Colors.transparent,
+                elevation: 0,
+                actions: [
+                  IconButton(
+                      onPressed: () {
                         showDialog(
-                          context: context,
-                          builder: (context) => AlertDialog(
-                            title: (() {
-                              if (icontype == 'Good') {
-                                return const Text('You Connection is Great');
-                              }
-                              if (icontype == 'Caution') {
-                                return const Text('Data Not Entirely Reliable');
-                              } else if (icontype == 'Warning') {
-                                return const Text('Connection Not Avaliable');
-                              }
-                            })(),
-                            content: (() {
-                              if (icontype == 'Caution') {
-                                return const Text(
-                                    'You do not have a stable internet conection at the moment, so the rates will be of the same from when you last opened the converter. Therefore the rates will not be exact. To check when the rates were refreshed, click on the clock icon on the top right corner.');
-                              } else if (icontype == 'Warning') {
-                                return const Text(
-                                    'You do not have a stable internet connection at the moment and can not make conversions');
-                              }
-                            })(),
+                            context: context,
+                            builder: (context) => AlertDialog(
+                                  title: Text((() {
+                                    if (timestamp > 0) {
+                                      return "Currency Dated on ${DateTime.fromMillisecondsSinceEpoch(timestamp)}";
+                                    }
+                                    return "Timestamp not known";
+                                  })()),
+                                ));
+                      },
+                      icon: const Icon(Icons.timer))
+                ],
+              ),
+              body: Stack(
+                children: [
+                  Align(
+                    alignment: (() {
+                      if (MediaQuery.of(context).size.height >
+                          MediaQuery.of(context).size.width) {
+                        return const Alignment(0, -0.8);
+                      }
+                      return const Alignment(-0.8, -0.7);
+                    })(),
+                    child: FractionallySizedBox(
+                      heightFactor: 0.2,
+                      widthFactor: 0.4,
+                      child: FittedBox(
+                        child: Text(
+                          'Unit Type',
+                          style: TextStyle(
+                            color: (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light)
+                                ? Colors.black
+                                : Colors.white,
                           ),
-                          barrierDismissible: true,
-                        );
-                      }),
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: (() {
-                    if (MediaQuery.of(context).size.height >
-                        MediaQuery.of(context).size.width) {
-                      return const Alignment(0, -0.5);
-                    }
-                    return const Alignment(-0.5, 0);
-                  })(),
-                  child: DropdownButton(
-                    style: TextStyle(
-                      color: (MediaQuery.of(context).platformBrightness ==
-                              Brightness.light)
-                          ? Colors.black
-                          : Colors.white,
-                    ),
-                    value: unittypevalue,
-                    items: unittypes.map((String dropDownStringItem) {
-                      return DropdownMenuItem(
-                        value: dropDownStringItem,
-                        child: Text(dropDownStringItem),
-                      );
-                    }).toList(),
-                    onChanged: (newValue) {
-                      setState(() {
-                        unittypevalue = newValue.toString();
-                        wifiopac = 0;
-                        types = typeMap[unittypevalue];
-                        if (unittypevalue == 'Currency') {
-                          wifiopac = 1;
-                          firsttypevalue = firstCurrencyValue;
-                          secondtypevalue = secondCurrencyValue;
-                        } else {
-                          firsttypevalue = types![0];
-                          secondtypevalue = types![0];
-                        }
-                      });
-                    },
-                  ),
-                ),
-                Align(
-                  alignment: (() {
-                    if (MediaQuery.of(context).size.height >
-                        MediaQuery.of(context).size.width) {
-                      return const Alignment(0.0, 0.4);
-                    }
-                    return const Alignment(0.9, 0.0);
-                  })(),
-                  child: FractionallySizedBox(
-                    widthFactor: (() {
-                      if (MediaQuery.of(context).size.height >
-                          MediaQuery.of(context).size.width) {
-                        return 0.85;
-                      }
-                      return 0.5;
-                    })(),
-                    heightFactor: (() {
-                      if (MediaQuery.of(context).size.height >
-                          MediaQuery.of(context).size.width) {
-                        return 0.5;
-                      }
-                      return 0.8;
-                    })(),
-                    child: Opacity(
-                      opacity:
-                          (icontype == 'Warning' && unittypevalue == "Currency")
-                              ? 0
-                              : 1,
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        elevation: 20,
-                        child: ListView(
-                          padding: const EdgeInsets.all(10),
-                          children: [
-                            Center(
-                              child: DropdownButton(
-                                value: firsttypevalue,
-                                style: TextStyle(
-                                  color: (MediaQuery.of(context)
-                                              .platformBrightness ==
-                                          Brightness.light)
-                                      ? Colors.black
-                                      : Colors.white,
-                                ),
-                                items: types!.map((String dropDownStringItem) {
-                                  return DropdownMenuItem(
-                                    value: dropDownStringItem,
-                                    child: Text(dropDownStringItem),
-                                  );
-                                }).toList(),
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    firsttypevalue = newValue.toString();
-                                  });
-                                  update();
-                                },
-                              ),
-                            ),
-                            Center(
-                              child: DropdownButton(
-                                value: secondtypevalue,
-                                style: TextStyle(
-                                  color: (MediaQuery.of(context)
-                                              .platformBrightness ==
-                                          Brightness.light)
-                                      ? Colors.black
-                                      : Colors.white,
-                                ),
-                                items: types!.map((String dropDownStringItem) {
-                                  return DropdownMenuItem(
-                                    value: dropDownStringItem,
-                                    child: Text(dropDownStringItem),
-                                  );
-                                }).toList(),
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    secondtypevalue = newValue.toString();
-                                  });
-                                  update();
-                                },
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(
-                                Icons.copy,
-                              ),
-                              onPressed: () async {
-                                await Clipboard.setData(ClipboardData(
-                                    text: firstnumbercontroller.text));
-                                Fluttertoast.showToast(
-                                    msg: 'Saved to Clipboard');
-                              },
-                            ),
-                            Center(
-                              child: FractionallySizedBox(
-                                widthFactor: 0.8,
-                                child: TextField(
-                                  keyboardType: TextInputType.number,
-                                  controller: firstnumbercontroller,
-                                  style: TextStyle(
-                                    color: (MediaQuery.of(context)
-                                                .platformBrightness ==
-                                            Brightness.light)
-                                        ? Colors.black
-                                        : Colors.white,
-                                  ),
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                  ),
-                                  onChanged: (text) {
-                                    update();
-                                  },
-                                ),
-                              ),
-                            ),
-                            Center(
-                                child: FractionallySizedBox(
-                              child: IconButton(
-                                onPressed: () {
-                                  setState(() {
-                                    var save = firsttypevalue;
-                                    var savenumber = firstnumbercontroller.text;
-                                    firsttypevalue = secondtypevalue;
-                                    firstnumbercontroller.text =
-                                        secondnumbercontroller.text;
-                                    secondtypevalue = save;
-                                    secondnumbercontroller.text = savenumber;
-                                  });
-                                },
-                                icon: const Icon(Icons.compare_arrows_rounded),
-                              ),
-                            )),
-                            Center(
-                              child: FractionallySizedBox(
-                                widthFactor: 0.8,
-                                child: TextField(
-                                  keyboardType: TextInputType.number,
-                                  controller: secondnumbercontroller,
-                                  enabled: false,
-                                  style: TextStyle(
-                                    color: (MediaQuery.of(context)
-                                                .platformBrightness ==
-                                            Brightness.light)
-                                        ? Colors.black
-                                        : Colors.white,
-                                  ),
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
-                                  ),
-                                  onChanged: (text) {
-                                    update();
-                                  },
-                                ),
-                              ),
-                            ),
-                            IconButton(
-                              icon: const Icon(
-                                Icons.copy,
-                              ),
-                              onPressed: () async {
-                                await Clipboard.setData(ClipboardData(
-                                    text: secondnumbercontroller.text));
-                                Fluttertoast.showToast(
-                                    msg: 'Saved to Clipboard');
-                              },
-                            ),
-                          ],
                         ),
                       ),
                     ),
                   ),
-                )
-              ],
-            ),
-          );
-        }
+                  Align(
+                    alignment: (() {
+                      if (MediaQuery.of(context).size.height >
+                          MediaQuery.of(context).size.width) {
+                        return const Alignment(0, -0.9);
+                      }
+                      return const Alignment(-0.5, -0.3);
+                    })(),
+                    child: FractionallySizedBox(
+                      child: Opacity(
+                        opacity: double.parse(wifiopac.toString()),
+                        child: IconButton(icon: (() {
+                          if (icontype == 'Good') {
+                            return const Icon(
+                              Icons.check,
+                              color: Colors.green,
+                            );
+                          } else if (icontype == 'Caution') {
+                            return const Icon(
+                              Icons.warning,
+                              color: Colors.yellow,
+                            );
+                          } else if (icontype == 'Warning') {
+                            return const Icon(
+                              Icons.circle,
+                              color: Colors.red,
+                            );
+                          } else {
+                            return const Icon(Icons.question_mark);
+                          }
+                        })(), onPressed: () {
+                          showDialog(
+                            context: context,
+                            builder: (context) => AlertDialog(
+                              title: (() {
+                                if (icontype == 'Good') {
+                                  return const Text('You Connection is Great');
+                                }
+                                if (icontype == 'Caution') {
+                                  return const Text(
+                                      'Data Not Entirely Reliable');
+                                } else if (icontype == 'Warning') {
+                                  return const Text('Connection Not Avaliable');
+                                }
+                              })(),
+                              content: (() {
+                                if (icontype == 'Caution') {
+                                  return const Text(
+                                      'You do not have a stable internet conection at the moment, so the rates will be of the same from when you last opened the converter. Therefore the rates will not be exact. To check when the rates were refreshed, click on the clock icon on the top right corner.');
+                                } else if (icontype == 'Warning') {
+                                  return const Text(
+                                      'You do not have a stable internet connection at the moment and can not make conversions');
+                                }
+                              })(),
+                            ),
+                            barrierDismissible: true,
+                          );
+                        }),
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: (() {
+                      if (MediaQuery.of(context).size.height >
+                          MediaQuery.of(context).size.width) {
+                        return const Alignment(0, -0.5);
+                      }
+                      return const Alignment(-0.5, 0);
+                    })(),
+                    child: DropdownButton(
+                      style: TextStyle(
+                        color: (MediaQuery.of(context).platformBrightness ==
+                                Brightness.light)
+                            ? Colors.black
+                            : Colors.white,
+                      ),
+                      value: unittypevalue,
+                      items: unittypes.map((String dropDownStringItem) {
+                        return DropdownMenuItem(
+                          value: dropDownStringItem,
+                          child: Text(dropDownStringItem),
+                        );
+                      }).toList(),
+                      onChanged: (newValue) {
+                        setState(() {
+                          unittypevalue = newValue.toString();
+                          wifiopac = 0;
+                          types = typeMap[unittypevalue];
+                          if (unittypevalue == 'Currency') {
+                            wifiopac = 1;
+                            firsttypevalue = firstCurrencyValue;
+                            secondtypevalue = secondCurrencyValue;
+                          } else {
+                            firsttypevalue = types![0];
+                            secondtypevalue = types![0];
+                          }
+                        });
+                      },
+                    ),
+                  ),
+                  Align(
+                    alignment: (() {
+                      if (MediaQuery.of(context).size.height >
+                          MediaQuery.of(context).size.width) {
+                        return const Alignment(0.0, 0.4);
+                      }
+                      return const Alignment(0.9, 0.0);
+                    })(),
+                    child: FractionallySizedBox(
+                      widthFactor: (() {
+                        if (MediaQuery.of(context).size.height >
+                            MediaQuery.of(context).size.width) {
+                          return 0.85;
+                        }
+                        return 0.5;
+                      })(),
+                      heightFactor: (() {
+                        if (MediaQuery.of(context).size.height >
+                            MediaQuery.of(context).size.width) {
+                          return 0.5;
+                        }
+                        return 0.8;
+                      })(),
+                      child: Opacity(
+                        opacity: (icontype == 'Warning' &&
+                                unittypevalue == "Currency")
+                            ? 0
+                            : 1,
+                        child: Card(
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                          elevation: 20,
+                          child: ListView(
+                            padding: const EdgeInsets.all(10),
+                            children: [
+                              Center(
+                                child: DropdownButton(
+                                  value: firsttypevalue,
+                                  style: TextStyle(
+                                    color: (MediaQuery.of(context)
+                                                .platformBrightness ==
+                                            Brightness.light)
+                                        ? Colors.black
+                                        : Colors.white,
+                                  ),
+                                  items:
+                                      types!.map((String dropDownStringItem) {
+                                    return DropdownMenuItem(
+                                      value: dropDownStringItem,
+                                      child: Text(dropDownStringItem),
+                                    );
+                                  }).toList(),
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      firsttypevalue = newValue.toString();
+                                    });
+                                    update();
+                                  },
+                                ),
+                              ),
+                              Center(
+                                child: DropdownButton(
+                                  value: secondtypevalue,
+                                  style: TextStyle(
+                                    color: (MediaQuery.of(context)
+                                                .platformBrightness ==
+                                            Brightness.light)
+                                        ? Colors.black
+                                        : Colors.white,
+                                  ),
+                                  items:
+                                      types!.map((String dropDownStringItem) {
+                                    return DropdownMenuItem(
+                                      value: dropDownStringItem,
+                                      child: Text(dropDownStringItem),
+                                    );
+                                  }).toList(),
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      secondtypevalue = newValue.toString();
+                                    });
+                                    update();
+                                  },
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.copy,
+                                ),
+                                onPressed: () async {
+                                  await Clipboard.setData(ClipboardData(
+                                      text: firstnumbercontroller.text));
+                                  Fluttertoast.showToast(
+                                      msg: 'Saved to Clipboard');
+                                },
+                              ),
+                              Center(
+                                child: FractionallySizedBox(
+                                  widthFactor: 0.8,
+                                  child: TextField(
+                                    keyboardType: TextInputType.number,
+                                    controller: firstnumbercontroller,
+                                    style: TextStyle(
+                                      color: (MediaQuery.of(context)
+                                                  .platformBrightness ==
+                                              Brightness.light)
+                                          ? Colors.black
+                                          : Colors.white,
+                                    ),
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                    ),
+                                    onChanged: (text) {
+                                      update();
+                                    },
+                                  ),
+                                ),
+                              ),
+                              Center(
+                                  child: FractionallySizedBox(
+                                child: IconButton(
+                                  onPressed: () {
+                                    setState(() {
+                                      var save = firsttypevalue;
+                                      var savenumber =
+                                          firstnumbercontroller.text;
+                                      firsttypevalue = secondtypevalue;
+                                      firstnumbercontroller.text =
+                                          secondnumbercontroller.text;
+                                      secondtypevalue = save;
+                                      secondnumbercontroller.text = savenumber;
+                                    });
+                                  },
+                                  icon:
+                                      const Icon(Icons.compare_arrows_rounded),
+                                ),
+                              )),
+                              Center(
+                                child: FractionallySizedBox(
+                                  widthFactor: 0.8,
+                                  child: TextField(
+                                    keyboardType: TextInputType.number,
+                                    controller: secondnumbercontroller,
+                                    enabled: false,
+                                    style: TextStyle(
+                                      color: (MediaQuery.of(context)
+                                                  .platformBrightness ==
+                                              Brightness.light)
+                                          ? Colors.black
+                                          : Colors.white,
+                                    ),
+                                    decoration: const InputDecoration(
+                                      border: OutlineInputBorder(),
+                                    ),
+                                    onChanged: (text) {
+                                      update();
+                                    },
+                                  ),
+                                ),
+                              ),
+                              IconButton(
+                                icon: const Icon(
+                                  Icons.copy,
+                                ),
+                                onPressed: () async {
+                                  await Clipboard.setData(ClipboardData(
+                                      text: secondnumbercontroller.text));
+                                  Fluttertoast.showToast(
+                                      msg: 'Saved to Clipboard');
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            );
+          }
 
-        return const Scaffold(
-          body: Center(child: CircularProgressIndicator.adaptive()),
-        );
-      },
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator.adaptive()),
+          );
+        },
+      ),
     );
   }
 }

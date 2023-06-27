@@ -213,144 +213,147 @@ class _TrigonometryState extends State<Trigonometry> {
             child: FractionallySizedBox(
               heightFactor: 0.8,
               widthFactor: 0.8,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                elevation: 20,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: ListView(
-                    children: [
-                      FractionallySizedBox(
-                        widthFactor: 0.8,
-                        child: ElevatedButton(
-                          onPressed: (() {
-                            setState(() => degreemode = !degreemode);
-                            vector = DegreeRad(degreemode);
-                          }),
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 0, 135, 197)),
-                          child: Text(
-                              "${((degreemode) ? 'Degree' : 'Radian')} Mode"),
-                        ),
-                      ),
-                      const SizedBox(height: 10),
-                      Inputfield(
-                        controller: controllers[0],
-                        hintText: 'A (Angle)',
-                        keyboardType: TextInputType.number,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
-                        ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: controllers[0].text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: controllers[1],
-                        hintText: 'a (Side)',
-                        keyboardType: TextInputType.number,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
-                        ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: controllers[1].text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: controllers[2],
-                        hintText: 'B (Angle)',
-                        keyboardType: TextInputType.number,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
-                        ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: controllers[2].text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: controllers[3],
-                        hintText: 'b (Side)',
-                        keyboardType: TextInputType.number,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
-                        ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: controllers[3].text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: controllers[4],
-                        hintText: 'C (Angle)',
-                        keyboardType: TextInputType.number,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
-                        ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: controllers[4].text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: controllers[5],
-                        hintText: 'c (Side)',
-                        keyboardType: TextInputType.number,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
-                        ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: controllers[5].text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 0.65,
-                        child: ElevatedButton(
-                          onPressed: calc,
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 0, 135, 197)),
-                          child: const Text('Solve'),
-                        ),
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 0.65,
-                        child: ElevatedButton(
-                            onPressed: () {
-                              for (var i in controllers) {
-                                i.text = '';
-                              }
-                            },
+              child: Hero(
+                tag: "Trigonometry",
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: ListView(
+                      children: [
+                        FractionallySizedBox(
+                          widthFactor: 0.8,
+                          child: ElevatedButton(
+                            onPressed: (() {
+                              setState(() => degreemode = !degreemode);
+                              vector = DegreeRad(degreemode);
+                            }),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
                                     const Color.fromARGB(255, 0, 135, 197)),
-                            child: const Text('Clear')),
-                      ),
-                    ],
+                            child: Text(
+                                "${((degreemode) ? 'Degree' : 'Radian')} Mode"),
+                          ),
+                        ),
+                        const SizedBox(height: 10),
+                        Inputfield(
+                          controller: controllers[0],
+                          hintText: 'A (Angle)',
+                          keyboardType: TextInputType.number,
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: controllers[0].text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        Inputfield(
+                          controller: controllers[1],
+                          hintText: 'a (Side)',
+                          keyboardType: TextInputType.number,
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: controllers[1].text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        Inputfield(
+                          controller: controllers[2],
+                          hintText: 'B (Angle)',
+                          keyboardType: TextInputType.number,
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: controllers[2].text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        Inputfield(
+                          controller: controllers[3],
+                          hintText: 'b (Side)',
+                          keyboardType: TextInputType.number,
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: controllers[3].text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        Inputfield(
+                          controller: controllers[4],
+                          hintText: 'C (Angle)',
+                          keyboardType: TextInputType.number,
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: controllers[4].text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        Inputfield(
+                          controller: controllers[5],
+                          hintText: 'c (Side)',
+                          keyboardType: TextInputType.number,
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: controllers[5].text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        FractionallySizedBox(
+                          widthFactor: 0.65,
+                          child: ElevatedButton(
+                            onPressed: calc,
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 0, 135, 197)),
+                            child: const Text('Solve'),
+                          ),
+                        ),
+                        FractionallySizedBox(
+                          widthFactor: 0.65,
+                          child: ElevatedButton(
+                              onPressed: () {
+                                for (var i in controllers) {
+                                  i.text = '';
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 0, 135, 197)),
+                              child: const Text('Clear')),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

@@ -113,41 +113,44 @@ class _RootFinderState extends State<RootFinder> {
                       MediaQuery.of(context).size.width)
                   ? 0.5
                   : 0.9,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                elevation: 20,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: ListView(
-                    children: [
-                      Inputfield(
-                        controller: atext,
-                        keyboardType: TextInputType.number,
-                        hintText: 'a',
-                      ),
-                      Inputfield(
-                        controller: btext,
-                        keyboardType: TextInputType.number,
-                        hintText: 'b',
-                      ),
-                      Inputfield(
-                        controller: ctext,
-                        keyboardType: TextInputType.number,
-                        hintText: 'c',
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 0.8,
-                        child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 0, 135, 197)),
-                          onPressed: calc,
-                          child: const Text('Solve'),
+              child: Hero(
+                tag: "Root Finder",
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: ListView(
+                      children: [
+                        Inputfield(
+                          controller: atext,
+                          keyboardType: TextInputType.number,
+                          hintText: 'a',
                         ),
-                      )
-                    ],
+                        Inputfield(
+                          controller: btext,
+                          keyboardType: TextInputType.number,
+                          hintText: 'b',
+                        ),
+                        Inputfield(
+                          controller: ctext,
+                          keyboardType: TextInputType.number,
+                          hintText: 'c',
+                        ),
+                        FractionallySizedBox(
+                          widthFactor: 0.8,
+                          child: ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 0, 135, 197)),
+                            onPressed: calc,
+                            child: const Text('Solve'),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),

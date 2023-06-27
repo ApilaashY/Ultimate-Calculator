@@ -16,14 +16,14 @@ class OrdinaryAnnuity extends StatefulWidget {
 
 class _OrdinaryAnnuityState extends State<OrdinaryAnnuity> {
   final Map compoundPeriods = {
-  "Year": 1,
-  "Semi-Year": 2,
-  "Quarter": 4,
-  "Month": 12,
-  "Biweek": 26,
-  "Week": 52,
-  "Day": 365,
-};
+    "Year": 1,
+    "Semi-Year": 2,
+    "Quarter": 4,
+    "Month": 12,
+    "Biweek": 26,
+    "Week": 52,
+    "Day": 365,
+  };
   TextEditingController Addition = TextEditingController();
   TextEditingController Rate = TextEditingController();
   TextEditingController Total = TextEditingController();
@@ -34,19 +34,49 @@ class _OrdinaryAnnuityState extends State<OrdinaryAnnuity> {
       if (Addition.text.isNotEmpty &&
           Rate.text.isNotEmpty &&
           Time.text.isNotEmpty) {
-        Total.text = roundto(((double.parse(Addition.text)*(pow(double.parse(Rate.text)/100/compoundPeriods[_currenttime]+1,double.parse(Time.text))-1))/(double.parse(Rate.text)/100/compoundPeriods[_currenttime])).toString());
+        Total.text = roundto(((double.parse(Addition.text) *
+                    (pow(
+                            double.parse(Rate.text) /
+                                    100 /
+                                    compoundPeriods[_currenttime] +
+                                1,
+                            double.parse(Time.text)) -
+                        1)) /
+                (double.parse(Rate.text) / 100 / compoundPeriods[_currenttime]))
+            .toString());
       } else if (Total.text.isNotEmpty &&
           Rate.text.isNotEmpty &&
           Time.text.isNotEmpty) {
-        Addition.text = roundto(((double.parse(Total.text)*(double.parse(Rate.text)/100/compoundPeriods[_currenttime]))/((pow(double.parse(Rate.text)/100/compoundPeriods[_currenttime]+1,double.parse(Time.text))-1))).toString());
+        Addition.text = roundto(((double.parse(Total.text) *
+                    (double.parse(Rate.text) /
+                        100 /
+                        compoundPeriods[_currenttime])) /
+                ((pow(
+                        double.parse(Rate.text) /
+                                100 /
+                                compoundPeriods[_currenttime] +
+                            1,
+                        double.parse(Time.text)) -
+                    1)))
+            .toString());
       } else if (Total.text.isNotEmpty &&
           Addition.text.isNotEmpty &&
           Rate.text.isNotEmpty) {
-        Time.text = roundto((log((double.parse(Total.text)*(double.parse(Rate.text)/100/compoundPeriods[_currenttime]))/double.parse(Addition.text)+1)/log(double.parse(Rate.text)/100/compoundPeriods[_currenttime]+1)).toString());
+        Time.text = roundto((log((double.parse(Total.text) *
+                            (double.parse(Rate.text) /
+                                100 /
+                                compoundPeriods[_currenttime])) /
+                        double.parse(Addition.text) +
+                    1) /
+                log(double.parse(Rate.text) /
+                        100 /
+                        compoundPeriods[_currenttime] +
+                    1))
+            .toString());
       } else {
         Fluttertoast.showToast(msg: "Not Enough Information");
       }
-    addpoints(1);
+      addpoints(1);
     } catch (e) {
       Fluttertoast.showToast(msg: 'Error');
     }
@@ -72,49 +102,52 @@ class _OrdinaryAnnuityState extends State<OrdinaryAnnuity> {
             child: FractionallySizedBox(
               heightFactor: 0.8,
               widthFactor: 0.85,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                elevation: 20,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: ListView(
-                    children: [
-                      Inputfield(
-                        controller: Addition,
-                        hintText: 'Addition',
-                        keyboardType: TextInputType.number,
-                        prefixText: "\$",
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+              child: Hero(
+                tag: "Ordinary Annuity",
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: ListView(
+                      children: [
+                        Inputfield(
+                          controller: Addition,
+                          hintText: 'Addition',
+                          keyboardType: TextInputType.number,
+                          prefixText: "\$",
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: Addition.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: Rate,
-                        hintText: 'Yearly Interest Rate',
-                        keyboardType: TextInputType.number,
-                        suffixText: '%',
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: Addition.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: Rate.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Center(child:Text("Compounded Every")),
-                      Center(child:DropdownButton(
+                        Inputfield(
+                          controller: Rate,
+                          hintText: 'Yearly Interest Rate',
+                          keyboardType: TextInputType.number,
+                          suffixText: '%',
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: Rate.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        Center(child: Text("Compounded Every")),
+                        Center(
+                          child: DropdownButton(
                             style: TextStyle(
                                 color: (MediaQuery.of(context)
                                             .platformBrightness ==
@@ -132,51 +165,51 @@ class _OrdinaryAnnuityState extends State<OrdinaryAnnuity> {
                               _currenttime = newval.toString();
                               setState(() {});
                             },
-                          ),),
-                      Inputfield(
-                              controller: Time,
-                              hintText: 'Total Number of Payments',
-                              keyboardType: TextInputType.number,
-                            ),
-                          
-
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+                          ),
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: Time.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: Total,
-                        hintText: 'Total',
-                        keyboardType: TextInputType.number,
-                        prefixText: '\$',
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+                        Inputfield(
+                          controller: Time,
+                          hintText: 'Total Number of Payments',
+                          keyboardType: TextInputType.number,
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: Total.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 0.65,
-                        child: ElevatedButton(
-                          onPressed: calc,
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 0, 135, 197)),
-                          child: const Text('Solve'),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: Time.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
                         ),
-                      ),
-                    ],
+                        Inputfield(
+                          controller: Total,
+                          hintText: 'Total',
+                          keyboardType: TextInputType.number,
+                          prefixText: '\$',
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: Total.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        FractionallySizedBox(
+                          widthFactor: 0.65,
+                          child: ElevatedButton(
+                            onPressed: calc,
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 0, 135, 197)),
+                            child: const Text('Solve'),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

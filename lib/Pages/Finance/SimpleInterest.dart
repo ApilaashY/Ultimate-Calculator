@@ -138,131 +138,134 @@ class _SimpleInterestState extends State<SimpleInterest> {
             child: FractionallySizedBox(
               heightFactor: 0.8,
               widthFactor: 0.85,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                elevation: 20,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: ListView(
-                    children: [
-                      Inputfield(
-                        controller: Principal,
-                        hintText: 'Principal',
-                        keyboardType: TextInputType.number,
-                        prefixText: "\$",
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+              child: Hero(
+                tag: "Simple Interest",
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: ListView(
+                      children: [
+                        Inputfield(
+                          controller: Principal,
+                          hintText: 'Principal',
+                          keyboardType: TextInputType.number,
+                          prefixText: "\$",
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: Principal.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: Rate,
-                        hintText: 'Yearly Interest Rate',
-                        keyboardType: TextInputType.number,
-                        suffixText: '%',
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
-                        ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: Rate.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Inputfield(
-                              controller: Time,
-                              hintText: 'Times Compounded',
-                              keyboardType: TextInputType.number,
-                            ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
                           ),
-                          DropdownButton(
-                            value: _currenttime,
-                            style: TextStyle(
-                                color: (MediaQuery.of(context)
-                                            .platformBrightness ==
-                                        Brightness.light)
-                                    ? Colors.black
-                                    : Colors.white),
-                            items: _times.keys
-                                .map((e) => DropdownMenuItem(
-                                      value: e,
-                                      child: Text(e.toString()),
-                                    ))
-                                .toList(),
-                            onChanged: (newval) {
-                              _currenttime = newval.toString();
-                              setState(() {});
-                            },
-                          )
-                        ],
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: Principal.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: Time.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: Interest,
-                        hintText: 'Interest',
-                        keyboardType: TextInputType.number,
-                        prefixText: '\$',
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+                        Inputfield(
+                          controller: Rate,
+                          hintText: 'Yearly Interest Rate',
+                          keyboardType: TextInputType.number,
+                          suffixText: '%',
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: Interest.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: Total,
-                        hintText: 'Total',
-                        keyboardType: TextInputType.number,
-                        prefixText: '\$',
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: Rate.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: Total.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 0.65,
-                        child: ElevatedButton(
-                          onPressed: calc,
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
-                                  const Color.fromARGB(255, 0, 135, 197)),
-                          child: const Text('Solve'),
+                        Row(
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Inputfield(
+                                controller: Time,
+                                hintText: 'Times Compounded',
+                                keyboardType: TextInputType.number,
+                              ),
+                            ),
+                            DropdownButton(
+                              value: _currenttime,
+                              style: TextStyle(
+                                  color: (MediaQuery.of(context)
+                                              .platformBrightness ==
+                                          Brightness.light)
+                                      ? Colors.black
+                                      : Colors.white),
+                              items: _times.keys
+                                  .map((e) => DropdownMenuItem(
+                                        value: e,
+                                        child: Text(e.toString()),
+                                      ))
+                                  .toList(),
+                              onChanged: (newval) {
+                                _currenttime = newval.toString();
+                                setState(() {});
+                              },
+                            )
+                          ],
                         ),
-                      ),
-                    ],
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: Time.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        Inputfield(
+                          controller: Interest,
+                          hintText: 'Interest',
+                          keyboardType: TextInputType.number,
+                          prefixText: '\$',
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: Interest.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        Inputfield(
+                          controller: Total,
+                          hintText: 'Total',
+                          keyboardType: TextInputType.number,
+                          prefixText: '\$',
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: Total.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        FractionallySizedBox(
+                          widthFactor: 0.65,
+                          child: ElevatedButton(
+                            onPressed: calc,
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor:
+                                    const Color.fromARGB(255, 0, 135, 197)),
+                            child: const Text('Solve'),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

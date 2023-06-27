@@ -172,124 +172,127 @@ class _SeriesState extends State<Series> {
         child: FractionallySizedBox(
           heightFactor: 0.8,
           widthFactor: 0.85,
-          child: Card(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            elevation: 20,
-            child: ListView(
-              children: [
-                Center(
-                  child: DropdownButton(
-                    style: TextStyle(
-                        color: (MediaQuery.of(context).platformBrightness ==
-                                Brightness.light)
-                            ? Colors.black
-                            : Colors.white),
-                    items: const [
-                      DropdownMenuItem(
-                        value: "Arithmetic",
-                        child: Text("Arithmetic"),
-                      ),
-                      DropdownMenuItem(
-                        value: "Geometric",
-                        child: Text("Geometric"),
-                      ),
-                      // DropdownMenuItem(
-                      //   value: "Fibonacci",
-                      //   child: Text("Fibonacci"),
-                      // ),
-                    ],
-                    onChanged: (val) {
-                      change = val.toString();
-                      setState(() {});
+          child: Hero(
+            tag: "Series",
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
+              elevation: 20,
+              child: ListView(
+                children: [
+                  Center(
+                    child: DropdownButton(
+                      style: TextStyle(
+                          color: (MediaQuery.of(context).platformBrightness ==
+                                  Brightness.light)
+                              ? Colors.black
+                              : Colors.white),
+                      items: const [
+                        DropdownMenuItem(
+                          value: "Arithmetic",
+                          child: Text("Arithmetic"),
+                        ),
+                        DropdownMenuItem(
+                          value: "Geometric",
+                          child: Text("Geometric"),
+                        ),
+                        // DropdownMenuItem(
+                        //   value: "Fibonacci",
+                        //   child: Text("Fibonacci"),
+                        // ),
+                      ],
+                      onChanged: (val) {
+                        change = val.toString();
+                        setState(() {});
+                      },
+                      value: change,
+                    ),
+                  ),
+                  Inputfield(
+                    controller: first,
+                    hintText: "First Value",
+                    keyboardType: TextInputType.number,
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.copy,
+                    ),
+                    onPressed: () async {
+                      await Clipboard.setData(ClipboardData(text: first.text));
+                      Fluttertoast.showToast(msg: 'Saved to Clipboard');
                     },
-                    value: change,
                   ),
-                ),
-                Inputfield(
-                  controller: first,
-                  hintText: "First Value",
-                  keyboardType: TextInputType.number,
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.copy,
+                  Inputfield(
+                    controller: n,
+                    hintText: "N",
+                    keyboardType: TextInputType.number,
                   ),
-                  onPressed: () async {
-                    await Clipboard.setData(ClipboardData(text: first.text));
-                    Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                  },
-                ),
-                Inputfield(
-                  controller: n,
-                  hintText: "N",
-                  keyboardType: TextInputType.number,
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.copy,
+                  IconButton(
+                    icon: const Icon(
+                      Icons.copy,
+                    ),
+                    onPressed: () async {
+                      await Clipboard.setData(ClipboardData(text: n.text));
+                      Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                    },
                   ),
-                  onPressed: () async {
-                    await Clipboard.setData(ClipboardData(text: n.text));
-                    Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                  },
-                ),
-                Inputfield(
-                  controller: finalValue,
-                  hintText: "Final Term",
-                  keyboardType: TextInputType.number,
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.copy,
+                  Inputfield(
+                    controller: finalValue,
+                    hintText: "Final Term",
+                    keyboardType: TextInputType.number,
                   ),
-                  onPressed: () async {
-                    await Clipboard.setData(
-                        ClipboardData(text: finalValue.text));
-                    Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                  },
-                ),
-                Inputfield(
-                  controller: difference,
-                  hintText: "Common Difference",
-                  keyboardType: TextInputType.number,
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.copy,
+                  IconButton(
+                    icon: const Icon(
+                      Icons.copy,
+                    ),
+                    onPressed: () async {
+                      await Clipboard.setData(
+                          ClipboardData(text: finalValue.text));
+                      Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                    },
                   ),
-                  onPressed: () async {
-                    await Clipboard.setData(
-                        ClipboardData(text: difference.text));
-                    Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                  },
-                ),
-                Inputfield(
-                  controller: sum,
-                  hintText: "Sum of N terms",
-                  keyboardType: TextInputType.number,
-                ),
-                IconButton(
-                  icon: const Icon(
-                    Icons.copy,
+                  Inputfield(
+                    controller: difference,
+                    hintText: "Common Difference",
+                    keyboardType: TextInputType.number,
                   ),
-                  onPressed: () async {
-                    await Clipboard.setData(ClipboardData(text: sum.text));
-                    Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                  },
-                ),
-                FractionallySizedBox(
-                  widthFactor: 0.65,
-                  child: ElevatedButton(
-                    onPressed: calc,
-                    style: ElevatedButton.styleFrom(
-                        backgroundColor:
-                            const Color.fromARGB(255, 0, 135, 197)),
-                    child: const Text('Solve'),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.copy,
+                    ),
+                    onPressed: () async {
+                      await Clipboard.setData(
+                          ClipboardData(text: difference.text));
+                      Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                    },
                   ),
-                ),
-              ],
+                  Inputfield(
+                    controller: sum,
+                    hintText: "Sum of N terms",
+                    keyboardType: TextInputType.number,
+                  ),
+                  IconButton(
+                    icon: const Icon(
+                      Icons.copy,
+                    ),
+                    onPressed: () async {
+                      await Clipboard.setData(ClipboardData(text: sum.text));
+                      Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                    },
+                  ),
+                  FractionallySizedBox(
+                    widthFactor: 0.65,
+                    child: ElevatedButton(
+                      onPressed: calc,
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromARGB(255, 0, 135, 197)),
+                      child: const Text('Solve'),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),

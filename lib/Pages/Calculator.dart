@@ -92,232 +92,235 @@ class CalculatorState extends State<Calculator> {
                       MediaQuery.of(context).size.width)
                   ? 0.95
                   : 0.6,
-              child: GridView.count(
-                crossAxisCount: 4,
-                mainAxisSpacing: 5,
-                crossAxisSpacing: 5,
-                children: [
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 0, 135, 197)),
-                        shape: MaterialStateProperty.all<CircleBorder>(
-                            const CircleBorder())),
-                    onPressed: () {
-                      deciasfrac = !deciasfrac;
-                      setState(() {});
-                    },
-                    onLongPress: (() {
-                      showDialog(
-                        context: context,
-                        builder: (context) => const SimpleDialog(
-                          title: Text('Represent Decimals as Fractions'),
-                        ),
-                      );
-                    }),
-                    child: FractionallySizedBox(
-                        widthFactor: 0.7,
-                        heightFactor: 0.5,
-                        child: FittedBox(
-                            child: Text(
-                          (deciasfrac == true) ? 'Frac' : 'Deci',
-                        ))),
-                  ),
-                  ElevatedButton(
-                    style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color.fromARGB(255, 0, 135, 197)),
-                        shape: MaterialStateProperty.all<CircleBorder>(
-                            const CircleBorder())),
-                    onPressed: () {
-                      degreemode = !degreemode;
-                      setState(() {});
-                    },
-                    child: FractionallySizedBox(
-                        widthFactor: 0.7,
-                        heightFactor: 0.5,
-                        child: FittedBox(
-                            child: Text(
-                          (degreemode == true) ? 'Deg' : 'Rad',
-                        ))),
-                  ),
-                  FunctionButton(
-                    name: 'Clear',
-                    child: Text(
-                      'Clear',
+              child: Hero(
+                tag: "Calculator",
+                child: GridView.count(
+                  crossAxisCount: 4,
+                  mainAxisSpacing: 5,
+                  crossAxisSpacing: 5,
+                  children: [
+                    ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromARGB(255, 0, 135, 197)),
+                          shape: MaterialStateProperty.all<CircleBorder>(
+                              const CircleBorder())),
+                      onPressed: () {
+                        deciasfrac = !deciasfrac;
+                        setState(() {});
+                      },
+                      onLongPress: (() {
+                        showDialog(
+                          context: context,
+                          builder: (context) => const SimpleDialog(
+                            title: Text('Represent Decimals as Fractions'),
+                          ),
+                        );
+                      }),
+                      child: FractionallySizedBox(
+                          widthFactor: 0.7,
+                          heightFactor: 0.5,
+                          child: FittedBox(
+                              child: Text(
+                            (deciasfrac == true) ? 'Frac' : 'Deci',
+                          ))),
                     ),
-                  ),
-                  FunctionButton(
-                      name: 'backspace', child: const Icon(Icons.backspace)),
-                  FunctionButton(
-                    name: '(',
-                    child: const Text(
-                      '(',
+                    ElevatedButton(
+                      style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                              const Color.fromARGB(255, 0, 135, 197)),
+                          shape: MaterialStateProperty.all<CircleBorder>(
+                              const CircleBorder())),
+                      onPressed: () {
+                        degreemode = !degreemode;
+                        setState(() {});
+                      },
+                      child: FractionallySizedBox(
+                          widthFactor: 0.7,
+                          heightFactor: 0.5,
+                          child: FittedBox(
+                              child: Text(
+                            (degreemode == true) ? 'Deg' : 'Rad',
+                          ))),
                     ),
-                  ),
-                  FunctionButton(
-                    name: ')',
-                    child: const Text(
-                      ')',
+                    FunctionButton(
+                      name: 'Clear',
+                      child: Text(
+                        'Clear',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'sin(',
-                    child: Text(
-                      'sin',
+                    FunctionButton(
+                        name: 'backspace', child: const Icon(Icons.backspace)),
+                    FunctionButton(
+                      name: '(',
+                      child: const Text(
+                        '(',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'cos(',
-                    child: Text(
-                      'cos',
+                    FunctionButton(
+                      name: ')',
+                      child: const Text(
+                        ')',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'tan(',
-                    child: Text(
-                      'tan',
+                    FunctionButton(
+                      name: 'sin(',
+                      child: Text(
+                        'sin',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'sin^-1(',
-                    child: const Text(
-                      'sin^-1',
+                    FunctionButton(
+                      name: 'cos(',
+                      child: Text(
+                        'cos',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'cos^-1(',
-                    child: const Text(
-                      'cos^-1',
+                    FunctionButton(
+                      name: 'tan(',
+                      child: Text(
+                        'tan',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'tan^-1(',
-                    child: const Text(
-                      'tan^-1',
+                    FunctionButton(
+                      name: 'sin^-1(',
+                      child: const Text(
+                        'sin^-1',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '^',
-                    child: const Text(
-                      'x^y',
+                    FunctionButton(
+                      name: 'cos^-1(',
+                      child: const Text(
+                        'cos^-1',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '√(',
-                    child: Text(
-                      'x√',
+                    FunctionButton(
+                      name: 'tan^-1(',
+                      child: const Text(
+                        'tan^-1',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'log(',
-                    child: Text(
-                      'log',
+                    FunctionButton(
+                      name: '^',
+                      child: const Text(
+                        'x^y',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'ln(',
-                    child: Text(
-                      'ln',
+                    FunctionButton(
+                      name: '√(',
+                      child: Text(
+                        'x√',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '7',
-                    child: const Text(
-                      '7',
+                    FunctionButton(
+                      name: 'log(',
+                      child: Text(
+                        'log',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '8',
-                    child: const Text(
-                      '8',
+                    FunctionButton(
+                      name: 'ln(',
+                      child: Text(
+                        'ln',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '9',
-                    child: const Text(
-                      '9',
+                    FunctionButton(
+                      name: '7',
+                      child: const Text(
+                        '7',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'π',
-                    child: const Text(
-                      'π',
+                    FunctionButton(
+                      name: '8',
+                      child: const Text(
+                        '8',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '4',
-                    child: const Text(
-                      '4',
+                    FunctionButton(
+                      name: '9',
+                      child: const Text(
+                        '9',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '5',
-                    child: const Text(
-                      '5',
+                    FunctionButton(
+                      name: 'π',
+                      child: const Text(
+                        'π',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '6',
-                    child: const Text(
-                      '6',
+                    FunctionButton(
+                      name: '4',
+                      child: const Text(
+                        '4',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '÷',
-                    child: const Text(
-                      '÷',
+                    FunctionButton(
+                      name: '5',
+                      child: const Text(
+                        '5',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '1',
-                    child: const Text(
-                      '1',
+                    FunctionButton(
+                      name: '6',
+                      child: const Text(
+                        '6',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '2',
-                    child: const Text(
-                      '2',
+                    FunctionButton(
+                      name: '÷',
+                      child: const Text(
+                        '÷',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '3',
-                    child: const Text(
-                      '3',
+                    FunctionButton(
+                      name: '1',
+                      child: const Text(
+                        '1',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'X',
-                    child: const Text(
-                      'X',
+                    FunctionButton(
+                      name: '2',
+                      child: const Text(
+                        '2',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '.',
-                    child: const Text(
-                      '.',
+                    FunctionButton(
+                      name: '3',
+                      child: const Text(
+                        '3',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: 'Equal',
-                    child: const Text(
-                      '=',
+                    FunctionButton(
+                      name: 'X',
+                      child: const Text(
+                        'X',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '+',
-                    child: const Text(
-                      '+',
+                    FunctionButton(
+                      name: '.',
+                      child: const Text(
+                        '.',
+                      ),
                     ),
-                  ),
-                  FunctionButton(
-                    name: '-',
-                    child: const Text(
-                      '-',
+                    FunctionButton(
+                      name: 'Equal',
+                      child: const Text(
+                        '=',
+                      ),
                     ),
-                  ),
-                ],
+                    FunctionButton(
+                      name: '+',
+                      child: const Text(
+                        '+',
+                      ),
+                    ),
+                    FunctionButton(
+                      name: '-',
+                      child: const Text(
+                        '-',
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

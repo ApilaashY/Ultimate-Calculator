@@ -79,91 +79,95 @@ class _PythagoreanState extends State<Pythagorean> {
             child: FractionallySizedBox(
               heightFactor: 0.6,
               widthFactor: 0.8,
-              child: Card(
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                elevation: 20,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 20),
-                  child: ListView(
-                    children: [
-                      Inputfield(
-                        controller: adjacent,
-                        hintText: 'Adjacent',
-                        keyboardType: TextInputType.number,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+              child: Hero(
+                tag: "Pythagorean",
+                child: Card(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  elevation: 20,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 20),
+                    child: ListView(
+                      children: [
+                        Inputfield(
+                          controller: adjacent,
+                          hintText: 'Adjacent',
+                          keyboardType: TextInputType.number,
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: adjacent.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: opposite,
-                        hintText: 'Opposite',
-                        keyboardType: TextInputType.number,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: adjacent.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: opposite.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      Inputfield(
-                        controller: hypotenuse,
-                        hintText: 'Hypotenuse',
-                        keyboardType: TextInputType.number,
-                      ),
-                      IconButton(
-                        icon: const Icon(
-                          Icons.copy,
+                        Inputfield(
+                          controller: opposite,
+                          hintText: 'Opposite',
+                          keyboardType: TextInputType.number,
                         ),
-                        onPressed: () async {
-                          await Clipboard.setData(
-                              ClipboardData(text: hypotenuse.text));
-                          Fluttertoast.showToast(msg: 'Saved to Clipboard');
-                        },
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 0.65,
-                        child: ElevatedButton(
-                          onPressed: calc,
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor:
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: opposite.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        Inputfield(
+                          controller: hypotenuse,
+                          hintText: 'Hypotenuse',
+                          keyboardType: TextInputType.number,
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.copy,
+                          ),
+                          onPressed: () async {
+                            await Clipboard.setData(
+                                ClipboardData(text: hypotenuse.text));
+                            Fluttertoast.showToast(msg: 'Saved to Clipboard');
+                          },
+                        ),
+                        FractionallySizedBox(
+                          widthFactor: 0.65,
+                          child: ElevatedButton(
+                            onPressed: calc,
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: (MediaQuery.of(context)
+                                            .platformBrightness ==
+                                        Brightness.light)
+                                    ? const Color.fromARGB(255, 165, 226, 255)
+                                    : const Color.fromARGB(255, 0, 135, 197)),
+                            child: const Text('Solve'),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        Center(
+                            child: Text(
+                          'Is a Right Triangle:',
+                          style: TextStyle(
+                              color:
                                   (MediaQuery.of(context).platformBrightness ==
                                           Brightness.light)
-                                      ? const Color.fromARGB(255, 165, 226, 255)
-                                      : const Color.fromARGB(255, 0, 135, 197)),
-                          child: const Text('Solve'),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      Center(
-                          child: Text(
-                        'Is a Right Triangle:',
-                        style: TextStyle(
-                            color: (MediaQuery.of(context).platformBrightness ==
-                                    Brightness.light)
-                                ? Colors.black
-                                : Colors.white),
-                      )),
-                      Icon(icon,
-                          color: (icon == Icons.question_mark)
-                              ? ((MediaQuery.of(context).platformBrightness ==
-                                      Brightness.light)
-                                  ? Colors.black
-                                  : Colors.white)
-                              : color),
-                    ],
+                                      ? Colors.black
+                                      : Colors.white),
+                        )),
+                        Icon(icon,
+                            color: (icon == Icons.question_mark)
+                                ? ((MediaQuery.of(context).platformBrightness ==
+                                        Brightness.light)
+                                    ? Colors.black
+                                    : Colors.white)
+                                : color),
+                      ],
+                    ),
                   ),
                 ),
               ),

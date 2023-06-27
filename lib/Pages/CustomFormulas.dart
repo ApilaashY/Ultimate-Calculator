@@ -82,34 +82,37 @@ class _CustomFormulasState extends State<CustomFormulas> {
                 return FractionallySizedBox(
                     widthFactor: 0.9,
                     heightFactor: 0.9,
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, "Formula Calculator",
-                            arguments: formulas.keys.toList()[index]);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        elevation: 10,
-                        backgroundColor:
-                            (MediaQuery.of(context).platformBrightness ==
-                                    Brightness.light)
-                                ? const Color.fromARGB(255, 165, 226, 255)
-                                : const Color.fromARGB(255, 0, 135, 197),
-                        shape: const RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(20)),
+                    child: Hero(
+                      tag: formulas.keys.toList()[index],
+                      child: ElevatedButton(
+                        onPressed: () {
+                          Navigator.pushNamed(context, "Formula Calculator",
+                              arguments: formulas.keys.toList()[index]);
+                        },
+                        style: ElevatedButton.styleFrom(
+                          elevation: 10,
+                          backgroundColor:
+                              (MediaQuery.of(context).platformBrightness ==
+                                      Brightness.light)
+                                  ? const Color.fromARGB(255, 165, 226, 255)
+                                  : const Color.fromARGB(255, 0, 135, 197),
+                          shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20)),
+                          ),
                         ),
-                      ),
-                      child: FractionallySizedBox(
-                        widthFactor: 0.6,
-                        heightFactor: 0.6,
-                        child: FittedBox(
-                          child: Text(
-                            formulas.keys.toList()[index],
-                            style: TextStyle(
-                                color: (MediaQuery.of(context)
-                                            .platformBrightness ==
-                                        Brightness.light)
-                                    ? Colors.black
-                                    : Colors.white),
+                        child: FractionallySizedBox(
+                          widthFactor: 0.6,
+                          heightFactor: 0.6,
+                          child: FittedBox(
+                            child: Text(
+                              formulas.keys.toList()[index],
+                              style: TextStyle(
+                                  color: (MediaQuery.of(context)
+                                              .platformBrightness ==
+                                          Brightness.light)
+                                      ? Colors.black
+                                      : Colors.white),
+                            ),
                           ),
                         ),
                       ),
@@ -515,7 +518,11 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text((degree) ? "Degree Mode" : "Radian Mode",
-        style: TextStyle(color: (MediaQuery.of(context).platformBrightness == Brightness.light)?Colors.black:Colors.white)),
+            style: TextStyle(
+                color: (MediaQuery.of(context).platformBrightness ==
+                        Brightness.light)
+                    ? Colors.black
+                    : Colors.white)),
         Switch.adaptive(
             value: degree,
             onChanged: (val) {
@@ -529,8 +536,11 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
       ),
       Row(mainAxisAlignment: MainAxisAlignment.center, children: [
         Text((deciAsFrac) ? "Fractions" : "Decimals",
-        style: TextStyle(color: (MediaQuery.of(context).platformBrightness == Brightness.light)?Colors.black:Colors.white)
-        ),
+            style: TextStyle(
+                color: (MediaQuery.of(context).platformBrightness ==
+                        Brightness.light)
+                    ? Colors.black
+                    : Colors.white)),
         Switch.adaptive(
             value: deciAsFrac,
             onChanged: (val) {
@@ -591,6 +601,9 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
       ),
     );
     alreadySet = true;
+    try {
+      setState(() {});
+    } catch (e) {}
 
     return "done";
   }
@@ -634,43 +647,36 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        future: setup(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Scaffold(
-              appBar: AppBar(
-                elevation: 0,
-                backgroundColor: Colors.transparent,
-                foregroundColor: (MediaQuery.of(context).platformBrightness ==
-                        Brightness.light)
-                    ? Colors.black
-                    : Colors.white,
-                title: Text(name),
+    setup();
+    return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        foregroundColor:
+            (MediaQuery.of(context).platformBrightness == Brightness.light)
+                ? Colors.black
+                : Colors.white,
+        title: Text(name),
+      ),
+      body: Center(
+        child: FractionallySizedBox(
+          widthFactor: 0.8,
+          heightFactor: 0.5,
+          child: Hero(
+            tag: name,
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
               ),
-              body: Center(
-                child: FractionallySizedBox(
-                  widthFactor: 0.8,
-                  heightFactor: 0.5,
-                  child: Card(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(20),
-                    ),
-                    elevation: 20,
-                    child: ListView.builder(
-                      itemBuilder: (context, index) => list[index],
-                      itemCount: list.length,
-                    ),
-                  ),
-                ),
+              elevation: 20,
+              child: ListView.builder(
+                itemBuilder: (context, index) => list[index],
+                itemCount: list.length,
               ),
-            );
-          }
-          return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator.adaptive(),
             ),
-          );
-        });
+          ),
+        ),
+      ),
+    );
   }
 }

@@ -48,7 +48,7 @@ class Solver {
         bool numBeforeBracket = (i > 0 &&
             equation[i] == '(' &&
             !"+-*/^√()".contains(equation[i - 1]));
-        bool numAfterBracket = (i < equation.length &&
+        bool numAfterBracket = (i < equation.length - 1 &&
             equation[i] == ')' &&
             !"+-*/^√()".contains(equation[i + 1]));
 
@@ -65,7 +65,10 @@ class Solver {
         }
         elements.add(equation[i]);
 
-        if (numAfterBracket || (i < equation.length-1 && equation[i]==")" && equation[i+1]=="(")) {
+        if (numAfterBracket ||
+            (i < equation.length - 1 &&
+                equation[i] == ")" &&
+                equation[i + 1] == "(")) {
           elements.add("*");
         }
 

@@ -3,11 +3,12 @@
 import 'dart:convert';
 import 'dart:io' show Platform;
 import 'dart:math';
-import 'dart:html' as html;
+//import 'dart:html' as html;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -175,10 +176,12 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     onPressed: () {
-                      html.AnchorElement anchorElement =
-                          html.AnchorElement(href: 'ultimatecalculator.apk');
-                      anchorElement.download = 'ultimatecalculator.apk';
-                      anchorElement.click();
+                      // Comment for Mobile Use
+
+                      // html.AnchorElement anchorElement =
+                      //     html.AnchorElement(href: 'ultimatecalculator.apk');
+                      // anchorElement.download = 'ultimatecalculator.apk';
+                      // anchorElement.click();
                     },
                     child: const FractionallySizedBox(
                         widthFactor: 0.9,
@@ -236,13 +239,17 @@ class _HomeState extends State<Home> {
             ),
             floatingActionButton: FloatingActionButton(
               backgroundColor: const Color.fromARGB(255, 255, 184, 0),
-              child: Icon(
+              child: const Icon(
                 Icons.add_rounded,
               ),
               onPressed: () {
                 TextEditingController newone = TextEditingController();
-                showDialog(
+                showAnimatedDialog(
                   context: context,
+                  barrierDismissible: true,
+                  animationType: DialogTransitionType.scale,
+                  curve: Curves.fastOutSlowIn,
+                  duration: const Duration(milliseconds: 250),
                   builder: (context) => SimpleDialog(
                     title: Text(
                       'Send a Request to add a Function or Report a Bug',

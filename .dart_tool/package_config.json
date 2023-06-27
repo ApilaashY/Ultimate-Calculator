@@ -152,6 +152,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "flutter_animated_dialog",
+      "rootUri": "file:///C:/Users/apila/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_animated_dialog-2.0.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "flutter_keyboard_visibility",
       "rootUri": "file:///C:/Users/apila/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_keyboard_visibility-5.4.1",
       "packageUri": "lib/",
@@ -578,7 +584,7 @@
       "languageVersion": "2.18"
     }
   ],
-  "generated": "2023-06-21T01:24:15.968513Z",
+  "generated": "2023-06-27T15:27:56.567549Z",
   "generator": "pub",
   "generatorVersion": "3.0.5"
 }

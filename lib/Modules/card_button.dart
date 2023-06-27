@@ -17,42 +17,46 @@ class _CardButtonState extends State<CardButton> {
   String? menu;
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: (() => Navigator.pushNamed(context, text)),
-      onLongPress: () => (menu != null)
-          ? showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                    title: Text(menu!,
-                        style: TextStyle(
-                            color: (MediaQuery.of(context).platformBrightness ==
-                                    Brightness.light)
-                                ? Colors.black
-                                : Colors.white)),
-                  ))
-          : 0,
-      style: ElevatedButton.styleFrom(
-        elevation: 10,
-        backgroundColor:
-            (MediaQuery.of(context).platformBrightness == Brightness.light)
-                ? const Color.fromARGB(255, 165, 226, 255)
-                : const Color.fromARGB(255, 0, 135, 197),
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+    return Hero(
+      tag: text,
+      child: ElevatedButton(
+        onPressed: (() => Navigator.pushNamed(context, text)),
+        onLongPress: () => (menu != null)
+            ? showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: Text(menu!,
+                          style: TextStyle(
+                              color:
+                                  (MediaQuery.of(context).platformBrightness ==
+                                          Brightness.light)
+                                      ? Colors.black
+                                      : Colors.white)),
+                    ))
+            : 0,
+        style: ElevatedButton.styleFrom(
+          elevation: 10,
+          backgroundColor:
+              (MediaQuery.of(context).platformBrightness == Brightness.light)
+                  ? const Color.fromARGB(255, 165, 226, 255)
+                  : const Color.fromARGB(255, 0, 135, 197),
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(Radius.circular(20)),
+          ),
         ),
-      ),
-      child: FractionallySizedBox(
-        widthFactor: 0.6,
-        heightFactor: 0.6,
-        child: FittedBox(
-          child: Text(
-            text.replaceAll(' ', '\n'),
-            textAlign: TextAlign.center,
-            style: TextStyle(
-                color: (MediaQuery.of(context).platformBrightness ==
-                        Brightness.light)
-                    ? Colors.black
-                    : Colors.white),
+        child: FractionallySizedBox(
+          widthFactor: 0.6,
+          heightFactor: 0.6,
+          child: FittedBox(
+            child: Text(
+              text.replaceAll(' ', '\n'),
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  color: (MediaQuery.of(context).platformBrightness ==
+                          Brightness.light)
+                      ? Colors.black
+                      : Colors.white),
+            ),
           ),
         ),
       ),
@@ -97,29 +101,33 @@ class _SectionButtonState extends State<SectionButton> {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      style: ElevatedButton.styleFrom(
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.circular(20)),
-          ),
-          backgroundColor: const Color.fromARGB(255, 35, 206, 107)),
-      onPressed: () => Navigator.pushNamed(context, text),
-      onLongPress: () => (menu != null)
-          ? showDialog(
-              context: context,
-              builder: (context) => AlertDialog(
-                    title: Text(menu!,
-                        style: TextStyle(
-                            color: (MediaQuery.of(context).platformBrightness ==
-                                    Brightness.light)
-                                ? Colors.black
-                                : Colors.white)),
-                  ))
-          : 0,
-      child: FractionallySizedBox(
-        widthFactor: 0.8,
-        heightFactor: 0.8,
-        child: FittedBox(child: Text(text.replaceAll(" ", "\n"))),
+    return Hero(
+      tag: text,
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.circular(20)),
+            ),
+            backgroundColor: const Color.fromARGB(255, 35, 206, 107)),
+        onPressed: () => Navigator.pushNamed(context, text),
+        onLongPress: () => (menu != null)
+            ? showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                      title: Text(menu!,
+                          style: TextStyle(
+                              color:
+                                  (MediaQuery.of(context).platformBrightness ==
+                                          Brightness.light)
+                                      ? Colors.black
+                                      : Colors.white)),
+                    ))
+            : 0,
+        child: FractionallySizedBox(
+          widthFactor: 0.8,
+          heightFactor: 0.8,
+          child: FittedBox(child: Text(text.replaceAll(" ", "\n"))),
+        ),
       ),
     );
   }
