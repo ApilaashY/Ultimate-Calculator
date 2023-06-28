@@ -91,7 +91,9 @@ Route<dynamic> controller(RouteSettings settings) {
   } else if (settings.name == "Custom Formulas") {
     return MaterialPageRoute(builder: (context) => CustomFormulas());
   } else if (settings.name == "Formula Maker") {
-    return MaterialPageRoute(builder: (context) => FormulaMaker());
+    return MaterialPageRoute(
+        builder: (context) =>
+            FormulaMaker(name: settings.arguments.toString()));
   } else if (settings.name == "Formula Calculator") {
     return MaterialPageRoute(
         builder: (context) =>

@@ -151,7 +151,7 @@ class _HomeState extends State<Home> {
 
     rate();
     if (!webMode) {
-      showinter();
+      //showinter();
     }
   }
 

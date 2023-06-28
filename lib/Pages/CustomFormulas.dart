@@ -5,14 +5,14 @@ import 'package:app/Modules/solver.dart';
 import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_animated_dialog/flutter_animated_dialog.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fraction/fraction.dart';
 
 import '../Modules/globalfunctions.dart';
 
 Map formulas = {};
-Solver solver = new Solver();
-TextEditingController functionName = TextEditingController();
+Solver solver = Solver();
 
 class CustomFormulas extends StatefulWidget {
   const CustomFormulas({super.key});
@@ -27,75 +27,161 @@ class _CustomFormulasState extends State<CustomFormulas> {
     if (tempData != null) {
       formulas = jsonDecode(tempData);
     }
+    if (checked.length != formulas.length) {
+      checked = List.filled(formulas.length, false, growable: true);
+    }
+    try {
+      setState(() {});
+    } catch (e) {}
     return "done";
   }
 
+  TextEditingController functionName = TextEditingController();
+
+  List<bool> checked = [];
+  bool selectionMode = false;
+
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: getFormulas(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return Scaffold(
-            appBar: AppBar(
-              elevation: 0,
-              backgroundColor: Colors.transparent,
-              foregroundColor: (MediaQuery.of(context).platformBrightness ==
-                      Brightness.light)
-                  ? Colors.black
-                  : Colors.white,
-            ),
-            floatingActionButton: FloatingActionButton(
-              child: const Icon(Icons.add),
-              backgroundColor: const Color.fromARGB(255, 255, 184, 0),
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (context) {
-                      return AlertDialog(
-                        actions: [
-                          const Text(
-                            "Enter the name of your new formula",
-                            textAlign: TextAlign.center,
-                          ),
-                          TextField(
-                            controller: functionName,
-                          ),
-                          ElevatedButton(
-                              onPressed: () {
-                                if (functionName.text.isNotEmpty &&
-                                    formulas[functionName.text] == null) {
-                                  Navigator.pushNamed(context, "Formula Maker");
-                                } else {
-                                  Fluttertoast.showToast(
-                                      msg: "Name empty or already taken");
-                                }
-                              },
-                              child: const Text("Create"))
-                        ],
-                      );
-                    });
-              },
-            ),
-            body: GridView.builder(
-              itemBuilder: (context, index) {
-                return FractionallySizedBox(
+    getFormulas();
+    return Scaffold(
+      appBar: AppBar(
+        automaticallyImplyLeading: !selectionMode,
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+        foregroundColor:
+            (MediaQuery.of(context).platformBrightness == Brightness.light)
+                ? Colors.black
+                : Colors.white,
+        leading: (selectionMode)
+            ? IconButton(
+                onPressed: () {
+                  selectionMode = false;
+                },
+                icon: const Icon(Icons.arrow_back),
+              )
+            : null,
+        actions: [
+          (selectionMode)
+              ? IconButton(
+                  onPressed: () {
+                    showAnimatedDialog(
+                        context: context,
+                        barrierDismissible: true,
+                        animationType: DialogTransitionType.scale,
+                        curve: Curves.fastOutSlowIn,
+                        duration: const Duration(milliseconds: 250),
+                        builder: (context) => AlertDialog(
+                              title: const Text("Remove Selected Formulas"),
+                              content: const Text(
+                                  "Are you sure you would like to remove selected formulas?"),
+                              actions: [
+                                ElevatedButton(
+                                    onPressed: () async {
+                                      for (int i = 0; i < checked.length; i++) {
+                                        if (checked[i]) {
+                                          checked.removeAt(i);
+                                          formulas.remove(
+                                              formulas.keys.toList()[i]);
+                                          i--;
+                                        }
+                                      }
+                                      await savedata.setString(
+                                          "formulas", jsonEncode(formulas));
+                                      selectionMode = false;
+                                      Navigator.pop(context);
+                                      setState(() {});
+                                    },
+                                    child: const Text("Remove"))
+                              ],
+                            ));
+                  },
+                  icon: const Icon(Icons.delete))
+              : const SizedBox(),
+          (selectionMode &&
+                  checked.lastIndexOf(true) == checked.indexOf(true) &&
+                  checked.contains(true))
+              ? IconButton(onPressed: () {}, icon: const Icon(Icons.edit))
+              : const SizedBox(),
+        ],
+      ),
+      floatingActionButton: Hero(
+        tag: "Custom Formulas",
+        child: FloatingActionButton(
+          heroTag: null,
+          backgroundColor: const Color.fromARGB(255, 255, 184, 0),
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    actions: [
+                      const Text(
+                        "Enter the name of your new formula",
+                        textAlign: TextAlign.center,
+                      ),
+                      TextField(
+                        controller: functionName,
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            if (functionName.text.isNotEmpty &&
+                                formulas[functionName.text] == null) {
+                              Navigator.pushNamed(context, "Formula Maker",
+                                  arguments: functionName.text);
+                              functionName.text = "";
+                            } else {
+                              Fluttertoast.showToast(
+                                  msg: "Name empty or already taken");
+                            }
+                          },
+                          child: const Text("Create"))
+                    ],
+                  );
+                });
+          },
+          child: const Icon(Icons.add),
+        ),
+      ),
+      body: GridView.builder(
+        itemBuilder: (context, index) {
+          return Stack(
+            children: [
+              Center(
+                child: FractionallySizedBox(
                     widthFactor: 0.9,
                     heightFactor: 0.9,
                     child: Hero(
                       tag: formulas.keys.toList()[index],
                       child: ElevatedButton(
+                        onLongPress: () {
+                          selectionMode = !selectionMode;
+                          setState(() {});
+                          // onPressed: () async {
+                          //   formulas.remove(formulas.keys.toList()[index]);
+                          //   setState(() {});
+
+                          //   await savedata.setString(
+                          //       "formulas", jsonEncode(formulas));
+                          //   Navigator.pop(context);
+                          // }
+                        },
                         onPressed: () {
-                          Navigator.pushNamed(context, "Formula Calculator",
-                              arguments: formulas.keys.toList()[index]);
+                          if (!selectionMode) {
+                            Navigator.pushNamed(context, "Formula Calculator",
+                                arguments: formulas.keys.toList()[index]);
+                          } else {
+                            checked[index] = !checked[index];
+                            setState(() {});
+                          }
                         },
                         style: ElevatedButton.styleFrom(
                           elevation: 10,
-                          backgroundColor:
-                              (MediaQuery.of(context).platformBrightness ==
-                                      Brightness.light)
+                          backgroundColor: (!selectionMode)
+                              ? const Color.fromARGB(255, 165, 226, 255)
+                              : ((checked[index])
                                   ? const Color.fromARGB(255, 165, 226, 255)
-                                  : const Color.fromARGB(255, 0, 135, 197),
+                                  : Colors.grey),
                           shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                           ),
@@ -116,18 +202,15 @@ class _CustomFormulasState extends State<CustomFormulas> {
                           ),
                         ),
                       ),
-                    ));
-              },
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2),
-              itemCount: formulas.length,
-            ),
+                    )),
+              ),
+            ],
           );
-        }
-        return const Scaffold(
-          body: Center(child: CircularProgressIndicator()),
-        );
-      },
+        },
+        gridDelegate:
+            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+        itemCount: formulas.length,
+      ),
     );
   }
 }
@@ -135,13 +218,17 @@ class _CustomFormulasState extends State<CustomFormulas> {
 TextEditingController _controller = TextEditingController();
 
 class FormulaMaker extends StatefulWidget {
-  const FormulaMaker({Key? key}) : super(key: key);
+  FormulaMaker({Key? key, required this.name}) : super(key: key);
+
+  String name = "";
 
   @override
-  State<FormulaMaker> createState() => _FormulaMakerState();
+  State<FormulaMaker> createState() => _FormulaMakerState(functionName: name);
 }
 
 class _FormulaMakerState extends State<FormulaMaker> {
+  _FormulaMakerState({required this.functionName});
+  String functionName = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -165,7 +252,7 @@ class _FormulaMakerState extends State<FormulaMaker> {
                     }
                   }
                   if (containsVariable) {
-                    formulas[functionName.text] =
+                    formulas[functionName] =
                         solver.fixBrackets(_controller.text);
                     savedata.setString("formulas", jsonEncode(formulas));
                     Navigator.pop(context);
@@ -321,19 +408,19 @@ class _FormulaMakerState extends State<FormulaMaker> {
                   ),
                   _FunctionButton(
                     name: '√(',
-                    child: Text(
+                    child: const Text(
                       'x√',
                     ),
                   ),
                   _FunctionButton(
                     name: 'log(',
-                    child: Text(
+                    child: const Text(
                       'log',
                     ),
                   ),
                   _FunctionButton(
                     name: 'ln(',
-                    child: Text(
+                    child: const Text(
                       'ln',
                     ),
                   ),

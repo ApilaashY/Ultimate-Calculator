@@ -21,6 +21,8 @@ MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\apila\.
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\apila\.gradle\caches\transforms-3\2b6ada8361c81a06984c7243144aa68a\transformed\jetified-firebase-installations-17.1.3\AndroidManifest.xml:13:5-21:19
 MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\apila\.gradle\caches\transforms-3\4d9049571d267199edab467550b723c1\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:24:5-37:19
 MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\apila\.gradle\caches\transforms-3\4d9049571d267199edab467550b723c1\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:24:5-37:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:24:5-30:19
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:24:5-30:19
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\apila\.gradle\caches\transforms-3\8a2aeacacaa8fb57ae775afb90b60379\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\apila\.gradle\caches\transforms-3\8a2aeacacaa8fb57ae775afb90b60379\transformed\constraintlayout-2.1.4\AndroidManifest.xml:9:5-20
 MERGED from [com.google.android.gms:play-services-measurement:21.2.2] C:\Users\apila\.gradle\caches\transforms-3\2d8d7676c8606918c9fa865fdaa8c89f\transformed\jetified-play-services-measurement-21.2.2\AndroidManifest.xml:28:5-44:19
@@ -55,18 +57,16 @@ MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\apil
 MERGED from [com.google.android.gms:play-services-basement:18.1.0] C:\Users\apila\.gradle\caches\transforms-3\b4b0874b1d7c5a7d9ab179caf60bf6ae\transformed\jetified-play-services-basement-18.1.0\AndroidManifest.xml:20:5-24:19
 MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\apila\.gradle\caches\transforms-3\22cc798c319d31ed5f554402669a394c\transformed\work-runtime-2.7.0\AndroidManifest.xml:30:5-143:19
 MERGED from [androidx.work:work-runtime:2.7.0] C:\Users\apila\.gradle\caches\transforms-3\22cc798c319d31ed5f554402669a394c\transformed\work-runtime-2.7.0\AndroidManifest.xml:30:5-143:19
-MERGED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:28:5-89
-MERGED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:28:5-89
+MERGED from [androidx.core:core:1.6.0] C:\Users\apila\.gradle\caches\transforms-3\24cc4fbeaead76b16a290c925c369d62\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
+MERGED from [androidx.core:core:1.6.0] C:\Users\apila\.gradle\caches\transforms-3\24cc4fbeaead76b16a290c925c369d62\transformed\core-1.6.0\AndroidManifest.xml:24:5-89
 MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ac9b048ff08be9bc11c3980449e173a3\transformed\jetified-startup-runtime-1.0.0\AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ac9b048ff08be9bc11c3980449e173a3\transformed\jetified-startup-runtime-1.0.0\AndroidManifest.xml:25:5-31:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:24:5-30:19
-MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:24:5-30:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\apila\.gradle\caches\transforms-3\3e93f45bd34adac9fac71db005183d9d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\apila\.gradle\caches\transforms-3\3e93f45bd34adac9fac71db005183d9d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\apila\.gradle\caches\transforms-3\e0a7e6717fd0c64ef8843c70f42d0048\transformed\room-runtime-2.2.5\AndroidManifest.xml:24:5-29:19
 MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\apila\.gradle\caches\transforms-3\e0a7e6717fd0c64ef8843c70f42d0048\transformed\room-runtime-2.2.5\AndroidManifest.xml:24:5-29:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\apila\.gradle\caches\transforms-3\3e93f45bd34adac9fac71db005183d9d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\apila\.gradle\caches\transforms-3\3e93f45bd34adac9fac71db005183d9d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:24:5-25:19
 	android:appComponentFactory
-		ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:28:18-86
+		ADDED from [androidx.core:core:1.6.0] C:\Users\apila\.gradle\caches\transforms-3\24cc4fbeaead76b16a290c925c369d62\transformed\core-1.6.0\AndroidManifest.xml:24:18-86
 	android:label
 		ADDED from D:\Creations\Github\Ultimate-Calculator\android\app\src\main\AndroidManifest.xml:5:9-44
 	android:icon
@@ -95,6 +95,7 @@ MERGED from [com.google.firebase:firebase-firestore:24.6.0] C:\Users\apila\.grad
 MERGED from [com.google.android.gms:play-services-measurement-api:21.2.2] C:\Users\apila\.gradle\caches\transforms-3\6e7428293d560184c431efb4256a38b8\transformed\jetified-play-services-measurement-api-21.2.2\AndroidManifest.xml:17:1-37:12
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\apila\.gradle\caches\transforms-3\2b6ada8361c81a06984c7243144aa68a\transformed\jetified-firebase-installations-17.1.3\AndroidManifest.xml:2:1-23:12
 MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\apila\.gradle\caches\transforms-3\4d9049571d267199edab467550b723c1\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:15:1-39:12
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:17:1-32:12
 MERGED from [com.google.android.gms:play-services-ads:21.3.0] C:\Users\apila\.gradle\caches\transforms-3\5f70226576998205bbeb53db3c5723b7\transformed\jetified-play-services-ads-21.3.0\AndroidManifest.xml:17:1-25:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\apila\.gradle\caches\transforms-3\8a2aeacacaa8fb57ae775afb90b60379\transformed\constraintlayout-2.1.4\AndroidManifest.xml:2:1-11:12
 MERGED from [com.google.android.gms:play-services-measurement:21.2.2] C:\Users\apila\.gradle\caches\transforms-3\2d8d7676c8606918c9fa865fdaa8c89f\transformed\jetified-play-services-measurement-21.2.2\AndroidManifest.xml:17:1-46:12
@@ -129,21 +130,20 @@ MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\apila\.gradle\ca
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\8c12dcb2fd02d90cc1b5cb5773bfd323\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\apila\.gradle\caches\transforms-3\c92a3d2e19176b2e1d62da4ab72ab3c0\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\apila\.gradle\caches\transforms-3\a9b436434e1c314ad50635502b962ac9\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:17:1-30:12
-MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ac9b048ff08be9bc11c3980449e173a3\transformed\jetified-startup-runtime-1.0.0\AndroidManifest.xml:17:1-33:12
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\c24498761b8f0417089020f2d1cb9e55\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
-MERGED from [com.google.firebase:firebase-components:17.1.0] C:\Users\apila\.gradle\caches\transforms-3\76660323adb9bb077dc2d4a346dfdf26\transformed\jetified-firebase-components-17.1.0\AndroidManifest.xml:15:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:17:1-32:12
+MERGED from [androidx.core:core:1.6.0] C:\Users\apila\.gradle\caches\transforms-3\24cc4fbeaead76b16a290c925c369d62\transformed\core-1.6.0\AndroidManifest.xml:17:1-26:12
 MERGED from [androidx.lifecycle:lifecycle-service:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\b6d4f2282f80ff4c6fd47b60d49834d7\transformed\jetified-lifecycle-service-2.1.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\apila\.gradle\caches\transforms-3\a599164798749cb7326a7d554e1d37e5\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:17:1-24:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\d96b1cadca4ac02f5f48f5262713c942\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\apila\.gradle\caches\transforms-3\3e93f45bd34adac9fac71db005183d9d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ddd8faecd5f47ac10c63d8d8cc6732f4\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4288e87673df31070cda57a2830d4cc2\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\3caaf5d0c46a1ea15016906a16782264\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\fc9a060ee24538968e3cff6f9d5bdd6b\transformed\lifecycle-livedata-2.1.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\12faacab14f7ddd59bbdc3ac9497b58e\transformed\lifecycle-livedata-core-2.1.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ac9b048ff08be9bc11c3980449e173a3\transformed\jetified-startup-runtime-1.0.0\AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\c24498761b8f0417089020f2d1cb9e55\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:17:1-24:12
+MERGED from [com.google.firebase:firebase-components:17.1.0] C:\Users\apila\.gradle\caches\transforms-3\76660323adb9bb077dc2d4a346dfdf26\transformed\jetified-firebase-components-17.1.0\AndroidManifest.xml:15:1-22:12
 MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\apila\.gradle\caches\transforms-3\e0a7e6717fd0c64ef8843c70f42d0048\transformed\room-runtime-2.2.5\AndroidManifest.xml:17:1-31:12
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\a6aa4abb8dac507de3ec01d23db26681\transformed\core-runtime-2.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\apila\.gradle\caches\transforms-3\3e93f45bd34adac9fac71db005183d9d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\d96b1cadca4ac02f5f48f5262713c942\transformed\interpolator-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ddd8faecd5f47ac10c63d8d8cc6732f4\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\e7dee35be02b2f15ebc05a6d38264cbb\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\e6a258f5f4b8c1a3a231b529545de6d6\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\19ced168df5fb497f77e2cc983ad9ad0\transformed\print-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -151,8 +151,8 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel:2.1.0] C:\Users\apila\.gradl
 MERGED from [androidx.sqlite:sqlite-framework:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\8738dc8e5c065bad9c4200e26d94f7ac\transformed\sqlite-framework-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\43747681798346f3eb1ffab08892de87\transformed\sqlite-2.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\apila\.gradle\caches\transforms-3\9979eff002e8b45b6502c0d3eb69755d\transformed\jetified-grpc-android-1.52.1\AndroidManifest.xml:2:1-11:12
-MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\apila\.gradle\caches\transforms-3\7c4022fa5e495291b94b98fd25e15e87\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:17:1-22:12
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\apila\.gradle\caches\transforms-3\95d5caa85d4853a178a2331a41123e74\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:2:1-11:12
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\apila\.gradle\caches\transforms-3\28bbb63e95ac448a2d1c5ce7e7209f67\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:17:1-24:12
 INJECTED from D:\Creations\Github\Ultimate-Calculator\android\app\src\main\AndroidManifest.xml:1:1-38:12
 INJECTED from D:\Creations\Github\Ultimate-Calculator\android\app\src\main\AndroidManifest.xml:1:1-38:12
 INJECTED from D:\Creations\Github\Ultimate-Calculator\android\app\src\main\AndroidManifest.xml:1:1-38:12
@@ -226,6 +226,8 @@ MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\apila\.
 MERGED from [com.google.firebase:firebase-installations:17.1.3] C:\Users\apila\.gradle\caches\transforms-3\2b6ada8361c81a06984c7243144aa68a\transformed\jetified-firebase-installations-17.1.3\AndroidManifest.xml:5:5-7:41
 MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\apila\.gradle\caches\transforms-3\4d9049571d267199edab467550b723c1\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:19:5-21:41
 MERGED from [com.google.firebase:firebase-common:20.3.2] C:\Users\apila\.gradle\caches\transforms-3\4d9049571d267199edab467550b723c1\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:19:5-21:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [com.google.android.gms:play-services-ads:21.3.0] C:\Users\apila\.gradle\caches\transforms-3\5f70226576998205bbeb53db3c5723b7\transformed\jetified-play-services-ads-21.3.0\AndroidManifest.xml:21:5-23:52
 MERGED from [com.google.android.gms:play-services-ads:21.3.0] C:\Users\apila\.gradle\caches\transforms-3\5f70226576998205bbeb53db3c5723b7\transformed\jetified-play-services-ads-21.3.0\AndroidManifest.xml:21:5-23:52
 MERGED from [androidx.constraintlayout:constraintlayout:2.1.4] C:\Users\apila\.gradle\caches\transforms-3\8a2aeacacaa8fb57ae775afb90b60379\transformed\constraintlayout-2.1.4\AndroidManifest.xml:5:5-7:41
@@ -294,36 +296,34 @@ MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\api
 MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\apila\.gradle\caches\transforms-3\c92a3d2e19176b2e1d62da4ab72ab3c0\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\apila\.gradle\caches\transforms-3\a9b436434e1c314ad50635502b962ac9\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\apila\.gradle\caches\transforms-3\a9b436434e1c314ad50635502b962ac9\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:20:5-44
-MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ac9b048ff08be9bc11c3980449e173a3\transformed\jetified-startup-runtime-1.0.0\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ac9b048ff08be9bc11c3980449e173a3\transformed\jetified-startup-runtime-1.0.0\AndroidManifest.xml:21:5-23:41
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\c24498761b8f0417089020f2d1cb9e55\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\c24498761b8f0417089020f2d1cb9e55\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
-MERGED from [com.google.firebase:firebase-components:17.1.0] C:\Users\apila\.gradle\caches\transforms-3\76660323adb9bb077dc2d4a346dfdf26\transformed\jetified-firebase-components-17.1.0\AndroidManifest.xml:18:5-20:41
-MERGED from [com.google.firebase:firebase-components:17.1.0] C:\Users\apila\.gradle\caches\transforms-3\76660323adb9bb077dc2d4a346dfdf26\transformed\jetified-firebase-components-17.1.0\AndroidManifest.xml:18:5-20:41
-MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] C:\Users\apila\.gradle\caches\transforms-3\24cc4fbeaead76b16a290c925c369d62\transformed\core-1.6.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.core:core:1.6.0] C:\Users\apila\.gradle\caches\transforms-3\24cc4fbeaead76b16a290c925c369d62\transformed\core-1.6.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-service:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\b6d4f2282f80ff4c6fd47b60d49834d7\transformed\jetified-lifecycle-service-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-service:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\b6d4f2282f80ff4c6fd47b60d49834d7\transformed\jetified-lifecycle-service-2.1.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\apila\.gradle\caches\transforms-3\a599164798749cb7326a7d554e1d37e5\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.lifecycle:lifecycle-runtime:2.3.1] C:\Users\apila\.gradle\caches\transforms-3\a599164798749cb7326a7d554e1d37e5\transformed\lifecycle-runtime-2.3.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\d96b1cadca4ac02f5f48f5262713c942\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\d96b1cadca4ac02f5f48f5262713c942\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\apila\.gradle\caches\transforms-3\3e93f45bd34adac9fac71db005183d9d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\apila\.gradle\caches\transforms-3\3e93f45bd34adac9fac71db005183d9d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ddd8faecd5f47ac10c63d8d8cc6732f4\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ddd8faecd5f47ac10c63d8d8cc6732f4\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4288e87673df31070cda57a2830d4cc2\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.lifecycle:lifecycle-runtime:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4288e87673df31070cda57a2830d4cc2\transformed\lifecycle-runtime-2.2.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\3caaf5d0c46a1ea15016906a16782264\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.savedstate:savedstate:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\3caaf5d0c46a1ea15016906a16782264\transformed\jetified-savedstate-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\fc9a060ee24538968e3cff6f9d5bdd6b\transformed\lifecycle-livedata-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\fc9a060ee24538968e3cff6f9d5bdd6b\transformed\lifecycle-livedata-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\12faacab14f7ddd59bbdc3ac9497b58e\transformed\lifecycle-livedata-core-2.1.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\12faacab14f7ddd59bbdc3ac9497b58e\transformed\lifecycle-livedata-core-2.1.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ac9b048ff08be9bc11c3980449e173a3\transformed\jetified-startup-runtime-1.0.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.startup:startup-runtime:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ac9b048ff08be9bc11c3980449e173a3\transformed\jetified-startup-runtime-1.0.0\AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\c24498761b8f0417089020f2d1cb9e55\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.tracing:tracing:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\c24498761b8f0417089020f2d1cb9e55\transformed\jetified-tracing-1.0.0\AndroidManifest.xml:20:5-22:41
+MERGED from [com.google.firebase:firebase-components:17.1.0] C:\Users\apila\.gradle\caches\transforms-3\76660323adb9bb077dc2d4a346dfdf26\transformed\jetified-firebase-components-17.1.0\AndroidManifest.xml:18:5-20:41
+MERGED from [com.google.firebase:firebase-components:17.1.0] C:\Users\apila\.gradle\caches\transforms-3\76660323adb9bb077dc2d4a346dfdf26\transformed\jetified-firebase-components-17.1.0\AndroidManifest.xml:18:5-20:41
 MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\apila\.gradle\caches\transforms-3\e0a7e6717fd0c64ef8843c70f42d0048\transformed\room-runtime-2.2.5\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.room:room-runtime:2.2.5] C:\Users\apila\.gradle\caches\transforms-3\e0a7e6717fd0c64ef8843c70f42d0048\transformed\room-runtime-2.2.5\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\a6aa4abb8dac507de3ec01d23db26681\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\a6aa4abb8dac507de3ec01d23db26681\transformed\core-runtime-2.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\apila\.gradle\caches\transforms-3\3e93f45bd34adac9fac71db005183d9d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\apila\.gradle\caches\transforms-3\3e93f45bd34adac9fac71db005183d9d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\d96b1cadca4ac02f5f48f5262713c942\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\d96b1cadca4ac02f5f48f5262713c942\transformed\interpolator-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ddd8faecd5f47ac10c63d8d8cc6732f4\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\ddd8faecd5f47ac10c63d8d8cc6732f4\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\e7dee35be02b2f15ebc05a6d38264cbb\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\e7dee35be02b2f15ebc05a6d38264cbb\transformed\documentfile-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] C:\Users\apila\.gradle\caches\transforms-3\e6a258f5f4b8c1a3a231b529545de6d6\transformed\localbroadcastmanager-1.0.0\AndroidManifest.xml:20:5-44
@@ -338,10 +338,10 @@ MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\apila\.gradle\caches\transfo
 MERGED from [androidx.sqlite:sqlite:2.1.0] C:\Users\apila\.gradle\caches\transforms-3\43747681798346f3eb1ffab08892de87\transformed\sqlite-2.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\apila\.gradle\caches\transforms-3\9979eff002e8b45b6502c0d3eb69755d\transformed\jetified-grpc-android-1.52.1\AndroidManifest.xml:5:5-7:41
 MERGED from [io.grpc:grpc-android:1.52.1] C:\Users\apila\.gradle\caches\transforms-3\9979eff002e8b45b6502c0d3eb69755d\transformed\jetified-grpc-android-1.52.1\AndroidManifest.xml:5:5-7:41
-MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\apila\.gradle\caches\transforms-3\7c4022fa5e495291b94b98fd25e15e87\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
-MERGED from [androidx.annotation:annotation-experimental:1.3.0] C:\Users\apila\.gradle\caches\transforms-3\7c4022fa5e495291b94b98fd25e15e87\transformed\jetified-annotation-experimental-1.3.0\AndroidManifest.xml:20:5-44
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\apila\.gradle\caches\transforms-3\95d5caa85d4853a178a2331a41123e74\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
 MERGED from [com.google.firebase:protolite-well-known-types:18.0.0] C:\Users\apila\.gradle\caches\transforms-3\95d5caa85d4853a178a2331a41123e74\transformed\jetified-protolite-well-known-types-18.0.0\AndroidManifest.xml:7:5-9:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\apila\.gradle\caches\transforms-3\28bbb63e95ac448a2d1c5ce7e7209f67\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.annotation:annotation-experimental:1.1.0] C:\Users\apila\.gradle\caches\transforms-3\28bbb63e95ac448a2d1c5ce7e7209f67\transformed\jetified-annotation-experimental-1.1.0\AndroidManifest.xml:20:5-22:41
 INJECTED from D:\Creations\Github\Ultimate-Calculator\android\app\src\main\AndroidManifest.xml
 INJECTED from D:\Creations\Github\Ultimate-Calculator\android\app\src\main\AndroidManifest.xml
 	tools:overrideLibrary
@@ -530,6 +530,16 @@ ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\apila\.gradle\c
 		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\apila\.gradle\caches\transforms-3\4d9049571d267199edab467550b723c1\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:30:13-36
 	android:name
 		ADDED from [com.google.firebase:firebase-common:20.3.2] C:\Users\apila\.gradle\caches\transforms-3\4d9049571d267199edab467550b723c1\transformed\jetified-firebase-common-20.3.2\AndroidManifest.xml:26:13-77
+provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
+ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
+	android:authorities
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
+	android:multiprocess
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
+	android:exported
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
 uses-permission#com.google.android.finsky.permission.BIND_GET_INSTALL_REFERRER_SERVICE
 ADDED from [com.google.android.gms:play-services-measurement:21.2.2] C:\Users\apila\.gradle\caches\transforms-3\2d8d7676c8606918c9fa865fdaa8c89f\transformed\jetified-play-services-measurement-21.2.2\AndroidManifest.xml:26:5-110
 MERGED from [com.google.android.gms:play-services-measurement-impl:21.2.2] C:\Users\apila\.gradle\caches\transforms-3\8c500dd3020196332d932745e153e8c0\transformed\jetified-play-services-measurement-impl-21.2.2\AndroidManifest.xml:26:5-110
@@ -850,36 +860,6 @@ action#androidx.work.diagnostics.REQUEST_DIAGNOSTICS
 ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\apila\.gradle\caches\transforms-3\22cc798c319d31ed5f554402669a394c\transformed\work-runtime-2.7.0\AndroidManifest.xml:140:17-88
 	android:name
 		ADDED from [androidx.work:work-runtime:2.7.0] C:\Users\apila\.gradle\caches\transforms-3\22cc798c319d31ed5f554402669a394c\transformed\work-runtime-2.7.0\AndroidManifest.xml:140:25-85
-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:22:5-24:47
-	android:protectionLevel
-		ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:24:9-44
-	android:name
-		ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:23:9-81
-permission#app.ultimatecalculator.www.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:22:5-24:47
-	android:protectionLevel
-		ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:24:9-44
-	android:name
-		ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:23:9-81
-uses-permission#${applicationId}.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:26:5-97
-	android:name
-		ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:26:22-94
-uses-permission#app.ultimatecalculator.www.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION
-ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:26:5-97
-	android:name
-		ADDED from [androidx.core:core:1.10.1] C:\Users\apila\.gradle\caches\transforms-3\691ffbd33d74f288441a445c03feec2d\transformed\core-1.10.1\AndroidManifest.xml:26:22-94
-provider#androidx.lifecycle.ProcessLifecycleOwnerInitializer
-ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:25:9-29:43
-	android:authorities
-		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:27:13-69
-	android:multiprocess
-		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:29:13-40
-	android:exported
-		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:28:13-37
-	android:name
-		ADDED from [androidx.lifecycle:lifecycle-process:2.2.0] C:\Users\apila\.gradle\caches\transforms-3\4e6f561f6d6100b85d926ff130239752\transformed\jetified-lifecycle-process-2.2.0\AndroidManifest.xml:26:13-79
 service#androidx.room.MultiInstanceInvalidationService
 ADDED from [androidx.room:room-runtime:2.2.5] C:\Users\apila\.gradle\caches\transforms-3\e0a7e6717fd0c64ef8843c70f42d0048\transformed\room-runtime-2.2.5\AndroidManifest.xml:25:9-28:40
 	android:exported

@@ -17,15 +17,18 @@ class _PeriodicTableState extends State<PeriodicTable> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Container(
-          padding:
-              const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
-          decoration: BoxDecoration(
-              shape: BoxShape.rectangle,
-              borderRadius: BorderRadius.circular(20),
-              color: Theme.of(context).scaffoldBackgroundColor),
-          child: const Text(
-            'Periodic Table',
+        title: Hero(
+          tag: "Periodic Table",
+          child: Container(
+            padding:
+                const EdgeInsets.only(left: 10, right: 10, top: 5, bottom: 5),
+            decoration: BoxDecoration(
+                shape: BoxShape.rectangle,
+                borderRadius: BorderRadius.circular(20),
+                color: Theme.of(context).scaffoldBackgroundColor),
+            child: const Text(
+              'Periodic Table',
+            ),
           ),
         ),
         foregroundColor:
@@ -35,14 +38,18 @@ class _PeriodicTableState extends State<PeriodicTable> {
         backgroundColor: Colors.transparent,
         elevation: 0,
       ),
-      body: Center(
-        child: FractionallySizedBox(
-          widthFactor: 0.9,
-          child: Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: InteractiveViewer(
+      body: InteractiveViewer(
+        maxScale: 6,
+        clipBehavior: Clip.none,
+        child: Center(
+          child: FractionallySizedBox(
+            widthFactor: 0.95,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 10),
               child: GridView.count(
                 crossAxisCount: 18,
+                shrinkWrap: true,
+                primary: false,
                 children: [
                   PeriodicButton('Hydrogen'),
                   const SizedBox(),
