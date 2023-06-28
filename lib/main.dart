@@ -86,6 +86,11 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  _HomeState() {
+    if (!webMode) {
+      //showinter();
+    }
+  }
   Future setup() async {
     savedata = await SharedPreferences.getInstance();
     var snap;
@@ -150,9 +155,6 @@ class _HomeState extends State<Home> {
     }
 
     rate();
-    if (!webMode) {
-      //showinter();
-    }
   }
 
   @override

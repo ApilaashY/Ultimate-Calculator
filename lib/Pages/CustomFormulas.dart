@@ -27,9 +27,6 @@ class _CustomFormulasState extends State<CustomFormulas> {
     if (tempData != null) {
       formulas = jsonDecode(tempData);
     }
-    if (checked.length != formulas.length) {
-      checked = List.filled(formulas.length, false, growable: true);
-    }
     try {
       setState(() {});
     } catch (e) {}
@@ -101,7 +98,59 @@ class _CustomFormulasState extends State<CustomFormulas> {
           (selectionMode &&
                   checked.lastIndexOf(true) == checked.indexOf(true) &&
                   checked.contains(true))
-              ? IconButton(onPressed: () {}, icon: const Icon(Icons.edit))
+              ? IconButton(
+                  onPressed: () {
+                    for (int i = 0; i < checked.length; i++) {
+                      TextEditingController nameChangeController =
+                          TextEditingController(
+                              text: formulas.keys.toList()[i]);
+                      if (checked[i]) {
+                        showAnimatedDialog(
+                            context: context,
+                            barrierDismissible: true,
+                            animationType: DialogTransitionType.scale,
+                            curve: Curves.fastOutSlowIn,
+                            duration: const Duration(milliseconds: 250),
+                            builder: (context) => AlertDialog(
+                                  actions: [
+                                    const Text(
+                                      "Edit the name of your formula",
+                                      textAlign: TextAlign.center,
+                                    ),
+                                    TextField(
+                                      controller: nameChangeController,
+                                    ),
+                                    ElevatedButton(
+                                        onPressed: () {
+                                          if (nameChangeController
+                                                  .text.isNotEmpty &&
+                                              (formulas[nameChangeController
+                                                          .text] ==
+                                                      null ||
+                                                  nameChangeController.text ==
+                                                      formulas.keys
+                                                          .toList()[i])) {
+                                            _controller.text = formulas[
+                                                formulas.keys.toList()[i]];
+
+                                            selectionMode = false;
+                                            Navigator.pushNamed(
+                                                context, "Formula Maker",
+                                                arguments: functionName.text);
+                                          } else {
+                                            Fluttertoast.showToast(
+                                                msg:
+                                                    "Name empty or already taken");
+                                          }
+                                        },
+                                        child: const Text("Change"))
+                                  ],
+                                ));
+                      }
+                    }
+                  },
+                  icon: const Icon(Icons.edit),
+                )
               : const SizedBox(),
         ],
       ),
@@ -111,34 +160,36 @@ class _CustomFormulasState extends State<CustomFormulas> {
           heroTag: null,
           backgroundColor: const Color.fromARGB(255, 255, 184, 0),
           onPressed: () {
-            showDialog(
+            showAnimatedDialog(
                 context: context,
-                builder: (context) {
-                  return AlertDialog(
-                    actions: [
-                      const Text(
-                        "Enter the name of your new formula",
-                        textAlign: TextAlign.center,
-                      ),
-                      TextField(
-                        controller: functionName,
-                      ),
-                      ElevatedButton(
-                          onPressed: () {
-                            if (functionName.text.isNotEmpty &&
-                                formulas[functionName.text] == null) {
-                              Navigator.pushNamed(context, "Formula Maker",
-                                  arguments: functionName.text);
-                              functionName.text = "";
-                            } else {
-                              Fluttertoast.showToast(
-                                  msg: "Name empty or already taken");
-                            }
-                          },
-                          child: const Text("Create"))
-                    ],
-                  );
-                });
+                barrierDismissible: true,
+                animationType: DialogTransitionType.scale,
+                curve: Curves.fastOutSlowIn,
+                duration: const Duration(milliseconds: 250),
+                builder: (context) => AlertDialog(
+                      actions: [
+                        const Text(
+                          "Enter the name of your new formula",
+                          textAlign: TextAlign.center,
+                        ),
+                        TextField(
+                          controller: functionName,
+                        ),
+                        ElevatedButton(
+                            onPressed: () {
+                              if (functionName.text.isNotEmpty &&
+                                  formulas[functionName.text] == null) {
+                                Navigator.pushNamed(context, "Formula Maker",
+                                    arguments: functionName.text);
+                                functionName.text = "";
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg: "Name empty or already taken");
+                              }
+                            },
+                            child: const Text("Create"))
+                      ],
+                    ));
           },
           child: const Icon(Icons.add),
         ),
@@ -156,15 +207,12 @@ class _CustomFormulasState extends State<CustomFormulas> {
                       child: ElevatedButton(
                         onLongPress: () {
                           selectionMode = !selectionMode;
+                          if (selectionMode) {
+                            checked = List.filled(formulas.length, false,
+                                growable: true);
+                            checked[index] = !checked[index];
+                          }
                           setState(() {});
-                          // onPressed: () async {
-                          //   formulas.remove(formulas.keys.toList()[index]);
-                          //   setState(() {});
-
-                          //   await savedata.setString(
-                          //       "formulas", jsonEncode(formulas));
-                          //   Navigator.pop(context);
-                          // }
                         },
                         onPressed: () {
                           if (!selectionMode) {
@@ -244,9 +292,14 @@ class _FormulaMakerState extends State<FormulaMaker> {
               onPressed: () {
                 if (_controller.text.isNotEmpty) {
                   bool containsVariable = false;
-                  for (String x in _controller.text.split("")) {
-                    if ("abcdefghijklmnopqrstuvwxyz"
-                        .contains(x.toLowerCase())) {
+                  String trigRemoved = _controller.text
+                      .replaceAll("cos", "")
+                      .replaceAll("sin", "")
+                      .replaceAll("tan", "")
+                      .replaceAll("log", "")
+                      .replaceAll("ln", "");
+                  for (String x in trigRemoved.split("")) {
+                    if ("abcxyz".contains(x.toLowerCase())) {
                       containsVariable = true;
                       break;
                     }
@@ -254,6 +307,7 @@ class _FormulaMakerState extends State<FormulaMaker> {
                   if (containsVariable) {
                     formulas[functionName] =
                         solver.fixBrackets(_controller.text);
+
                     savedata.setString("formulas", jsonEncode(formulas));
                     Navigator.pop(context);
                     Navigator.pop(context);

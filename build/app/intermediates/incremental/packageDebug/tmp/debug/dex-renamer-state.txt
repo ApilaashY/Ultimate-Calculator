@@ -1,4 +1,4 @@
-#Tue Jun 27 20:41:56 EDT 2023
+#Wed Jun 28 13:48:09 EDT 2023
 base.0=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
 base.1=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
 base.2=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
