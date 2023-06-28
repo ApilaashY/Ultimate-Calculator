@@ -59,6 +59,24 @@ class _CustomFormulasState extends State<CustomFormulas> {
               )
             : null,
         actions: [
+          (!selectionMode)
+              ? IconButton(
+                  onPressed: () {
+                    showAnimatedDialog(
+                      context: context,
+                      barrierDismissible: true,
+                      animationType: DialogTransitionType.scale,
+                      curve: Curves.fastOutSlowIn,
+                      duration: const Duration(milliseconds: 250),
+                      builder: (context) => const AlertDialog(
+                        content: Text(
+                            "Click on the + in the bottom right to create your own formula.\n\nPress and hold on formulas you have made to edit or remove them."),
+                      ),
+                    );
+                  },
+                  icon: const Icon(Icons.question_mark),
+                )
+              : const SizedBox(),
           (selectionMode)
               ? IconButton(
                   onPressed: () {
@@ -132,11 +150,24 @@ class _CustomFormulasState extends State<CustomFormulas> {
                                                           .toList()[i])) {
                                             _controller.text = formulas[
                                                 formulas.keys.toList()[i]];
-
                                             selectionMode = false;
+                                            if (formulas.keys.toList()[i] !=
+                                                nameChangeController.text) {
+                                              formulas[
+                                                  nameChangeController
+                                                      .text] = formulas[
+                                                  formulas.keys.toList()[i]];
+                                              formulas.remove(
+                                                  formulas.keys.toList()[i]);
+                                            }
+
+                                            savedata.setString("formulas",
+                                                jsonEncode(formulas));
+                                            print(formulas);
                                             Navigator.pushNamed(
                                                 context, "Formula Maker",
-                                                arguments: functionName.text);
+                                                arguments:
+                                                    nameChangeController.text);
                                           } else {
                                             Fluttertoast.showToast(
                                                 msg:
@@ -309,6 +340,9 @@ class _FormulaMakerState extends State<FormulaMaker> {
                         solver.fixBrackets(_controller.text);
 
                     savedata.setString("formulas", jsonEncode(formulas));
+                    _controller.text = "";
+
+                    print(formulas);
                     Navigator.pop(context);
                     Navigator.pop(context);
                   } else {
@@ -704,8 +738,7 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
     ];
 
     for (int i = 0; i < translation.length; i++) {
-      if ("abcdefghijklmnopqrstuvwxyzABCDEGHIJKLMNOPQRSTUVWXYZ"
-          .contains(translation[i])) {
+      if ("abcxyz".contains(translation[i])) {
         if (!alreadySet) {
           controllers.add(TextEditingController());
           positions.add(i);
@@ -802,7 +835,7 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
       body: Center(
         child: FractionallySizedBox(
           widthFactor: 0.8,
-          heightFactor: 0.5,
+          heightFactor: 0.7,
           child: Hero(
             tag: name,
             child: Card(

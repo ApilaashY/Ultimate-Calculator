@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:app/Pages/periodictable.dart';
+
 class Solver {
   String fixBrackets(String equation) {
     int fronts = 0, backs = 0;
@@ -40,39 +42,59 @@ class Solver {
         .replaceAll(" ", "")
         .toLowerCase()
         .replaceAll("π", "(${math.pi})");
-    print(equation);
     List<String> elements = [];
     String number = "", last = "";
     for (int i = 0; i < equation.length; i++) {
       if ("+-*/^√()abcdefghijklmnopqrstuvwxyz".contains(equation[i])) {
-        bool numBeforeBracket = (i > 0 &&
-            equation[i] == '(' &&
-            !"+-*/^√()".contains(equation[i - 1]));
-        bool numAfterBracket = (i < equation.length - 1 &&
-            equation[i] == ')' &&
-            !"+-*/^√()".contains(equation[i + 1]));
+        String checkEquation = equation.substring(i);
+        if (checkEquation.length >= 3 &&
+            (checkEquation.contains("sin") ||
+                checkEquation.contains("cos") ||
+                checkEquation.contains("tan") ||
+                checkEquation.contains("log"))) {
+          String part = checkEquation.substring(0, 3);
+          for (String element in ["sin", "cos", "tan", "log"]) {
+            if (part == element) {
+              elements.add(element);
+              i += 2;
+              break;
+            }
+          }
+        } else if (checkEquation.length <= 2 && checkEquation.contains("ln")) {
+          if (checkEquation.substring(0, 2) == "ln") {
+            elements.add("ln");
+            i++;
+          }
+        } else {
+          bool numBeforeBracket = (i > 0 &&
+              equation[i] == '(' &&
+              !"+-*/^√()".contains(equation[i - 1]));
+          bool numAfterBracket = (i < equation.length - 1 &&
+              equation[i] == ')' &&
+              !"+-*/^√()".contains(equation[i + 1]));
 
-        if (number.isNotEmpty) {
-          elements.add(number);
-        }
-        if (numBeforeBracket) {
-          elements.add("*");
-        }
+          if (number.isNotEmpty) {
+            elements.add(number);
+          }
+          if (numBeforeBracket) {
+            elements.add("*");
+          }
 
-        if (equation[i] == "√" &&
-            (i < 1 || !"1234567890".contains(equation[i - 1][0]))) {
-          elements.add("2");
-        }
-        elements.add(equation[i]);
+          if (equation[i] == "√" &&
+              (i < 1 || !"1234567890".contains(equation[i - 1][0]))) {
+            elements.add("2");
+          }
+          elements.add(equation[i]);
 
-        if (numAfterBracket ||
-            (i < equation.length - 1 &&
-                equation[i] == ")" &&
-                equation[i + 1] == "(")) {
-          elements.add("*");
-        }
+          if (numAfterBracket ||
+              (i < equation.length - 1 &&
+                  equation[i] == ")" &&
+                  equation[i + 1] == "(")) {
+            elements.add("*");
+          }
 
-        number = "";
+          number = "";
+        }
       } else {
         if (equation[i] == "√" &&
             (i < 1 || !"1234567890".contains(equation[i - 1][0]))) {
@@ -129,7 +151,6 @@ class Solver {
         equation.contains("tan") ||
         equation.contains("ln") ||
         equation.contains("log")) {
-      print(equation);
       for (int i = 0; i < equation.length; i++) {
         if ("sin cos tan".contains(equation[i])) {
           String answer = (_adjustableSinCosTan(

@@ -90,22 +90,26 @@ class _SettingsState extends State<Settings> {
               padding: const EdgeInsets.all(15),
               child: ListView(
                 children: [
-                  TextFormField(
-                    controller: roundingcontroller,
-                    maxLength: 1,
-                    keyboardType: TextInputType.number,
-                    inputFormatters: <TextInputFormatter>[
-                      FilteringTextInputFormatter.digitsOnly
-                    ],
-                    enabled: !_sigfig,
-                    onChanged: (val) => save(),
-                    style: TextStyle(
-                        color: (MediaQuery.of(context).platformBrightness ==
-                                Brightness.light)
-                            ? Colors.black
-                            : Colors.white),
-                    decoration: const InputDecoration(
-                        labelText: 'How many digits to round answers'),
+                  FractionallySizedBox(
+                    widthFactor: 0.6,
+                    child: TextFormField(
+                      controller: roundingcontroller,
+                      maxLength: 1,
+                      textAlign: TextAlign.center,
+                      keyboardType: TextInputType.number,
+                      inputFormatters: <TextInputFormatter>[
+                        FilteringTextInputFormatter.digitsOnly
+                      ],
+                      enabled: !_sigfig,
+                      onChanged: (val) => save(),
+                      style: TextStyle(
+                          color: (MediaQuery.of(context).platformBrightness ==
+                                  Brightness.light)
+                              ? Colors.black
+                              : Colors.white),
+                      decoration: const InputDecoration(
+                          labelText: 'How many digits to round answers'),
+                    ),
                   ),
                   const Padding(
                     padding: EdgeInsets.all(10),

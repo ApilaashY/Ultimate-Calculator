@@ -11,6 +11,7 @@ bool degreemode = degreeDefault;
 bool deciasfrac = false;
 String letters = 'abcdefghijklmnopqrstuvwxyz';
 Solver solver = new Solver();
+List<String> history = [];
 
 class Calculator extends StatefulWidget {
   @override
@@ -20,7 +21,6 @@ class Calculator extends StatefulWidget {
 class CalculatorState extends State<Calculator> {
   CalculatorState() {
     degreemode = degreeDefault;
-    print(degreemode);
   }
   @override
   Widget build(BuildContext context) {
@@ -32,6 +32,25 @@ class CalculatorState extends State<Calculator> {
                 : Colors.white,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: [
+          PopupMenuButton(
+            icon: const Icon(Icons.history),
+            itemBuilder: (context) => history
+                .map((e) => PopupMenuItem(
+                      child: Text(e),
+                      onTap: () {
+                        _controller.text += e;
+                        setState(() {});
+                      },
+                    ))
+                .toList(),
+            onSelected: (val) {
+              print("val");
+              _controller.text += val;
+              setState(() {});
+            },
+          )
+        ],
       ),
       body: Stack(
         children: [
@@ -355,6 +374,7 @@ class FunctionButton extends StatelessWidget {
                 _controller.text.replaceAll("X", "*").replaceAll("÷", "/");
             parseText = solver.fixBrackets(parseText);
             List<String> translation = solver.translate(parseText);
+            history.insert(0, parseText);
             double answer =
                 solver.solve(translation, (degreemode) ? "Degree" : "Radian");
             _controller.text = roundto(answer.floor().toString());
