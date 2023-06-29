@@ -1,6 +1,6 @@
-import 'dart:convert';
+// ignore_for_file: file_names
+
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -162,11 +162,8 @@ class _GCFState extends State<GCF> {
                             child: ElevatedButton(
                               onPressed: calc,
                               style: ElevatedButton.styleFrom(
-                                  backgroundColor: (MediaQuery.of(context)
-                                              .platformBrightness ==
-                                          Brightness.light)
-                                      ? const Color.fromARGB(255, 165, 226, 255)
-                                      : const Color.fromARGB(255, 0, 135, 197)),
+                                  backgroundColor:
+                                      const Color.fromARGB(255, 0, 135, 197)),
                               child: const Text('Solve'),
                             ),
                           )

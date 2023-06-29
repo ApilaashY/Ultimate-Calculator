@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:math';
 
 import 'package:app/Modules/input_field.dart';
@@ -38,7 +40,7 @@ class _SimplifyingRadicalsState extends State<SimplifyingRadicals> {
               ),
               elevation: 20,
               child: ListView(
-                padding: EdgeInsets.only(top: 20),
+                padding: const EdgeInsets.only(top: 20),
                 children: [
                   FractionallySizedBox(
                     widthFactor: 0.8,

@@ -1,3 +1,5 @@
+// ignore_for_file: file_names, no_logic_in_create_state
+
 import 'package:app/Modules/input_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -53,7 +55,7 @@ class VolumeCardButton extends StatefulWidget {
   VolumeCardButton({super.key, required this.text}) {
     chosenshape = 'Triangle';
   }
-  String text = 'Unknown';
+  final String text;
 
   @override
   State<VolumeCardButton> createState() => VolumeCardButtonState(text);

@@ -1,9 +1,9 @@
+// ignore_for_file: must_be_immutable, no_logic_in_create_state
+
 import 'package:flutter/material.dart';
 
 class CardButton extends StatefulWidget {
-  CardButton({super.key, required text, this.menu}) {
-    this.text = text;
-  }
+  CardButton({super.key, required this.text, this.menu});
   String text = 'Unknown';
   String? menu;
 

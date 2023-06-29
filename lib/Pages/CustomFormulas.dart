@@ -1,3 +1,5 @@
+// ignore_for_file: no_logic_in_create_state, file_names, empty_catches, use_build_context_synchronously
+
 import 'dart:convert';
 
 import 'package:app/Modules/input_field.dart';
@@ -163,7 +165,6 @@ class _CustomFormulasState extends State<CustomFormulas> {
 
                                             savedata.setString("formulas",
                                                 jsonEncode(formulas));
-                                            print(formulas);
                                             Navigator.pushNamed(
                                                 context, "Formula Maker",
                                                 arguments:
@@ -297,9 +298,9 @@ class _CustomFormulasState extends State<CustomFormulas> {
 TextEditingController _controller = TextEditingController();
 
 class FormulaMaker extends StatefulWidget {
-  FormulaMaker({Key? key, required this.name}) : super(key: key);
+  const FormulaMaker({Key? key, required this.name}) : super(key: key);
 
-  String name = "";
+  final String name;
 
   @override
   State<FormulaMaker> createState() => _FormulaMakerState(functionName: name);
@@ -307,7 +308,7 @@ class FormulaMaker extends StatefulWidget {
 
 class _FormulaMakerState extends State<FormulaMaker> {
   _FormulaMakerState({required this.functionName});
-  String functionName = "";
+  final String functionName;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -342,7 +343,6 @@ class _FormulaMakerState extends State<FormulaMaker> {
                     savedata.setString("formulas", jsonEncode(formulas));
                     _controller.text = "";
 
-                    print(formulas);
                     Navigator.pop(context);
                     Navigator.pop(context);
                   } else {
@@ -407,204 +407,204 @@ class _FormulaMakerState extends State<FormulaMaker> {
                 crossAxisCount: 4,
                 mainAxisSpacing: 5,
                 crossAxisSpacing: 5,
-                children: [
+                children: const [
                   _FunctionButton(
                     name: 'Clear',
-                    child: const Text(
+                    child: Text(
                       'Clear',
                     ),
                   ),
                   _FunctionButton(
-                      name: 'backspace', child: const Icon(Icons.backspace)),
+                      name: 'backspace', child: Icon(Icons.backspace)),
                   _FunctionButton(
                     name: '(',
-                    child: const Text(
+                    child: Text(
                       '(',
                     ),
                   ),
                   _FunctionButton(
                     name: ')',
-                    child: const Text(
+                    child: Text(
                       ')',
                     ),
                   ),
                   _FunctionButton(
                     name: "x",
-                    child: const Text("x"),
+                    child: Text("x"),
                   ),
                   _FunctionButton(
                     name: "y",
-                    child: const Text("y"),
+                    child: Text("y"),
                   ),
                   _FunctionButton(
                     name: "z",
-                    child: const Text("z"),
+                    child: Text("z"),
                   ),
                   _FunctionButton(
                     name: "a",
-                    child: const Text("a"),
+                    child: Text("a"),
                   ),
                   _FunctionButton(
                     name: "b",
-                    child: const Text("b"),
+                    child: Text("b"),
                   ),
                   _FunctionButton(
                     name: "c",
-                    child: const Text("c"),
+                    child: Text("c"),
                   ),
                   _FunctionButton(
                     name: 'sin(',
-                    child: const Text(
+                    child: Text(
                       'sin',
                     ),
                   ),
                   _FunctionButton(
                     name: 'cos(',
-                    child: const Text(
+                    child: Text(
                       'cos',
                     ),
                   ),
                   _FunctionButton(
                     name: 'tan(',
-                    child: const Text(
+                    child: Text(
                       'tan',
                     ),
                   ),
                   _FunctionButton(
                     name: 'sin^-1(',
-                    child: const Text(
+                    child: Text(
                       'sin^-1',
                     ),
                   ),
                   _FunctionButton(
                     name: 'cos^-1(',
-                    child: const Text(
+                    child: Text(
                       'cos^-1',
                     ),
                   ),
                   _FunctionButton(
                     name: 'tan^-1(',
-                    child: const Text(
+                    child: Text(
                       'tan^-1',
                     ),
                   ),
                   _FunctionButton(
                     name: '^',
-                    child: const Text(
+                    child: Text(
                       'x^y',
                     ),
                   ),
                   _FunctionButton(
                     name: '√(',
-                    child: const Text(
+                    child: Text(
                       'x√',
                     ),
                   ),
                   _FunctionButton(
                     name: 'log(',
-                    child: const Text(
+                    child: Text(
                       'log',
                     ),
                   ),
                   _FunctionButton(
                     name: 'ln(',
-                    child: const Text(
+                    child: Text(
                       'ln',
                     ),
                   ),
                   _FunctionButton(
                     name: '7',
-                    child: const Text(
+                    child: Text(
                       '7',
                     ),
                   ),
                   _FunctionButton(
                     name: '8',
-                    child: const Text(
+                    child: Text(
                       '8',
                     ),
                   ),
                   _FunctionButton(
                     name: '9',
-                    child: const Text(
+                    child: Text(
                       '9',
                     ),
                   ),
                   _FunctionButton(
                     name: 'π',
-                    child: const Text(
+                    child: Text(
                       'π',
                     ),
                   ),
                   _FunctionButton(
                     name: '4',
-                    child: const Text(
+                    child: Text(
                       '4',
                     ),
                   ),
                   _FunctionButton(
                     name: '5',
-                    child: const Text(
+                    child: Text(
                       '5',
                     ),
                   ),
                   _FunctionButton(
                     name: '6',
-                    child: const Text(
+                    child: Text(
                       '6',
                     ),
                   ),
                   _FunctionButton(
                     name: '÷',
-                    child: const Text(
+                    child: Text(
                       '÷',
                     ),
                   ),
                   _FunctionButton(
                     name: '1',
-                    child: const Text(
+                    child: Text(
                       '1',
                     ),
                   ),
                   _FunctionButton(
                     name: '2',
-                    child: const Text(
+                    child: Text(
                       '2',
                     ),
                   ),
                   _FunctionButton(
                     name: '3',
-                    child: const Text(
+                    child: Text(
                       '3',
                     ),
                   ),
                   _FunctionButton(
                     name: '*',
-                    child: const Text(
+                    child: Text(
                       '*',
                     ),
                   ),
                   _FunctionButton(
                     name: '.',
-                    child: const Text(
+                    child: Text(
                       '.',
                     ),
                   ),
                   _FunctionButton(
                     name: '0',
-                    child: const Text(
+                    child: Text(
                       '0',
                     ),
                   ),
                   _FunctionButton(
                     name: '+',
-                    child: const Text(
+                    child: Text(
                       '+',
                     ),
                   ),
                   _FunctionButton(
                     name: '-',
-                    child: const Text(
+                    child: Text(
                       '-',
                     ),
                   ),
@@ -619,13 +619,12 @@ class _FormulaMakerState extends State<FormulaMaker> {
 }
 
 class _FunctionButton extends StatefulWidget {
-  _FunctionButton({
-    super.key,
+  const _FunctionButton({
     this.child = const Text('Hi'),
     this.name = 'Nothing',
   });
-  Widget child;
-  String name;
+  final Widget child;
+  final String name;
 
   @override
   State<_FunctionButton> createState() =>
@@ -671,8 +670,8 @@ class __FunctionButtonState extends State<_FunctionButton> {
 }
 
 class FormulaCalculator extends StatefulWidget {
-  FormulaCalculator({required this.name});
-  String name;
+  const FormulaCalculator({super.key, required this.name});
+  final String name;
 
   @override
   State<FormulaCalculator> createState() => _FormulaCalculatorState(name: name);
@@ -684,9 +683,7 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
   Future setup() async {
     controllerPosition = 0;
     formula = formulas[name];
-    print(name);
     List<String> translation = solver.translate(formula);
-    print(translation);
     list = [
       const SizedBox(
         height: 15,

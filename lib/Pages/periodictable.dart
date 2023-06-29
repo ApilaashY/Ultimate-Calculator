@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 import 'package:app/Modules/periodtabledata.dart' as periodictable;
@@ -240,7 +240,7 @@ class _PeriodicTableState extends State<PeriodicTable> {
 }
 
 class PeriodicButton extends StatelessWidget {
-  PeriodicButton(img) {
+  PeriodicButton(img, {super.key}) {
     imagepath = img;
   }
 
@@ -324,20 +324,20 @@ class _PeriodicDetailsState extends State<PeriodicDetails> {
               text:
                   'Atomic\nNumber:\n${periodictable.data[element]['number']}'),
           DetailButton(
-              text: 'Symbol:\n' + periodictable.data[element]['symbol']),
+              text: 'Symbol:\n${periodictable.data[element]['symbol']}'),
           DetailButton(
               text: 'Weight:\n${periodictable.data[element]['weight']}'),
           DetailButton(
-              text: 'Catagory:\n' + periodictable.data[element]['group']),
+              text: 'Catagory:\n${periodictable.data[element]['group']}'),
           DetailButton(
-              text: 'Period:\n' + periodictable.data[element]['period']),
+              text: 'Period:\n${periodictable.data[element]['period']}'),
           DetailButton(
               text:
                   'Melting\nPoint:\n${periodictable.data[element]['Melting Point']}'),
           DetailButton(
-              text: 'Boiling\nPoint:\n' +
-                  periodictable.data[element]['Boiling Point']),
-          DetailButton(text: 'Type:\n' + periodictable.data[element]['type']),
+              text:
+                  'Boiling\nPoint:\n${periodictable.data[element]['Boiling Point']}'),
+          DetailButton(text: 'Type:\n${periodictable.data[element]['type']}'),
           Image.asset('assets/Elements/$element.png')
         ],
       ),
@@ -346,8 +346,8 @@ class _PeriodicDetailsState extends State<PeriodicDetails> {
 }
 
 class DetailButton extends StatelessWidget {
-  DetailButton({super.key, this.text});
-  var text;
+  DetailButton({super.key, this.text = ""});
+  String text;
 
   @override
   Widget build(BuildContext context) {

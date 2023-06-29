@@ -1,8 +1,6 @@
 // ignore_for_file: file_names
 
-import 'dart:convert';
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -26,26 +24,38 @@ class _PythagoreanState extends State<Pythagorean> {
 
   void calc() {
     try {
-      var ad = double.parse(adjacent.text);
-      var op = double.parse(opposite.text);
-      var hy = double.parse(hypotenuse.text);
-      if (ad != null && op != null && hy == null) {
+      double ad = (adjacent.text.isEmpty) ? 0 : double.parse(adjacent.text);
+      double op = (opposite.text.isEmpty) ? 0 : double.parse(opposite.text);
+      double hy = (hypotenuse.text.isEmpty) ? 0 : double.parse(hypotenuse.text);
+      if (adjacent.text.isNotEmpty &&
+          opposite.text.isNotEmpty &&
+          hypotenuse.text.isEmpty) {
         hypotenuse.text = sqrt(pow(ad, 2) + pow(op, 2)).toString();
         hypotenuse.text = roundto(hypotenuse.text);
         icon = Icons.check;
         color = Colors.green;
-      } else if (ad == null && op != null && hy != null) {
+      } else if (adjacent.text.isEmpty &&
+          opposite.text.isNotEmpty &&
+          hypotenuse.text.isNotEmpty) {
         adjacent.text = sqrt(pow(hy, 2) - pow(op, 2)).toString();
         adjacent.text = roundto(adjacent.text);
         icon = Icons.check;
         color = Colors.green;
-      } else if (ad != null && op == null && hy != null) {
+      } else if (adjacent.text.isNotEmpty &&
+          opposite.text.isEmpty &&
+          hypotenuse.text.isNotEmpty) {
         opposite.text = sqrt(pow(hy, 2) - pow(ad, 2)).toString();
         opposite.text = roundto(opposite.text);
         icon = Icons.check;
         color = Colors.green;
-      } else if (ad != null && op != null && hy != null) {
-        if (hy == sqrt(pow(ad, 2) + pow(op, 2))) {
+      } else if (adjacent.text.isNotEmpty &&
+          opposite.text.isNotEmpty &&
+          hypotenuse.text.isNotEmpty) {
+        if (hypotenuse.text ==
+            sqrt(pow(ad, 2) + pow(op, 2)).toStringAsFixed(
+                (hypotenuse.text.contains("."))
+                    ? hypotenuse.text.split(".")[1].length
+                    : 0)) {
           icon = Icons.check;
           color = Colors.green;
         } else {
@@ -140,11 +150,8 @@ class _PythagoreanState extends State<Pythagorean> {
                           child: ElevatedButton(
                             onPressed: calc,
                             style: ElevatedButton.styleFrom(
-                                backgroundColor: (MediaQuery.of(context)
-                                            .platformBrightness ==
-                                        Brightness.light)
-                                    ? const Color.fromARGB(255, 165, 226, 255)
-                                    : const Color.fromARGB(255, 0, 135, 197)),
+                                backgroundColor:
+                                    const Color.fromARGB(255, 0, 135, 197)),
                             child: const Text('Solve'),
                           ),
                         ),

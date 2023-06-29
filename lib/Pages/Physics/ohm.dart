@@ -1,10 +1,7 @@
-import 'dart:convert';
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'dart:math';
 import 'package:app/Modules/globalfunctions.dart';
 
 class Ohm extends StatefulWidget {
@@ -15,22 +12,22 @@ class Ohm extends StatefulWidget {
 }
 
 class _OhmState extends State<Ohm> {
-  TextEditingController Current = TextEditingController();
-  TextEditingController Resistance = TextEditingController();
-  TextEditingController Voltage = TextEditingController();
+  TextEditingController current = TextEditingController();
+  TextEditingController resistance = TextEditingController();
+  TextEditingController voltage = TextEditingController();
   void calc() {
     try {
-      if (Current.text.isEmpty) {
-        Current.text = roundto(
-            (double.parse(Voltage.text) / double.parse(Resistance.text))
+      if (current.text.isEmpty) {
+        current.text = roundto(
+            (double.parse(voltage.text) / double.parse(resistance.text))
                 .toString());
-      } else if (Resistance.text.isEmpty) {
-        Resistance.text = roundto(
-            (double.parse(Voltage.text) / double.parse(Current.text))
+      } else if (resistance.text.isEmpty) {
+        resistance.text = roundto(
+            (double.parse(voltage.text) / double.parse(current.text))
                 .toString());
-      } else if (Voltage.text.isEmpty) {
-        Voltage.text = roundto(
-            (double.parse(Current.text) * double.parse(Resistance.text))
+      } else if (voltage.text.isEmpty) {
+        voltage.text = roundto(
+            (double.parse(current.text) * double.parse(resistance.text))
                 .toString());
       } else {
         throw 'Not Enough Data';
@@ -46,7 +43,7 @@ class _OhmState extends State<Ohm> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ohm'),
+        title: const Text('Ohm'),
         foregroundColor:
             (MediaQuery.of(context).platformBrightness == Brightness.light)
                 ? Colors.black
@@ -73,7 +70,7 @@ class _OhmState extends State<Ohm> {
                     child: ListView(
                       children: [
                         Inputfield(
-                          controller: Current,
+                          controller: current,
                           hintText: 'Current',
                           keyboardType: TextInputType.number,
                           suffixText: 'A',
@@ -84,12 +81,12 @@ class _OhmState extends State<Ohm> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Current.text));
+                                ClipboardData(text: current.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Resistance,
+                          controller: resistance,
                           hintText: 'Resistance',
                           keyboardType: TextInputType.number,
                           suffixText: 'Ω',
@@ -100,12 +97,12 @@ class _OhmState extends State<Ohm> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Resistance.text));
+                                ClipboardData(text: resistance.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Voltage,
+                          controller: voltage,
                           hintText: 'Voltage',
                           keyboardType: TextInputType.number,
                           suffixText: 'V',
@@ -116,7 +113,7 @@ class _OhmState extends State<Ohm> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Voltage.text));
+                                ClipboardData(text: voltage.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),

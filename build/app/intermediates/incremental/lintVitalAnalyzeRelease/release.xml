@@ -1,0 +1,37 @@
+<variant
+    name="release"
+    package="app.ultimatecalculator.www"
+    minSdkVersion="21"
+    targetSdkVersion="33"
+    shrinking="true"
+    mergedManifest="D:\Creations\Github\Ultimate-Calculator\build\app\intermediates\merged_manifest\release\AndroidManifest.xml"
+    proguardFiles="D:\Creations\Github\Ultimate-Calculator\build\app\intermediates\default_proguard_files\global\proguard-android.txt-7.1.3;C:\Users\apila\flutter\packages\flutter_tools\gradle\flutter_proguard_rules.pro;proguard-rules.pro"
+    partialResultsDir="D:\Creations\Github\Ultimate-Calculator\build\app\intermediates\lint_vital_partial_results\release\out">
+  <buildFeatures
+      namespacing="REQUIRED"/>
+  <sourceProviders>
+    <sourceProvider
+        manifest="src\main\AndroidManifest.xml"
+        javaDirectories="src\main\java;src\main\kotlin"
+        resDirectories="src\main\res"
+        assetsDirectories="src\main\assets"/>
+    <sourceProvider
+        manifest="src\release\AndroidManifest.xml"
+        javaDirectories="src\release\java;src\release\kotlin"
+        resDirectories="src\release\res"
+        assetsDirectories="src\release\assets"/>
+  </sourceProviders>
+  <testSourceProviders>
+  </testSourceProviders>
+  <manifestPlaceholders>
+    <placeholder
+        name="applicationName"
+        value="android.app.Application" />
+  </manifestPlaceholders>
+  <mainArtifact
+      classOutputs="D:\Creations\Github\Ultimate-Calculator\build\app\intermediates\javac\release\classes;D:\Creations\Github\Ultimate-Calculator\build\app\tmp\kotlin-classes\release;D:\Creations\Github\Ultimate-Calculator\build\app\kotlinToolingMetadata;D:\Creations\Github\Ultimate-Calculator\build\app\intermediates\compile_and_runtime_not_namespaced_r_class_jar\release\R.jar"
+      applicationId="app.ultimatecalculator.www"
+      generatedSourceFolders="D:\Creations\Github\Ultimate-Calculator\build\app\generated\ap_generated_sources\release\out;D:\Creations\Github\Ultimate-Calculator\build\app\generated\aidl_source_output_dir\release\out;D:\Creations\Github\Ultimate-Calculator\build\app\generated\source\buildConfig\release;D:\Creations\Github\Ultimate-Calculator\build\app\generated\renderscript_source_output_dir\release\out"
+      generatedResourceFolders="D:\Creations\Github\Ultimate-Calculator\build\app\generated\res\google-services\release;D:\Creations\Github\Ultimate-Calculator\build\app\generated\res\rs\release;D:\Creations\Github\Ultimate-Calculator\build\app\generated\res\resValues\release">
+  </mainArtifact>
+</variant>

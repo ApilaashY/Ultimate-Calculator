@@ -1,7 +1,7 @@
-import 'dart:math';
+// ignore_for_file: file_names
 
+import 'dart:math';
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -24,55 +24,55 @@ class _AnnuityDueState extends State<AnnuityDue> {
     "Week": 52,
     "Day": 365,
   };
-  TextEditingController Addition = TextEditingController();
-  TextEditingController Rate = TextEditingController();
-  TextEditingController Total = TextEditingController();
-  TextEditingController Time = TextEditingController();
+  TextEditingController addition = TextEditingController();
+  TextEditingController rate = TextEditingController();
+  TextEditingController total = TextEditingController();
+  TextEditingController time = TextEditingController();
   String _currenttime = "Year";
   void calc() {
     try {
-      if (Addition.text.isNotEmpty &&
-          Rate.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Total.text = roundto((((double.parse(Rate.text) /
+      if (addition.text.isNotEmpty &&
+          rate.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        total.text = roundto((((double.parse(rate.text) /
                             100 /
                             compoundPeriods[_currenttime] +
                         1) *
-                    double.parse(Addition.text) *
+                    double.parse(addition.text) *
                     (pow(
-                            double.parse(Rate.text) /
+                            double.parse(rate.text) /
                                     100 /
                                     compoundPeriods[_currenttime] +
                                 1,
-                            double.parse(Time.text)) -
+                            double.parse(time.text)) -
                         1)) /
-                (double.parse(Rate.text) / 100 / compoundPeriods[_currenttime]))
+                (double.parse(rate.text) / 100 / compoundPeriods[_currenttime]))
             .toString());
-      } else if (Total.text.isNotEmpty &&
-          Rate.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Addition.text = roundto(((double.parse(Total.text) *
-                    (double.parse(Rate.text) /
+      } else if (total.text.isNotEmpty &&
+          rate.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        addition.text = roundto(((double.parse(total.text) *
+                    (double.parse(rate.text) /
                         100 /
                         compoundPeriods[_currenttime])) /
                 ((pow(
-                        double.parse(Rate.text) /
+                        double.parse(rate.text) /
                                 100 /
                                 compoundPeriods[_currenttime] +
                             1,
-                        double.parse(Time.text)) -
+                        double.parse(time.text)) -
                     1)))
             .toString());
-      } else if (Total.text.isNotEmpty &&
-          Addition.text.isNotEmpty &&
-          Rate.text.isNotEmpty) {
-        Time.text = roundto((log((double.parse(Total.text) *
-                            (double.parse(Rate.text) /
+      } else if (total.text.isNotEmpty &&
+          addition.text.isNotEmpty &&
+          rate.text.isNotEmpty) {
+        time.text = roundto((log((double.parse(total.text) *
+                            (double.parse(rate.text) /
                                 100 /
                                 compoundPeriods[_currenttime])) /
-                        double.parse(Addition.text) +
+                        double.parse(addition.text) +
                     1) /
-                log(double.parse(Rate.text) /
+                log(double.parse(rate.text) /
                         100 /
                         compoundPeriods[_currenttime] +
                     1))
@@ -118,7 +118,7 @@ class _AnnuityDueState extends State<AnnuityDue> {
                     child: ListView(
                       children: [
                         Inputfield(
-                          controller: Addition,
+                          controller: addition,
                           hintText: 'Addition',
                           keyboardType: TextInputType.number,
                           prefixText: "\$",
@@ -129,12 +129,12 @@ class _AnnuityDueState extends State<AnnuityDue> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Addition.text));
+                                ClipboardData(text: addition.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Rate,
+                          controller: rate,
                           hintText: 'Yearly Interest Rate',
                           keyboardType: TextInputType.number,
                           suffixText: '%',
@@ -145,11 +145,11 @@ class _AnnuityDueState extends State<AnnuityDue> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Rate.text));
+                                ClipboardData(text: rate.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
-                        Center(child: Text("Compounded Every")),
+                        const Center(child: Text("Compounded Every")),
                         Center(
                           child: DropdownButton(
                             style: TextStyle(
@@ -172,7 +172,7 @@ class _AnnuityDueState extends State<AnnuityDue> {
                           ),
                         ),
                         Inputfield(
-                          controller: Time,
+                          controller: time,
                           hintText: 'Total Number of Payments',
                           keyboardType: TextInputType.number,
                         ),
@@ -182,12 +182,12 @@ class _AnnuityDueState extends State<AnnuityDue> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Time.text));
+                                ClipboardData(text: time.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Total,
+                          controller: total,
                           hintText: 'Total',
                           keyboardType: TextInputType.number,
                           prefixText: '\$',
@@ -198,7 +198,7 @@ class _AnnuityDueState extends State<AnnuityDue> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Total.text));
+                                ClipboardData(text: total.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),

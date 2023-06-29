@@ -1,3 +1,5 @@
+// ignore_for_file: file_names
+
 import 'dart:math';
 
 import 'package:app/Modules/input_field.dart';
@@ -115,7 +117,6 @@ class _SeriesState extends State<Series> {
         if (n.text.isNotEmpty &&
             first.text.isNotEmpty &&
             finalValue.text.isNotEmpty) {
-          print(double.parse(finalValue.text) / double.parse(first.text));
           difference.text = roundto((pow(
                   double.parse(finalValue.text) / double.parse(first.text),
                   1 / (double.parse(n.text) - 1)))

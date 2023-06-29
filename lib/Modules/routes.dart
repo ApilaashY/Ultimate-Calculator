@@ -1,3 +1,4 @@
+import 'package:app/Pages/BoolAlgebra.dart';
 import 'package:app/Pages/CustomFormulas.dart';
 import 'package:app/Pages/Finance/AnnuityDue.dart';
 import 'package:app/Pages/Finance/CompoundInterest.dart';
@@ -22,18 +23,16 @@ import 'package:app/Pages/gcf.dart';
 import 'package:app/Pages/lcm.dart';
 import 'package:app/Pages/Triangles/Pythagorean.dart';
 import 'package:app/Pages/rootfinder.dart';
-import 'package:app/Pages/surfacearea.dart';
 import 'package:app/Pages/Triangles/Trigonometry.dart';
 import 'package:app/Pages/volume.dart';
 import 'package:app/Pages/settings.dart';
 import 'package:app/Pages/periodictable.dart';
-import 'package:app/Pages/graph.dart';
 
 Route<dynamic> controller(RouteSettings settings) {
   if (settings.name == 'Home') {
     return MaterialPageRoute(builder: (context) => const Home());
   } else if (settings.name == 'Calculator') {
-    return MaterialPageRoute(builder: (context) => Calculator());
+    return MaterialPageRoute(builder: (context) => const Calculator());
   } else if (settings.name == 'Converter') {
     return MaterialPageRoute(builder: (context) => const Converter());
   } else if (settings.name == 'SurfaceArea') {
@@ -54,7 +53,7 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const RootFinder());
   } else if (settings.name == 'Periodic Table') {
     return MaterialPageRoute(builder: (context) => const PeriodicTable());
-  } else if (settings.name == 'Vector Addition') {
+  } else if (settings.name == '2D Vector Addition') {
     return MaterialPageRoute(builder: (context) => const VectorAddition());
   } else if (settings.name == 'Graphs') {
     return MaterialPageRoute(builder: (context) => const Home());
@@ -89,7 +88,7 @@ Route<dynamic> controller(RouteSettings settings) {
   } else if (settings.name == "Simplifying Radicals") {
     return MaterialPageRoute(builder: (context) => const SimplifyingRadicals());
   } else if (settings.name == "Custom Formulas") {
-    return MaterialPageRoute(builder: (context) => CustomFormulas());
+    return MaterialPageRoute(builder: (context) => const CustomFormulas());
   } else if (settings.name == "Formula Maker") {
     return MaterialPageRoute(
         builder: (context) =>
@@ -98,6 +97,10 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(
         builder: (context) =>
             FormulaCalculator(name: settings.arguments.toString()));
+  } else if (settings.name == 'Boolean Calculator') {
+    return MaterialPageRoute(builder: (context) => const BoolCalculator());
+  } else if (settings.name == 'Test Cases') {
+    return MaterialPageRoute(builder: (context) => const TestCases());
   } else {
     throw 'Page Not Found';
   }

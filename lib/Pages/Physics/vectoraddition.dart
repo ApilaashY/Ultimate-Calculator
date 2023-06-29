@@ -1,14 +1,10 @@
-import 'dart:convert';
+// ignore_for_file: no_logic_in_create_state
 
-import 'package:app/Modules/card_button.dart';
 import 'package:app/Modules/globalfunctions.dart';
-import 'package:app/Modules/input_field.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
-import 'package:app/main.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:introduction_screen/introduction_screen.dart';
 
 class VectorAddition extends StatefulWidget {
   const VectorAddition({super.key});
@@ -18,68 +14,68 @@ class VectorAddition extends StatefulWidget {
 }
 
 class _VectorAdditionState extends State<VectorAddition> {
-  @override
-  initState() {
-    super.initState();
-    Future.delayed(Duration.zero, () {
-      if (savedata.getBool('VectorAdditionTeaching') != true) {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => const VectorAdditionTeaching()));
-      }
-    });
-    additionlist = [
-      FractionallySizedBox(
-        widthFactor: 0.8,
-        child: Row(
-          children: [
-            IconButton(
-                onPressed: () {
-                  if (_controllers.length > 1) {
-                    additionlist.removeRange(
-                        additionlist.length - 2, additionlist.length - 1);
-                    _controllers.removeRange(
-                        additionlist.length - 2, additionlist.length - 1);
-                  }
-                  setState(() {});
-                },
-                icon: const Icon(Icons.delete)),
-            Expanded(
-                child: ElevatedButton(
-              onPressed: calc,
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 0, 135, 197)),
-              child: const Text('Solve'),
-            )),
-          ],
-        ),
+  late List<Widget> additionlist = [
+    FractionallySizedBox(
+      widthFactor: 0.8,
+      child: Row(
+        children: [
+          IconButton(
+              onPressed: () {
+                if (_quantityControllers.length > 1) {
+                  additionlist.removeRange(
+                      additionlist.length - 2, additionlist.length - 1);
+                  _quantityControllers.removeRange(
+                      additionlist.length - 2, additionlist.length - 1);
+                }
+                setState(() {});
+              },
+              icon: const Icon(Icons.delete)),
+          Expanded(
+              child: ElevatedButton(
+            onPressed: calc,
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 0, 135, 197)),
+            child: const Text('Solve'),
+          )),
+        ],
       ),
-      Inputfield(controller: _controllers[0])
-    ];
-  }
+    ),
+    VectorInput(
+        quantity: _quantityControllers[0],
+        start: _startDirectionControllers[0],
+        end: _endDirectionControllers[0],
+        degree: _degreeControllers[0])
+  ];
 
-  List<Widget> additionlist = [];
-  final List<TextEditingController> _controllers = [TextEditingController()];
+  final List<TextEditingController> _quantityControllers = [
+    TextEditingController()
+  ];
+  final List<String> _startDirectionControllers = ["N"];
+  final List<TextEditingController> _degreeControllers = [
+    TextEditingController()
+  ];
+  final List<String> _endDirectionControllers = ["E"];
   String _answerText = ' ';
   var vectorcalc = DegreeRad(true);
   void calc() {
     try {
-      Map _distancemap = {
+      Map distancemap = {
         'N': 0,
         'S': 0,
         'E': 0,
         'W': 0,
       };
-      List _diss = [];
-      for (var i in _controllers) {
-        _diss.add(i.text);
+      List diss = [];
+      for (int i = 0; i < _quantityControllers.length; i++) {
+        diss.add(
+            "${_quantityControllers[i].text}[${_startDirectionControllers[i]}${_degreeControllers[i].text}${_endDirectionControllers[i]}]");
       }
-      for (var i in _diss) {
+      for (var i in diss) {
         if (i.isEmpty) continue;
         i.split('').forEach((char) {
-          if ('1234567890[]EWSN.'.contains(char) == false)
+          if ('1234567890[]EWSN.'.contains(char) == false) {
             i = i.replaceAll(char, '');
+          }
         });
         List vector = i.split('[');
         vector[1] = vector[1].replaceAll(']', '');
@@ -106,18 +102,18 @@ class _VectorAdditionState extends State<VectorAddition> {
         vector.add(vector[1].substring(1, vector[1].length - 1).toString());
         vector.add(vector[1][vector[1].length - 1].toString());
         vector.removeAt(1);
-        _distancemap[vector[3]] +=
+        distancemap[vector[3]] +=
             sin(vectorcalc.radians(double.parse(vector[2]))) *
                 double.parse(vector[0]);
-        _distancemap[vector[1]] +=
+        distancemap[vector[1]] +=
             cos(vectorcalc.radians(double.parse(vector[2]))) *
                 double.parse(vector[0]);
       }
-      double north = _distancemap['N'] - _distancemap['S'];
-      double east = _distancemap['E'] - _distancemap['W'];
+      double north = distancemap['N'] - distancemap['S'];
+      double east = distancemap['E'] - distancemap['W'];
       int zerocounter = 0;
       String singledirection = '';
-      _distancemap.forEach((key, value) {
+      distancemap.forEach((key, value) {
         if (value == 0) {
           zerocounter += 1;
         } else {
@@ -159,13 +155,45 @@ class _VectorAdditionState extends State<VectorAddition> {
                 ? Colors.black
                 : Colors.white,
         elevation: 0,
+        actions: [
+          IconButton(
+              onPressed: () => showModalBottomSheet(
+                  context: context,
+                  builder: (context) => const FractionallySizedBox(
+                        widthFactor: 0.8,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            InstructionText(
+                                text: "Quantity: Scalar value\nof vector"),
+                            InstructionText(
+                                text:
+                                    "Start Direction: Direction\nto start from"),
+                            InstructionText(
+                                text:
+                                    "Degree (°): Degree offset from\nstart direction"),
+                            InstructionText(
+                                text:
+                                    "End Offset: Direction\nof degree offset"),
+                          ],
+                        ),
+                      )),
+              icon: const Icon(Icons.question_mark))
+        ],
       ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: const Color.fromARGB(255, 0, 135, 197),
         onPressed: () {
-          _controllers.add(TextEditingController());
-          additionlist.add(Inputfield(
-            controller: _controllers[_controllers.length - 1],
+          _quantityControllers.add(TextEditingController());
+          _startDirectionControllers.add("N");
+          _degreeControllers.add(TextEditingController());
+          _endDirectionControllers.add("E");
+          additionlist.add(VectorInput(
+            quantity: _quantityControllers[_quantityControllers.length - 1],
+            start: _startDirectionControllers[
+                _startDirectionControllers.length - 1],
+            end: _endDirectionControllers[_endDirectionControllers.length - 1],
+            degree: _degreeControllers[_degreeControllers.length - 1],
           ));
           setState(() {});
         },
@@ -228,7 +256,7 @@ class _VectorAdditionState extends State<VectorAddition> {
                   ? 0.7
                   : 0.9,
               child: Hero(
-                tag: "Vector Addition",
+                tag: "2D Vector Addition",
                 child: Card(
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(20),
@@ -253,80 +281,148 @@ class _VectorAdditionState extends State<VectorAddition> {
   }
 }
 
-class VectorAdditionTeaching extends StatefulWidget {
-  const VectorAdditionTeaching({super.key});
+class VectorInput extends StatefulWidget {
+  const VectorInput(
+      {super.key,
+      required this.quantity,
+      required this.start,
+      required this.end,
+      required this.degree});
+
+  final TextEditingController quantity, degree;
+  final String start, end;
 
   @override
-  State<VectorAdditionTeaching> createState() => _VectorAdditionTeachingState();
+  State<VectorInput> createState() => _VectorInputState(
+      quantity: quantity, start: start, end: end, degree: degree);
 }
 
-class _VectorAdditionTeachingState extends State<VectorAdditionTeaching> {
-  bool showval = false;
+class _VectorInputState extends State<VectorInput> {
+  _VectorInputState(
+      {required this.quantity,
+      required this.start,
+      required this.end,
+      required this.degree});
+
+  final TextEditingController quantity, degree;
+  String start, end;
+
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
-    return IntroductionScreen(
-      showDoneButton: true,
-      done: const Text(
-        'Done',
-      ),
-      onDone: (() async {
-        if (showval == true) {
-          savedata.setBool('VectorAdditionTeaching', true);
-        }
-        Navigator.pop(context);
-      }),
-      showNextButton: true,
-      next: ElevatedButton(
-        onPressed: () {},
-        child: const Text('Done'),
-      ),
-      pages: [
-        PageViewModel(
-          title: '',
-          bodyWidget: Column(
-            children: [
-              ColorText(
-                text:
-                    'Please Write Values in Correct Format or answers may not be accurate',
-                size: 25,
+    return FractionallySizedBox(
+      widthFactor: 0.9,
+      child: Row(
+        children: [
+          Expanded(
+            flex: 2,
+            child: TextField(
+              controller: quantity,
+              keyboardType: TextInputType.number,
+              decoration: const InputDecoration(
+                hintText: "Quantity",
+                border: OutlineInputBorder(
+                  borderSide: BorderSide(width: 3),
+                ),
               ),
-              const Icon(
-                Icons.check,
-                color: Colors.green,
-              ),
-              ColorText(text: '38m[N34°E]'),
-              ColorText(text: '2[S46W]'),
-              ColorText(text: '65N[N]'),
-              const SizedBox(
-                height: 20,
-              ),
-              const Icon(
-                Icons.circle,
-                color: Colors.red,
-              ),
-              ColorText(text: '38m[Right]'),
-              ColorText(text: '2'),
-              ColorText(text: '[N]65N'),
-              const SizedBox(
-                height: 50,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ColorText(text: "Don't show again"),
-                  Checkbox(
-                    value: showval,
-                    onChanged: ((value) {
-                      showval = !showval;
-                      setState(() {});
-                    }),
-                  ),
-                ],
-              )
-            ],
+            ),
           ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DropdownButton(
+              value: start,
+              items: ["N", "S", "E", "W"]
+                  .map((element) => DropdownMenuItem(
+                        value: element,
+                        child: Text(element),
+                      ))
+                  .toList(),
+              onChanged: (element) {
+                if ((start == "N" || start == "S") &&
+                    (element == "E" || element == "W")) {
+                  end = "N";
+                } else if ((start == "E" || start == "W") &&
+                    (element == "N" || element == "S")) {
+                  end = "E";
+                }
+                start = element!;
+                setState(() {});
+              },
+            ),
+          ),
+          Form(
+            key: formKey,
+            child: Expanded(
+              child: TextFormField(
+                maxLength: 3,
+                controller: degree,
+                keyboardType: TextInputType.number,
+                decoration: const InputDecoration(
+                  counterText: "",
+                  hintText: "°",
+                  border: OutlineInputBorder(
+                    borderSide: BorderSide(width: 3),
+                  ),
+                ),
+                onChanged: (val) {
+                  formKey.currentState!.validate();
+                },
+                validator: (val) {
+                  try {
+                    if (val!.isEmpty) {
+                      return null;
+                    }
+                    double.parse(val);
+                    return null;
+                  } catch (e) {
+                    return "Not a number";
+                  }
+                },
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: DropdownButton(
+              value: end,
+              items: ((start == "N" || start == "S") ? ["E", "W"] : ["N", "S"])
+                  .map((element) => DropdownMenuItem(
+                        value: element,
+                        child: Text(element),
+                      ))
+                  .toList(),
+              onChanged: (element) {
+                setState(() {
+                  end = element!;
+                });
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class InstructionText extends StatelessWidget {
+  const InstructionText({super.key, required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Expanded(
+      child: FittedBox(
+        child: Text(
+          text,
+          style: TextStyle(
+              color: (MediaQuery.of(context).platformBrightness ==
+                      Brightness.light)
+                  ? Colors.black
+                  : Colors.white),
         ),
-      ],
+      ),
     );
   }
 }

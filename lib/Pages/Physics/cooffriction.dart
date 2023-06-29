@@ -1,10 +1,7 @@
-import 'dart:convert';
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'dart:math';
 import 'package:app/Modules/globalfunctions.dart';
 
 class CoefficientofFriction extends StatefulWidget {
@@ -15,20 +12,20 @@ class CoefficientofFriction extends StatefulWidget {
 }
 
 class _CoefficientofFrictionState extends State<CoefficientofFriction> {
-  TextEditingController Friction = TextEditingController();
-  TextEditingController Normal = TextEditingController();
-  TextEditingController Mew = TextEditingController();
+  TextEditingController friction = TextEditingController();
+  TextEditingController normal = TextEditingController();
+  TextEditingController mew = TextEditingController();
   void calc() {
     try {
-      if (Friction.text.isEmpty) {
-        Friction.text = roundto(
-            (double.parse(Mew.text) * double.parse(Normal.text)).toString());
-      } else if (Normal.text.isEmpty) {
-        Normal.text = roundto(
-            (double.parse(Friction.text) / double.parse(Mew.text)).toString());
-      } else if (Mew.text.isEmpty) {
-        Mew.text = roundto(
-            (double.parse(Friction.text) / double.parse(Normal.text))
+      if (friction.text.isEmpty) {
+        friction.text = roundto(
+            (double.parse(mew.text) * double.parse(normal.text)).toString());
+      } else if (normal.text.isEmpty) {
+        normal.text = roundto(
+            (double.parse(friction.text) / double.parse(mew.text)).toString());
+      } else if (mew.text.isEmpty) {
+        mew.text = roundto(
+            (double.parse(friction.text) / double.parse(normal.text))
                 .toString());
       } else {
         throw 'Not Enough Data';
@@ -71,7 +68,7 @@ class _CoefficientofFrictionState extends State<CoefficientofFriction> {
                     child: ListView(
                       children: [
                         Inputfield(
-                          controller: Friction,
+                          controller: friction,
                           hintText: 'Friction',
                           keyboardType: TextInputType.number,
                           suffixText: 'N',
@@ -82,12 +79,12 @@ class _CoefficientofFrictionState extends State<CoefficientofFriction> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Friction.text));
+                                ClipboardData(text: friction.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Normal,
+                          controller: normal,
                           hintText: 'Normal',
                           keyboardType: TextInputType.number,
                           suffixText: 'N',
@@ -98,12 +95,12 @@ class _CoefficientofFrictionState extends State<CoefficientofFriction> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Normal.text));
+                                ClipboardData(text: normal.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Mew,
+                          controller: mew,
                           hintText: 'Mew',
                           keyboardType: TextInputType.number,
                         ),
@@ -113,7 +110,7 @@ class _CoefficientofFrictionState extends State<CoefficientofFriction> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Mew.text));
+                                ClipboardData(text: mew.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),

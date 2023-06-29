@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable, file_names
+
 import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -10,10 +12,12 @@ TextEditingController _controller = TextEditingController();
 bool degreemode = degreeDefault;
 bool deciasfrac = false;
 String letters = 'abcdefghijklmnopqrstuvwxyz';
-Solver solver = new Solver();
+Solver solver = Solver();
 List<String> history = [];
 
 class Calculator extends StatefulWidget {
+  const Calculator({super.key});
+
   @override
   State<Calculator> createState() => CalculatorState();
 }
@@ -45,7 +49,6 @@ class CalculatorState extends State<Calculator> {
                     ))
                 .toList(),
             onSelected: (val) {
-              print("val");
               _controller.text += val;
               setState(() {});
             },
@@ -164,7 +167,7 @@ class CalculatorState extends State<Calculator> {
                     ),
                     FunctionButton(
                       name: 'Clear',
-                      child: Text(
+                      child: const Text(
                         'Clear',
                       ),
                     ),
@@ -184,19 +187,19 @@ class CalculatorState extends State<Calculator> {
                     ),
                     FunctionButton(
                       name: 'sin(',
-                      child: Text(
+                      child: const Text(
                         'sin',
                       ),
                     ),
                     FunctionButton(
                       name: 'cos(',
-                      child: Text(
+                      child: const Text(
                         'cos',
                       ),
                     ),
                     FunctionButton(
                       name: 'tan(',
-                      child: Text(
+                      child: const Text(
                         'tan',
                       ),
                     ),
@@ -226,19 +229,19 @@ class CalculatorState extends State<Calculator> {
                     ),
                     FunctionButton(
                       name: '√(',
-                      child: Text(
+                      child: const Text(
                         'x√',
                       ),
                     ),
                     FunctionButton(
                       name: 'log(',
-                      child: Text(
+                      child: const Text(
                         'log',
                       ),
                     ),
                     FunctionButton(
                       name: 'ln(',
-                      child: Text(
+                      child: const Text(
                         'ln',
                       ),
                     ),

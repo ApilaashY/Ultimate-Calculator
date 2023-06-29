@@ -1,4 +1,4 @@
-// ignore_for_file: no_logic_in_create_state, file_names
+// ignore_for_file: no_logic_in_create_state, file_names, must_be_immutable
 
 import 'package:flutter/material.dart';
 
@@ -13,18 +13,16 @@ class Inputfield extends StatefulWidget {
     this.keyboardType = TextInputType.name,
     this.enabled = true,
     this.onChanged,
+    this.maxLength,
   }) {
-    if (controller == null) {
-      controller = TextEditingController();
-    }
+    controller ??= TextEditingController();
   }
   TextEditingController? controller = TextEditingController();
-  String hintText = '';
-  String suffixText = '';
-  String prefixText = '';
-  TextAlign alignment = TextAlign.left;
-  TextInputType keyboardType = TextInputType.name;
-  bool enabled = true;
+  final String hintText, suffixText, prefixText;
+  final TextAlign alignment;
+  final TextInputType keyboardType;
+  final bool enabled;
+  final int? maxLength;
   Function(String)? onChanged;
 
   @override
@@ -36,30 +34,29 @@ class Inputfield extends StatefulWidget {
         prefixtext: prefixText,
         alignment: alignment,
         keyboardtype: keyboardType,
-        onChanged: (onChanged != null) ? onChanged : ((str) => null),
+        onChanged: onChanged,
         enabled: enabled,
+        maxLength: maxLength,
       );
 }
 
 class _InputfieldState extends State<Inputfield> {
-  _InputfieldState(
-    Key? key, {
-    required this.controller,
-    required this.hinttext,
-    required this.suffixtext,
-    required this.prefixtext,
-    required this.keyboardtype,
-    required this.alignment,
-    required this.onChanged,
-    required this.enabled,
-  });
-  TextEditingController controller = TextEditingController();
-  String hinttext = '';
-  String suffixtext = '';
-  String prefixtext = '';
-  TextAlign alignment = TextAlign.left;
-  TextInputType keyboardtype = TextInputType.name;
-  bool enabled = true;
+  _InputfieldState(Key? key,
+      {required this.controller,
+      required this.hinttext,
+      required this.suffixtext,
+      required this.prefixtext,
+      required this.keyboardtype,
+      required this.alignment,
+      required this.onChanged,
+      required this.enabled,
+      this.maxLength});
+  final TextEditingController controller;
+  final String hinttext, suffixtext, prefixtext;
+  final TextAlign alignment;
+  final TextInputType keyboardtype;
+  final bool enabled;
+  final int? maxLength;
   Function(String)? onChanged;
 
   @override
@@ -72,6 +69,7 @@ class _InputfieldState extends State<Inputfield> {
         keyboardType: keyboardtype,
         textAlign: alignment,
         enabled: enabled,
+        maxLength: maxLength,
         style: TextStyle(
             color:
                 (MediaQuery.of(context).platformBrightness == Brightness.light)

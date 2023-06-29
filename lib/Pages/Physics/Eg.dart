@@ -1,10 +1,9 @@
-import 'dart:convert';
+// ignore_for_file: file_names
+
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'dart:math';
 import 'package:app/Modules/globalfunctions.dart';
 
 class GravitationalPotentialEnergy extends StatefulWidget {
@@ -17,28 +16,28 @@ class GravitationalPotentialEnergy extends StatefulWidget {
 
 class _GravitationalPotentialEnergyState
     extends State<GravitationalPotentialEnergy> {
-  TextEditingController Height = TextEditingController();
-  TextEditingController Mass = TextEditingController();
-  TextEditingController Gravity = TextEditingController();
-  TextEditingController Eg = TextEditingController();
+  TextEditingController height = TextEditingController();
+  TextEditingController mass = TextEditingController();
+  TextEditingController gravity = TextEditingController();
+  TextEditingController eg = TextEditingController();
   void calc() {
     try {
-      if (Height.text.isEmpty) {
-        Height.text = roundto((double.parse(Eg.text) /
-                (double.parse(Mass.text) * double.parse(Gravity.text)))
+      if (height.text.isEmpty) {
+        height.text = roundto((double.parse(eg.text) /
+                (double.parse(mass.text) * double.parse(gravity.text)))
             .toString());
-      } else if (Mass.text.isEmpty) {
-        Mass.text = roundto((double.parse(Eg.text) /
-                (double.parse(Height.text) * double.parse(Gravity.text)))
+      } else if (mass.text.isEmpty) {
+        mass.text = roundto((double.parse(eg.text) /
+                (double.parse(height.text) * double.parse(gravity.text)))
             .toString());
-      } else if (Gravity.text.isEmpty) {
-        Gravity.text = roundto((double.parse(Eg.text) /
-                (double.parse(Mass.text) * double.parse(Height.text)))
+      } else if (gravity.text.isEmpty) {
+        gravity.text = roundto((double.parse(eg.text) /
+                (double.parse(mass.text) * double.parse(height.text)))
             .toString());
-      } else if (Eg.text.isEmpty) {
-        Eg.text = roundto((double.parse(Gravity.text) *
-                double.parse(Mass.text) *
-                double.parse(Height.text))
+      } else if (eg.text.isEmpty) {
+        eg.text = roundto((double.parse(gravity.text) *
+                double.parse(mass.text) *
+                double.parse(height.text))
             .toString());
       } else {
         throw 'Not Enough Data';
@@ -81,7 +80,7 @@ class _GravitationalPotentialEnergyState
                     child: ListView(
                       children: [
                         Inputfield(
-                          controller: Height,
+                          controller: height,
                           hintText: 'Height',
                           keyboardType: TextInputType.number,
                           suffixText: 'm',
@@ -92,12 +91,12 @@ class _GravitationalPotentialEnergyState
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Height.text));
+                                ClipboardData(text: height.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Mass,
+                          controller: mass,
                           hintText: 'Mass',
                           keyboardType: TextInputType.number,
                           suffixText: 'kg',
@@ -108,12 +107,12 @@ class _GravitationalPotentialEnergyState
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Mass.text));
+                                ClipboardData(text: mass.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Gravity,
+                          controller: gravity,
                           hintText: 'Gravity',
                           keyboardType: TextInputType.number,
                           suffixText: 'm/s^2',
@@ -124,12 +123,12 @@ class _GravitationalPotentialEnergyState
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Gravity.text));
+                                ClipboardData(text: gravity.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Eg,
+                          controller: eg,
                           hintText: 'Eg',
                           keyboardType: TextInputType.number,
                           suffixText: 'J',
@@ -140,14 +139,14 @@ class _GravitationalPotentialEnergyState
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Eg.text));
+                                ClipboardData(text: eg.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         FractionallySizedBox(
                           widthFactor: 0.65,
                           child: ElevatedButton(
-                            onPressed: (() => Gravity.text = '9.80665'),
+                            onPressed: (() => gravity.text = '9.80665'),
                             style: ElevatedButton.styleFrom(
                                 backgroundColor:
                                     const Color.fromARGB(255, 0, 135, 197)),

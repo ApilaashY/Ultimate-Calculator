@@ -38,6 +38,7 @@ dependencies:
   shared_preferences: ^2.0.15
   google_fonts: ^4.0.3
   html: ^0.15.0
+  http: ^1.1.0
   fluttertoast: ^8.2.2
   google_mobile_ads: ^2.0.1
   cloud_firestore: ^4.3.2

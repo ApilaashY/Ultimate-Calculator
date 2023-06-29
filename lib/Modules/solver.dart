@@ -1,6 +1,6 @@
-import 'dart:math' as math;
+// ignore_for_file: empty_catches, camel_case_types
 
-import 'package:app/Pages/periodictable.dart';
+import 'dart:math' as math;
 
 class Solver {
   String fixBrackets(String equation) {
@@ -19,7 +19,7 @@ class Solver {
       }
     } else if (backs > fronts) {
       for (int i = 0; i < backs - fronts; i++) {
-        equation = "(" + equation;
+        equation = "($equation";
       }
     }
 
@@ -43,7 +43,7 @@ class Solver {
         .toLowerCase()
         .replaceAll("π", "(${math.pi})");
     List<String> elements = [];
-    String number = "", last = "";
+    String number = "";
     for (int i = 0; i < equation.length; i++) {
       if ("+-*/^√()abcdefghijklmnopqrstuvwxyz".contains(equation[i])) {
         String checkEquation = equation.substring(i);
@@ -102,7 +102,6 @@ class Solver {
         }
         number += equation[i];
       }
-      last = equation[i];
     }
 
     if (number.isNotEmpty) {
@@ -299,5 +298,214 @@ class Solver {
       return math.tan(number * math.pi / 180);
     }
     return -1;
+  }
+}
+
+class boolAlgebraSolver {
+  List<String> translate(String equation) {
+    equation = equation.replaceAll(" ", "");
+    List<String> elements = [];
+    String number = "";
+    String alphabet = "abcxyz";
+    for (int i = 0; i < equation.length; i++) {
+      if (("!*+()$alphabet").contains(equation[i])) {
+        if (number.isNotEmpty) {
+          elements.add(number);
+        }
+        elements.add(equation[i]);
+        number = "";
+        if (i < equation.length - 1 &&
+            ("$alphabet)").contains(equation[i]) &&
+            ("$alphabet(").contains(equation[i + 1])) {
+          elements.add("*");
+        }
+      } else {
+        number += equation[i];
+      }
+    }
+    if (number.isNotEmpty) {
+      elements.add(number);
+    }
+    return elements;
+  }
+
+  List<List<String>> solveCases(List<String> equation) {
+    Map charMap = {
+      "a": 1,
+      "b": 2,
+      "c": 3,
+      "x": 4,
+      "y": 5,
+      "z": 6,
+    };
+    List<List<String>> cases = [[]];
+    List places = [];
+    String seen = "";
+    cases[0] = [];
+    for (int i = 0; i < equation.length; i++) {
+      if ("abcxyz".contains(equation[i])) {
+        if (seen.contains(equation[i])) {
+          cases[0][seen.indexOf(equation[i])] += (" $i");
+        } else {
+          cases[0].add(i.toString());
+          seen += equation[i];
+        }
+      }
+    }
+
+    for (int i = 0; i < cases[0].length; i++) {
+      places.add(charMap[equation[int.parse(cases[0][i].split(" ")[0])]]);
+    }
+
+    for (int i = 0; i < places.length; i++) {
+      int lowest = i;
+      for (int j = i; j < places.length; j++) {
+        if (places[j] < places[lowest]) {
+          lowest = j;
+        }
+      }
+
+      int tempValue = places[i];
+      String tempValueList = cases[0][i];
+
+      places[i] = places[lowest];
+      cases[0][i] = cases[0][lowest];
+
+      places[lowest] = tempValue;
+      cases[0][lowest] = tempValueList;
+    }
+
+    List<String> caseNums = nums(cases[0].length);
+    for (String x in caseNums) {
+      cases.add(x.split(""));
+    }
+
+    for (int i = 1; i < cases.length; i++) {
+      List<String> tempEquation = new List.from(equation);
+      for (int x = 0; x < cases[0].length; x++) {
+        for (String y in cases[0][x].split(" ")) {
+          tempEquation[int.parse(y)] = cases[i][x];
+        }
+      }
+      cases[i].add(solve(tempEquation).toString());
+    }
+
+    for (int i = 0; i < cases[0].length; i++) {
+      cases[0][i] = equation[int.parse(cases[0][i].split(" ")[0])];
+    }
+    return cases;
+  }
+
+  List<String> nums(int digits) {
+    List<String> list = [];
+    for (int i = 0; i <= math.pow(2, digits); i++) {
+      list.add(numToBin(i, digits));
+    }
+    return list;
+  }
+
+  String numToBin(int number, int max) {
+    String numberString = "";
+    for (int i = max - 1; i >= 0; i--) {
+      if (math.pow(2, i) < number) {
+        numberString += "1";
+        number -= int.parse(math.pow(2, i).toString());
+      } else {
+        numberString += "0";
+      }
+    }
+    return numberString;
+  }
+
+  bool correctSimplifcation(String equation1, String equation2) {
+    List eq1 = solveCases(translate(equation1));
+    List eq2 = solveCases(translate(equation2));
+
+    for (int i = 0; i < eq1.length; i++) {
+      for (int j = 0; j < eq1[i].length; j++) {
+        if (eq1[i][j] != eq2[i][j]) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
+  int solve(List<String> equation) {
+    // Solves Brackets
+    while (equation.contains("(") || equation.contains(")")) {
+      int end = equation.indexOf(")");
+      int front = highestIndexBefore(indexesOf(equation, "("), end);
+
+      if (end - front >= 1) {
+        int solveBracket = solve(equation.sublist(front + 1, end));
+
+        equation[front] = solveBracket.toString();
+        for (int i = 0; i < end - front; i++) {
+          equation.removeAt(front + 1);
+        }
+      }
+    }
+    //Solve opposites
+    for (int i = 0; i < equation.length - 1; i++) {
+      if (equation[i] == "!") {
+        equation.removeAt(i);
+        if (equation[i] == "0") {
+          equation[i] = "1";
+        } else {
+          equation[i] = "0";
+        }
+      }
+    }
+    // Solves multiplication
+    while (equation.contains("*")) {
+      for (int i = 1; i < equation.length - 1; i++) {
+        if (equation[i] == "*") {
+          equation[i] =
+              (int.parse(equation[i - 1]) * int.parse(equation[i + 1]))
+                  .toString();
+          equation.removeAt(i - 1);
+          equation.removeAt(i);
+        }
+      }
+    }
+    // Solves addition
+    while (equation.contains("+")) {
+      for (int i = 1; i < equation.length - 1; i++) {
+        if (equation[i] == "+") {
+          equation[i] =
+              (int.parse(equation[i - 1]) + int.parse(equation[i + 1]) > 0)
+                  ? "1"
+                  : "0";
+
+          equation.removeAt(i - 1);
+          equation.removeAt(i);
+        }
+      }
+    }
+    return int.parse(equation[0]);
+  }
+
+  List<int> indexesOf(List<String> list, String search) {
+    List<int> x = [];
+    for (int i = 0; i < list.length; i++) {
+      if (list[i] == search) {
+        x.add(i);
+      }
+    }
+    return x;
+  }
+
+  int highestIndexBefore(List<int> indexes, int high) {
+    for (int i = 0; i < indexes.length; i++) {
+      if (indexes[i] > high && i == 0) {
+        return -1;
+      }
+
+      if (indexes[i] > high && indexes[i - 1] < high) {
+        return indexes[i - 1];
+      }
+    }
+    return indexes[indexes.length - 1];
   }
 }

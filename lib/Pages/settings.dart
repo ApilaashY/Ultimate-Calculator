@@ -15,8 +15,8 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   Future setup() async {
     if (!setupDone) {
-      String? _tempdata = await savedata.getString('SettingsSave');
-      _data = ((_tempdata == null)
+      String? tempdata = await savedata.getString('SettingsSave');
+      _data = ((tempdata == null)
           ? {
               'RoundingNumber': 4,
               'sigfigrounding': false,
@@ -24,7 +24,7 @@ class _SettingsState extends State<Settings> {
               'secondCurrency': "AED - United Arab Emirates Dirham",
               'degreeDefault': true,
             }
-          : jsonDecode(_tempdata));
+          : jsonDecode(tempdata));
       roundingcontroller.text = _data['RoundingNumber'].toString();
       _sigfig =
           (_data['sigfigrounding'] != null) ? _data['sigfigrounding'] : false;

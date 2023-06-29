@@ -1,7 +1,8 @@
+// ignore_for_file: file_names
+
 import 'dart:math';
 
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,11 +16,11 @@ class SimpleInterest extends StatefulWidget {
 }
 
 class _SimpleInterestState extends State<SimpleInterest> {
-  TextEditingController Principal = TextEditingController();
-  TextEditingController Rate = TextEditingController();
-  TextEditingController Interest = TextEditingController();
-  TextEditingController Total = TextEditingController();
-  TextEditingController Time = TextEditingController();
+  TextEditingController principal = TextEditingController();
+  TextEditingController rate = TextEditingController();
+  TextEditingController interest = TextEditingController();
+  TextEditingController total = TextEditingController();
+  TextEditingController time = TextEditingController();
   String _currenttime = "Years";
   final Map _times = {
     "Years": 1,
@@ -32,82 +33,82 @@ class _SimpleInterestState extends State<SimpleInterest> {
   };
   void calc() {
     try {
-      if (Principal.text.isNotEmpty &&
-          Rate.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Interest.text = roundto((double.parse(Principal.text) *
-                (double.parse(Rate.text) / 100 / _times[_currenttime]) *
-                double.parse(Time.text))
+      if (principal.text.isNotEmpty &&
+          rate.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        interest.text = roundto((double.parse(principal.text) *
+                (double.parse(rate.text) / 100 / _times[_currenttime]) *
+                double.parse(time.text))
             .toString());
-        Total.text = roundto(
-            (double.parse(Interest.text) + double.parse(Principal.text))
+        total.text = roundto(
+            (double.parse(interest.text) + double.parse(principal.text))
                 .toString());
-      } else if (Interest.text.isNotEmpty &&
-          Rate.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Principal.text = roundto((double.parse(Interest.text) /
-                ((double.parse(Rate.text) / 100 / _times[_currenttime]) *
-                    (double.parse(Time.text) * _times[_currenttime])))
+      } else if (interest.text.isNotEmpty &&
+          rate.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        principal.text = roundto((double.parse(interest.text) /
+                ((double.parse(rate.text) / 100 / _times[_currenttime]) *
+                    (double.parse(time.text) * _times[_currenttime])))
             .toString());
-        Total.text = roundto(
-            (double.parse(Interest.text) + double.parse(Principal.text))
+        total.text = roundto(
+            (double.parse(interest.text) + double.parse(principal.text))
                 .toString());
-      } else if (Total.text.isNotEmpty &&
-          Rate.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Principal.text = roundto((double.parse(Total.text) /
-                ((double.parse(Rate.text) / 100 / _times[_currenttime]) *
-                        (double.parse(Time.text) * _times[_currenttime]) +
+      } else if (total.text.isNotEmpty &&
+          rate.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        principal.text = roundto((double.parse(total.text) /
+                ((double.parse(rate.text) / 100 / _times[_currenttime]) *
+                        (double.parse(time.text) * _times[_currenttime]) +
                     1))
             .toString());
-        Interest.text = roundto((double.parse(Principal.text) *
-                (double.parse(Rate.text) / _times[_currenttime]) *
-                double.parse(Time.text))
+        interest.text = roundto((double.parse(principal.text) *
+                (double.parse(rate.text) / _times[_currenttime]) *
+                double.parse(time.text))
             .toString());
-      } else if (Interest.text.isNotEmpty &&
-          Principal.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Total.text = roundto(
-            (double.parse(Interest.text) + double.parse(Principal.text))
+      } else if (interest.text.isNotEmpty &&
+          principal.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        total.text = roundto(
+            (double.parse(interest.text) + double.parse(principal.text))
                 .toString());
-        Rate.text = roundto(((double.parse(Interest.text) /
-                    (double.parse(Principal.text) *
-                        double.parse(Time.text) *
+        rate.text = roundto(((double.parse(interest.text) /
+                    (double.parse(principal.text) *
+                        double.parse(time.text) *
                         _times[_currenttime])) *
                 pow(_times[_currenttime], 2) *
                 100)
             .toString());
-      } else if (Total.text.isNotEmpty &&
-          Principal.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Rate.text = roundto(
-            ((double.parse(Total.text) / double.parse(Principal.text) - 1) /
-                    (double.parse(Time.text) * _times[_currenttime]) *
+      } else if (total.text.isNotEmpty &&
+          principal.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        rate.text = roundto(
+            ((double.parse(total.text) / double.parse(principal.text) - 1) /
+                    (double.parse(time.text) * _times[_currenttime]) *
                     pow(_times[_currenttime], 2) *
                     100)
                 .toString());
-        Interest.text = roundto(
-            (double.parse(Total.text) - double.parse(Principal.text))
+        interest.text = roundto(
+            (double.parse(total.text) - double.parse(principal.text))
                 .toString());
-      } else if (Interest.text.isNotEmpty &&
-          Principal.text.isNotEmpty &&
-          Rate.text.isNotEmpty) {
-        Total.text = roundto(
-            (double.parse(Interest.text) + double.parse(Principal.text))
+      } else if (interest.text.isNotEmpty &&
+          principal.text.isNotEmpty &&
+          rate.text.isNotEmpty) {
+        total.text = roundto(
+            (double.parse(interest.text) + double.parse(principal.text))
                 .toString());
-        Time.text = roundto((double.parse(Interest.text) /
-                (double.parse(Principal.text) *
-                    (double.parse(Rate.text) / 100 / _times[_currenttime])))
+        time.text = roundto((double.parse(interest.text) /
+                (double.parse(principal.text) *
+                    (double.parse(rate.text) / 100 / _times[_currenttime])))
             .toString());
-      } else if (Total.text.isNotEmpty &&
-          Principal.text.isNotEmpty &&
-          Rate.text.isNotEmpty) {
-        Time.text = roundto(
-            ((double.parse(Total.text) / double.parse(Principal.text) - 1) /
-                    (double.parse(Rate.text) / 100 / _times[_currenttime]))
+      } else if (total.text.isNotEmpty &&
+          principal.text.isNotEmpty &&
+          rate.text.isNotEmpty) {
+        time.text = roundto(
+            ((double.parse(total.text) / double.parse(principal.text) - 1) /
+                    (double.parse(rate.text) / 100 / _times[_currenttime]))
                 .toString());
-        Interest.text = roundto(
-            (double.parse(Total.text) - double.parse(Principal.text))
+        interest.text = roundto(
+            (double.parse(total.text) - double.parse(principal.text))
                 .toString());
       } else {
         Fluttertoast.showToast(msg: "Not Enough Information");
@@ -150,7 +151,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
                     child: ListView(
                       children: [
                         Inputfield(
-                          controller: Principal,
+                          controller: principal,
                           hintText: 'Principal',
                           keyboardType: TextInputType.number,
                           prefixText: "\$",
@@ -161,12 +162,12 @@ class _SimpleInterestState extends State<SimpleInterest> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Principal.text));
+                                ClipboardData(text: principal.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Rate,
+                          controller: rate,
                           hintText: 'Yearly Interest Rate',
                           keyboardType: TextInputType.number,
                           suffixText: '%',
@@ -177,7 +178,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Rate.text));
+                                ClipboardData(text: rate.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
@@ -186,7 +187,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
                             Expanded(
                               flex: 1,
                               child: Inputfield(
-                                controller: Time,
+                                controller: time,
                                 hintText: 'Times Compounded',
                                 keyboardType: TextInputType.number,
                               ),
@@ -218,12 +219,12 @@ class _SimpleInterestState extends State<SimpleInterest> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Time.text));
+                                ClipboardData(text: time.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Interest,
+                          controller: interest,
                           hintText: 'Interest',
                           keyboardType: TextInputType.number,
                           prefixText: '\$',
@@ -234,12 +235,12 @@ class _SimpleInterestState extends State<SimpleInterest> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Interest.text));
+                                ClipboardData(text: interest.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Total,
+                          controller: total,
                           hintText: 'Total',
                           keyboardType: TextInputType.number,
                           prefixText: '\$',
@@ -250,7 +251,7 @@ class _SimpleInterestState extends State<SimpleInterest> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Total.text));
+                                ClipboardData(text: total.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),

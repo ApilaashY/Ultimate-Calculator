@@ -3,7 +3,8 @@
 import 'dart:convert';
 import 'dart:io' show Platform;
 import 'dart:math';
-//import 'dart:html' as html;
+// import 'dart:html' as html;
+import 'Modules/loadas.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
@@ -14,7 +15,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'Modules/routes.dart' as routes;
 import 'Modules/card_button.dart';
-import 'Modules/loadas.dart';
 import 'firebase_options.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:galaxy_store_in_app_review/galaxy_store_in_app_review.dart';
@@ -38,7 +38,6 @@ void main() async {
     await MobileAds.instance.initialize();
   } catch (e) {
     webMode = true;
-    print("Webmode Activated");
   }
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -88,7 +87,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   _HomeState() {
     if (!webMode) {
-      //showinter();
+      showinter();
     }
   }
   Future setup() async {
@@ -105,7 +104,6 @@ class _HomeState extends State<Home> {
           "News not avaliable\n\nSome Things can be Long Pressed to get Details";
     }
 
-    String news = "";
     // Setting up shared preferences
     DateTime now = DateTime.now();
     var temppoints = await savedata.getInt('points');
@@ -119,23 +117,22 @@ class _HomeState extends State<Home> {
     }
     pointsleft = todaylength / 10;
     points = temppoints;
-    String? _settingsSave = await savedata.getString('SettingsSave');
-    Map? _settings = (_settingsSave != null) ? jsonDecode(_settingsSave) : null;
-    if (_settings != null) {
-      roundingnumber = (_settings['RoundingNumber'] != null)
-          ? _settings['RoundingNumber']
-          : 4;
-      sigfigrounding = (_settings['sigfigrounding'] != null)
-          ? _settings['sigfigrounding']
+    String? settingsSave = await savedata.getString('SettingsSave');
+    Map? settings = (settingsSave != null) ? jsonDecode(settingsSave) : null;
+    if (settings != null) {
+      roundingnumber =
+          (settings['RoundingNumber'] != null) ? settings['RoundingNumber'] : 4;
+      sigfigrounding = (settings['sigfigrounding'] != null)
+          ? settings['sigfigrounding']
           : false;
-      firstCurrencyValue = (_settings['firstCurrency'] != null)
-          ? _settings['firstCurrency']
+      firstCurrencyValue = (settings['firstCurrency'] != null)
+          ? settings['firstCurrency']
           : "AED - United Arab Emirates Dirham";
-      secondCurrencyValue = (_settings['secondCurrency'] != null)
-          ? _settings['secondCurrency']
+      secondCurrencyValue = (settings['secondCurrency'] != null)
+          ? settings['secondCurrency']
           : "AED - United Arab Emirates Dirham";
-      degreeDefault = (_settings['degreeDefault'] != null)
-          ? _settings['degreeDefault']
+      degreeDefault = (settings['degreeDefault'] != null)
+          ? settings['degreeDefault']
           : true;
     }
 
@@ -144,6 +141,7 @@ class _HomeState extends State<Home> {
 
   Random randomnum = Random();
   RewardedAd? ad;
+  @override
   initState() {
     super.initState();
     void rate() async {
@@ -439,7 +437,7 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         Align(
-                          alignment: Alignment(0, ((pointsleft * 2) - 1) / 2),
+                          alignment: Alignment.topCenter,
                           child: FractionallySizedBox(
                             widthFactor: 0.95,
                             heightFactor: pointsleft,
@@ -477,7 +475,7 @@ class _HomeState extends State<Home> {
                     text: "Physics",
                     children: [
                       SectionButton(
-                        text: "Vector Addition",
+                        text: "2D Vector Addition",
                         menu: "Add one or more vectors together",
                       ),
                       SectionButton(text: 'Work'),
@@ -521,6 +519,13 @@ class _HomeState extends State<Home> {
                   CardButton(
                     text: 'Root Finder',
                   ),
+                  ExtendedButton(
+                    text: "Boolean Algebra",
+                    children: [
+                      SectionButton(text: "Boolean Calculator"),
+                      SectionButton(text: "Test Cases"),
+                    ],
+                  ),
                   CardButton(
                     text: 'GCF',
                   ),
@@ -542,7 +547,7 @@ class _HomeState extends State<Home> {
                           heightFactor: 0.9,
                           child: FittedBox(
                               child:
-                                  Text("Updated June 21, 2023\nVersion 3.2.2")),
+                                  Text("Updated June 29, 2023\nVersion 3.3.0")),
                         ),
                       );
                     }

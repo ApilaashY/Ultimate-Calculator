@@ -1,8 +1,5 @@
 // ignore_for_file: file_names
 
-import 'dart:convert';
-import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -17,8 +14,8 @@ class DegAndRad extends StatefulWidget {
 }
 
 class _DegAndRadState extends State<DegAndRad> {
-  TextEditingController _degrees = TextEditingController();
-  TextEditingController _radians = TextEditingController();
+  final TextEditingController _degrees = TextEditingController();
+  final TextEditingController _radians = TextEditingController();
 
   @override
   Widget build(BuildContext context) {

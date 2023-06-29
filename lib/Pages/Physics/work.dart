@@ -1,10 +1,7 @@
-import 'dart:convert';
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'dart:math';
 import 'package:app/Modules/globalfunctions.dart';
 
 class Work extends StatefulWidget {
@@ -15,22 +12,22 @@ class Work extends StatefulWidget {
 }
 
 class _WorkState extends State<Work> {
-  TextEditingController Work = TextEditingController();
-  TextEditingController Force = TextEditingController();
-  TextEditingController Displacement = TextEditingController();
+  TextEditingController work = TextEditingController();
+  TextEditingController force = TextEditingController();
+  TextEditingController displacement = TextEditingController();
   void calc() {
     try {
-      if (Work.text.isEmpty) {
-        Work.text = roundto(
-            (double.parse(Force.text) * double.parse(Displacement.text))
+      if (work.text.isEmpty) {
+        work.text = roundto(
+            (double.parse(force.text) * double.parse(displacement.text))
                 .toString());
-      } else if (Force.text.isEmpty) {
-        Force.text = roundto(
-            (double.parse(Work.text) / double.parse(Displacement.text))
+      } else if (force.text.isEmpty) {
+        force.text = roundto(
+            (double.parse(work.text) / double.parse(displacement.text))
                 .toString());
-      } else if (Displacement.text.isEmpty) {
-        Displacement.text = roundto(
-            (double.parse(Work.text) / double.parse(Force.text)).toString());
+      } else if (displacement.text.isEmpty) {
+        displacement.text = roundto(
+            (double.parse(work.text) / double.parse(force.text)).toString());
       } else {
         throw 'Not Enough Data';
       }
@@ -72,7 +69,7 @@ class _WorkState extends State<Work> {
                     child: ListView(
                       children: [
                         Inputfield(
-                          controller: Force,
+                          controller: force,
                           hintText: 'Force',
                           keyboardType: TextInputType.number,
                           suffixText: 'N',
@@ -83,12 +80,12 @@ class _WorkState extends State<Work> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Force.text));
+                                ClipboardData(text: force.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Displacement,
+                          controller: displacement,
                           hintText: 'Displacement',
                           keyboardType: TextInputType.number,
                           suffixText: 'm',
@@ -99,12 +96,12 @@ class _WorkState extends State<Work> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Displacement.text));
+                                ClipboardData(text: displacement.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Work,
+                          controller: work,
                           hintText: 'Work',
                           keyboardType: TextInputType.number,
                           suffixText: 'J',
@@ -115,7 +112,7 @@ class _WorkState extends State<Work> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Work.text));
+                                ClipboardData(text: work.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),

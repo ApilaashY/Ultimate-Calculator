@@ -1,10 +1,11 @@
+// ignore_for_file: file_names
+
 import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:app/Modules/input_field.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:math';
-import 'dart:convert';
 import 'package:app/Modules/globalfunctions.dart';
 
 class Trigonometry extends StatefulWidget {

@@ -1,8 +1,5 @@
-import 'dart:convert';
-
 import 'package:app/Modules/globalfunctions.dart';
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:math';

@@ -1,7 +1,8 @@
+// ignore_for_file: file_names
+
 import 'dart:math';
 
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -25,118 +26,118 @@ class CompoundInterest extends StatefulWidget {
 }
 
 class _CompoundInterestState extends State<CompoundInterest> {
-  TextEditingController Principal = TextEditingController();
-  TextEditingController Rate = TextEditingController();
-  TextEditingController Interest = TextEditingController();
-  TextEditingController Total = TextEditingController();
-  TextEditingController Time = TextEditingController();
+  TextEditingController principal = TextEditingController();
+  TextEditingController rate = TextEditingController();
+  TextEditingController interest = TextEditingController();
+  TextEditingController total = TextEditingController();
+  TextEditingController time = TextEditingController();
   String _currenttime = "Yearly";
   void calc() {
     try {
-      if (Principal.text.isNotEmpty &&
-          Rate.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Total.text = roundto((pow(
+      if (principal.text.isNotEmpty &&
+          rate.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        total.text = roundto((pow(
                     1 +
-                        double.parse(Rate.text) /
+                        double.parse(rate.text) /
                             100 /
                             compoundPeriods[_currenttime],
-                    double.parse(Time.text) * compoundPeriods[_currenttime]) *
-                double.parse(Principal.text))
+                    double.parse(time.text) * compoundPeriods[_currenttime]) *
+                double.parse(principal.text))
             .toString());
-        Interest.text = roundto(
-            (double.parse(Total.text) - double.parse(Principal.text))
+        interest.text = roundto(
+            (double.parse(total.text) - double.parse(principal.text))
                 .toString());
-      } else if (Interest.text.isNotEmpty &&
-          Rate.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Principal.text = roundto((double.parse(Interest.text) /
+      } else if (interest.text.isNotEmpty &&
+          rate.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        principal.text = roundto((double.parse(interest.text) /
                 (pow(
                         1 +
-                            double.parse(Rate.text) /
+                            double.parse(rate.text) /
                                 100 /
                                 compoundPeriods[_currenttime],
-                        double.parse(Time.text) *
+                        double.parse(time.text) *
                             compoundPeriods[_currenttime]) -
                     1))
             .toString());
-        Total.text = roundto(
-            (double.parse(Principal.text) + double.parse(Interest.text))
+        total.text = roundto(
+            (double.parse(principal.text) + double.parse(interest.text))
                 .toString());
-      } else if (Total.text.isNotEmpty &&
-          Rate.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Principal.text = roundto((double.parse(Total.text) /
+      } else if (total.text.isNotEmpty &&
+          rate.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        principal.text = roundto((double.parse(total.text) /
                 (pow(
                     1 +
-                        double.parse(Rate.text) /
+                        double.parse(rate.text) /
                             100 /
                             compoundPeriods[_currenttime],
-                    double.parse(Time.text) * compoundPeriods[_currenttime])))
+                    double.parse(time.text) * compoundPeriods[_currenttime])))
             .toString());
-        Interest.text = roundto(
-            (double.parse(Total.text) - double.parse(Principal.text))
+        interest.text = roundto(
+            (double.parse(total.text) - double.parse(principal.text))
                 .toString());
-      } else if (Interest.text.isNotEmpty &&
-          Principal.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Rate.text = roundto(((pow(
+      } else if (interest.text.isNotEmpty &&
+          principal.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        rate.text = roundto(((pow(
                         1 +
-                            double.parse(Interest.text) /
-                                double.parse(Principal.text),
+                            double.parse(interest.text) /
+                                double.parse(principal.text),
                         1 /
-                            (double.parse(Time.text) *
+                            (double.parse(time.text) *
                                 compoundPeriods[_currenttime])) -
                     1) *
                 compoundPeriods[_currenttime] *
                 100)
             .toString());
-        Total.text = roundto(
-            (double.parse(Principal.text) + double.parse(Interest.text))
+        total.text = roundto(
+            (double.parse(principal.text) + double.parse(interest.text))
                 .toString());
-      } else if (Total.text.isNotEmpty &&
-          Principal.text.isNotEmpty &&
-          Time.text.isNotEmpty) {
-        Rate.text = roundto(((pow(
-                        double.parse(Total.text) / double.parse(Principal.text),
+      } else if (total.text.isNotEmpty &&
+          principal.text.isNotEmpty &&
+          time.text.isNotEmpty) {
+        rate.text = roundto(((pow(
+                        double.parse(total.text) / double.parse(principal.text),
                         1 /
-                            (double.parse(Time.text) *
+                            (double.parse(time.text) *
                                 compoundPeriods[_currenttime])) -
                     1) *
                 compoundPeriods[_currenttime] *
                 100)
             .toString());
-        Interest.text = roundto(
-            (double.parse(Total.text) - double.parse(Principal.text))
+        interest.text = roundto(
+            (double.parse(total.text) - double.parse(principal.text))
                 .toString());
-      } else if (Interest.text.isNotEmpty &&
-          Principal.text.isNotEmpty &&
-          Rate.text.isNotEmpty) {
-        Time.text = roundto((log(1 +
-                    double.parse(Interest.text) /
-                        double.parse(Principal.text)) /
+      } else if (interest.text.isNotEmpty &&
+          principal.text.isNotEmpty &&
+          rate.text.isNotEmpty) {
+        time.text = roundto((log(1 +
+                    double.parse(interest.text) /
+                        double.parse(principal.text)) /
                 log(1 +
-                    double.parse(Rate.text) /
+                    double.parse(rate.text) /
                         100 /
                         compoundPeriods[_currenttime]) /
                 compoundPeriods[_currenttime])
             .toString());
-        Total.text = roundto(
-            (double.parse(Principal.text) + double.parse(Interest.text))
+        total.text = roundto(
+            (double.parse(principal.text) + double.parse(interest.text))
                 .toString());
-      } else if (Total.text.isNotEmpty &&
-          Principal.text.isNotEmpty &&
-          Rate.text.isNotEmpty) {
-        Time.text = roundto(
-            (log(double.parse(Total.text) / double.parse(Principal.text)) /
+      } else if (total.text.isNotEmpty &&
+          principal.text.isNotEmpty &&
+          rate.text.isNotEmpty) {
+        time.text = roundto(
+            (log(double.parse(total.text) / double.parse(principal.text)) /
                     log(1 +
-                        double.parse(Rate.text) /
+                        double.parse(rate.text) /
                             100 /
                             compoundPeriods[_currenttime]) /
                     compoundPeriods[_currenttime])
                 .toString());
-        Interest.text = roundto(
-            (double.parse(Total.text) - double.parse(Principal.text))
+        interest.text = roundto(
+            (double.parse(total.text) - double.parse(principal.text))
                 .toString());
       } else {
         Fluttertoast.showToast(msg: "Not Enough Information");
@@ -179,7 +180,7 @@ class _CompoundInterestState extends State<CompoundInterest> {
                     child: ListView(
                       children: [
                         Inputfield(
-                          controller: Principal,
+                          controller: principal,
                           hintText: 'Principal',
                           keyboardType: TextInputType.number,
                           prefixText: "\$",
@@ -190,12 +191,12 @@ class _CompoundInterestState extends State<CompoundInterest> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Principal.text));
+                                ClipboardData(text: principal.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Rate,
+                          controller: rate,
                           hintText: 'Yearly Interest Rate',
                           keyboardType: TextInputType.number,
                           suffixText: '%',
@@ -206,7 +207,7 @@ class _CompoundInterestState extends State<CompoundInterest> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Rate.text));
+                                ClipboardData(text: rate.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
@@ -215,7 +216,7 @@ class _CompoundInterestState extends State<CompoundInterest> {
                             Expanded(
                               flex: 1,
                               child: Inputfield(
-                                controller: Time,
+                                controller: time,
                                 hintText: 'Years',
                                 keyboardType: TextInputType.number,
                               ),
@@ -247,12 +248,12 @@ class _CompoundInterestState extends State<CompoundInterest> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Time.text));
+                                ClipboardData(text: time.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Interest,
+                          controller: interest,
                           hintText: 'Interest',
                           keyboardType: TextInputType.number,
                           prefixText: '\$',
@@ -263,12 +264,12 @@ class _CompoundInterestState extends State<CompoundInterest> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Interest.text));
+                                ClipboardData(text: interest.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Total,
+                          controller: total,
                           hintText: 'Total',
                           keyboardType: TextInputType.number,
                           prefixText: '\$',
@@ -279,7 +280,7 @@ class _CompoundInterestState extends State<CompoundInterest> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Total.text));
+                                ClipboardData(text: total.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),

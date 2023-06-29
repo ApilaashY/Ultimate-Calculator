@@ -1,6 +1,6 @@
-import 'dart:convert';
+// ignore_for_file: file_names
+
 import 'package:app/Modules/input_field.dart';
-import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -15,22 +15,22 @@ class KineticEnergy extends StatefulWidget {
 }
 
 class _KineticEnergyState extends State<KineticEnergy> {
-  TextEditingController Mass = TextEditingController();
-  TextEditingController Velocity = TextEditingController();
-  TextEditingController Ek = TextEditingController();
+  TextEditingController mass = TextEditingController();
+  TextEditingController velocity = TextEditingController();
+  TextEditingController ek = TextEditingController();
   void calc() {
     try {
-      if (Mass.text.isEmpty) {
-        Mass.text = roundto(
-            (double.parse(Ek.text) / pow(double.parse(Velocity.text), 2) * 2)
+      if (mass.text.isEmpty) {
+        mass.text = roundto(
+            (double.parse(ek.text) / pow(double.parse(velocity.text), 2) * 2)
                 .toString());
-      } else if (Velocity.text.isEmpty) {
-        Velocity.text = roundto(
-            (sqrt(double.parse(Ek.text) / (double.parse(Mass.text) / 2)))
+      } else if (velocity.text.isEmpty) {
+        velocity.text = roundto(
+            (sqrt(double.parse(ek.text) / (double.parse(mass.text) / 2)))
                 .toString());
-      } else if (Ek.text.isEmpty) {
-        Ek.text = roundto(
-            (double.parse(Mass.text) / 2 * pow(double.parse(Velocity.text), 2))
+      } else if (ek.text.isEmpty) {
+        ek.text = roundto(
+            (double.parse(mass.text) / 2 * pow(double.parse(velocity.text), 2))
                 .toString());
       } else {
         throw 'Not Enough Data';
@@ -46,7 +46,7 @@ class _KineticEnergyState extends State<KineticEnergy> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Kinetic Energy'),
+        title: const Text('Kinetic Energy'),
         foregroundColor:
             (MediaQuery.of(context).platformBrightness == Brightness.light)
                 ? Colors.black
@@ -73,7 +73,7 @@ class _KineticEnergyState extends State<KineticEnergy> {
                     child: ListView(
                       children: [
                         Inputfield(
-                          controller: Mass,
+                          controller: mass,
                           hintText: 'Mass',
                           keyboardType: TextInputType.number,
                         ),
@@ -83,12 +83,12 @@ class _KineticEnergyState extends State<KineticEnergy> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Mass.text));
+                                ClipboardData(text: mass.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Velocity,
+                          controller: velocity,
                           hintText: 'Velocity',
                           keyboardType: TextInputType.number,
                         ),
@@ -98,12 +98,12 @@ class _KineticEnergyState extends State<KineticEnergy> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Velocity.text));
+                                ClipboardData(text: velocity.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
                         Inputfield(
-                          controller: Ek,
+                          controller: ek,
                           hintText: 'Ek',
                           keyboardType: TextInputType.number,
                         ),
@@ -113,7 +113,7 @@ class _KineticEnergyState extends State<KineticEnergy> {
                           ),
                           onPressed: () async {
                             await Clipboard.setData(
-                                ClipboardData(text: Ek.text));
+                                ClipboardData(text: ek.text));
                             Fluttertoast.showToast(msg: 'Saved to Clipboard');
                           },
                         ),
