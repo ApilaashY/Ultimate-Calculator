@@ -374,12 +374,14 @@ class FunctionButton extends StatelessWidget {
                 _controller.text.replaceAll("X", "*").replaceAll("÷", "/");
             parseText = solver.fixBrackets(parseText);
             List<String> translation = solver.translate(parseText);
+            if (history.contains(parseText)) {
+              history.remove(parseText);
+            }
             history.insert(0, parseText);
             double answer =
                 solver.solve(translation, (degreemode) ? "Degree" : "Radian");
-            _controller.text = roundto(answer.floor().toString());
+            _controller.text = roundto(answer.toString());
 
-            print(deciasfrac && answer != answer.floorToDouble());
             if (deciasfrac && answer != answer.floorToDouble()) {
               _controller.text += (answer > 0) ? "+(" : "-(";
               _controller.text +=

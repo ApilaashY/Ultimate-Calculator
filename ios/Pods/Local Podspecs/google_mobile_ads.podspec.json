@@ -1,6 +1,6 @@
 {
   "name": "google_mobile_ads",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "summary": "Google Mobile Ads plugin for Flutter.",
   "description": "Google Mobile Ads plugin for Flutter.",
   "homepage": "https://github.com/googleads/googleads-mobile-flutter",
@@ -13,7 +13,7 @@
   "source": {
     "path": "."
   },
-  "source_files": "Classes/**/*",
+  "source_files": "Classes/**/*.{h,m}",
   "public_header_files": "Classes/**/*.h",
   "dependencies": {
     "Flutter": [
@@ -31,11 +31,16 @@
     "VALID_ARCHS": "armv7 arm64 x86_64"
   },
   "static_framework": true,
+  "resource_bundles": {
+    "google_mobile_ads": [
+      "Classes/**/*.xib"
+    ]
+  },
   "testspecs": [
     {
       "name": "Tests",
       "test_type": "unit",
-      "source_files": "Tests/**/*",
+      "source_files": "Tests/**/*.{h,m}",
       "dependencies": {
         "OCMock": [
           "3.6"
