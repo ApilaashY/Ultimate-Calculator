@@ -168,21 +168,23 @@ class _HomeState extends State<Home> {
 
       List<String> names = items.keys.toList();
       List values = items.values.toList();
+      print(names);
+      print(values);
 
       for (int i = 0; i < values.length - 1; i++) {
-        int lowest = i;
+        int highest = i;
         for (int j = i + 1; j < values.length; j++) {
-          if (values[lowest] > values[j]) {
-            lowest = j;
+          if (values[highest] < values[j]) {
+            highest = j;
           }
         }
         int save = values[i];
-        values[i] = values[lowest];
-        values[lowest] = save;
+        values[i] = values[highest];
+        values[highest] = save;
 
         String saveName = names[i];
-        names[i] = names[lowest];
-        names[lowest] = saveName;
+        names[i] = names[highest];
+        names[highest] = saveName;
       }
 
       recomended = names.sublist(0, 3);
