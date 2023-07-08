@@ -26,6 +26,7 @@ import 'package:app/Pages/SimplifyingRadicals.dart';
 import 'package:app/Pages/Triangles/DegandRad.dart';
 import 'package:app/Pages/Triangles/Pythagorean.dart';
 import 'package:app/Pages/Triangles/Trigonometry.dart';
+import 'package:app/Pages/graph.dart';
 import 'package:app/Pages/periodictable.dart';
 import 'package:app/Pages/rootfinder.dart';
 
@@ -112,7 +113,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   _HomeState() {
     if (!webMode) {
-      showinter();
+      //showinter();
     }
   }
   Future setup() async {
@@ -168,9 +169,6 @@ class _HomeState extends State<Home> {
 
       List<String> names = items.keys.toList();
       List values = items.values.toList();
-      print(names);
-      print(values);
-
       for (int i = 0; i < values.length - 1; i++) {
         int highest = i;
         for (int j = i + 1; j < values.length; j++) {
@@ -205,7 +203,7 @@ class _HomeState extends State<Home> {
     'Root Finder': RootFinder(),
     'Periodic Table': PeriodicTable(),
     '2D Vector Addition': VectorAddition(),
-    'Graphs': Home(),
+    'Graphs': Graphs(),
     'Work': Work(),
     'Gravitational Potential Energy': GravitationalPotentialEnergy(),
     'Coefficient of Friction': CoefficientofFriction(),
@@ -398,6 +396,9 @@ class _HomeState extends State<Home> {
                 CardButton(
                   text: 'Converter',
                   menu: "Converts numbers to different types",
+                ),
+                CardButton(
+                  text: 'Graphs',
                 ),
                 CardButton(
                   text: 'Custom Formulas',

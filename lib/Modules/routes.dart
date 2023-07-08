@@ -16,6 +16,7 @@ import 'package:app/Pages/SequenceAndSeries/Sequence.dart';
 import 'package:app/Pages/SequenceAndSeries/Series.dart';
 import 'package:app/Pages/SimplifyingRadicals.dart';
 import 'package:app/Pages/Triangles/DegandRad.dart';
+import 'package:app/Pages/graph.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/main.dart';
@@ -32,7 +33,6 @@ import 'package:app/Pages/periodictable.dart';
 
 Route<dynamic> controller(RouteSettings settings) {
   if (savedata != null) {
-    String? data = savedata.getString("Recomended");
     Map _recommended = {
       'Calculator': 0,
       'Converter': 0,
@@ -61,8 +61,20 @@ Route<dynamic> controller(RouteSettings settings) {
       'Boolean Calculator': 0,
       'Test Cases': 0,
     };
-    if (data != null) {
-      _recommended = jsonDecode(data);
+    bool? reset = savedata.getBool("Reset");
+    String? resetDate = savedata.getString("ResetDate");
+
+    DateTime now = DateTime.now();
+    var today = DateTime(now.year, now.month);
+
+    if (reset == false && resetDate != today.toString()) {
+      savedata.setBool("Reset", true);
+      savedata.setString("ResetDate", today.toString());
+    } else {
+      String? data = savedata.getString("Recomended");
+      if (data != null) {
+        _recommended = jsonDecode(data);
+      }
     }
     _recommended[settings.name]++;
     print("ADD");
@@ -95,7 +107,7 @@ Route<dynamic> controller(RouteSettings settings) {
   } else if (settings.name == '2D Vector Addition') {
     return MaterialPageRoute(builder: (context) => const VectorAddition());
   } else if (settings.name == 'Graphs') {
-    return MaterialPageRoute(builder: (context) => const Home());
+    return MaterialPageRoute(builder: (context) => const Graphs());
   } else if (settings.name == 'Settings') {
     return MaterialPageRoute(builder: (context) => const Settings());
   } else if (settings.name == 'Work') {
