@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:app/Pages/BoolAlgebra.dart';
 import 'package:app/Pages/CustomFormulas.dart';
 import 'package:app/Pages/Finance/AnnuityDue.dart';
@@ -29,6 +31,43 @@ import 'package:app/Pages/settings.dart';
 import 'package:app/Pages/periodictable.dart';
 
 Route<dynamic> controller(RouteSettings settings) {
+  if (savedata != null) {
+    String? data = savedata.getString("Recomended");
+    Map _recommended = {
+      'Calculator': 0,
+      'Converter': 0,
+      'GCF': 0,
+      'LCM': 0,
+      'Pythagorean': 0,
+      'Trigonometry': 0,
+      'Root Finder': 0,
+      'Periodic Table': 0,
+      '2D Vector Addition': 0,
+      'Graphs': 0,
+      'Work': 0,
+      'Gravitational Potential Energy': 0,
+      'Coefficient of Friction': 0,
+      'Kinetic Energy': 0,
+      "Ohm's Law": 0,
+      "Sequences": 0,
+      "Series": 0,
+      "Simple Interest": 0,
+      "Compound Interest": 0,
+      "Ordinary Annuity": 0,
+      "Annuity Due": 0,
+      "Degree Radian Converter": 0,
+      "Simplifying Radicals": 0,
+      "Custom Formulas": 0,
+      'Boolean Calculator': 0,
+      'Test Cases': 0,
+    };
+    if (data != null) {
+      _recommended = jsonDecode(data);
+    }
+    _recommended[settings.name]++;
+    print("ADD");
+    savedata.setString("Recomended", jsonEncode(_recommended));
+  }
   if (settings.name == 'Home') {
     return MaterialPageRoute(builder: (context) => const Home());
   } else if (settings.name == 'Calculator') {

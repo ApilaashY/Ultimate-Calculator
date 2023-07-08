@@ -4,6 +4,31 @@ import 'dart:convert';
 import 'dart:io' show Platform;
 import 'dart:math';
 // import 'dart:html' as html;
+import 'package:app/Pages/BoolAlgebra.dart';
+import 'package:app/Pages/Calculator.dart';
+import 'package:app/Pages/Converter.dart';
+import 'package:app/Pages/CustomFormulas.dart';
+import 'package:app/Pages/Finance/AnnuityDue.dart';
+import 'package:app/Pages/Finance/CompoundInterest.dart';
+import 'package:app/Pages/Finance/OrdinaryAnnuity.dart';
+import 'package:app/Pages/Finance/SimpleInterest.dart';
+import 'package:app/Pages/GCF.dart';
+import 'package:app/Pages/LCM.dart';
+import 'package:app/Pages/Physics/Eg.dart';
+import 'package:app/Pages/Physics/Ek.dart';
+import 'package:app/Pages/Physics/cooffriction.dart';
+import 'package:app/Pages/Physics/ohm.dart';
+import 'package:app/Pages/Physics/vectoraddition.dart';
+import 'package:app/Pages/Physics/work.dart';
+import 'package:app/Pages/SequenceAndSeries/Sequence.dart';
+import 'package:app/Pages/SequenceAndSeries/Series.dart';
+import 'package:app/Pages/SimplifyingRadicals.dart';
+import 'package:app/Pages/Triangles/DegandRad.dart';
+import 'package:app/Pages/Triangles/Pythagorean.dart';
+import 'package:app/Pages/Triangles/Trigonometry.dart';
+import 'package:app/Pages/periodictable.dart';
+import 'package:app/Pages/rootfinder.dart';
+
 import 'Modules/loadas.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -136,9 +161,66 @@ class _HomeState extends State<Home> {
           : true;
     }
 
+    // Setup recomended modules
+    String? tempData = savedata.getString("Recomended");
+    if (tempData != null) {
+      Map<String, dynamic> items = jsonDecode(tempData);
+
+      List<String> names = items.keys.toList();
+      List values = items.values.toList();
+
+      for (int i = 0; i < values.length - 1; i++) {
+        int lowest = i;
+        for (int j = i + 1; j < values.length; j++) {
+          if (values[lowest] > values[j]) {
+            lowest = j;
+          }
+        }
+        int save = values[i];
+        values[i] = values[lowest];
+        values[lowest] = save;
+
+        String saveName = names[i];
+        names[i] = names[lowest];
+        names[lowest] = saveName;
+      }
+
+      recomended = names.sublist(0, 3);
+    }
+
     return snap;
   }
 
+  int _barIndex = 0;
+  List<String> recomended = [];
+  Map<String, Widget> nameWidgetDatabase = {
+    'Calculator': Calculator(),
+    'Converter': Converter(),
+    'GCF': GCF(),
+    'LCM': LCM(),
+    'Pythagorean': Pythagorean(),
+    'Trigonometry': Trigonometry(),
+    'Root Finder': RootFinder(),
+    'Periodic Table': PeriodicTable(),
+    '2D Vector Addition': VectorAddition(),
+    'Graphs': Home(),
+    'Work': Work(),
+    'Gravitational Potential Energy': GravitationalPotentialEnergy(),
+    'Coefficient of Friction': CoefficientofFriction(),
+    'Kinetic Energy': KineticEnergy(),
+    "Ohm's Law": Ohm(),
+    "Sequences": Sequence(),
+    "Series": Series(),
+    "Simple Interest": SimpleInterest(),
+    "Compound Interest": CompoundInterest(),
+    "Ordinary Annuity": OrdinaryAnnuity(),
+    "Annuity Due": AnnuityDue(),
+    "Degree Radian Converter": DegAndRad(),
+    "Simplifying Radicals": SimplifyingRadicals(),
+    "Custom Formulas": CustomFormulas(),
+    'Boolean Calculator': BoolCalculator(),
+    'Test Cases': TestCases(),
+  };
   Random randomnum = Random();
   RewardedAd? ad;
   @override
@@ -160,7 +242,271 @@ class _HomeState extends State<Home> {
     return FutureBuilder(
       future: setup(),
       builder: (context, snap) {
+        List<Widget> _bodyChildren = [
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: GridView.extent(
+              shrinkWrap: true,
+              childAspectRatio: 2,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+              maxCrossAxisExtent: 1500,
+              children: [
+                Card(
+                  elevation: 10,
+                  color: (MediaQuery.of(context).platformBrightness ==
+                          Brightness.light)
+                      ? const Color.fromARGB(255, 165, 226, 255)
+                      : const Color.fromARGB(255, 0, 135, 197),
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(20)),
+                  ),
+                  child: FractionallySizedBox(
+                    key: const ObjectKey("points"),
+                    widthFactor: 0.9,
+                    heightFactor: 0.9,
+                    child: Column(
+                      children: [
+                        Expanded(
+                          flex: 3,
+                          child: FittedBox(
+                              child: Text(
+                            'Points:\n$points',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              color:
+                                  (MediaQuery.of(context).platformBrightness ==
+                                          Brightness.light)
+                                      ? Colors.black
+                                      : Colors.white,
+                            ),
+                          )),
+                        ),
+                        (() {
+                          if (!webMode) {
+                            return Expanded(
+                              flex: 1,
+                              child: FractionallySizedBox(
+                                widthFactor: 0.5,
+                                child: ElevatedButton(
+                                  style: ButtonStyle(
+                                    backgroundColor: MaterialStateProperty.all(
+                                        const Color.fromARGB(255, 0, 135, 197)),
+                                  ),
+                                  onPressed: () {
+                                    var rewardedAd;
+                                    RewardedAd.load(
+                                      adUnitId: (defaultTargetPlatform ==
+                                              TargetPlatform.android)
+                                          ? 'ca-app-pub-4914732861439858/8814232396'
+                                          : (defaultTargetPlatform ==
+                                                  TargetPlatform.iOS)
+                                              ? 'ca-app-pub-4914732861439858/8194257629'
+                                              : '',
+                                      request: const AdRequest(),
+                                      rewardedAdLoadCallback:
+                                          RewardedAdLoadCallback(
+                                        onAdLoaded: (ad) {
+                                          rewardedAd = ad;
+                                          rewardedAd?.show(
+                                            onUserEarnedReward: ((ad, reward) {
+                                              debugPrint(
+                                                  "My Reward Amount -> ${reward.amount}");
+                                            }),
+                                          );
+
+                                          rewardedAd
+                                                  ?.fullScreenContentCallback =
+                                              FullScreenContentCallback(
+                                                  onAdFailedToShowFullScreenContent:
+                                                      (RewardedAd ad, err) {
+                                            ad.dispose();
+                                          }, onAdDismissedFullScreenContent:
+                                                      (RewardedAd ad) {
+                                            ad.dispose();
+                                            int gotpoints =
+                                                randomnum.nextInt(5) + 1;
+                                            points += gotpoints;
+                                            savedata.setInt('points', points);
+                                            setState(() {});
+                                            showDialog(
+                                              context: context,
+                                              builder: (builder) => AlertDialog(
+                                                title: Text(
+                                                    "You got $gotpoints points"),
+                                              ),
+                                            );
+                                          });
+                                        },
+                                        onAdFailedToLoad: (err) {
+                                          debugPrint(err.message);
+                                        },
+                                      ),
+                                    );
+                                  },
+                                  child: const FractionallySizedBox(
+                                    widthFactor: 0.5,
+                                    heightFactor: 0.5,
+                                    child: FittedBox(child: Text("Get Points")),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }
+                          return const SizedBox();
+                        })()
+                      ],
+                    ),
+                  ),
+                ),
+                Card(
+                  elevation: 10,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  child: Stack(
+                    children: [
+                      FractionallySizedBox(
+                        widthFactor: 1,
+                        heightFactor: 1,
+                        child: RotatedBox(
+                          quarterTurns: -1,
+                          child: LinearProgressIndicator(
+                            value: pointsleft,
+                          ),
+                        ),
+                      ),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: FractionallySizedBox(
+                          widthFactor: 0.95,
+                          heightFactor: pointsleft,
+                          child: FittedBox(
+                            child: Text(
+                                "${(pointsleft * 10).toStringAsFixed(0)}/10 points left to collect today"),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                CardButton(
+                  text: 'Calculator',
+                  menu: "A normal calculator",
+                ),
+                CardButton(
+                  text: 'Converter',
+                  menu: "Converts numbers to different types",
+                ),
+                CardButton(
+                  text: 'Custom Formulas',
+                  menu: "Create, save, and use your own formulas",
+                ),
+                /*CardButton(
+                  text: 'Surface Area',
+                ),
+                CardButton(
+                  text: 'Volume',
+                ),*/
+                CardButton(
+                  text: 'Simplifying Radicals',
+                ),
+                ExtendedButton(
+                  text: "Physics",
+                  children: [
+                    SectionButton(
+                      text: "2D Vector Addition",
+                      menu: "Add one or more vectors together",
+                    ),
+                    SectionButton(text: 'Work'),
+                    SectionButton(text: 'Gravitational Potential Energy'),
+                    SectionButton(text: 'Kinetic Energy'),
+                    SectionButton(text: 'Coefficient of Friction'),
+                    SectionButton(text: "Ohm's Law"),
+                  ],
+                ),
+                CardButton(
+                  text: 'Periodic Table',
+                ),
+                ExtendedButton(
+                  text: "Triangles",
+                  children: [
+                    SectionButton(text: "Trigonometry"),
+                    SectionButton(text: 'Pythagorean'),
+                    SectionButton(text: 'Degree Radian Converter'),
+                  ],
+                ),
+                ExtendedButton(
+                  text: "Finance",
+                  children: [
+                    SectionButton(text: "Simple Interest"),
+                    SectionButton(text: 'Compound Interest'),
+                    SectionButton(
+                        text: 'Ordinary Annuity',
+                        menu: "Compounds after payment"),
+                    SectionButton(
+                        text: 'Annuity Due', menu: "Compounds before payment"),
+                  ],
+                ),
+                ExtendedButton(
+                  text: "Sequences and Series",
+                  children: [
+                    SectionButton(text: "Sequences"),
+                    SectionButton(text: 'Series'),
+                  ],
+                ),
+                CardButton(
+                  text: 'Root Finder',
+                ),
+                ExtendedButton(
+                  text: "Boolean Algebra",
+                  children: [
+                    SectionButton(
+                        text: "Boolean Calculator",
+                        menu: "A calculator specially made for boolean math"),
+                    SectionButton(
+                      text: "Test Cases",
+                      menu: "Get all possible cases for a boolean formula",
+                    ),
+                  ],
+                ),
+                CardButton(
+                  text: 'GCF',
+                ),
+                CardButton(
+                  text: 'LCM',
+                ),
+                (() {
+                  if (webMode) {
+                    return Card(
+                      elevation: 10,
+                      color: (MediaQuery.of(context).platformBrightness ==
+                              Brightness.light)
+                          ? const Color.fromARGB(255, 165, 226, 255)
+                          : const Color.fromARGB(255, 0, 135, 197),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      child: const FractionallySizedBox(
+                        widthFactor: 0.9,
+                        heightFactor: 0.9,
+                        child: FittedBox(
+                            child:
+                                Text("Updated June 29, 2023\nVersion 3.3.0")),
+                      ),
+                    );
+                  }
+                  return const SizedBox();
+                })(),
+              ],
+            ),
+          ),
+        ];
+
         if (snap.hasData) {
+          if (recomended.length >= 3) {
+            _bodyChildren.add(nameWidgetDatabase[recomended[0]] as Widget);
+            _bodyChildren.add(nameWidgetDatabase[recomended[1]] as Widget);
+            _bodyChildren.add(nameWidgetDatabase[recomended[2]] as Widget);
+          }
           if (webMode && defaultTargetPlatform == TargetPlatform.android) {
             return Scaffold(
               body: Center(
@@ -237,6 +583,30 @@ class _HomeState extends State<Home> {
                 onPressed: () => Navigator.pushNamed(context, "Settings"),
               ),
             ),
+            bottomNavigationBar: (recomended.length != 0)
+                ? BottomNavigationBar(
+                    currentIndex: _barIndex,
+                    selectedItemColor: Colors.black,
+                    unselectedItemColor: Colors.grey,
+                    showUnselectedLabels: true,
+                    showSelectedLabels: true,
+                    items: [
+                      const BottomNavigationBarItem(
+                          icon: Icon(Icons.home), label: "Home"),
+                      BottomNavigationBarItem(
+                          icon: const Icon(Icons.label), label: recomended[0]),
+                      BottomNavigationBarItem(
+                          icon: const Icon(Icons.label), label: recomended[1]),
+                      BottomNavigationBarItem(
+                          icon: const Icon(Icons.label), label: recomended[2]),
+                    ],
+                    onTap: (index) {
+                      setState(() {
+                        _barIndex = index;
+                      });
+                    },
+                  )
+                : null,
             floatingActionButton: FloatingActionButton(
               backgroundColor: const Color.fromARGB(255, 255, 184, 0),
               child: const Icon(
@@ -299,263 +669,7 @@ class _HomeState extends State<Home> {
                 );
               },
             ),
-            body: Padding(
-              padding: const EdgeInsets.only(left: 20, right: 20),
-              child: GridView.extent(
-                shrinkWrap: true,
-                childAspectRatio: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                maxCrossAxisExtent: 1500,
-                children: [
-                  Card(
-                    elevation: 10,
-                    color: (MediaQuery.of(context).platformBrightness ==
-                            Brightness.light)
-                        ? const Color.fromARGB(255, 165, 226, 255)
-                        : const Color.fromARGB(255, 0, 135, 197),
-                    shape: const RoundedRectangleBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(20)),
-                    ),
-                    child: FractionallySizedBox(
-                      key: const ObjectKey("points"),
-                      widthFactor: 0.9,
-                      heightFactor: 0.9,
-                      child: Column(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: FittedBox(
-                                child: Text(
-                              'Points:\n$points',
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: (MediaQuery.of(context)
-                                            .platformBrightness ==
-                                        Brightness.light)
-                                    ? Colors.black
-                                    : Colors.white,
-                              ),
-                            )),
-                          ),
-                          (() {
-                            if (!webMode) {
-                              return Expanded(
-                                flex: 1,
-                                child: FractionallySizedBox(
-                                  widthFactor: 0.5,
-                                  child: ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                              const Color.fromARGB(
-                                                  255, 0, 135, 197)),
-                                    ),
-                                    onPressed: () {
-                                      var rewardedAd;
-                                      RewardedAd.load(
-                                        adUnitId: (defaultTargetPlatform ==
-                                                TargetPlatform.android)
-                                            ? 'ca-app-pub-4914732861439858/8814232396'
-                                            : (defaultTargetPlatform ==
-                                                    TargetPlatform.iOS)
-                                                ? 'ca-app-pub-4914732861439858/8194257629'
-                                                : '',
-                                        request: const AdRequest(),
-                                        rewardedAdLoadCallback:
-                                            RewardedAdLoadCallback(
-                                          onAdLoaded: (ad) {
-                                            rewardedAd = ad;
-                                            rewardedAd?.show(
-                                              onUserEarnedReward:
-                                                  ((ad, reward) {
-                                                debugPrint(
-                                                    "My Reward Amount -> ${reward.amount}");
-                                              }),
-                                            );
-
-                                            rewardedAd
-                                                    ?.fullScreenContentCallback =
-                                                FullScreenContentCallback(
-                                                    onAdFailedToShowFullScreenContent:
-                                                        (RewardedAd ad, err) {
-                                              ad.dispose();
-                                            }, onAdDismissedFullScreenContent:
-                                                        (RewardedAd ad) {
-                                              ad.dispose();
-                                              int gotpoints =
-                                                  randomnum.nextInt(5) + 1;
-                                              points += gotpoints;
-                                              savedata.setInt('points', points);
-                                              setState(() {});
-                                              showDialog(
-                                                context: context,
-                                                builder: (builder) =>
-                                                    AlertDialog(
-                                                  title: Text(
-                                                      "You got $gotpoints points"),
-                                                ),
-                                              );
-                                            });
-                                          },
-                                          onAdFailedToLoad: (err) {
-                                            debugPrint(err.message);
-                                          },
-                                        ),
-                                      );
-                                    },
-                                    child: const FractionallySizedBox(
-                                      widthFactor: 0.5,
-                                      heightFactor: 0.5,
-                                      child:
-                                          FittedBox(child: Text("Get Points")),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            }
-                            return const SizedBox();
-                          })()
-                        ],
-                      ),
-                    ),
-                  ),
-                  Card(
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Stack(
-                      children: [
-                        FractionallySizedBox(
-                          widthFactor: 1,
-                          heightFactor: 1,
-                          child: RotatedBox(
-                            quarterTurns: -1,
-                            child: LinearProgressIndicator(
-                              value: pointsleft,
-                            ),
-                          ),
-                        ),
-                        Align(
-                          alignment: Alignment.topCenter,
-                          child: FractionallySizedBox(
-                            widthFactor: 0.95,
-                            heightFactor: pointsleft,
-                            child: FittedBox(
-                              child: Text(
-                                  "${(pointsleft * 10).toStringAsFixed(0)}/10 points left to collect today"),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  CardButton(
-                    text: 'Calculator',
-                    menu: "A normal calculator",
-                  ),
-                  CardButton(
-                    text: 'Converter',
-                    menu: "Converts numbers to different types",
-                  ),
-                  CardButton(
-                    text: 'Custom Formulas',
-                    menu: "Create, save, and use your own formulas",
-                  ),
-                  /*CardButton(
-                  text: 'Surface Area',
-                ),
-                CardButton(
-                  text: 'Volume',
-                ),*/
-                  CardButton(
-                    text: 'Simplifying Radicals',
-                  ),
-                  ExtendedButton(
-                    text: "Physics",
-                    children: [
-                      SectionButton(
-                        text: "2D Vector Addition",
-                        menu: "Add one or more vectors together",
-                      ),
-                      SectionButton(text: 'Work'),
-                      SectionButton(text: 'Gravitational Potential Energy'),
-                      SectionButton(text: 'Kinetic Energy'),
-                      SectionButton(text: 'Coefficient of Friction'),
-                      SectionButton(text: "Ohm's Law"),
-                    ],
-                  ),
-                  CardButton(
-                    text: 'Periodic Table',
-                  ),
-                  ExtendedButton(
-                    text: "Triangles",
-                    children: [
-                      SectionButton(text: "Trigonometry"),
-                      SectionButton(text: 'Pythagorean'),
-                      SectionButton(text: 'Degree Radian Converter'),
-                    ],
-                  ),
-                  ExtendedButton(
-                    text: "Finance",
-                    children: [
-                      SectionButton(text: "Simple Interest"),
-                      SectionButton(text: 'Compound Interest'),
-                      SectionButton(
-                          text: 'Ordinary Annuity',
-                          menu: "Compounds after payment"),
-                      SectionButton(
-                          text: 'Annuity Due',
-                          menu: "Compounds before payment"),
-                    ],
-                  ),
-                  ExtendedButton(
-                    text: "Sequences and Series",
-                    children: [
-                      SectionButton(text: "Sequences"),
-                      SectionButton(text: 'Series'),
-                    ],
-                  ),
-                  CardButton(
-                    text: 'Root Finder',
-                  ),
-                  ExtendedButton(
-                    text: "Boolean Algebra",
-                    children: [
-                      SectionButton(text: "Boolean Calculator"),
-                      SectionButton(text: "Test Cases"),
-                    ],
-                  ),
-                  CardButton(
-                    text: 'GCF',
-                  ),
-                  CardButton(
-                    text: 'LCM',
-                  ),
-                  (() {
-                    if (webMode) {
-                      return Card(
-                        elevation: 10,
-                        color: (MediaQuery.of(context).platformBrightness ==
-                                Brightness.light)
-                            ? const Color.fromARGB(255, 165, 226, 255)
-                            : const Color.fromARGB(255, 0, 135, 197),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: const FractionallySizedBox(
-                          widthFactor: 0.9,
-                          heightFactor: 0.9,
-                          child: FittedBox(
-                              child:
-                                  Text("Updated June 29, 2023\nVersion 3.3.0")),
-                        ),
-                      );
-                    }
-                    return const SizedBox();
-                  })(),
-                ],
-              ),
-            ),
+            body: _bodyChildren[_barIndex],
           );
         }
 

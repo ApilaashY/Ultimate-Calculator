@@ -108,7 +108,7 @@ class BoolCalculatorState extends State<BoolCalculator> {
                   ? 0.95
                   : 0.6,
               child: Hero(
-                tag: "Calculator",
+                tag: "Boolean Calculator",
                 child: GridView.count(
                   crossAxisCount: 4,
                   mainAxisSpacing: 5,
@@ -327,7 +327,7 @@ class TestCasesState extends State<TestCases> {
                   ? 0.95
                   : 0.6,
               child: Hero(
-                tag: "Calculator",
+                tag: "Test Cases",
                 child: GridView.count(
                   crossAxisCount: 4,
                   mainAxisSpacing: 5,
