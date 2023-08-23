@@ -46,6 +46,10 @@ class Solver {
     String number = "";
     for (int i = 0; i < equation.length; i++) {
       if ("+-*/^√()abcdefghijklmnopqrstuvwxyz".contains(equation[i])) {
+        if (number.isNotEmpty) {
+          elements.add(number);
+          number = "";
+        }
         String checkEquation = equation.substring(i);
         if (checkEquation.length >= 3 &&
             (checkEquation.contains("sin") ||
@@ -55,6 +59,7 @@ class Solver {
           String part = checkEquation.substring(0, 3);
           for (String element in ["sin", "cos", "tan", "log"]) {
             if (part == element) {
+              elements.add("*");
               elements.add(element);
               i += 2;
               break;
@@ -73,9 +78,6 @@ class Solver {
               equation[i] == ')' &&
               !"+-*/^√()".contains(equation[i + 1]));
 
-          if (number.isNotEmpty) {
-            elements.add(number);
-          }
           if (numBeforeBracket) {
             elements.add("*");
           }
@@ -381,7 +383,7 @@ class boolAlgebraSolver {
     }
 
     for (int i = 1; i < cases.length; i++) {
-      List<String> tempEquation = new List.from(equation);
+      List<String> tempEquation = List.from(equation);
       for (int x = 0; x < cases[0].length; x++) {
         for (String y in cases[0][x].split(" ")) {
           tempEquation[int.parse(y)] = cases[i][x];

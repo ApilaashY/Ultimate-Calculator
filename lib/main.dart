@@ -194,32 +194,32 @@ class _HomeState extends State<Home> {
   int _barIndex = 0;
   List<String> recomended = [];
   Map<String, Widget> nameWidgetDatabase = {
-    'Calculator': Calculator(),
-    'Converter': Converter(),
-    'GCF': GCF(),
-    'LCM': LCM(),
-    'Pythagorean': Pythagorean(),
-    'Trigonometry': Trigonometry(),
-    'Root Finder': RootFinder(),
-    'Periodic Table': PeriodicTable(),
-    '2D Vector Addition': VectorAddition(),
-    'Graphs': Graphs(),
-    'Work': Work(),
-    'Gravitational Potential Energy': GravitationalPotentialEnergy(),
-    'Coefficient of Friction': CoefficientofFriction(),
-    'Kinetic Energy': KineticEnergy(),
-    "Ohm's Law": Ohm(),
-    "Sequences": Sequence(),
-    "Series": Series(),
-    "Simple Interest": SimpleInterest(),
-    "Compound Interest": CompoundInterest(),
-    "Ordinary Annuity": OrdinaryAnnuity(),
-    "Annuity Due": AnnuityDue(),
-    "Degree Radian Converter": DegAndRad(),
-    "Simplifying Radicals": SimplifyingRadicals(),
-    "Custom Formulas": CustomFormulas(),
-    'Boolean Calculator': BoolCalculator(),
-    'Test Cases': TestCases(),
+    'Calculator': const Calculator(),
+    'Converter': const Converter(),
+    'GCF': const GCF(),
+    'LCM': const LCM(),
+    'Pythagorean': const Pythagorean(),
+    'Trigonometry': const Trigonometry(),
+    'Root Finder': const RootFinder(),
+    'Periodic Table': const PeriodicTable(),
+    '2D Vector Addition': const VectorAddition(),
+    'Graphs': const Graphs(),
+    'Work': const Work(),
+    'Gravitational Potential Energy': const GravitationalPotentialEnergy(),
+    'Coefficient of Friction': const CoefficientofFriction(),
+    'Kinetic Energy': const KineticEnergy(),
+    "Ohm's Law": const Ohm(),
+    "Sequences": const Sequence(),
+    "Series": const Series(),
+    "Simple Interest": const SimpleInterest(),
+    "Compound Interest": const CompoundInterest(),
+    "Ordinary Annuity": const OrdinaryAnnuity(),
+    "Annuity Due": const AnnuityDue(),
+    "Degree Radian Converter": const DegAndRad(),
+    "Simplifying Radicals": const SimplifyingRadicals(),
+    "Custom Formulas": const CustomFormulas(),
+    'Boolean Calculator': const BoolCalculator(),
+    'Test Cases': const TestCases(),
   };
   Random randomnum = Random();
   RewardedAd? ad;
@@ -242,7 +242,7 @@ class _HomeState extends State<Home> {
     return FutureBuilder(
       future: setup(),
       builder: (context, snap) {
-        List<Widget> _bodyChildren = [
+        List<Widget> bodyChildren = [
           Padding(
             padding: const EdgeInsets.only(left: 20, right: 20),
             child: GridView.extent(
@@ -397,9 +397,9 @@ class _HomeState extends State<Home> {
                   text: 'Converter',
                   menu: "Converts numbers to different types",
                 ),
-                CardButton(
-                  text: 'Graphs',
-                ),
+                // CardButton(
+                //   text: 'Graphs',
+                // ),
                 CardButton(
                   text: 'Custom Formulas',
                   menu: "Create, save, and use your own formulas",
@@ -506,9 +506,9 @@ class _HomeState extends State<Home> {
 
         if (snap.hasData) {
           if (recomended.length >= 3) {
-            _bodyChildren.add(nameWidgetDatabase[recomended[0]] as Widget);
-            _bodyChildren.add(nameWidgetDatabase[recomended[1]] as Widget);
-            _bodyChildren.add(nameWidgetDatabase[recomended[2]] as Widget);
+            bodyChildren.add(nameWidgetDatabase[recomended[0]] as Widget);
+            bodyChildren.add(nameWidgetDatabase[recomended[1]] as Widget);
+            bodyChildren.add(nameWidgetDatabase[recomended[2]] as Widget);
           }
           if (webMode && defaultTargetPlatform == TargetPlatform.android) {
             return Scaffold(
@@ -542,51 +542,90 @@ class _HomeState extends State<Home> {
             );
           }
           return Scaffold(
-            appBar: AppBar(
-              foregroundColor: (MediaQuery.of(context).platformBrightness ==
-                      Brightness.light)
-                  ? Colors.black
-                  : Colors.white,
-              backgroundColor: Colors.transparent,
-              elevation: 0,
-              actions: [
-                IconButton(
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            title: Text(snap.data.toString(),
-                                style: TextStyle(
-                                    color: (MediaQuery.of(context)
-                                                .platformBrightness ==
-                                            Brightness.light)
-                                        ? Colors.black
-                                        : Colors.white)),
-                            actions: [
-                              ElevatedButton(
-                                  onPressed: () async {
-                                    try {
-                                      await launchUrl(Uri.parse(
-                                          'https://ultimatecalculator.netlify.app'));
-                                    } catch (e) {
-                                      Navigator.pop(context);
-                                    }
-                                  },
-                                  child: const Text("Website"))
-                            ],
-                          );
+            appBar: (_barIndex == 0)
+                ? AppBar(
+                    foregroundColor:
+                        (MediaQuery.of(context).platformBrightness ==
+                                Brightness.light)
+                            ? Colors.black
+                            : Colors.white,
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                    actions: [
+                      IconButton(
+                        onPressed: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) => Dialog(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(15),
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: [
+                                          const Text(
+                                            "Try out my new app\n\nWorkbook\n\nOrganize and manage your projects",
+                                            textAlign: TextAlign.center,
+                                            style: TextStyle(fontSize: 20),
+                                          ),
+                                          Center(
+                                            child: ElevatedButton(
+                                                onPressed: () async {
+                                                  try {
+                                                    await launchUrl(Uri.parse(
+                                                        'https://workbook.onrender.com/#/'));
+                                                  } catch (e) {
+                                                    Navigator.pop(context);
+                                                  }
+                                                },
+                                                child: const Text("Website")),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ));
                         },
-                      );
-                    },
-                    icon: const Icon(Icons.question_mark_rounded))
-              ],
-              leading: IconButton(
-                icon: const Icon(Icons.settings),
-                onPressed: () => Navigator.pushNamed(context, "Settings"),
-              ),
-            ),
-            bottomNavigationBar: (recomended.length != 0)
+                        icon: const Icon(Icons.question_mark),
+                      ),
+                      (!webMode && false)
+                          ? IconButton(
+                              onPressed: () {
+                                showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return AlertDialog(
+                                      title: Text(snap.data.toString(),
+                                          style: TextStyle(
+                                              color: (MediaQuery.of(context)
+                                                          .platformBrightness ==
+                                                      Brightness.light)
+                                                  ? Colors.black
+                                                  : Colors.white)),
+                                      actions: [
+                                        ElevatedButton(
+                                            onPressed: () async {
+                                              try {
+                                                await launchUrl(Uri.parse(
+                                                    'https://ultimate-calculator.onrender.com'));
+                                              } catch (e) {
+                                                Navigator.pop(context);
+                                              }
+                                            },
+                                            child: const Text("Website"))
+                                      ],
+                                    );
+                                  },
+                                );
+                              },
+                              icon: const Icon(Icons.newspaper))
+                          : const SizedBox(),
+                    ],
+                    leading: IconButton(
+                      icon: const Icon(Icons.settings),
+                      onPressed: () => Navigator.pushNamed(context, "Settings"),
+                    ),
+                  )
+                : null,
+            bottomNavigationBar: (recomended.isNotEmpty)
                 ? BottomNavigationBar(
                     currentIndex: _barIndex,
                     selectedItemColor: Colors.black,
@@ -610,69 +649,74 @@ class _HomeState extends State<Home> {
                     },
                   )
                 : null,
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: const Color.fromARGB(255, 255, 184, 0),
-              child: const Icon(
-                Icons.add_rounded,
-              ),
-              onPressed: () {
-                TextEditingController newone = TextEditingController();
-                showAnimatedDialog(
-                  context: context,
-                  barrierDismissible: true,
-                  animationType: DialogTransitionType.scale,
-                  curve: Curves.fastOutSlowIn,
-                  duration: const Duration(milliseconds: 250),
-                  builder: (context) => SimpleDialog(
-                    title: Text(
-                      'Send a Request to add a Function or Report a Bug',
-                      style: TextStyle(
-                          color: (MediaQuery.of(context).platformBrightness ==
-                                  Brightness.light)
-                              ? Colors.black
-                              : Colors.white),
+            floatingActionButton: (_barIndex == 0)
+                ? FloatingActionButton(
+                    backgroundColor: const Color.fromARGB(255, 255, 184, 0),
+                    child: const Icon(
+                      Icons.add_rounded,
                     ),
-                    children: [
-                      FractionallySizedBox(
-                        widthFactor: 0.8,
-                        child: TextField(
-                          controller: newone,
+                    onPressed: () {
+                      TextEditingController newone = TextEditingController();
+                      showAnimatedDialog(
+                        context: context,
+                        barrierDismissible: true,
+                        animationType: DialogTransitionType.scale,
+                        curve: Curves.fastOutSlowIn,
+                        duration: const Duration(milliseconds: 250),
+                        builder: (context) => SimpleDialog(
+                          title: Text(
+                            'Send a Request to add a Function or Report a Bug',
+                            style: TextStyle(
+                                color: (MediaQuery.of(context)
+                                            .platformBrightness ==
+                                        Brightness.light)
+                                    ? Colors.black
+                                    : Colors.white),
+                          ),
+                          children: [
+                            FractionallySizedBox(
+                              widthFactor: 0.8,
+                              child: TextField(
+                                controller: newone,
+                              ),
+                            ),
+                            FractionallySizedBox(
+                              widthFactor: 0.65,
+                              child: ElevatedButton(
+                                onPressed: () {
+                                  try {
+                                    if (newone.text.isNotEmpty) {
+                                      FirebaseFirestore.instance
+                                          .collection('Function Suggestions')
+                                          .add({'New Function': newone.text});
+                                      Navigator.pop(context);
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              const AlertDialog(
+                                                title: Text(
+                                                    'Thank you for your request'),
+                                              ));
+                                    }
+                                  } catch (e) {
+                                    showDialog(
+                                        context: context,
+                                        builder: (context) => const AlertDialog(
+                                              title: Text(
+                                                  'Failed to send request'),
+                                            ));
+                                  }
+                                },
+                                child: const Text('Add'),
+                              ),
+                            )
+                          ],
                         ),
-                      ),
-                      FractionallySizedBox(
-                        widthFactor: 0.65,
-                        child: ElevatedButton(
-                          onPressed: () {
-                            try {
-                              if (newone.text.isNotEmpty) {
-                                FirebaseFirestore.instance
-                                    .collection('Function Suggestions')
-                                    .add({'New Function': newone.text});
-                                Navigator.pop(context);
-                                showDialog(
-                                    context: context,
-                                    builder: (context) => const AlertDialog(
-                                          title: Text(
-                                              'Thank you for your request'),
-                                        ));
-                              }
-                            } catch (e) {
-                              showDialog(
-                                  context: context,
-                                  builder: (context) => const AlertDialog(
-                                        title: Text('Failed to send request'),
-                                      ));
-                            }
-                          },
-                          child: const Text('Add'),
-                        ),
-                      )
-                    ],
-                  ),
-                );
-              },
-            ),
-            body: _bodyChildren[_barIndex],
+                      );
+                    },
+                  )
+                : null,
+            body: bodyChildren[_barIndex],
           );
         }
 

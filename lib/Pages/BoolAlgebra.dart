@@ -459,7 +459,6 @@ class TestCaseFunctionButton extends StatelessWidget {
               answers.add(TableRow(children: row));
             }
           } catch (e) {
-            print(e);
             answers = [
               const TableRow(children: [Center(child: Text("Error"))])
             ];

@@ -1,0 +1,4 @@
+#Fri Aug 18 10:56:30 EDT 2023
+base.0=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
+path.0=classes.dex
+renamed.0=classes.dex

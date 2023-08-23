@@ -55,14 +55,11 @@ class CalculatorState extends State<Calculator> {
           )
         ],
       ),
-      body: Stack(
-        children: [
-          Align(
-            alignment: (MediaQuery.of(context).size.height >
-                    MediaQuery.of(context).size.width)
-                ? const Alignment(0.0, -0.9)
-                : const Alignment(-0.7, -0.7),
-            child: IconButton(
+      body: Padding(
+        padding: const EdgeInsets.only(left: 15, right: 15),
+        child: Column(
+          children: [
+            IconButton(
               icon: const Icon(
                 Icons.copy,
               ),
@@ -71,17 +68,7 @@ class CalculatorState extends State<Calculator> {
                 Fluttertoast.showToast(msg: 'Saved to Clipboard');
               },
             ),
-          ),
-          Align(
-            alignment: (MediaQuery.of(context).size.height >
-                    MediaQuery.of(context).size.width)
-                ? const Alignment(0.0, -0.8)
-                : const Alignment(-0.9, -0.3),
-            child: FractionallySizedBox(
-              widthFactor: (MediaQuery.of(context).size.height >
-                      MediaQuery.of(context).size.width)
-                  ? 0.95
-                  : 0.3,
+            Expanded(
               child: TextField(
                 enabled: false,
                 scrollController: ScrollController(keepScrollOffset: false),
@@ -99,21 +86,9 @@ class CalculatorState extends State<Calculator> {
                         : Colors.white),
               ),
             ),
-          ),
-          Align(
-            alignment: (MediaQuery.of(context).size.height >
-                    MediaQuery.of(context).size.width)
-                ? const Alignment(0.0, 0.8)
-                : const Alignment(0.9, -0.2),
-            child: FractionallySizedBox(
-              heightFactor: (MediaQuery.of(context).size.height >
-                      MediaQuery.of(context).size.width)
-                  ? 0.7
-                  : 0.9,
-              widthFactor: (MediaQuery.of(context).size.height >
-                      MediaQuery.of(context).size.width)
-                  ? 0.95
-                  : 0.6,
+            const SizedBox(height: 20),
+            Expanded(
+              flex: 10,
               child: Hero(
                 tag: "Calculator",
                 child: GridView.count(
@@ -264,9 +239,9 @@ class CalculatorState extends State<Calculator> {
                       ),
                     ),
                     FunctionButton(
-                      name: 'π',
+                      name: '÷',
                       child: const Text(
-                        'π',
+                        '÷',
                       ),
                     ),
                     FunctionButton(
@@ -288,9 +263,9 @@ class CalculatorState extends State<Calculator> {
                       ),
                     ),
                     FunctionButton(
-                      name: '÷',
+                      name: 'X',
                       child: const Text(
-                        '÷',
+                        'X',
                       ),
                     ),
                     FunctionButton(
@@ -312,9 +287,15 @@ class CalculatorState extends State<Calculator> {
                       ),
                     ),
                     FunctionButton(
-                      name: 'X',
+                      name: '-',
                       child: const Text(
-                        'X',
+                        '-',
+                      ),
+                    ),
+                    FunctionButton(
+                      name: '0',
+                      child: const Text(
+                        '0',
                       ),
                     ),
                     FunctionButton(
@@ -324,29 +305,29 @@ class CalculatorState extends State<Calculator> {
                       ),
                     ),
                     FunctionButton(
-                      name: 'Equal',
-                      child: const Text(
-                        '=',
-                      ),
-                    ),
-                    FunctionButton(
                       name: '+',
                       child: const Text(
                         '+',
                       ),
                     ),
                     FunctionButton(
-                      name: '-',
+                      name: 'Equal',
                       child: const Text(
-                        '-',
+                        '=',
+                      ),
+                    ),
+                    FunctionButton(
+                      name: 'π',
+                      child: const Text(
+                        'π',
                       ),
                     ),
                   ],
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

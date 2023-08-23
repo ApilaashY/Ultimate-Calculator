@@ -1,6 +1,8 @@
+// ignore_for_file: empty_catches
+
 import 'package:app/Modules/globalfunctions.dart';
+import 'package:app/Modules/input_field.dart';
 import 'package:app/Modules/solver.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -12,18 +14,24 @@ class Graphs extends StatefulWidget {
 }
 
 class _GraphsState extends State<Graphs> {
-  List<SalesData> chartData = [];
+  List<GraphValue> chartData = [];
+  TextEditingController xMin = TextEditingController(text: "0"),
+      yMin = TextEditingController(text: "0"),
+      xMax = TextEditingController(text: "0"),
+      yMax = TextEditingController(text: "0");
 
-  @override
-  void initState() {
-    for (double i = -10; i < 10; i += 0.1) {
-      Solver solver = Solver();
-      List<String> translation = solver.translate("${roundto(i.toString())}^2");
-      print(translation);
-      chartData.add(SalesData(
-          roundto(i.toString()), solver.solve(translation, "Degree")));
-    }
-    super.initState();
+  void solve(equation) {
+    chartData = [];
+    try {
+      for (double i = -10; i < 10; i += 0.1) {
+        Solver solver = Solver();
+        List<String> translation =
+            solver.translate(equation.replaceAll("x", roundto(i.toString())));
+        chartData.add(GraphValue(
+            roundto(i.toString()), solver.solve(translation, "Degree")));
+      }
+      setState(() {});
+    } catch (e) {}
   }
 
   @override
@@ -35,26 +43,79 @@ class _GraphsState extends State<Graphs> {
             (MediaQuery.of(context).platformBrightness == Brightness.light)
                 ? Colors.black
                 : Colors.white,
-        title: Text("Graphs"),
+        title: const Text("Graphs"),
         elevation: 0,
       ),
-      body: SfCartesianChart(
-        primaryXAxis: CategoryAxis(),
-        series: <ChartSeries>[
-          // Renders line chart
-          LineSeries<SalesData, String>(
-            dataSource: chartData,
-            xValueMapper: (SalesData sales, _) => sales.year,
-            yValueMapper: (SalesData sales, _) => sales.sales,
-          )
+      body: Column(
+        children: [
+          Expanded(
+            child: SfCartesianChart(
+              primaryXAxis: CategoryAxis(
+                maximum: double.parse(xMax.text),
+                minimum: double.parse(xMin.text),
+              ),
+              primaryYAxis: CategoryAxis(
+                maximum: double.parse(yMax.text),
+                minimum: double.parse(yMin.text),
+              ),
+              series: <ChartSeries>[
+                // Renders line chart
+                LineSeries<GraphValue, String>(
+                  dataSource: chartData,
+                  xValueMapper: (GraphValue sales, _) => sales.x,
+                  yValueMapper: (GraphValue sales, _) => sales.y,
+                )
+              ],
+            ),
+          ),
+          Inputfield(
+            onChanged: (value) => solve(value),
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Inputfield(
+                  hintText: "X Min",
+                  controller: xMin,
+                ),
+              ),
+              Expanded(
+                  child: Inputfield(
+                hintText: "X Max",
+                controller: xMax,
+              )),
+            ],
+          ),
+          const SizedBox(
+            height: 20,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: Inputfield(
+                  hintText: "Y Min",
+                  controller: yMin,
+                ),
+              ),
+              Expanded(
+                child: Inputfield(
+                  hintText: "Y Max",
+                  controller: yMax,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
 }
 
-class SalesData {
-  SalesData(this.year, this.sales);
-  final String year;
-  final double sales;
+class GraphValue {
+  GraphValue(this.x, this.y);
+  final String x;
+  final double y;
 }

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'dart:math';
 import 'package:app/Modules/globalfunctions.dart';
+import 'package:introduction_screen/introduction_screen.dart';
 
 class Trigonometry extends StatefulWidget {
   const Trigonometry({super.key});
@@ -24,9 +25,25 @@ class _TrigonometryState extends State<Trigonometry> {
     TextEditingController(),
     TextEditingController()
   ];
+  List instructions = [
+    [
+      "Hello",
+      "Hi",
+    ],
+    [
+      50,
+      60,
+      50,
+      60,
+      50,
+      60,
+    ]
+  ];
   bool degreemode = degreeDefault;
   var vector = DegreeRad(true);
   void calc() {
+    instructions[0] = [];
+
     try {
       double one = (controllers[0].text.isNotEmpty)
           ? double.parse(controllers[0].text)
@@ -47,23 +64,27 @@ class _TrigonometryState extends State<Trigonometry> {
           ? double.parse(controllers[5].text)
           : 0;
       void updateNumbers() {
-        controllers[0].text = (one != 0) ? roundto(one.toString()) : "";
-        controllers[1].text = (two != 0) ? roundto(two.toString()) : "";
-        controllers[2].text = (three != 0) ? roundto(three.toString()) : "";
-        controllers[3].text = (four != 0) ? roundto(four.toString()) : "";
-        controllers[4].text = (five != 0) ? roundto(five.toString()) : "";
-        controllers[5].text = (six != 0) ? roundto(six.toString()) : "";
+        controllers[0].text = (one != 0) ? roundto(one.toString()) : ""; // A
+        controllers[1].text = (two != 0) ? roundto(two.toString()) : ""; // a
+        controllers[2].text =
+            (three != 0) ? roundto(three.toString()) : ""; // B
+        controllers[3].text = (four != 0) ? roundto(four.toString()) : ""; // b
+        controllers[4].text = (five != 0) ? roundto(five.toString()) : ""; // C
+        controllers[5].text = (six != 0) ? roundto(six.toString()) : ""; // c
       }
 
       // Get all angles
       if (controllers[0].text.isNotEmpty && controllers[2].text.isNotEmpty) {
         five = (vector.fulltriangle(180) - one - three);
+        instructions[0].add("C = 180 - A - B\n$five = 180 - $one - $three");
       } else if (controllers[2].text.isNotEmpty &&
           controllers[4].text.isNotEmpty) {
         one = (vector.fulltriangle(180) - three - five);
+        instructions[0].add("A = 180 - B - C\n$one = 180 - $three - $five");
       } else if (controllers[0].text.isNotEmpty &&
           controllers[4].text.isNotEmpty) {
-        five = (vector.fulltriangle(180) - one - five);
+        three = (vector.fulltriangle(180) - one - five);
+        instructions[0].add("B = 180 - A - C\n$three = 180 - $one - $five");
       }
       updateNumbers();
       // Cosline Law
@@ -73,6 +94,7 @@ class _TrigonometryState extends State<Trigonometry> {
         six = (sqrt(pow(two, 2) +
             pow(four, 2) -
             (2 * two * four * vector.degrees(cos(vector.radians(five))))));
+        instructions[0].add("B = 180 - A - C\n$three = 180 - $one - $five");
       } else if (controllers[3].text.isNotEmpty &&
           controllers[5].text.isNotEmpty &&
           controllers[0].text.isNotEmpty) {
@@ -207,6 +229,22 @@ class _TrigonometryState extends State<Trigonometry> {
                 : Colors.white,
         backgroundColor: Colors.transparent,
         elevation: 0,
+        actions: const [
+          // IconButton(
+          //   onPressed: () {
+          //     Navigator.push(
+          //       context,
+          //       MaterialPageRoute(
+          //         builder: (context) => TrigTeaching(
+          //           instructions: instructions[0],
+          //           triangle: instructions[1],
+          //         ),
+          //       ),
+          //     );
+          //   },
+          //   icon: const Icon(Icons.developer_board),
+          // ),
+        ],
       ),
       body: Stack(
         children: [
@@ -366,37 +404,78 @@ class _TrigonometryState extends State<Trigonometry> {
   }
 }
 
-class TrigTeaching extends StatefulWidget {
-  const TrigTeaching({super.key});
+class TrigTeaching extends StatelessWidget {
+  const TrigTeaching(
+      {super.key, required this.instructions, required this.triangle});
 
-  @override
-  State<TrigTeaching> createState() => _TrigTeachingState();
-}
-
-class _TrigTeachingState extends State<TrigTeaching> {
-  Future<String> setup() async {
-    String text = "";
-    return text;
-  }
+  final List instructions;
+  final List<int> triangle;
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-      future: setup(),
-      builder: (context, snapshop) {
-        if (snapshop.hasData) {
-          return Scaffold(
-            body: Center(
-              child: Text(snapshop.data as String),
-            ),
-          );
-        }
-        return const Scaffold(
-          body: Center(
-            child: CircularProgressIndicator.adaptive(),
-          ),
-        );
-      },
+    print(instructions);
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+      ),
+      body: IntroductionScreen(
+        onDone: () => Navigator.pop(context),
+        done: const Text("Back"),
+        showSkipButton: false,
+        showNextButton: false,
+        pages: instructions
+            .map(
+              (e) => PageViewModel(
+                title: "Step ${(instructions.indexOf(e) + 1).toString()}",
+                body: e,
+                // image: Center(
+                //   child: ClipPath(
+                //     clipper: CustomTriangle(triangle: triangle),
+                //     child: Container(
+                //       width: 200,
+                //       height: 200,
+                //       color: Colors.red,
+                //     ),
+                //   ),
+                // ),
+              ),
+            )
+            .toList(),
+      ),
     );
+  }
+}
+
+class CustomTriangle extends CustomClipper<Path> {
+  CustomTriangle({required this.triangle});
+  DegreeRad degreeRad = DegreeRad(true);
+  List<int> triangle;
+
+  @override
+  Path getClip(Size size) {
+    double w = size.width;
+    double h = size.height;
+
+    triangle = [50, 60, 50, 80, 80, 40];
+
+    Path path = Path();
+
+    path.lineTo(w / 2, 0);
+    path.lineTo(
+        (w / 2) + (cos(degreeRad.radians(triangle[1] / 2)) * triangle[2]),
+        sin(degreeRad.radians(triangle[1] / 2)) * triangle[2]);
+    path.lineTo(
+        (w / 2) - (cos(degreeRad.radians(triangle[3] / 2)) * triangle[4]),
+        sin(degreeRad.radians(triangle[3] / 2)) * triangle[4]);
+    h;
+    path.lineTo(w / 2, 0);
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(covariant CustomClipper oldClipper) {
+    return true;
   }
 }

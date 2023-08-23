@@ -33,7 +33,7 @@ import 'package:app/Pages/periodictable.dart';
 
 Route<dynamic> controller(RouteSettings settings) {
   if (savedata != null) {
-    Map _recommended = {
+    Map recommended = {
       'Calculator': 0,
       'Converter': 0,
       'GCF': 0,
@@ -73,12 +73,11 @@ Route<dynamic> controller(RouteSettings settings) {
     } else {
       String? data = savedata.getString("Recomended");
       if (data != null) {
-        _recommended = jsonDecode(data);
+        recommended = jsonDecode(data);
       }
     }
-    _recommended[settings.name]++;
-    print("ADD");
-    savedata.setString("Recomended", jsonEncode(_recommended));
+    recommended[settings.name]++;
+    savedata.setString("Recomended", jsonEncode(recommended));
   }
   if (settings.name == 'Home') {
     return MaterialPageRoute(builder: (context) => const Home());
