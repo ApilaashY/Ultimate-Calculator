@@ -413,7 +413,6 @@ class TrigTeaching extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(instructions);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
