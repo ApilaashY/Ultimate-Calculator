@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Users\apila\flutter"
-export "FLUTTER_APPLICATION_PATH=D:\Creations\Github\Ultimate-Calculator"
+export "FLUTTER_ROOT=/Users/apilaashyoharan/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/apilaashyoharan/Documents/Ultimate-Calculator"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
 export "FLUTTER_BUILD_NAME=3.4.1"

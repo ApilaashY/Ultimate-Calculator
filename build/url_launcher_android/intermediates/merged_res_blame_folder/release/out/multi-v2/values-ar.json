@@ -1,31 +1,31 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\url_launcher_android\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-ar\\values-ar.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/url_launcher_android/intermediates/merged_res/release/values-ar/values-ar.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\values-ar\\values-ar.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/691ffbd33d74f288441a445c03feec2d/transformed/core-1.10.1/res/values-ar/values-ar.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,148,250,345,448,551,653,767",
+                        "endColumns": "92,101,94,102,102,101,113,100",
+                        "endOffsets": "143,245,340,443,546,648,762,863"
                     }
                 }
             ]
         },
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\url_launcher_android\\intermediates\\merged_res\\release\\values-ar\\values-ar.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/url_launcher_android/intermediates/incremental/mergeReleaseResources/merged.dir/values-ar/values-ar.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\values-ar\\values-ar.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/691ffbd33d74f288441a445c03feec2d/transformed/core-1.10.1/res/values-ar/values-ar.xml",
                     "from": {
-                        "startLines": "2",
-                        "startColumns": "4",
-                        "startOffsets": "55",
-                        "endColumns": "100",
-                        "endOffsets": "151"
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,148,250,345,448,551,653,767",
+                        "endColumns": "92,101,94,102,102,101,113,100",
+                        "endOffsets": "143,245,340,443,546,648,762,863"
                     }
                 }
             ]

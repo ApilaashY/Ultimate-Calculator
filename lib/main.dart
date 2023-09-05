@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'dart:io' show Platform;
 import 'dart:math';
-// import 'dart:html' as html;
+import 'dart:html' as html;
 import 'package:app/Pages/BoolAlgebra.dart';
 import 'package:app/Pages/Calculator.dart';
 import 'package:app/Pages/Converter.dart';
@@ -262,7 +262,7 @@ class _HomeState extends State<Home> {
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
                   child: FractionallySizedBox(
-                    key: const ObjectKey("points"),
+                    key: ObjectKey(points),
                     widthFactor: 0.9,
                     heightFactor: 0.9,
                     child: Column(
@@ -294,55 +294,84 @@ class _HomeState extends State<Home> {
                                         const Color.fromARGB(255, 0, 135, 197)),
                                   ),
                                   onPressed: () {
-                                    var rewardedAd;
-                                    RewardedAd.load(
-                                      adUnitId: (defaultTargetPlatform ==
-                                              TargetPlatform.android)
-                                          ? 'ca-app-pub-4914732861439858/8814232396'
-                                          : (defaultTargetPlatform ==
-                                                  TargetPlatform.iOS)
-                                              ? 'ca-app-pub-4914732861439858/8194257629'
-                                              : '',
-                                      request: const AdRequest(),
-                                      rewardedAdLoadCallback:
-                                          RewardedAdLoadCallback(
-                                        onAdLoaded: (ad) {
-                                          rewardedAd = ad;
-                                          rewardedAd?.show(
-                                            onUserEarnedReward: ((ad, reward) {
-                                              debugPrint(
-                                                  "My Reward Amount -> ${reward.amount}");
-                                            }),
-                                          );
-
-                                          rewardedAd
-                                                  ?.fullScreenContentCallback =
-                                              FullScreenContentCallback(
-                                                  onAdFailedToShowFullScreenContent:
-                                                      (RewardedAd ad, err) {
-                                            ad.dispose();
-                                          }, onAdDismissedFullScreenContent:
-                                                      (RewardedAd ad) {
-                                            ad.dispose();
-                                            int gotpoints =
-                                                randomnum.nextInt(5) + 1;
-                                            points += gotpoints;
-                                            savedata.setInt('points', points);
-                                            setState(() {});
-                                            showDialog(
-                                              context: context,
-                                              builder: (builder) => AlertDialog(
-                                                title: Text(
-                                                    "You got $gotpoints points"),
-                                              ),
+                                    try {
+                                      var rewardedAd;
+                                      RewardedAd.load(
+                                        adUnitId: (defaultTargetPlatform ==
+                                                TargetPlatform.android)
+                                            ? 'ca-app-pub-4914732861439858/8814232396'
+                                            : (defaultTargetPlatform ==
+                                                    TargetPlatform.iOS)
+                                                ? 'ca-app-pub-4914732861439858/8194257629'
+                                                : '',
+                                        request: const AdRequest(),
+                                        rewardedAdLoadCallback:
+                                            RewardedAdLoadCallback(
+                                          onAdLoaded: (ad) {
+                                            rewardedAd = ad;
+                                            rewardedAd?.show(
+                                              onUserEarnedReward:
+                                                  ((ad, reward) {
+                                                debugPrint(
+                                                    "My Reward Amount -> ${reward.amount}");
+                                              }),
                                             );
-                                          });
-                                        },
-                                        onAdFailedToLoad: (err) {
-                                          debugPrint(err.message);
-                                        },
-                                      ),
-                                    );
+
+                                            rewardedAd
+                                                    ?.fullScreenContentCallback =
+                                                FullScreenContentCallback(
+                                                    onAdFailedToShowFullScreenContent:
+                                                        (RewardedAd ad, err) {
+                                              ad.dispose();
+                                            }, onAdDismissedFullScreenContent:
+                                                        (RewardedAd ad) {
+                                              ad.dispose();
+                                              int gotpoints =
+                                                  randomnum.nextInt(5) + 1;
+                                              points += gotpoints;
+                                              savedata.setInt('points', points);
+                                              setState(() {});
+                                              showDialog(
+                                                context: context,
+                                                builder: (builder) =>
+                                                    AlertDialog(
+                                                  title: Text(
+                                                    "You got $gotpoints points",
+                                                    style: TextStyle(
+                                                        color: (MediaQuery.of(
+                                                                        context)
+                                                                    .platformBrightness ==
+                                                                Brightness
+                                                                    .light)
+                                                            ? Colors.black
+                                                            : Colors.white),
+                                                  ),
+                                                ),
+                                              );
+                                            });
+                                          },
+                                          onAdFailedToLoad: (err) {
+                                            debugPrint(err.message);
+                                          },
+                                        ),
+                                      );
+                                    } catch (e) {
+                                      showDialog(
+                                          context: context,
+                                          builder: (context) =>
+                                              AlertDialog.adaptive(
+                                                title: Text(
+                                                  "Ad not avaliable",
+                                                  style: TextStyle(
+                                                      color: (MediaQuery.of(
+                                                                      context)
+                                                                  .platformBrightness ==
+                                                              Brightness.light)
+                                                          ? Colors.black
+                                                          : Colors.white),
+                                                ),
+                                              ));
+                                    }
                                   },
                                   child: const FractionallySizedBox(
                                     widthFactor: 0.5,
@@ -527,10 +556,10 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       // Comment for Mobile Use
 
-                      // html.AnchorElement anchorElement =
-                      //     html.AnchorElement(href: 'ultimatecalculator.apk');
-                      // anchorElement.download = 'ultimatecalculator.apk';
-                      // anchorElement.click();
+                      html.AnchorElement anchorElement =
+                          html.AnchorElement(href: 'ultimatecalculator.apk');
+                      anchorElement.download = 'ultimatecalculator.apk';
+                      anchorElement.click();
                     },
                     child: const FractionallySizedBox(
                         widthFactor: 0.9,
@@ -562,10 +591,16 @@ class _HomeState extends State<Home> {
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
-                                          const Text(
+                                          Text(
                                             "Try out my new app\n\nWorkbook\n\nOrganize and manage your projects",
                                             textAlign: TextAlign.center,
-                                            style: TextStyle(fontSize: 20),
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: (MediaQuery.of(context)
+                                                            .platformBrightness ==
+                                                        Brightness.light)
+                                                    ? Colors.black
+                                                    : Colors.white),
                                           ),
                                           Center(
                                             child: ElevatedButton(

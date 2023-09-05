@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\google_mobile_ads\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-watch-v21\\values-watch-v21.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/google_mobile_ads/intermediates/merged_res/release/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\826bde39d43be7ef369461a8927a5c3e\\transformed\\appcompat-1.2.0\\res\\values-watch-v21\\values-watch-v21.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/826bde39d43be7ef369461a8927a5c3e/transformed/appcompat-1.2.0/res/values-watch-v21/values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",
@@ -17,10 +17,10 @@
             ]
         },
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\google_mobile_ads\\intermediates\\merged_res\\release\\values-watch-v21\\values-watch-v21.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/google_mobile_ads/intermediates/incremental/mergeReleaseResources/merged.dir/values-watch-v21/values-watch-v21.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\826bde39d43be7ef369461a8927a5c3e\\transformed\\appcompat-1.2.0\\res\\values-watch-v21\\values-watch-v21.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/826bde39d43be7ef369461a8927a5c3e/transformed/appcompat-1.2.0/res/values-watch-v21/values-watch-v21.xml",
                     "from": {
                         "startLines": "2,6,10",
                         "startColumns": "4,4,4",
