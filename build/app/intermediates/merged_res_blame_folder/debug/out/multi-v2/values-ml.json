@@ -4,7 +4,45 @@
             "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermediates/incremental/mergeDebugResources/merged.dir/values-ml/values-ml.xml",
             "map": [
                 {
+<<<<<<< HEAD
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\132b1e01ba892449fb8c85894eece572\\transformed\\jetified-play-services-base-18.0.1\\res\\values-ml\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "193,308,483,618,735,895,1016,1117,1219,1397,1509,1679,1811,1956,2113,2173,2238",
+                        "endColumns": "114,174,134,116,159,120,100,101,177,111,169,131,144,156,59,64,87",
+                        "endOffsets": "307,482,617,734,894,1015,1116,1218,1396,1508,1678,1810,1955,2112,2172,2237,2325"
+                    },
+                    "to": {
+                        "startLines": "36,37,38,39,40,41,42,43,45,46,47,48,49,50,51,52,53",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3591,3710,3889,4028,4149,4313,4438,4543,4809,4991,5107,5281,5417,5566,5727,5791,5860",
+                        "endColumns": "118,178,138,120,163,124,104,105,181,115,173,135,148,160,63,68,91",
+                        "endOffsets": "3705,3884,4023,4144,4308,4433,4538,4644,4986,5102,5276,5412,5561,5722,5786,5855,5947"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\5f70226576998205bbeb53db3c5723b7\\transformed\\jetified-play-services-ads-21.3.0\\res\\values-ml\\values.xml",
+                    "from": {
+                        "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17",
+                        "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0",
+                        "startOffsets": "199,280,386,437,560,613,745,840,887,975,1015,1053,1106,1182",
+                        "endColumns": "80,105,50,122,52,131,94,46,87,39,37,52,75,46",
+                        "endOffsets": "279,385,436,559,612,744,839,886,974,1014,1052,1105,1181,1228"
+                    },
+                    "to": {
+                        "startLines": "58,59,60,61,62,63,64,65,66,67,68,69,70,71",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "6379,6464,6574,6629,6756,6813,6949,7048,7099,7191,7235,7277,7334,7414",
+                        "endColumns": "84,109,54,126,56,135,98,50,91,43,41,56,79,50",
+                        "endOffsets": "6459,6569,6624,6751,6808,6944,7043,7094,7186,7230,7272,7329,7409,7460"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\826bde39d43be7ef369461a8927a5c3e\\transformed\\appcompat-1.2.0\\res\\values-ml\\values-ml.xml",
+=======
                     "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/826bde39d43be7ef369461a8927a5c3e/transformed/appcompat-1.2.0/res/values-ml/values-ml.xml",
+>>>>>>> 7b59d2be014c24f994be96b25a11a74f63a466d0
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -69,6 +107,8 @@
                         "startOffsets": "4649",
                         "endColumns": "159",
                         "endOffsets": "4804"
+<<<<<<< HEAD
+=======
                     }
                 },
                 {
@@ -86,6 +126,7 @@
                         "startOffsets": "6379,6464,6574,6629,6756,6813,6949,7048,7099,7191,7235,7277,7334,7414",
                         "endColumns": "84,109,54,126,56,135,98,50,91,43,41,56,79,50",
                         "endOffsets": "6459,6569,6624,6751,6808,6944,7043,7094,7186,7230,7272,7329,7409,7460"
+>>>>>>> 7b59d2be014c24f994be96b25a11a74f63a466d0
                     }
                 },
                 {
@@ -103,6 +144,26 @@
                         "startOffsets": "5952,6061,6164,6275",
                         "endColumns": "108,102,110,103",
                         "endOffsets": "6056,6159,6270,6374"
+<<<<<<< HEAD
+                    }
+                },
+                {
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\691ffbd33d74f288441a445c03feec2d\\transformed\\core-1.10.1\\res\\values-ml\\values-ml.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,157,260,362,466,569,670,792",
+                        "endColumns": "101,102,101,103,102,100,121,100",
+                        "endOffsets": "152,255,357,461,564,665,787,888"
+                    },
+                    "to": {
+                        "startLines": "29,30,31,32,33,34,35,73",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "2854,2956,3059,3161,3265,3368,3469,7548",
+                        "endColumns": "101,102,101,103,102,100,121,100",
+                        "endOffsets": "2951,3054,3156,3260,3363,3464,3586,7644"
+=======
+>>>>>>> 7b59d2be014c24f994be96b25a11a74f63a466d0
                     }
                 }
             ]

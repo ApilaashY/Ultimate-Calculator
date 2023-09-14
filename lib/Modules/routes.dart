@@ -16,7 +16,9 @@ import 'package:app/Pages/SequenceAndSeries/Sequence.dart';
 import 'package:app/Pages/SequenceAndSeries/Series.dart';
 import 'package:app/Pages/SimplifyingRadicals.dart';
 import 'package:app/Pages/Triangles/DegandRad.dart';
+import 'package:app/Pages/factors.dart';
 import 'package:app/Pages/graph.dart';
+import 'package:app/Pages/prime.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/main.dart';
@@ -60,6 +62,8 @@ Route<dynamic> controller(RouteSettings settings) {
       "Custom Formulas": 0,
       'Boolean Calculator': 0,
       'Test Cases': 0,
+      "Factors": 0,
+      "Prime": 0,
     };
     bool? reset = savedata.getBool("Reset");
     String? resetDate = savedata.getString("ResetDate");
@@ -76,7 +80,7 @@ Route<dynamic> controller(RouteSettings settings) {
         recommended = jsonDecode(data);
       }
     }
-    recommended[settings.name]++;
+    recommended[settings.name] = (recommended[settings.name] ?? 0) + 1;
     savedata.setString("Recomended", jsonEncode(recommended));
   }
   if (settings.name == 'Home') {
@@ -151,6 +155,10 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const BoolCalculator());
   } else if (settings.name == 'Test Cases') {
     return MaterialPageRoute(builder: (context) => const TestCases());
+  } else if (settings.name == 'Factors') {
+    return MaterialPageRoute(builder: (context) => const Factors());
+  } else if (settings.name == 'Prime') {
+    return MaterialPageRoute(builder: (context) => const Prime());
   } else {
     throw 'Page Not Found';
   }

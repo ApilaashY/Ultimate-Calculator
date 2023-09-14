@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermediates/incremental/mergeReleaseResources/merged.dir/values-v23/values-v23.xml",
+            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-v23\\values-v23.xml",
             "map": [
                 {
-                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/22cc798c319d31ed5f554402669a394c/transformed/work-runtime-2.7.0/res/values-v23/values-v23.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\22cc798c319d31ed5f554402669a394c\\transformed\\work-runtime-2.7.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3",
                         "startColumns": "4,4",
@@ -14,7 +14,7 @@
                     }
                 },
                 {
-                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/826bde39d43be7ef369461a8927a5c3e/transformed/appcompat-1.2.0/res/values-v23/values-v23.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\826bde39d43be7ef369461a8927a5c3e\\transformed\\appcompat-1.2.0\\res\\values-v23\\values-v23.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,20,34,35,36,39,43,44,45,46",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",

@@ -13,6 +13,26 @@
                         "endOffsets": "148,251,356,457,570,676,803,904"
                     },
                     "to": {
+<<<<<<< HEAD
+                        "startLines": "58,59,60,61,62,63,64,65,66,67,68,69,70,71",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "6194,6279,6395,6453,6567,6627,6751,6836,6881,6981,7024,7066,7117,7185",
+                        "endColumns": "84,115,57,113,59,123,84,44,99,42,41,50,67,44",
+                        "endOffsets": "6274,6390,6448,6562,6622,6746,6831,6876,6976,7019,7061,7112,7180,7225"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\691ffbd33d74f288441a445c03feec2d\\transformed\\core-1.10.1\\res\\values-hi\\values-hi.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,153,256,361,462,575,681,808",
+                        "endColumns": "97,102,104,100,112,105,126,100",
+                        "endOffsets": "148,251,356,457,570,676,803,904"
+                    },
+                    "to": {
+=======
+>>>>>>> 7b59d2be014c24f994be96b25a11a74f63a466d0
                         "startLines": "29,30,31,32,33,34,35,73",
                         "startColumns": "4,4,4,4,4,4,4,4",
                         "startOffsets": "2787,2885,2988,3093,3194,3307,3413,7312",
@@ -89,7 +109,11 @@
                     }
                 },
                 {
+<<<<<<< HEAD
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\132b1e01ba892449fb8c85894eece572\\transformed\\jetified-play-services-base-18.0.1\\res\\values-hi\\values.xml",
+=======
                     "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/132b1e01ba892449fb8c85894eece572/transformed/jetified-play-services-base-18.0.1/res/values-hi/values.xml",
+>>>>>>> 7b59d2be014c24f994be96b25a11a74f63a466d0
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",

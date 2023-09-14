@@ -31,6 +31,19 @@
                         "endColumns": "12",
                         "endOffsets": "289"
                     }
+<<<<<<< HEAD
+                },
+                {
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\691ffbd33d74f288441a445c03feec2d\\transformed\\core-1.10.1\\res\\values-v16\\values-v16.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "65",
+                        "endOffsets": "116"
+                    }
+=======
+>>>>>>> 7b59d2be014c24f994be96b25a11a74f63a466d0
                 }
             ]
         }

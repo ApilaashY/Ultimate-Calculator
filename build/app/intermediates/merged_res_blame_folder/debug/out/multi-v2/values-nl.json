@@ -13,6 +13,34 @@
                         "endOffsets": "152,254,354,454,561,665,784,885"
                     },
                     "to": {
+<<<<<<< HEAD
+                        "startLines": "36,37,38,39,40,41,42,43,45,46,47,48,49,50,51,52,53",
+                        "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
+                        "startOffsets": "3566,3674,3829,3957,4068,4235,4362,4485,4734,4912,5018,5187,5313,5476,5658,5726,5789",
+                        "endColumns": "107,154,127,110,166,126,122,105,177,105,168,125,162,181,67,62,78",
+                        "endOffsets": "3669,3824,3952,4063,4230,4357,4480,4586,4907,5013,5182,5308,5471,5653,5721,5784,5863"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\691ffbd33d74f288441a445c03feec2d\\transformed\\core-1.10.1\\res\\values-nl\\values-nl.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,157,259,359,459,566,670,789",
+                        "endColumns": "101,101,99,99,106,103,118,100",
+                        "endOffsets": "152,254,354,454,561,665,784,885"
+                    },
+                    "to": {
+                        "startLines": "29,30,31,32,33,34,35,73",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "2832,2934,3036,3136,3236,3343,3447,7428",
+                        "endColumns": "101,101,99,99,106,103,118,100",
+                        "endOffsets": "2929,3031,3131,3231,3338,3442,3561,7524"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\e2ae34f22a9dde1502d937f02adf0c5f\\transformed\\browser-1.4.0\\res\\values-nl\\values-nl.xml",
+=======
                         "startLines": "29,30,31,32,33,34,35,73",
                         "startColumns": "4,4,4,4,4,4,4,4",
                         "startOffsets": "2832,2934,3036,3136,3236,3343,3447,7428",
@@ -22,6 +50,7 @@
                 },
                 {
                     "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/e2ae34f22a9dde1502d937f02adf0c5f/transformed/browser-1.4.0/res/values-nl/values-nl.xml",
+>>>>>>> 7b59d2be014c24f994be96b25a11a74f63a466d0
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",

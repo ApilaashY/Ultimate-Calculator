@@ -3,16 +3,18 @@ android.annotation.TargetApi
 android.support.customtabs.ICustomTabsCallback$Default
 android.support.customtabs.ICustomTabsCallback$Stub$Proxy
 android.support.customtabs.ICustomTabsCallback$Stub:
-    private static final java.lang.String DESCRIPTOR
     static final int TRANSACTION_extraCallback
     static final int TRANSACTION_extraCallbackWithResult
+    static final int TRANSACTION_onActivityResized
     static final int TRANSACTION_onMessageChannelReady
     static final int TRANSACTION_onNavigationEvent
     static final int TRANSACTION_onPostMessage
     static final int TRANSACTION_onRelationshipValidationResult
     public static android.support.customtabs.ICustomTabsCallback asInterface(android.os.IBinder)
-    public static android.support.customtabs.ICustomTabsCallback getDefaultImpl()
-    public static boolean setDefaultImpl(android.support.customtabs.ICustomTabsCallback)
+android.support.customtabs.ICustomTabsCallback$_Parcel:
+    public void <init>()
+android.support.customtabs.ICustomTabsCallback:
+    public static final java.lang.String DESCRIPTOR
 android.support.customtabs.ICustomTabsService$Default
 android.support.customtabs.ICustomTabsService$Stub$Proxy:
     public android.os.Bundle extraCommand(java.lang.String,android.os.Bundle)
@@ -25,7 +27,6 @@ android.support.customtabs.ICustomTabsService$Stub$Proxy:
     public boolean updateVisuals(android.support.customtabs.ICustomTabsCallback,android.os.Bundle)
     public boolean validateRelationship(android.support.customtabs.ICustomTabsCallback,int,android.net.Uri,android.os.Bundle)
 android.support.customtabs.ICustomTabsService$Stub:
-    private static final java.lang.String DESCRIPTOR
     static final int TRANSACTION_extraCommand
     static final int TRANSACTION_mayLaunchUrl
     static final int TRANSACTION_newSession
@@ -40,8 +41,12 @@ android.support.customtabs.ICustomTabsService$Stub:
     public void <init>()
     public android.os.IBinder asBinder()
     public boolean onTransact(int,android.os.Parcel,android.os.Parcel,int)
-    public static boolean setDefaultImpl(android.support.customtabs.ICustomTabsService)
+android.support.customtabs.ICustomTabsService$_Parcel:
+    public void <init>()
+    static synthetic java.lang.Object access$000(android.os.Parcel,android.os.Parcelable$Creator)
+    private static java.lang.Object readTypedObject(android.os.Parcel,android.os.Parcelable$Creator)
 android.support.customtabs.ICustomTabsService:
+    public static final java.lang.String DESCRIPTOR
     public abstract android.os.Bundle extraCommand(java.lang.String,android.os.Bundle)
     public abstract boolean mayLaunchUrl(android.support.customtabs.ICustomTabsCallback,android.net.Uri,android.os.Bundle,java.util.List)
     public abstract int postMessage(android.support.customtabs.ICustomTabsCallback,java.lang.String,android.os.Bundle)
@@ -53,14 +58,17 @@ android.support.customtabs.ICustomTabsService:
 android.support.customtabs.IPostMessageService$Default
 android.support.customtabs.IPostMessageService$Stub$Proxy
 android.support.customtabs.IPostMessageService$Stub
+android.support.customtabs.IPostMessageService$_Parcel
 android.support.customtabs.IPostMessageService
 android.support.customtabs.trusted.ITrustedWebActivityCallback$Default
 android.support.customtabs.trusted.ITrustedWebActivityCallback$Stub$Proxy
 android.support.customtabs.trusted.ITrustedWebActivityCallback$Stub
+android.support.customtabs.trusted.ITrustedWebActivityCallback$_Parcel
 android.support.customtabs.trusted.ITrustedWebActivityCallback
 android.support.customtabs.trusted.ITrustedWebActivityService$Default
 android.support.customtabs.trusted.ITrustedWebActivityService$Stub$Proxy
 android.support.customtabs.trusted.ITrustedWebActivityService$Stub
+android.support.customtabs.trusted.ITrustedWebActivityService$_Parcel
 android.support.customtabs.trusted.ITrustedWebActivityService
 android.support.v4.app.INotificationSideChannel$Default
 android.support.v4.app.INotificationSideChannel$Stub$Proxy
@@ -2529,6 +2537,9 @@ androidx.browser.customtabs.CustomTabsClient:
     public static java.lang.String getPackageName(android.content.Context,java.util.List,boolean)
     public static androidx.browser.customtabs.CustomTabsSession$PendingSession newPendingSession(android.content.Context,androidx.browser.customtabs.CustomTabsCallback,int)
     public androidx.browser.customtabs.CustomTabsSession newSession(androidx.browser.customtabs.CustomTabsCallback,int)
+androidx.browser.customtabs.CustomTabsIntent$ActivityHeightResizeBehavior
+androidx.browser.customtabs.CustomTabsIntent$Api24Impl:
+    private void <init>()
 androidx.browser.customtabs.CustomTabsIntent$Builder:
     public androidx.browser.customtabs.CustomTabsIntent$Builder addDefaultShareMenuItem()
     public androidx.browser.customtabs.CustomTabsIntent$Builder addMenuItem(java.lang.String,android.app.PendingIntent)
@@ -2537,11 +2548,14 @@ androidx.browser.customtabs.CustomTabsIntent$Builder:
     public androidx.browser.customtabs.CustomTabsIntent$Builder setActionButton(android.graphics.Bitmap,java.lang.String,android.app.PendingIntent)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setActionButton(android.graphics.Bitmap,java.lang.String,android.app.PendingIntent,boolean)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setCloseButtonIcon(android.graphics.Bitmap)
+    public androidx.browser.customtabs.CustomTabsIntent$Builder setCloseButtonPosition(int)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setColorScheme(int)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setColorSchemeParams(int,androidx.browser.customtabs.CustomTabColorSchemeParams)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setDefaultColorSchemeParams(androidx.browser.customtabs.CustomTabColorSchemeParams)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setDefaultShareMenuItemEnabled(boolean)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setExitAnimations(android.content.Context,int,int)
+    public androidx.browser.customtabs.CustomTabsIntent$Builder setInitialActivityHeightPx(int)
+    public androidx.browser.customtabs.CustomTabsIntent$Builder setInitialActivityHeightPx(int,int)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setInstantAppsEnabled(boolean)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setNavigationBarColor(int)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setNavigationBarDividerColor(int)
@@ -2552,22 +2566,35 @@ androidx.browser.customtabs.CustomTabsIntent$Builder:
     public androidx.browser.customtabs.CustomTabsIntent$Builder setShowTitle(boolean)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setStartAnimations(android.content.Context,int,int)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setToolbarColor(int)
+    public androidx.browser.customtabs.CustomTabsIntent$Builder setToolbarCornerRadiusDp(int)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setUrlBarHidingEnabled(boolean)
+androidx.browser.customtabs.CustomTabsIntent$CloseButtonPosition
 androidx.browser.customtabs.CustomTabsIntent$ColorScheme
 androidx.browser.customtabs.CustomTabsIntent$ShareState
 androidx.browser.customtabs.CustomTabsIntent:
+    public static final int ACTIVITY_HEIGHT_ADJUSTABLE
+    public static final int ACTIVITY_HEIGHT_DEFAULT
+    public static final int ACTIVITY_HEIGHT_FIXED
+    private static final int ACTIVITY_HEIGHT_MAX
+    public static final int CLOSE_BUTTON_POSITION_DEFAULT
+    public static final int CLOSE_BUTTON_POSITION_END
+    private static final int CLOSE_BUTTON_POSITION_MAX
+    public static final int CLOSE_BUTTON_POSITION_START
     public static final int COLOR_SCHEME_DARK
     public static final int COLOR_SCHEME_LIGHT
     private static final int COLOR_SCHEME_MAX
     public static final int COLOR_SCHEME_SYSTEM
     public static final java.lang.String EXTRA_ACTION_BUTTON_BUNDLE
+    public static final java.lang.String EXTRA_ACTIVITY_HEIGHT_RESIZE_BEHAVIOR
     public static final java.lang.String EXTRA_CLOSE_BUTTON_ICON
+    public static final java.lang.String EXTRA_CLOSE_BUTTON_POSITION
     public static final java.lang.String EXTRA_COLOR_SCHEME
     public static final java.lang.String EXTRA_COLOR_SCHEME_PARAMS
     public static final java.lang.String EXTRA_DEFAULT_SHARE_MENU_ITEM
     public static final java.lang.String EXTRA_ENABLE_INSTANT_APPS
     public static final java.lang.String EXTRA_ENABLE_URLBAR_HIDING
     public static final java.lang.String EXTRA_EXIT_ANIMATION_BUNDLE
+    public static final java.lang.String EXTRA_INITIAL_ACTIVITY_HEIGHT_PX
     public static final java.lang.String EXTRA_MENU_ITEMS
     public static final java.lang.String EXTRA_NAVIGATION_BAR_COLOR
     public static final java.lang.String EXTRA_NAVIGATION_BAR_DIVIDER_COLOR
@@ -2582,13 +2609,16 @@ androidx.browser.customtabs.CustomTabsIntent:
     public static final java.lang.String EXTRA_TINT_ACTION_BUTTON
     public static final java.lang.String EXTRA_TITLE_VISIBILITY_STATE
     public static final java.lang.String EXTRA_TOOLBAR_COLOR
+    public static final java.lang.String EXTRA_TOOLBAR_CORNER_RADIUS_DP
     public static final java.lang.String EXTRA_TOOLBAR_ITEMS
     private static final java.lang.String EXTRA_USER_OPT_OUT_FROM_CUSTOM_TABS
+    private static final java.lang.String HTTP_ACCEPT_LANGUAGE
     public static final java.lang.String KEY_DESCRIPTION
     public static final java.lang.String KEY_ICON
     public static final java.lang.String KEY_ID
     public static final java.lang.String KEY_MENU_ITEM_TITLE
     public static final java.lang.String KEY_PENDING_INTENT
+    private static final int MAX_TOOLBAR_CORNER_RADIUS_DP
     private static final int MAX_TOOLBAR_ITEMS
     public static final int NO_TITLE
     public static final int SHARE_STATE_DEFAULT
@@ -2597,8 +2627,12 @@ androidx.browser.customtabs.CustomTabsIntent:
     public static final int SHARE_STATE_ON
     public static final int SHOW_PAGE_TITLE
     public static final int TOOLBAR_ACTION_BUTTON_ID
+    public static int getActivityResizeBehavior(android.content.Intent)
+    public static int getCloseButtonPosition(android.content.Intent)
     public static androidx.browser.customtabs.CustomTabColorSchemeParams getColorSchemeParams(android.content.Intent,int)
+    public static int getInitialActivityHeightPx(android.content.Intent)
     public static int getMaxToolbarItems()
+    public static int getToolbarCornerRadiusDp(android.content.Intent)
     public static android.content.Intent setAlwaysUseBrowserUI(android.content.Intent)
     public static boolean shouldAlwaysUseBrowserUI(android.content.Intent)
 androidx.browser.customtabs.CustomTabsService$1
@@ -25260,6 +25294,7 @@ io.flutter.plugins.urllauncher.R$layout
 io.flutter.plugins.urllauncher.R$string
 io.flutter.plugins.urllauncher.R$style
 io.flutter.plugins.urllauncher.R$styleable
+io.flutter.plugins.urllauncher.R$xml
 io.flutter.plugins.urllauncher.R
 io.flutter.plugins.urllauncher.UrlLauncher:
     private static final java.lang.String TAG
@@ -34101,6 +34136,7 @@ androidx.appcompat.app.ToolbarActionBar
 androidx.browser.customtabs.CustomTabsCallback:
     public void extraCallback(java.lang.String,android.os.Bundle)
     public android.os.Bundle extraCallbackWithResult(java.lang.String,android.os.Bundle)
+    public void onActivityResized(int,int,android.os.Bundle)
     public void onMessageChannelReady(android.os.Bundle)
     public void onNavigationEvent(int,android.os.Bundle)
     public void onPostMessage(java.lang.String,android.os.Bundle)
@@ -34110,6 +34146,7 @@ androidx.browser.customtabs.CustomTabsClient$2$2
 androidx.browser.customtabs.CustomTabsClient$2$3
 androidx.browser.customtabs.CustomTabsClient$2$4
 androidx.browser.customtabs.CustomTabsClient$2$5
+androidx.browser.customtabs.CustomTabsClient$2$6
 androidx.browser.customtabs.CustomTabsClient$2:
     final synthetic androidx.browser.customtabs.CustomTabsCallback val$callback
 androidx.constraintlayout.core.LinearSystem:

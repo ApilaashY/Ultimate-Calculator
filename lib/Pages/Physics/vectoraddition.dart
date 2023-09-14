@@ -50,11 +50,15 @@ class _VectorAdditionState extends State<VectorAddition> {
   final List<TextEditingController> _quantityControllers = [
     TextEditingController()
   ];
-  final List<String> _startDirectionControllers = ["N"];
+  final List<List<String>> _startDirectionControllers = [
+    ["N"]
+  ];
   final List<TextEditingController> _degreeControllers = [
     TextEditingController()
   ];
-  final List<String> _endDirectionControllers = ["E"];
+  final List<List<String>> _endDirectionControllers = [
+    ["E"]
+  ];
   String _answerText = ' ';
   var vectorcalc = DegreeRad(true);
   void calc() {
@@ -68,7 +72,8 @@ class _VectorAdditionState extends State<VectorAddition> {
       List diss = [];
       for (int i = 0; i < _quantityControllers.length; i++) {
         diss.add(
-            "${_quantityControllers[i].text}[${_startDirectionControllers[i]}${_degreeControllers[i].text}${_endDirectionControllers[i]}]");
+            "${_quantityControllers[i].text}[${_startDirectionControllers[i][0]}${_degreeControllers[i].text}${_endDirectionControllers[i][0]}]");
+        print(diss.last);
       }
       for (var i in diss) {
         if (i.isEmpty) continue;
@@ -185,9 +190,9 @@ class _VectorAdditionState extends State<VectorAddition> {
         backgroundColor: const Color.fromARGB(255, 0, 135, 197),
         onPressed: () {
           _quantityControllers.add(TextEditingController());
-          _startDirectionControllers.add("N");
+          _startDirectionControllers.add(["N"]);
           _degreeControllers.add(TextEditingController());
-          _endDirectionControllers.add("E");
+          _endDirectionControllers.add(["E"]);
           additionlist.add(VectorInput(
             quantity: _quantityControllers[_quantityControllers.length - 1],
             start: _startDirectionControllers[
@@ -290,7 +295,7 @@ class VectorInput extends StatefulWidget {
       required this.degree});
 
   final TextEditingController quantity, degree;
-  final String start, end;
+  final List<String> start, end;
 
   @override
   State<VectorInput> createState() => _VectorInputState(
@@ -305,7 +310,7 @@ class _VectorInputState extends State<VectorInput> {
       required this.degree});
 
   final TextEditingController quantity, degree;
-  String start, end;
+  List<String> start, end;
 
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
@@ -331,7 +336,7 @@ class _VectorInputState extends State<VectorInput> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownButton(
-              value: start,
+              value: start[0],
               items: ["N", "S", "E", "W"]
                   .map((element) => DropdownMenuItem(
                         value: element,
@@ -339,14 +344,14 @@ class _VectorInputState extends State<VectorInput> {
                       ))
                   .toList(),
               onChanged: (element) {
-                if ((start == "N" || start == "S") &&
+                if ((start[0] == "N" || start[0] == "S") &&
                     (element == "E" || element == "W")) {
-                  end = "N";
-                } else if ((start == "E" || start == "W") &&
+                  end[0] = "N";
+                } else if ((start[0] == "E" || start[0] == "W") &&
                     (element == "N" || element == "S")) {
-                  end = "E";
+                  end[0] = "E";
                 }
-                start = element!;
+                start[0] = element!.toString();
                 setState(() {});
               },
             ),
@@ -385,8 +390,10 @@ class _VectorInputState extends State<VectorInput> {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: DropdownButton(
-              value: end,
-              items: ((start == "N" || start == "S") ? ["E", "W"] : ["N", "S"])
+              value: end[0],
+              items: ((start[0] == "N" || start[0] == "S")
+                      ? ["E", "W"]
+                      : ["N", "S"])
                   .map((element) => DropdownMenuItem(
                         value: element,
                         child: Text(element),
@@ -394,7 +401,7 @@ class _VectorInputState extends State<VectorInput> {
                   .toList(),
               onChanged: (element) {
                 setState(() {
-                  end = element!;
+                  end[0] = element!.toString();
                 });
               },
             ),

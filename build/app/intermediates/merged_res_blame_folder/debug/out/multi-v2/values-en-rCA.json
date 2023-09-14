@@ -21,7 +21,11 @@
                     }
                 },
                 {
+<<<<<<< HEAD
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\e2ae34f22a9dde1502d937f02adf0c5f\\transformed\\browser-1.4.0\\res\\values-en-rCA\\values-en-rCA.xml",
+=======
                     "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/e2ae34f22a9dde1502d937f02adf0c5f/transformed/browser-1.4.0/res/values-en-rCA/values-en-rCA.xml",
+>>>>>>> 7b59d2be014c24f994be96b25a11a74f63a466d0
                     "from": {
                         "startLines": "2,3,4,5",
                         "startColumns": "4,4,4,4",
@@ -38,7 +42,11 @@
                     }
                 },
                 {
+<<<<<<< HEAD
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\691ffbd33d74f288441a445c03feec2d\\transformed\\core-1.10.1\\res\\values-en-rCA\\values-en-rCA.xml",
+=======
                     "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/691ffbd33d74f288441a445c03feec2d/transformed/core-1.10.1/res/values-en-rCA/values-en-rCA.xml",
+>>>>>>> 7b59d2be014c24f994be96b25a11a74f63a466d0
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9",
                         "startColumns": "4,4,4,4,4,4,4,4",

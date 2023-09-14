@@ -1,18 +1,18 @@
 [
     {
-        "merged": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/shared_preferences_android/intermediates/merged_res/release/layout-v21/notification_template_icon_group.xml",
-        "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/24cc4fbeaead76b16a290c925c369d62/transformed/core-1.6.0/res/layout-v21/notification_template_icon_group.xml"
+        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\shared_preferences_android\\intermediates\\merged_res\\release\\layout-v21\\notification_action.xml",
+        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\layout-v21\\notification_action.xml"
     },
     {
-        "merged": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/shared_preferences_android/intermediates/merged_res/release/layout-v21/notification_action_tombstone.xml",
-        "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/24cc4fbeaead76b16a290c925c369d62/transformed/core-1.6.0/res/layout-v21/notification_action_tombstone.xml"
+        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\shared_preferences_android\\intermediates\\merged_res\\release\\layout-v21\\notification_template_icon_group.xml",
+        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\layout-v21\\notification_template_icon_group.xml"
     },
     {
-        "merged": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/shared_preferences_android/intermediates/merged_res/release/layout-v21/notification_action.xml",
-        "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/24cc4fbeaead76b16a290c925c369d62/transformed/core-1.6.0/res/layout-v21/notification_action.xml"
+        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\shared_preferences_android\\intermediates\\merged_res\\release\\layout-v21\\notification_action_tombstone.xml",
+        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\layout-v21\\notification_action_tombstone.xml"
     },
     {
-        "merged": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/shared_preferences_android/intermediates/merged_res/release/layout-v21/notification_template_custom_big.xml",
-        "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/24cc4fbeaead76b16a290c925c369d62/transformed/core-1.6.0/res/layout-v21/notification_template_custom_big.xml"
+        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\shared_preferences_android\\intermediates\\merged_res\\release\\layout-v21\\notification_template_custom_big.xml",
+        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\layout-v21\\notification_template_custom_big.xml"
     }
 ]

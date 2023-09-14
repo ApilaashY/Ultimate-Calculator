@@ -1,3 +1,13 @@
+<<<<<<< HEAD
+#Wed Sep 13 20:41:34 EDT 2023
+base.0=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes.dex
+base.1=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\debug\\mergeLibDexDebug\\0\\classes.dex
+base.2=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\0\\classes.dex
+base.3=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\1\\classes.dex
+base.4=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\debug\\mergeProjectDexDebug\\3\\classes.dex
+base.5=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes2.dex
+base.6=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\debug\\mergeExtDexDebug\\classes3.dex
+=======
 #Mon Sep 04 21:39:14 EDT 2023
 base.0=/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermediates/dex/debug/mergeLibDexDebug/0/classes.dex
@@ -6,6 +16,7 @@ base.3=/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermedia
 base.4=/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermediates/dex/debug/mergeProjectDexDebug/3/classes.dex
 base.5=/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermediates/dex/debug/mergeExtDexDebug/classes2.dex
 base.6=/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermediates/dex/debug/mergeExtDexDebug/classes3.dex
+>>>>>>> 7b59d2be014c24f994be96b25a11a74f63a466d0
 path.0=classes.dex
 path.1=0/classes.dex
 path.2=0/classes.dex

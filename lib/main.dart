@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_typing_uninitialized_variables, dead_code
+// ignore_for_file: prefer_typing_uninitialized_variables, dead_code, use_build_context_synchronously
 
 import 'dart:convert';
 import 'dart:io' show Platform;
 import 'dart:math';
-import 'dart:html' as html;
+// import 'dart:html' as html;
 import 'package:app/Pages/BoolAlgebra.dart';
 import 'package:app/Pages/Calculator.dart';
 import 'package:app/Pages/Converter.dart';
@@ -26,8 +26,10 @@ import 'package:app/Pages/SimplifyingRadicals.dart';
 import 'package:app/Pages/Triangles/DegandRad.dart';
 import 'package:app/Pages/Triangles/Pythagorean.dart';
 import 'package:app/Pages/Triangles/Trigonometry.dart';
+import 'package:app/Pages/factors.dart';
 import 'package:app/Pages/graph.dart';
 import 'package:app/Pages/periodictable.dart';
+import 'package:app/Pages/prime.dart';
 import 'package:app/Pages/rootfinder.dart';
 
 import 'Modules/loadas.dart';
@@ -220,6 +222,8 @@ class _HomeState extends State<Home> {
     "Custom Formulas": const CustomFormulas(),
     'Boolean Calculator': const BoolCalculator(),
     'Test Cases': const TestCases(),
+    "Factors": const Factors(),
+    "Prime": const Prime(),
   };
   Random randomnum = Random();
   RewardedAd? ad;
@@ -507,6 +511,12 @@ class _HomeState extends State<Home> {
                 CardButton(
                   text: 'LCM',
                 ),
+                CardButton(
+                  text: 'Factors',
+                ),
+                CardButton(
+                  text: 'Prime',
+                ),
                 (() {
                   if (webMode) {
                     return Card(
@@ -521,8 +531,7 @@ class _HomeState extends State<Home> {
                         widthFactor: 0.9,
                         heightFactor: 0.9,
                         child: FittedBox(
-                            child:
-                                Text("Updated June 29, 2023\nVersion 3.3.0")),
+                            child: Text("Updated Sep 13, 2023\nVersion 3.5.0")),
                       ),
                     );
                   }
@@ -556,10 +565,10 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       // Comment for Mobile Use
 
-                      html.AnchorElement anchorElement =
-                          html.AnchorElement(href: 'ultimatecalculator.apk');
-                      anchorElement.download = 'ultimatecalculator.apk';
-                      anchorElement.click();
+//                       html.AnchorElement anchorElement =
+//                           html.AnchorElement(href: 'ultimatecalculator.apk');
+//                       anchorElement.download = 'ultimatecalculator.apk';
+//                       anchorElement.click();
                     },
                     child: const FractionallySizedBox(
                         widthFactor: 0.9,
