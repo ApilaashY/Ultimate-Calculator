@@ -11,6 +11,7 @@ import 'package:app/Pages/Physics/Ek.dart';
 import 'package:app/Pages/Physics/cooffriction.dart';
 import 'package:app/Pages/Physics/ohm.dart';
 import 'package:app/Pages/Physics/vectoraddition.dart';
+import 'package:app/Pages/Physics/vectorsubtraction.dart';
 import 'package:app/Pages/Physics/work.dart';
 import 'package:app/Pages/SequenceAndSeries/Sequence.dart';
 import 'package:app/Pages/SequenceAndSeries/Series.dart';
@@ -45,6 +46,7 @@ Route<dynamic> controller(RouteSettings settings) {
       'Root Finder': 0,
       'Periodic Table': 0,
       '2D Vector Addition': 0,
+      '2D Vector Subtraction': 0,
       'Graphs': 0,
       'Work': 0,
       'Gravitational Potential Energy': 0,
@@ -109,6 +111,8 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const PeriodicTable());
   } else if (settings.name == '2D Vector Addition') {
     return MaterialPageRoute(builder: (context) => const VectorAddition());
+  } else if (settings.name == '2D Vector Subtraction') {
+    return MaterialPageRoute(builder: (context) => const VectorSubtraction());
   } else if (settings.name == 'Graphs') {
     return MaterialPageRoute(builder: (context) => const Graphs());
   } else if (settings.name == 'Settings') {

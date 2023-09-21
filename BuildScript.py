@@ -1,12 +1,11 @@
 import subprocess, shutil, os
 
-LINES = [6, 568, 569, 570, 571]
+LINES = [6, 574, 575, 576, 577]
 
 print("Building apk")
 p = subprocess.run(
     ["flutter", "build", "apk", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
-    shell=True,
     encoding="UTF-8",
 )
 print(p.stdout)
@@ -35,7 +34,6 @@ print("Building web")
 p = subprocess.run(
     ["flutter", "build", "web", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
-    shell=True,
     encoding="UTF-8",
 )
 print(p.stdout)

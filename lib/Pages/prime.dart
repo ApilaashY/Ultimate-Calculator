@@ -29,7 +29,7 @@ class _PrimeState extends State<Prime> {
           heightFactor: 0.8,
           widthFactor: 0.8,
           child: Hero(
-            tag: "Ohm's Law",
+            tag: "Prime",
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),

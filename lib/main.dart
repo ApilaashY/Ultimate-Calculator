@@ -19,6 +19,7 @@ import 'package:app/Pages/Physics/Ek.dart';
 import 'package:app/Pages/Physics/cooffriction.dart';
 import 'package:app/Pages/Physics/ohm.dart';
 import 'package:app/Pages/Physics/vectoraddition.dart';
+import 'package:app/Pages/Physics/vectorsubtraction.dart';
 import 'package:app/Pages/Physics/work.dart';
 import 'package:app/Pages/SequenceAndSeries/Sequence.dart';
 import 'package:app/Pages/SequenceAndSeries/Series.dart';
@@ -205,6 +206,7 @@ class _HomeState extends State<Home> {
     'Root Finder': const RootFinder(),
     'Periodic Table': const PeriodicTable(),
     '2D Vector Addition': const VectorAddition(),
+    '2D Vector Subtraction': const VectorSubtraction(),
     'Graphs': const Graphs(),
     'Work': const Work(),
     'Gravitational Potential Energy': const GravitationalPotentialEnergy(),
@@ -451,7 +453,11 @@ class _HomeState extends State<Home> {
                   children: [
                     SectionButton(
                       text: "2D Vector Addition",
-                      menu: "Add one or more vectors together",
+                      menu: "Add multiple vectors together",
+                    ),
+                    SectionButton(
+                      text: "2D Vector Subtraction",
+                      menu: "Subtract multiple vectors",
                     ),
                     SectionButton(text: 'Work'),
                     SectionButton(text: 'Gravitational Potential Energy'),

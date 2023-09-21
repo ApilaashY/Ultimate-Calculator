@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\path_provider_android\\intermediates\\merged_res\\release\\values-mr\\values-mr.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/path_provider_android/intermediates/merged_res/release/values-mr/values-mr.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\values-mr\\values-mr.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/24cc4fbeaead76b16a290c925c369d62/transformed/core-1.6.0/res/values-mr/values-mr.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -16,10 +16,10 @@
             ]
         },
         {
-            "outputFile": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\path_provider_android\\intermediates\\incremental\\mergeReleaseResources\\merged.dir\\values-mr\\values-mr.xml",
+            "outputFile": "/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/path_provider_android/intermediates/incremental/mergeReleaseResources/merged.dir/values-mr/values-mr.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\values-mr\\values-mr.xml",
+                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/24cc4fbeaead76b16a290c925c369d62/transformed/core-1.6.0/res/values-mr/values-mr.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

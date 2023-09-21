@@ -27,7 +27,7 @@ class _FactorsState extends State<Factors> {
           heightFactor: 0.8,
           widthFactor: 0.8,
           child: Hero(
-            tag: "Ohm's Law",
+            tag: "Factors",
             child: Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),

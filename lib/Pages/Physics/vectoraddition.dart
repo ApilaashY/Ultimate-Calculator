@@ -72,7 +72,7 @@ class _VectorAdditionState extends State<VectorAddition> {
       List diss = [];
       for (int i = 0; i < _quantityControllers.length; i++) {
         diss.add(
-            "${_quantityControllers[i].text}[${_startDirectionControllers[i][0]}${_degreeControllers[i].text}${_endDirectionControllers[i][0]}]");
+            "${_quantityControllers[i].text}[${_startDirectionControllers[i][0]}${(_degreeControllers[i].text.isNotEmpty) ? _degreeControllers[i].text : "0"}${_endDirectionControllers[i][0]}]");
         print(diss.last);
       }
       for (var i in diss) {
@@ -360,7 +360,6 @@ class _VectorInputState extends State<VectorInput> {
             key: formKey,
             child: Expanded(
               child: TextFormField(
-                maxLength: 3,
                 controller: degree,
                 keyboardType: TextInputType.number,
                 decoration: const InputDecoration(
