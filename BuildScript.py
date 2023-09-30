@@ -1,14 +1,18 @@
-import subprocess, shutil, os
+import subprocess, shutil, os, sys
 
-LINES = [6, 574, 575, 576, 577]
+LINES = [6, 595, 596, 597, 598]
 
 print("Building apk")
 p = subprocess.run(
     ["flutter", "build", "apk", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
     encoding="UTF-8",
+    shell=True,
 )
 print(p.stdout)
+
+if p.returncode != 0:
+    sys.exit()
 
 print("\nSetting up project for web")
 w = open("lib/main.dart", "r")
@@ -35,6 +39,7 @@ p = subprocess.run(
     ["flutter", "build", "web", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
     encoding="UTF-8",
+    shell=True,
 )
 print(p.stdout)
 
