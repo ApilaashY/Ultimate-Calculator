@@ -10122,7 +10122,7 @@ th:function th(a){this.a=a},
 a0G:function a0G(a,b,c,d){var _=this
 _.d=0
 _.e=a
-_.f=$
+_.f=null
 _.r=b
 _.w=c
 _.a=null
@@ -58890,8 +58890,7 @@ o=A.c7(A.ak(A.eM(A.b([A.dD(A.dm(A.b8("Points:\n"+n,q,q,q,q,A.aI(q,q,A.G(a,q,p).w
 n=A.c6(10)
 s=$.aKX
 n=A.aNy(A.b([o,A.c7(A.cp(B.J,A.b([A.ak(new A.Vi(-1,new A.Eb(s,q,q,q,q,q,q),q),1,q,1),new A.aY(B.cY,q,q,A.ak(A.dm(A.b8(B.c.al(s*10,0)+"/10 points left to collect today",q,q,q,q,q,q,q,q)),s,q,0.95),q)],l),B.t,B.H,q),q,10,new A.bg(n,B.p)),new A.ib("Calculator","A normal calculator",q),new A.ib("Converter","Converts numbers to different types",q),new A.ib("Custom Formulas","Create, save, and use your own formulas",q),new A.ib("Simplifying Radicals",q,q),new A.n0("Physics",A.b([new A.eE("2D Vector Addition","Add multiple vectors together",q),new A.eE("2D Vector Subtraction","Subtract multiple vectors",q),new A.eE("Work",q,q),new A.eE("Gravitational Potential Energy",q,q),new A.eE("Kinetic Energy",q,q),new A.eE("Coefficient of Friction",q,q),new A.eE("Ohm's Law",q,q)],l),q),new A.ib("Periodic Table",q,q),new A.n0("Triangles",A.b([new A.eE("Trigonometry",q,q),new A.eE("Pythagorean",q,q),new A.eE("Degree Radian Converter",q,q)],l),q),new A.n0("Finance",A.b([new A.eE("Simple Interest",q,q),new A.eE("Compound Interest",q,q),new A.eE("Ordinary Annuity","Compounds after payment",q),new A.eE("Annuity Due","Compounds before payment",q)],l),q),new A.n0("Sequences and Series",A.b([new A.eE("Sequences",q,q),new A.eE("Series",q,q)],l),q),new A.ib("Root Finder",q,q),new A.n0("Boolean Algebra",A.b([new A.eE("Boolean Calculator","A calculator specially made for boolean math",q),new A.eE("Test Cases","Get all possible cases for a boolean formula",q)],l),q),new A.ib("GCF",q,q),new A.ib("LCM",q,q),new A.ib("Factors",q,q),new A.ib("Prime",q,q),new A.aAv(a).$0()],l),!0,!0,!0)
-o=!0
-o=o?B.ek:q
+o=B.ek
 r=A.b([new A.bc(B.pv,new A.x5(new A.aqM(1500,10,10,2),n,q,B.G,!1,q,q,o,!0,q,18,B.F,B.fn,q,B.t,q),q)],l)
 if(b.b!=null){o=m.e
 if(o.length>=3){n=m.r
@@ -58912,9 +58911,8 @@ n=m.d
 s=n===0?A.Rb(B.p0,B.Kn,B.hb,!1,new A.aAA(a)):q
 s=A.dD(A.co(p,r[n],o,s),1)
 p=m.f
-p===$&&A.a()
-o=p.r
-p=A.hg(new A.Bj(p,q),o.a,o.b)
+if(p!=null){o=p.r
+p=A.hg(new A.Bj(p,q),o.a,o.b)}else p=B.w
 return A.eM(A.b([s,p],l),B.M,B.R,B.Y)}return B.Sk},
 $S:548}
 A.aAu.prototype={

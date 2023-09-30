@@ -270,12 +270,12 @@ const RESOURCES = {"assets/AssetManifest.bin": "13eef60e8d90065847872fb3ba4ad8e3
 "icons/Icon-512.png": "129cebd8490d8838db86f8847c697080",
 "icons/Icon-maskable-192.png": "33cbf2d8e139b7007a20fa572e8e0aa3",
 "icons/Icon-maskable-512.png": "129cebd8490d8838db86f8847c697080",
-"index.html": "382589bc9f27da56c613b795b2c9b056",
-"/": "382589bc9f27da56c613b795b2c9b056",
-"main.dart.js": "cf6acdc395940d2dd3660ef49791dfa5",
+"index.html": "6f5476bedf85a35903b91b9a30fa61f2",
+"/": "6f5476bedf85a35903b91b9a30fa61f2",
+"main.dart.js": "7cf7c44e97bb34cbfb210d7224113e9c",
 "manifest.json": "0df1f0a4ad7ba1f205a23f6e63af8646",
 "sitemap.xml": "5480a2e02932bf9e4ee52f8488eb954e",
-"ultimatecalculator.apk": "4bacbafaa2c7eca9d0312a5d6a9d2876",
+"ultimatecalculator.apk": "aecc97cc2ca075e2c3e360a839c6ef0b",
 "version.json": "1d6b9b35242daee06022b99cdbc50a87"};
 // The application shell files that are downloaded before a service worker can
 // start.

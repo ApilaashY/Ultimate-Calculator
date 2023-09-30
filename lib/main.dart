@@ -215,7 +215,7 @@ class _HomeState extends State<Home> {
 
   int _barIndex = 0;
   List<String> recomended = [];
-  late BannerAd? bannerAd;
+  BannerAd? bannerAd;
 
   Map<String, Widget> nameWidgetDatabase = {
     'Calculator': const Calculator(),
