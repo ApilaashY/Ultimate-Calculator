@@ -46,7 +46,6 @@ class _PrimeState extends State<Prime> {
                           for (int i = 2;
                               i <= sqrt(int.parse(newVal)).ceil();
                               i++) {
-                            print(i);
                             if (int.parse(newVal) % i == 0) {
                               isPrime = false;
                               break;

@@ -1,3 +1,5 @@
+// ignore_for_file: empty_catches
+
 import 'package:app/Modules/input_field.dart';
 import 'package:flutter/material.dart';
 

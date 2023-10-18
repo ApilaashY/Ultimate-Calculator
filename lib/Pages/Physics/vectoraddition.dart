@@ -73,7 +73,6 @@ class _VectorAdditionState extends State<VectorAddition> {
       for (int i = 0; i < _quantityControllers.length; i++) {
         diss.add(
             "${_quantityControllers[i].text}[${_startDirectionControllers[i][0]}${(_degreeControllers[i].text.isNotEmpty) ? _degreeControllers[i].text : "0"}${_endDirectionControllers[i][0]}]");
-        print(diss.last);
       }
       for (var i in diss) {
         if (i.isEmpty) continue;
