@@ -192,7 +192,7 @@ class _HomeState extends State<Home> {
     }
 
     // Setup banner ad
-    if (!webMode) {
+    if (!webMode && false) {
       bannerAd = BannerAd(
         size: AdSize.banner,
         adUnitId: (defaultTargetPlatform == TargetPlatform.android)
@@ -558,7 +558,8 @@ class _HomeState extends State<Home> {
                         widthFactor: 0.9,
                         heightFactor: 0.9,
                         child: FittedBox(
-                            child: Text("Updated Sep 30th, 2023\nVersion 3.6.1")),
+                            child:
+                                Text("Updated Sep 30th, 2023\nVersion 3.6.1")),
                       ),
                     );
                   }
@@ -807,13 +808,13 @@ class _HomeState extends State<Home> {
                   body: bodyChildren[_barIndex],
                 ),
               ),
-              (bannerAd != null)
-                  ? SizedBox(
-                      height: bannerAd?.size.height.toDouble(),
-                      width: bannerAd?.size.width.toDouble(),
-                      child: AdWidget(ad: (bannerAd as BannerAd)),
-                    )
-                  : const SizedBox(),
+              // (bannerAd != null)
+              //     ? SizedBox(
+              //         height: bannerAd?.size.height.toDouble(),
+              //         width: bannerAd?.size.width.toDouble(),
+              //         child: AdWidget(ad: (bannerAd as BannerAd)),
+              //       )
+              //     : const SizedBox(),
             ],
           );
         }
