@@ -121,9 +121,9 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="io.flutter:flutter_embedding_release:1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b@jar"
-      jars="C:\Users\apila\.gradle\caches\modules-2\files-2.1\io.flutter\flutter_embedding_release\1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b\625ab2d9b2a61586c9d5fb689e42c83634d33562\flutter_embedding_release-1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b.jar"
-      resolved="io.flutter:flutter_embedding_release:1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b"/>
+      name="io.flutter:flutter_embedding_release:1.0.0-767d8c75e898091b925519803830fc2721658d07@jar"
+      jars="C:\Users\apila\.gradle\caches\modules-2\files-2.1\io.flutter\flutter_embedding_release\1.0.0-767d8c75e898091b925519803830fc2721658d07\6133dfabd2d8fe916a596ec42828f9cdd92ba5f0\flutter_embedding_release-1.0.0-767d8c75e898091b925519803830fc2721658d07.jar"
+      resolved="io.flutter:flutter_embedding_release:1.0.0-767d8c75e898091b925519803830fc2721658d07"/>
   <library
       name="androidx.window:window-java:1.0.0-beta04@aar"
       jars="C:\Users\apila\.gradle\caches\transforms-3\c335ae504e85feff738c23825c3bbabe\transformed\jetified-window-java-1.0.0-beta04\jars\classes.jar"
@@ -180,17 +180,17 @@
       externalAnnotations="annotations.zip"
       proguardRules="proguard.txt"/>
   <library
-      name="io.flutter:armeabi_v7a_release:1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b@jar"
-      jars="C:\Users\apila\.gradle\caches\modules-2\files-2.1\io.flutter\armeabi_v7a_release\1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b\d484e6572afe908e5546f3a7ef32877bbdb44753\armeabi_v7a_release-1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b.jar"
-      resolved="io.flutter:armeabi_v7a_release:1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b"/>
+      name="io.flutter:armeabi_v7a_release:1.0.0-767d8c75e898091b925519803830fc2721658d07@jar"
+      jars="C:\Users\apila\.gradle\caches\modules-2\files-2.1\io.flutter\armeabi_v7a_release\1.0.0-767d8c75e898091b925519803830fc2721658d07\e34a3863488b762b96f7c1cedf24a49fda79eb80\armeabi_v7a_release-1.0.0-767d8c75e898091b925519803830fc2721658d07.jar"
+      resolved="io.flutter:armeabi_v7a_release:1.0.0-767d8c75e898091b925519803830fc2721658d07"/>
   <library
-      name="io.flutter:arm64_v8a_release:1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b@jar"
-      jars="C:\Users\apila\.gradle\caches\modules-2\files-2.1\io.flutter\arm64_v8a_release\1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b\7cffed1f9f7dd5e31fa6395dedc29a123705df2e\arm64_v8a_release-1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b.jar"
-      resolved="io.flutter:arm64_v8a_release:1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b"/>
+      name="io.flutter:arm64_v8a_release:1.0.0-767d8c75e898091b925519803830fc2721658d07@jar"
+      jars="C:\Users\apila\.gradle\caches\modules-2\files-2.1\io.flutter\arm64_v8a_release\1.0.0-767d8c75e898091b925519803830fc2721658d07\cf9c66082a83944bec1087a6704cde407af16b32\arm64_v8a_release-1.0.0-767d8c75e898091b925519803830fc2721658d07.jar"
+      resolved="io.flutter:arm64_v8a_release:1.0.0-767d8c75e898091b925519803830fc2721658d07"/>
   <library
-      name="io.flutter:x86_64_release:1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b@jar"
-      jars="C:\Users\apila\.gradle\caches\modules-2\files-2.1\io.flutter\x86_64_release\1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b\cf5ac61c06ae175921cb70d0d4f9b0fe16befbd\x86_64_release-1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b.jar"
-      resolved="io.flutter:x86_64_release:1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b"/>
+      name="io.flutter:x86_64_release:1.0.0-767d8c75e898091b925519803830fc2721658d07@jar"
+      jars="C:\Users\apila\.gradle\caches\modules-2\files-2.1\io.flutter\x86_64_release\1.0.0-767d8c75e898091b925519803830fc2721658d07\5fcc8c87cb62bc5ad78f8b4a7b6b4a0208a8e676\x86_64_release-1.0.0-767d8c75e898091b925519803830fc2721658d07.jar"
+      resolved="io.flutter:x86_64_release:1.0.0-767d8c75e898091b925519803830fc2721658d07"/>
   <library
       name="androidx.lifecycle:lifecycle-common-java8:2.2.0@jar"
       jars="C:\Users\apila\.gradle\caches\modules-2\files-2.1\androidx.lifecycle\lifecycle-common-java8\2.2.0\cd3478503da69b1a7e0319bd2d1389943db9b364\lifecycle-common-java8-2.2.0.jar"

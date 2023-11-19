@@ -14,6 +14,7 @@ bool deciasfrac = false;
 String letters = 'abcdefghijklmnopqrstuvwxyz';
 Solver solver = Solver();
 List<String> history = [];
+StateSetter? stateSetter;
 
 class Calculator extends StatefulWidget {
   const Calculator({super.key});
@@ -25,6 +26,7 @@ class Calculator extends StatefulWidget {
 class CalculatorState extends State<Calculator> {
   CalculatorState() {
     degreemode = degreeDefault;
+    stateSetter = setState;
   }
   @override
   Widget build(BuildContext context) {
@@ -69,23 +71,9 @@ class CalculatorState extends State<Calculator> {
               },
             ),
             Expanded(
-              child: TextField(
-                enabled: false,
-                scrollController: ScrollController(keepScrollOffset: false),
-                textAlign: TextAlign.end,
-                controller: _controller,
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                    border:
-                        OutlineInputBorder(borderSide: BorderSide(width: 10))),
-                style: TextStyle(
-                    fontSize: 35,
-                    color: (MediaQuery.of(context).platformBrightness ==
-                            Brightness.light)
-                        ? Colors.black
-                        : Colors.white),
-              ),
-            ),
+                child: ScrollableTextField(
+              text: _controller.text,
+            )),
             const SizedBox(height: 20),
             Expanded(
               flex: 10,
@@ -398,7 +386,37 @@ class FunctionButton extends StatelessWidget {
         } else {
           _controller.text += name.toString();
         }
+        if (stateSetter != null) {
+          stateSetter!(() {});
+        }
       },
+    );
+  }
+}
+
+class ScrollableTextField extends StatelessWidget {
+  const ScrollableTextField({super.key, required this.text});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
+      alignment: Alignment.centerRight,
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: text
+              .split("")
+              .map((e) => FittedBox(
+                      child: Text(
+                    e,
+                    style: const TextStyle(fontSize: 50),
+                  )))
+              .toList(),
+        ),
+      ),
     );
   }
 }

@@ -1,6 +1,41 @@
 import subprocess, shutil, os, sys
 
 LINES = [6, 595, 596, 597, 598]
+ADDIRECTORY = "/lib/main.dart"
+slashPosition = -1
+
+w = open(os.curdir + ADDIRECTORY, 'r')
+adData = w.readlines()
+w.close()
+
+for line in enumerate(adData):
+    if (line[1].count("showinter()") >= 1):
+        if (line[1].count("//") >= 1):
+            repeatQuestion = input("Ads are turned off, would you like to build wit[h] ads, withou[t] ads, or [s]top building (h/t/s): ").lower()
+            while (repeatQuestion != "h" and repeatQuestion != "t" and repeatQuestion != "s"):
+                print("Invalid Response")
+                repeatQuestion = input("Ads are turned off, would you like to build wit[h] ads, withou[t] ads, or [s]top building (h/t/s): ").lower()
+            
+            if (repeatQuestion == "h"):
+                print(line[0])
+                adData[line[0]] = adData[line[0]].replace("//","")
+
+                slashPosition = line[0]
+
+                w = open(os.curdir + ADDIRECTORY, 'w')
+                w.writelines(adData)
+                w.close()
+
+            elif (repeatQuestion == "t"):
+                print("CONTINUING")
+                print()
+            else:
+                print("STOPPING")
+                sys.exit()
+        else:
+            print("Ads are already turned on")
+            print()
+        break
 
 print("Building apk")
 p = subprocess.run(
@@ -77,3 +112,10 @@ for file in os.listdir("build/web"):
         shutil.copytree(f"build/web/{file}", f"../Ultimate-Calculator-WebSite/{file}")
     else:
         shutil.copy(f"build/web/{file}", f"../Ultimate-Calculator-WebSite/{file}")
+
+if (slashPosition >= 0):
+    adData[line[0]] = "//" + adData[line[0]]
+    
+    w = open(os.curdir + ADDIRECTORY, 'w')
+    w.writelines(adData)
+    w.close()

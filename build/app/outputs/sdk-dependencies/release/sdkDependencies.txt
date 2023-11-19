@@ -5,10 +5,10 @@ library {
   maven_library {
     groupId: "io.flutter"
     artifactId: "flutter_embedding_release"
-    version: "1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b"
+    version: "1.0.0-767d8c75e898091b925519803830fc2721658d07"
   }
   digests {
-    sha256: "\362\002\277\237\374\242Y\213\355\372D\350j\357\1770k\332\031\221Y4[<\316\376\262\334kc\\~"
+    sha256: "\307+\357}[;\0323\033\2432\367uX\211\256\364\n@8\270-!0\200z\320\260\b\036\304\307"
   }
   repo_index {
     value: 2
@@ -1296,10 +1296,10 @@ library {
   maven_library {
     groupId: "io.flutter"
     artifactId: "armeabi_v7a_release"
-    version: "1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b"
+    version: "1.0.0-767d8c75e898091b925519803830fc2721658d07"
   }
   digests {
-    sha256: "\362:em\355Y\210\336qr\033#\374\003\326MW\357\200\372A\363\257bnP\357\305\242EGW"
+    sha256: "\177\222\353d\344\001\221\247\316I\253\331\326\300bK\030\036\310<[\ak\206\v~\216$\221\226 \312"
   }
   repo_index {
     value: 2
@@ -1309,10 +1309,10 @@ library {
   maven_library {
     groupId: "io.flutter"
     artifactId: "arm64_v8a_release"
-    version: "1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b"
+    version: "1.0.0-767d8c75e898091b925519803830fc2721658d07"
   }
   digests {
-    sha256: "\245\261\021D\224\306\367W\2708n:&\363\3372\245\027\177)\223\245\313\252f\037\266z\245\370\205)"
+    sha256: "H<\337c\317\v\2434/\345\031\220\226L?\225\242\265\314D\233\241S\326\334\370\313\354_\327?\375"
   }
   repo_index {
     value: 2
@@ -1322,10 +1322,10 @@ library {
   maven_library {
     groupId: "io.flutter"
     artifactId: "x86_64_release"
-    version: "1.0.0-a794cf2681c6c9fe7b260e0e84de96298dc9c18b"
+    version: "1.0.0-767d8c75e898091b925519803830fc2721658d07"
   }
   digests {
-    sha256: "\361\373\330\235u\252\"\261Y\330\235\031H\325\274\033;\017\036\365\375\024>\334\260\324m\337I1\231B"
+    sha256: "\306\370\314\335\b$\256\"\372\232\225\031\245\261\357\276}\301F\213\270\323\004\222\357\206\373g\000es\200"
   }
   repo_index {
     value: 2
