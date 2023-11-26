@@ -1,18 +1,18 @@
 [
     {
-        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_tile_bg.xml",
-        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\drawable\\notification_tile_bg.xml"
+        "merged": "io.flutter.plugins.firebase.core.firebase_core-merged_res-12:/drawable/notification_icon_background.xml",
+        "source": "io.flutter.plugins.firebase.core.firebase_core-core-1.6.0-0:/drawable/notification_icon_background.xml"
     },
     {
-        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_bg.xml",
-        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\drawable\\notification_bg.xml"
+        "merged": "io.flutter.plugins.firebase.core.firebase_core-merged_res-12:/drawable/notification_tile_bg.xml",
+        "source": "io.flutter.plugins.firebase.core.firebase_core-core-1.6.0-0:/drawable/notification_tile_bg.xml"
     },
     {
-        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_bg_low.xml",
-        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\drawable\\notification_bg_low.xml"
+        "merged": "io.flutter.plugins.firebase.core.firebase_core-merged_res-12:/drawable/notification_bg.xml",
+        "source": "io.flutter.plugins.firebase.core.firebase_core-core-1.6.0-0:/drawable/notification_bg.xml"
     },
     {
-        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\firebase_core\\intermediates\\merged_res\\release\\drawable\\notification_icon_background.xml",
-        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\24cc4fbeaead76b16a290c925c369d62\\transformed\\core-1.6.0\\res\\drawable\\notification_icon_background.xml"
+        "merged": "io.flutter.plugins.firebase.core.firebase_core-merged_res-12:/drawable/notification_bg_low.xml",
+        "source": "io.flutter.plugins.firebase.core.firebase_core-core-1.6.0-0:/drawable/notification_bg_low.xml"
     }
 ]

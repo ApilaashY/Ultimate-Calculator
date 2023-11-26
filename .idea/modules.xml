@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Ultimate-Calculator.iml" filepath="$PROJECT_DIR$/.idea/Ultimate-Calculator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/back.iml" filepath="$PROJECT_DIR$/back.iml" />
+      <module fileurl="file://$PROJECT_DIR$/android/back_android.iml" filepath="$PROJECT_DIR$/android/back_android.iml" />
     </modules>
   </component>
 </project>

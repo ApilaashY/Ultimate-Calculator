@@ -1,18 +1,18 @@
 [
     {
-        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\url_launcher_android\\intermediates\\merged_res\\release\\layout-v21\\notification_template_custom_big.xml",
-        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\691ffbd33d74f288441a445c03feec2d\\transformed\\core-1.10.1\\res\\layout-v21\\notification_template_custom_big.xml"
+        "merged": "io.flutter.plugins.urllauncher.url_launcher_android-merged_res-12:/layout-v21/notification_template_icon_group.xml",
+        "source": "io.flutter.plugins.urllauncher.url_launcher_android-core-1.10.1-5:/layout-v21/notification_template_icon_group.xml"
     },
     {
-        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\url_launcher_android\\intermediates\\merged_res\\release\\layout-v21\\notification_action.xml",
-        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\691ffbd33d74f288441a445c03feec2d\\transformed\\core-1.10.1\\res\\layout-v21\\notification_action.xml"
+        "merged": "io.flutter.plugins.urllauncher.url_launcher_android-merged_res-12:/layout-v21/notification_action.xml",
+        "source": "io.flutter.plugins.urllauncher.url_launcher_android-core-1.10.1-5:/layout-v21/notification_action.xml"
     },
     {
-        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\url_launcher_android\\intermediates\\merged_res\\release\\layout-v21\\notification_template_icon_group.xml",
-        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\691ffbd33d74f288441a445c03feec2d\\transformed\\core-1.10.1\\res\\layout-v21\\notification_template_icon_group.xml"
+        "merged": "io.flutter.plugins.urllauncher.url_launcher_android-merged_res-12:/layout-v21/notification_action_tombstone.xml",
+        "source": "io.flutter.plugins.urllauncher.url_launcher_android-core-1.10.1-5:/layout-v21/notification_action_tombstone.xml"
     },
     {
-        "merged": "D:\\Creations\\Github\\Ultimate-Calculator\\build\\url_launcher_android\\intermediates\\merged_res\\release\\layout-v21\\notification_action_tombstone.xml",
-        "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\691ffbd33d74f288441a445c03feec2d\\transformed\\core-1.10.1\\res\\layout-v21\\notification_action_tombstone.xml"
+        "merged": "io.flutter.plugins.urllauncher.url_launcher_android-merged_res-12:/layout-v21/notification_template_custom_big.xml",
+        "source": "io.flutter.plugins.urllauncher.url_launcher_android-core-1.10.1-5:/layout-v21/notification_template_custom_big.xml"
     }
 ]

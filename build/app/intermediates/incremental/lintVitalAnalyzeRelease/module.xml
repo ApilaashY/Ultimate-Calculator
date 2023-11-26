@@ -4,7 +4,7 @@
     name=":app"
     type="APP"
     maven="android:app:"
-    gradle="7.1.3"
+    gradle="7.3.0"
     buildFolder="D:\Creations\Github\Ultimate-Calculator\build\app"
     bootClassPath="C:\Users\apila\AppData\Local\Android\sdk\platforms\android-33\android.jar;C:\Users\apila\AppData\Local\Android\sdk\build-tools\30.0.3\core-lambda-stubs.jar"
     javaSourceLevel="1.8"

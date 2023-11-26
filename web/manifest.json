@@ -1,6 +1,6 @@
 {
-    "name": "app",
-    "short_name": "app",
+    "name": "back",
+    "short_name": "back",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#FFFFFF",

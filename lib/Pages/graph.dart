@@ -14,21 +14,30 @@ class Graphs extends StatefulWidget {
 }
 
 class _GraphsState extends State<Graphs> {
-  List<GraphValue> chartData = [];
-  TextEditingController xMin = TextEditingController(text: "0"),
-      yMin = TextEditingController(text: "0"),
-      xMax = TextEditingController(text: "0"),
-      yMax = TextEditingController(text: "0");
+  // final List<ChartData> chartData = [
+  //   ChartData(2010, 35),
+  //   ChartData(2011, 28),
+  //   ChartData(2012, 34),
+  //   ChartData(2013, 32),
+  //   ChartData(2014, 40)
+  // ];
+
+  List<ChartData> chartData = [];
+  TextEditingController xMin = TextEditingController(text: "-10"),
+      yMin = TextEditingController(text: "-10"),
+      xMax = TextEditingController(text: "10"),
+      yMax = TextEditingController(text: "10");
 
   void solve(equation) {
-    chartData = [];
     try {
-      for (double i = -10; i < 10; i += 0.1) {
+      chartData = [];
+      for (double i = double.parse(xMin.text);
+          i < double.parse(xMax.text);
+          i += 0.1) {
         Solver solver = Solver();
-        List<String> translation =
-            solver.translate(equation.replaceAll("x", roundto(i.toString())));
-        chartData.add(GraphValue(
-            roundto(i.toString()), solver.solve(translation, "Degree")));
+        List<String> translation = solver
+            .translate(equation.replaceAll("x", "(${roundto(i.toString())})"));
+        chartData.add(ChartData(i, solver.solve(translation, "Degree")));
       }
       setState(() {});
     } catch (e) {}
@@ -49,44 +58,53 @@ class _GraphsState extends State<Graphs> {
       body: Column(
         children: [
           Expanded(
-            child: SfCartesianChart(
-              primaryXAxis: CategoryAxis(
-                maximum: double.parse(xMax.text),
-                minimum: double.parse(xMin.text),
+            child: Hero(
+              tag: "Graphs",
+              child: SfCartesianChart(
+                onChartTouchInteractionMove: (ChartTouchInteractionArgs args) {
+                  print(args.position.dx.toString());
+                  print(args.position.dy.toString());
+                },
+                primaryYAxis: NumericAxis(
+                    maximum: double.tryParse(yMax.text),
+                    minimum: double.tryParse(yMin.text)),
+                series: <ChartSeries>[
+                  LineSeries<ChartData, double>(
+                      dataSource: chartData,
+                      xValueMapper: (ChartData data, _) => data.x,
+                      yValueMapper: (ChartData data, _) => data.y)
+                ],
               ),
-              primaryYAxis: CategoryAxis(
-                maximum: double.parse(yMax.text),
-                minimum: double.parse(yMin.text),
-              ),
-              series: <ChartSeries>[
-                // Renders line chart
-                LineSeries<GraphValue, String>(
-                  dataSource: chartData,
-                  xValueMapper: (GraphValue sales, _) => sales.x,
-                  yValueMapper: (GraphValue sales, _) => sales.y,
-                )
-              ],
             ),
           ),
           Inputfield(
             onChanged: (value) => solve(value),
+            hintText: "y =",
           ),
           const SizedBox(
             height: 20,
           ),
           Row(
             children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Text("X:"),
+              ),
               Expanded(
                 child: Inputfield(
+                  onChanged: (text) => setState(() {}),
                   hintText: "X Min",
                   controller: xMin,
                 ),
               ),
+              const Text("To"),
               Expanded(
-                  child: Inputfield(
-                hintText: "X Max",
-                controller: xMax,
-              )),
+                child: Inputfield(
+                  onChanged: (text) => setState(() {}),
+                  hintText: "X Max",
+                  controller: xMax,
+                ),
+              ),
             ],
           ),
           const SizedBox(
@@ -94,14 +112,21 @@ class _GraphsState extends State<Graphs> {
           ),
           Row(
             children: [
+              const Padding(
+                padding: EdgeInsets.only(left: 10),
+                child: Text("Y:"),
+              ),
               Expanded(
                 child: Inputfield(
+                  onChanged: (text) => setState(() {}),
                   hintText: "Y Min",
                   controller: yMin,
                 ),
               ),
+              const Text("To"),
               Expanded(
                 child: Inputfield(
+                  onChanged: (text) => setState(() {}),
                   hintText: "Y Max",
                   controller: yMax,
                 ),
@@ -114,8 +139,8 @@ class _GraphsState extends State<Graphs> {
   }
 }
 
-class GraphValue {
-  GraphValue(this.x, this.y);
-  final String x;
+class ChartData {
+  ChartData(this.x, this.y);
+  final double x;
   final double y;
 }

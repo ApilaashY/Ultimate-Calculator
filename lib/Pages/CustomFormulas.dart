@@ -42,7 +42,6 @@ class _CustomFormulasState extends State<CustomFormulas> {
 
   @override
   Widget build(BuildContext context) {
-    getFormulas();
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: !selectionMode,
@@ -226,71 +225,83 @@ class _CustomFormulasState extends State<CustomFormulas> {
           child: const Icon(Icons.add),
         ),
       ),
-      body: GridView.builder(
-        itemBuilder: (context, index) {
-          return Stack(
-            children: [
-              Center(
-                child: FractionallySizedBox(
-                    widthFactor: 0.9,
-                    heightFactor: 0.9,
-                    child: Hero(
-                      tag: formulas.keys.toList()[index],
-                      child: ElevatedButton(
-                        onLongPress: () {
-                          selectionMode = !selectionMode;
-                          if (selectionMode) {
-                            checked = List.filled(formulas.length, false,
-                                growable: true);
-                            checked[index] = !checked[index];
-                          }
-                          setState(() {});
-                        },
-                        onPressed: () {
-                          if (!selectionMode) {
-                            Navigator.pushNamed(context, "Formula Calculator",
-                                arguments: formulas.keys.toList()[index]);
-                          } else {
-                            checked[index] = !checked[index];
-                            setState(() {});
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                          elevation: 10,
-                          backgroundColor: (!selectionMode)
-                              ? const Color.fromARGB(255, 165, 226, 255)
-                              : ((checked[index])
-                                  ? const Color.fromARGB(255, 165, 226, 255)
-                                  : Colors.grey),
-                          shape: const RoundedRectangleBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                          ),
-                        ),
-                        child: FractionallySizedBox(
-                          widthFactor: 0.6,
-                          heightFactor: 0.6,
-                          child: FittedBox(
-                            child: Text(
-                              formulas.keys.toList()[index],
-                              style: TextStyle(
-                                  color: (MediaQuery.of(context)
-                                              .platformBrightness ==
-                                          Brightness.light)
-                                      ? Colors.black
-                                      : Colors.white),
+      body: FutureBuilder(
+          future: getFormulas(),
+          builder: (context, snap) {
+            return GridView.builder(
+              itemBuilder: (context, index) {
+                if (!snap.hasData) {
+                  return const Scaffold(
+                    body: Center(child: CircularProgressIndicator.adaptive()),
+                  );
+                }
+                return Stack(
+                  children: [
+                    Center(
+                      child: FractionallySizedBox(
+                          widthFactor: 0.9,
+                          heightFactor: 0.9,
+                          child: Hero(
+                            tag: formulas.keys.toList()[index],
+                            child: ElevatedButton(
+                              onLongPress: () {
+                                selectionMode = !selectionMode;
+                                if (selectionMode) {
+                                  checked = List.filled(formulas.length, false,
+                                      growable: true);
+                                  checked[index] = !checked[index];
+                                }
+                                setState(() {});
+                              },
+                              onPressed: () {
+                                if (!selectionMode) {
+                                  Navigator.pushNamed(
+                                      context, "Formula Calculator",
+                                      arguments: formulas.keys.toList()[index]);
+                                } else {
+                                  checked[index] = !checked[index];
+                                  setState(() {});
+                                }
+                              },
+                              style: ElevatedButton.styleFrom(
+                                elevation: 10,
+                                backgroundColor: (!selectionMode)
+                                    ? const Color.fromARGB(255, 165, 226, 255)
+                                    : ((checked[index])
+                                        ? const Color.fromARGB(
+                                            255, 165, 226, 255)
+                                        : Colors.grey),
+                                shape: const RoundedRectangleBorder(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(20)),
+                                ),
+                              ),
+                              child: FractionallySizedBox(
+                                widthFactor: 0.6,
+                                heightFactor: 0.6,
+                                child: FittedBox(
+                                  child: Text(
+                                    formulas.keys.toList()[index],
+                                    style: TextStyle(
+                                        color: (MediaQuery.of(context)
+                                                    .platformBrightness ==
+                                                Brightness.light)
+                                            ? Colors.black
+                                            : Colors.white),
+                                  ),
+                                ),
+                              ),
                             ),
-                          ),
-                        ),
-                      ),
-                    )),
-              ),
-            ],
-          );
-        },
-        gridDelegate:
-            const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: formulas.length,
-      ),
+                          )),
+                    ),
+                  ],
+                );
+              },
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2),
+              itemCount: formulas.length,
+            );
+          }),
     );
   }
 }
@@ -818,7 +829,6 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
 
   @override
   Widget build(BuildContext context) {
-    setup();
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -829,25 +839,32 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
                 : Colors.white,
         title: Text(name),
       ),
-      body: Center(
-        child: FractionallySizedBox(
-          widthFactor: 0.8,
-          heightFactor: 0.7,
-          child: Hero(
-            tag: name,
-            child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
+      body: FutureBuilder(
+          future: setup(),
+          builder: (context, snap) {
+            if (!snap.hasData) {
+              return const Scaffold(body: CircularProgressIndicator.adaptive());
+            }
+            return Center(
+              child: FractionallySizedBox(
+                widthFactor: 0.8,
+                heightFactor: 0.7,
+                child: Hero(
+                  tag: name,
+                  child: Card(
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    elevation: 20,
+                    child: ListView.builder(
+                      itemBuilder: (context, index) => list[index],
+                      itemCount: list.length,
+                    ),
+                  ),
+                ),
               ),
-              elevation: 20,
-              child: ListView.builder(
-                itemBuilder: (context, index) => list[index],
-                itemCount: list.length,
-              ),
-            ),
-          ),
-        ),
-      ),
+            );
+          }),
     );
   }
 }

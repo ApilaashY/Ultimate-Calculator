@@ -68,12 +68,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBItctK0RL_ttjTQMowvjxH_kFaitVn3IE',
-    appId: '1:678733943298:ios:747afb6a9e206637628d1b',
+    appId: '1:678733943298:ios:49ae9431fdd84e51628d1b',
     messagingSenderId: '678733943298',
     projectId: 'ultimate-calculator-20b8c',
     databaseURL: 'https://ultimate-calculator-20b8c-default-rtdb.firebaseio.com',
     storageBucket: 'ultimate-calculator-20b8c.appspot.com',
-    iosClientId: '678733943298-s5vhh4p2epir8j6rsfuhv9lomu7sni1k.apps.googleusercontent.com',
-    iosBundleId: 'com.ultimatecalculator.app',
+    iosBundleId: 'com.example.back',
   );
 }

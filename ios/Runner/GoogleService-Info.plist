@@ -2,10 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>CLIENT_ID</key>
-	<string>678733943298-dmu14c8ggmb1ombk341km4egc1emkbo1.apps.googleusercontent.com</string>
-	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.678733943298-dmu14c8ggmb1ombk341km4egc1emkbo1</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBItctK0RL_ttjTQMowvjxH_kFaitVn3IE</string>
 	<key>GCM_SENDER_ID</key>
@@ -13,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>app.ultimatecalculator.www</string>
+	<string>com.example.back</string>
 	<key>PROJECT_ID</key>
 	<string>ultimate-calculator-20b8c</string>
 	<key>STORAGE_BUCKET</key>
@@ -29,6 +25,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:678733943298:ios:4b25ee6a4e9715c2628d1b</string>
+	<string>1:678733943298:ios:49ae9431fdd84e51628d1b</string>
+	<key>DATABASE_URL</key>
+	<string>https://ultimate-calculator-20b8c-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

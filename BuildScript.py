@@ -1,6 +1,6 @@
 import subprocess, shutil, os, sys
 
-LINES = [6, 595, 596, 597, 598]
+LINES = [6, 612, 613, 614, 615]
 ADDIRECTORY = "/lib/main.dart"
 slashPosition = -1
 
@@ -38,16 +38,12 @@ for line in enumerate(adData):
         break
 
 print("Building apk")
-p = subprocess.run(
+p = subprocess.call(
     ["flutter", "build", "apk", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
-    encoding="UTF-8",
     shell=True,
+    encoding="UTF-8",
 )
-print(p.stdout)
-
-if p.returncode != 0:
-    sys.exit()
 
 print("\nSetting up project for web")
 w = open("lib/main.dart", "r")
@@ -65,18 +61,21 @@ w.close()
 
 print("Copying over new apk")
 shutil.copy("build/app/outputs/flutter-apk/app-release.apk", "web/app-release.apk")
-os.remove("web/ultimatecalculator.apk")
+try:
+    os.remove("web/ultimatecalculator.apk")
+except:
+    print("APK already non-existant")
 os.rename("web/app-release.apk", "web/ultimatecalculator.apk")
 
 
 print("Building web")
-p = subprocess.run(
+p = subprocess.call(
     ["flutter", "build", "web", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
-    encoding="UTF-8",
     shell=True,
+    encoding="UTF-8",
 )
-print(p.stdout)
+
 
 for i in LINES:
     data[i - 1] = f"//{data[i - 1]}"
