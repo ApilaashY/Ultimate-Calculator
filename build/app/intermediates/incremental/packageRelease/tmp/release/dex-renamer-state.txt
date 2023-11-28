@@ -1,6 +1,6 @@
-#Sun Nov 26 16:26:37 EST 2023
-base.0=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
-base.1=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes2.dex
+#Mon Nov 27 22:38:37 EST 2023
+base.0=/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermediates/dex/release/minifyReleaseWithR8/classes.dex
+base.1=/Users/apilaashyoharan/Documents/Ultimate-Calculator/build/app/intermediates/dex/release/minifyReleaseWithR8/classes2.dex
 path.0=classes.dex
 path.1=classes2.dex
 renamed.0=classes.dex

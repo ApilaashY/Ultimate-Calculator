@@ -131,7 +131,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   _HomeState() {
     if (!webMode) {
-//      showinter();
+      showinter();
     }
   }
   Future setup() async {
