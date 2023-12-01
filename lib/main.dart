@@ -131,7 +131,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   _HomeState() {
     if (!webMode) {
-      showinter();
+      //showinter();
     }
   }
   Future setup() async {
@@ -589,7 +589,8 @@ class _HomeState extends State<Home> {
         if (snap.hasData) {
           if (recomended.length >= 3) {
             bodyChildren.add(nameWidgetDatabase[recomended[0]] as Widget);
-            bodyChildren.add(nameWidgetDatabase[recomended[1]] as Widget);
+            bodyChildren.add(
+                (nameWidgetDatabase[recomended[1]] ?? SizedBox()) as Widget);
             bodyChildren.add(nameWidgetDatabase[recomended[2]] as Widget);
           }
           if (webMode && defaultTargetPlatform == TargetPlatform.android) {
@@ -609,10 +610,10 @@ class _HomeState extends State<Home> {
                     onPressed: () {
                       // Comment for Mobile Use
 
-//                       html.AnchorElement anchorElement =
-//                           html.AnchorElement(href: 'ultimatecalculator.apk');
-//                       anchorElement.download = 'ultimatecalculator.apk';
-//                       anchorElement.click();
+//                        html.AnchorElement anchorElement =
+//                            html.AnchorElement(href: 'ultimatecalculator.apk');
+//                        anchorElement.download = 'ultimatecalculator.apk';
+//                        anchorElement.click();
                     },
                     child: const FractionallySizedBox(
                         widthFactor: 0.9,

@@ -41,7 +41,6 @@ print("Building apk")
 p = subprocess.call(
     ["flutter", "build", "apk", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
-    shell=True,
     encoding="UTF-8",
 )
 
@@ -72,7 +71,6 @@ print("Building web")
 p = subprocess.call(
     ["flutter", "build", "web", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
-    shell=True,
     encoding="UTF-8",
 )
 

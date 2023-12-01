@@ -26,17 +26,20 @@ class _GraphsState extends State<Graphs> {
   TextEditingController xMin = TextEditingController(text: "-10"),
       yMin = TextEditingController(text: "-10"),
       xMax = TextEditingController(text: "10"),
-      yMax = TextEditingController(text: "10");
+      yMax = TextEditingController(text: "10"),
+      equation = TextEditingController();
+  double prevx = -1;
+  double prevy = -1;
 
-  void solve(equation) {
+  void solve(_) {
     try {
       chartData = [];
       for (double i = double.parse(xMin.text);
           i < double.parse(xMax.text);
           i += 0.1) {
         Solver solver = Solver();
-        List<String> translation = solver
-            .translate(equation.replaceAll("x", "(${roundto(i.toString())})"));
+        List<String> translation = solver.translate(
+            equation.text.replaceAll("x", "(${roundto(i.toString())})"));
         chartData.add(ChartData(i, solver.solve(translation, "Degree")));
       }
       setState(() {});
@@ -62,8 +65,31 @@ class _GraphsState extends State<Graphs> {
               tag: "Graphs",
               child: SfCartesianChart(
                 onChartTouchInteractionMove: (ChartTouchInteractionArgs args) {
-                  print(args.position.dx.toString());
-                  print(args.position.dy.toString());
+                  if (prevy > 0) {
+                    yMin.text = (double.parse(yMin.text) +
+                            (args.position.dy - prevy) / 10)
+                        .toString();
+                    yMax.text = (double.parse(yMax.text) +
+                            (args.position.dy - prevy) / 10)
+                        .toString();
+                  }
+                  if (prevx > 0) {
+                    xMin.text = (double.parse(xMin.text) +
+                            (args.position.dx - prevx) / 10)
+                        .toString();
+                    xMax.text = (double.parse(xMax.text) +
+                            (args.position.dx - prevx) / 10)
+                        .toString();
+                  }
+                  prevy = args.position.dy;
+                  prevx = args.position.dx;
+                  solve(-1);
+                  setState(() => {});
+                },
+                onChartTouchInteractionUp: (details) {
+                  print("Cancelled");
+                  prevx = -1;
+                  prevy = -1;
                 },
                 primaryYAxis: NumericAxis(
                     maximum: double.tryParse(yMax.text),
@@ -78,7 +104,8 @@ class _GraphsState extends State<Graphs> {
             ),
           ),
           Inputfield(
-            onChanged: (value) => solve(value),
+            onChanged: solve,
+            controller: equation,
             hintText: "y =",
           ),
           const SizedBox(
