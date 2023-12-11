@@ -35,7 +35,6 @@ import 'package:app/Pages/settings.dart';
 import 'package:app/Pages/periodictable.dart';
 
 Route<dynamic> controller(RouteSettings settings) {
-  print("HIE" + settings.toString());
   if (savedata != null) {
     Map recommended = {
       'Calculator': 0,

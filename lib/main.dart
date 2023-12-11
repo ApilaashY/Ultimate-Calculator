@@ -717,7 +717,7 @@ class _HomeState extends State<Home> {
             bottomNavigationBar: (recomended.isNotEmpty)
                 ? BottomNavigationBar(
                     currentIndex: _barIndex,
-                    selectedItemColor: Colors.black,
+                    selectedItemColor: (MediaQuery.of(context).platformBrightness == Brightness.light)?Colors.black:Colors.white,
                     unselectedItemColor: Colors.grey,
                     showUnselectedLabels: true,
                     showSelectedLabels: true,

@@ -797,8 +797,8 @@ class _FormulaCalculatorState extends State<FormulaCalculator> {
         newTranslation[positions[x]] = controllers[x].text;
       }
       newTranslation = solver.putMultiplyBetweenNums(newTranslation);
-      double numAnswer =
-          solver.solve(newTranslation, (degree) ? "Degree" : "Radian");
+      double numAnswer = double.parse(solver.solve(
+          newTranslation, (degree) ? AngleType.Degrees : AngleType.Radians)[0]);
 
       if (deciAsFrac) {
         answer.text = numAnswer.floor().toString();

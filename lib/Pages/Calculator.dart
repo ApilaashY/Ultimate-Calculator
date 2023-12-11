@@ -12,7 +12,6 @@ TextEditingController _controller = TextEditingController();
 bool degreemode = degreeDefault;
 bool deciasfrac = false;
 String letters = 'abcdefghijklmnopqrstuvwxyz';
-Solver solver = Solver();
 List<String> history = [];
 StateSetter? stateSetter;
 
@@ -329,6 +328,7 @@ class FunctionButton extends StatelessWidget {
   });
   Widget child;
   String name;
+  Solver solver = Solver();
 
   @override
   Widget build(BuildContext context) {
@@ -340,6 +340,8 @@ class FunctionButton extends StatelessWidget {
       child: FractionallySizedBox(
           heightFactor: 0.5, widthFactor: 0.7, child: FittedBox(child: child)),
       onPressed: () {
+        print(solver.solve(solver.translate("2 - (2/5)"), AngleType.Degrees,
+            exactValue: true));
         if (name == 'Equal') {
           try {
             String parseText =
@@ -350,8 +352,8 @@ class FunctionButton extends StatelessWidget {
               history.remove(parseText);
             }
             history.insert(0, parseText);
-            double answer =
-                solver.solve(translation, (degreemode) ? "Degree" : "Radian");
+            double answer = double.parse(solver.solve(translation,
+                (degreemode) ? AngleType.Degrees : AngleType.Radians)[0]);
             _controller.text = roundto(answer.toString());
 
             if (deciasfrac && answer != answer.floorToDouble()) {
@@ -412,7 +414,12 @@ class ScrollableTextField extends StatelessWidget {
               .map((e) => FittedBox(
                       child: Text(
                     e,
-                    style: const TextStyle(fontSize: 50),
+                    style: TextStyle(
+                        fontSize: 50,
+                        color: (MediaQuery.of(context).platformBrightness ==
+                                Brightness.light)
+                            ? Colors.black
+                            : Colors.white),
                   )))
               .toList(),
         ),

@@ -40,7 +40,10 @@ class _GraphsState extends State<Graphs> {
         Solver solver = Solver();
         List<String> translation = solver.translate(
             equation.text.replaceAll("x", "(${roundto(i.toString())})"));
-        chartData.add(ChartData(i, solver.solve(translation, "Degree")));
+        chartData.add(ChartData(
+            i,
+            double.parse(solver.solve(translation, AngleType.Degrees,
+                exactValue: false)[0])));
       }
       setState(() {});
     } catch (e) {}

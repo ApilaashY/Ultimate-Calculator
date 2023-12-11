@@ -38,10 +38,7 @@ class Solver {
   }
 
   List<String> translate(String equation) {
-    equation = equation
-        .replaceAll(" ", "")
-        .toLowerCase()
-        .replaceAll("π", "(${math.pi})");
+    equation = equation.replaceAll(" ", "").toLowerCase();
     List<String> elements = [];
     String number = "";
     for (int i = 0; i < equation.length; i++) {
@@ -113,7 +110,16 @@ class Solver {
     return elements;
   }
 
-  double solve(List<String> equation, String angleMode) {
+  List<String> solve(List<String> equation, AngleType angleMode,
+      {bool exactValue = true}) {
+    if (!exactValue) {
+      for (int i = 0; i < equation.length; i++) {
+        if (equation[i] == "π") {
+          equation[i] = math.pi.toString();
+        }
+      }
+    }
+
     // Determines negative and positive numbers
     String last = " ";
     for (int i = 0; i < equation.length; i++) {
@@ -136,8 +142,8 @@ class Solver {
       int end = equation.indexOf(")");
       int front = _highestIndexBefore(_indexesOf(equation, "("), end);
       if (end - front >= 1) {
-        double solveBracket =
-            solve(equation.sublist(front + 1, end), angleMode);
+        String solveBracket = solve(equation.sublist(front + 1, end), angleMode,
+            exactValue: exactValue)[0];
 
         equation[front] = solveBracket.toString();
         for (int i = 0; i < end - front; i++) {
@@ -210,6 +216,7 @@ class Solver {
     while (equation.contains("*") || equation.contains("/")) {
       for (int i = 0; i < equation.length; i++) {
         if (equation[i] == '*') {
+          print(equation);
           double answer =
               (double.parse(equation[i - 1]) * double.parse(equation[i + 1]));
           equation[i] = answer.toString();
@@ -219,12 +226,17 @@ class Solver {
           // Break to make sure operations are in correct order
           break;
         } else if (equation[i] == '/') {
-          double answer =
-              (double.parse(equation[i - 1]) / double.parse(equation[i + 1]));
-          equation[i] = answer.toString();
-          equation.removeAt(i - 1);
-          equation.removeAt(i);
-
+          if (exactValue) {
+            equation[i] = "${equation[i - 1]}/${equation[i + 1]}";
+            equation.removeAt(i - 1);
+            equation.removeAt(i);
+          } else {
+            double answer =
+                (double.parse(equation[i - 1]) / double.parse(equation[i + 1]));
+            equation[i] = answer.toString();
+            equation.removeAt(i - 1);
+            equation.removeAt(i);
+          }
           // Break to make sure operations are in correct order
           break;
         }
@@ -235,26 +247,78 @@ class Solver {
     while (equation.contains("-") || equation.contains("+")) {
       for (int i = 0; i < equation.length; i++) {
         if (equation[i] == '+' && i > 0) {
-          double answer =
-              (double.parse(equation[i - 1]) + double.parse(equation[i + 1]));
-          equation[i] = answer.toString();
-          equation.removeAt(i - 1);
-          equation.removeAt(i);
+          if (exactValue &&
+              (equation[i - 1].contains("/") ||
+                  equation[i + 1].contains("/"))) {
+            List<String> newEquation = [
+              (((equation[i - 1].contains("/"))
+                          ? double.parse(equation[i - 1].split("/")[0])
+                          : double.parse(equation[i - 1])) *
+                      ((equation[i + 1].contains("/"))
+                          ? double.parse(equation[i + 1].split("/")[1])
+                          : 1))
+                  .toString(),
+              "+",
+              (((equation[i + 1].contains("/"))
+                          ? double.parse(equation[i + 1].split("/")[0])
+                          : double.parse(equation[i + 1])) *
+                      ((equation[i - 1].contains("/"))
+                          ? double.parse(equation[i - 1].split("/")[1])
+                          : 1))
+                  .toString()
+            ];
+            equation[i] =
+                "${solve(newEquation, angleMode, exactValue: true)[0]}/${((equation[i - 1].contains("/")) ? double.parse(equation[i - 1].split("/")[1]) : 1) * ((equation[i + 1].contains("/")) ? double.parse(equation[i + 1].split("/")[1]) : 1)}";
+            equation.removeAt(i - 1);
+            equation.removeAt(i);
+          } else {
+            double answer =
+                (double.parse(equation[i - 1]) + double.parse(equation[i + 1]));
+            equation[i] = answer.toString();
+            equation.removeAt(i - 1);
+            equation.removeAt(i);
+          }
 
           // Break to make sure operations are in correct order
           break;
         } else if (equation[i] == '-' && i > 0) {
-          double answer =
-              (double.parse(equation[i - 1]) - double.parse(equation[i + 1]));
-          equation[i] = answer.toString();
-          equation.removeAt(i - 1);
-          equation.removeAt(i);
+          if (exactValue &&
+              (equation[i - 1].contains("/") ||
+                  equation[i + 1].contains("/"))) {
+            List<String> newEquation = [
+              (((equation[i - 1].contains("/"))
+                          ? double.parse(equation[i - 1].split("/")[0])
+                          : double.parse(equation[i - 1])) *
+                      ((equation[i + 1].contains("/"))
+                          ? double.parse(equation[i + 1].split("/")[1])
+                          : 1))
+                  .toString(),
+              "-",
+              (((equation[i + 1].contains("/"))
+                          ? double.parse(equation[i + 1].split("/")[0])
+                          : double.parse(equation[i + 1])) *
+                      ((equation[i - 1].contains("/"))
+                          ? double.parse(equation[i - 1].split("/")[1])
+                          : 1))
+                  .toString()
+            ];
+            equation[i] =
+                "${solve(newEquation, angleMode, exactValue: true)[0]}/${((equation[i - 1].contains("/")) ? double.parse(equation[i - 1].split("/")[1]) : 1) * ((equation[i + 1].contains("/")) ? double.parse(equation[i + 1].split("/")[1]) : 1)}";
+            equation.removeAt(i - 1);
+            equation.removeAt(i);
+          } else {
+            double answer =
+                (double.parse(equation[i - 1]) - double.parse(equation[i + 1]));
+            equation[i] = answer.toString();
+            equation.removeAt(i - 1);
+            equation.removeAt(i);
+          }
           // Break to make sure operations are in correct order
           break;
         }
       }
     }
-    return double.parse(equation[0]);
+    return equation;
   }
 
   List<int> _indexesOf(List<String> list, String search) {
@@ -281,20 +345,20 @@ class Solver {
   }
 
   double _adjustableSinCosTan(
-      double number, String operation, String angleMode) {
+      double number, String operation, AngleType angleMode) {
     operation = operation.toLowerCase();
     if (operation == "sin") {
-      if (angleMode == "Radian") {
+      if (angleMode == AngleType.Radians) {
         return math.sin(number);
       }
       return math.sin(number * math.pi / 180);
     } else if (operation == "cos") {
-      if (angleMode == "Radian") {
+      if (angleMode == AngleType.Radians) {
         return math.cos(number);
       }
       return math.cos(number * math.pi / 180);
     } else if (operation == "tan") {
-      if (angleMode == "Radian") {
+      if (angleMode == AngleType.Radians) {
         return math.tan(number);
       }
       return math.tan(number * math.pi / 180);
@@ -510,4 +574,9 @@ class boolAlgebraSolver {
     }
     return indexes[indexes.length - 1];
   }
+}
+
+enum AngleType {
+  Degrees,
+  Radians,
 }
