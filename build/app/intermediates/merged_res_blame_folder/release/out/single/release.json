@@ -968,6 +968,10 @@
         "source": "app.ultimatecalculator.www.app-appcompat-1.2.0-9:/drawable-mdpi-v4/abc_ic_menu_share_mtrl_alpha.png"
     },
     {
+        "merged": "app.ultimatecalculator.www.app-merged_res-27:/mipmap-mdpi_ic_launcher_monochrome.png.flat",
+        "source": "app.ultimatecalculator.www.app-main-20:/mipmap-mdpi/ic_launcher_monochrome.png"
+    },
+    {
         "merged": "app.ultimatecalculator.www.app-merged_res-27:/drawable-xhdpi-v4_abc_ic_menu_cut_mtrl_alpha.png.flat",
         "source": "app.ultimatecalculator.www.app-appcompat-1.2.0-9:/drawable-xhdpi-v4/abc_ic_menu_cut_mtrl_alpha.png"
     },
@@ -1092,6 +1096,10 @@
         "source": "app.ultimatecalculator.www.app-core-1.10.1-17:/drawable-ldpi-v4/ic_call_answer.png"
     },
     {
+        "merged": "app.ultimatecalculator.www.app-merged_res-27:/mipmap-hdpi_ic_launcher_monochrome.png.flat",
+        "source": "app.ultimatecalculator.www.app-main-20:/mipmap-hdpi/ic_launcher_monochrome.png"
+    },
+    {
         "merged": "app.ultimatecalculator.www.app-merged_res-27:/color_common_google_signin_btn_text_light.xml.flat",
         "source": "app.ultimatecalculator.www.app-jetified-play-services-base-18.0.1-6:/color/common_google_signin_btn_text_light.xml"
     },
@@ -1148,6 +1156,10 @@
         "source": "app.ultimatecalculator.www.app-appcompat-1.2.0-9:/anim/btn_checkbox_to_unchecked_icon_null_animation.xml"
     },
     {
+        "merged": "app.ultimatecalculator.www.app-merged_res-27:/mipmap-xxhdpi_ic_launcher_monochrome.png.flat",
+        "source": "app.ultimatecalculator.www.app-main-20:/mipmap-xxhdpi/ic_launcher_monochrome.png"
+    },
+    {
         "merged": "app.ultimatecalculator.www.app-merged_res-27:/drawable-mdpi-v4_ic_call_answer_low.png.flat",
         "source": "app.ultimatecalculator.www.app-core-1.10.1-17:/drawable-mdpi-v4/ic_call_answer_low.png"
     },
@@ -1162,6 +1174,10 @@
     {
         "merged": "app.ultimatecalculator.www.app-merged_res-27:/drawable-xxhdpi-v4_ic_call_answer_video.png.flat",
         "source": "app.ultimatecalculator.www.app-core-1.10.1-17:/drawable-xxhdpi-v4/ic_call_answer_video.png"
+    },
+    {
+        "merged": "app.ultimatecalculator.www.app-merged_res-27:/mipmap-xhdpi_ic_launcher_monochrome.png.flat",
+        "source": "app.ultimatecalculator.www.app-main-20:/mipmap-xhdpi/ic_launcher_monochrome.png"
     },
     {
         "merged": "app.ultimatecalculator.www.app-merged_res-27:/layout_abc_dialog_title_material.xml.flat",
@@ -1634,6 +1650,10 @@
     {
         "merged": "app.ultimatecalculator.www.app-merged_res-27:/layout_abc_action_mode_close_item_material.xml.flat",
         "source": "app.ultimatecalculator.www.app-appcompat-1.2.0-9:/layout/abc_action_mode_close_item_material.xml"
+    },
+    {
+        "merged": "app.ultimatecalculator.www.app-merged_res-27:/mipmap-xxxhdpi_ic_launcher_monochrome.png.flat",
+        "source": "app.ultimatecalculator.www.app-main-20:/mipmap-xxxhdpi/ic_launcher_monochrome.png"
     },
     {
         "merged": "app.ultimatecalculator.www.app-merged_res-27:/drawable-xxhdpi-v4_abc_list_focused_holo.9.png.flat",

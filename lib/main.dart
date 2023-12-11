@@ -588,10 +588,14 @@ class _HomeState extends State<Home> {
 
         if (snap.hasData) {
           if (recomended.length >= 3) {
-            bodyChildren.add(nameWidgetDatabase[recomended[0]] as Widget);
-            bodyChildren.add(
-                (nameWidgetDatabase[recomended[1]] ?? SizedBox()) as Widget);
-            bodyChildren.add(nameWidgetDatabase[recomended[2]] as Widget);
+            try {
+              bodyChildren
+                  .add((nameWidgetDatabase[recomended[0]] ?? const SizedBox()));
+              bodyChildren
+                  .add((nameWidgetDatabase[recomended[1]] ?? const SizedBox()));
+              bodyChildren
+                  .add((nameWidgetDatabase[recomended[2]] ?? const SizedBox()));
+            } catch (e) {}
           }
           if (webMode && defaultTargetPlatform == TargetPlatform.android) {
             return Scaffold(
@@ -717,7 +721,11 @@ class _HomeState extends State<Home> {
             bottomNavigationBar: (recomended.isNotEmpty)
                 ? BottomNavigationBar(
                     currentIndex: _barIndex,
-                    selectedItemColor: (MediaQuery.of(context).platformBrightness == Brightness.light)?Colors.black:Colors.white,
+                    selectedItemColor:
+                        (MediaQuery.of(context).platformBrightness ==
+                                Brightness.light)
+                            ? Colors.black
+                            : Colors.white,
                     unselectedItemColor: Colors.grey,
                     showUnselectedLabels: true,
                     showSelectedLabels: true,

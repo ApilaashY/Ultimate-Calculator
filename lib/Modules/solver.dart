@@ -4,24 +4,21 @@ import 'dart:math' as math;
 
 class Solver {
   String fixBrackets(String equation) {
-    int fronts = 0, backs = 0;
+    String stack = "";
     for (int i = 0; i < equation.length; i++) {
       if (equation[i] == "(") {
-        fronts++;
+        stack += "(";
       } else if (equation[i] == ")") {
-        backs++;
+        if (stack.isNotEmpty) {
+          stack.replaceFirst("/", "");
+        } else {
+          equation = "($equation";
+          i++;
+        }
       }
     }
 
-    if (fronts > backs) {
-      for (int i = 0; i < fronts - backs; i++) {
-        equation += ")";
-      }
-    } else if (backs > fronts) {
-      for (int i = 0; i < backs - fronts; i++) {
-        equation = "($equation";
-      }
-    }
+    equation = equation + (")" * stack.length);
 
     return equation;
   }
@@ -216,20 +213,52 @@ class Solver {
     while (equation.contains("*") || equation.contains("/")) {
       for (int i = 0; i < equation.length; i++) {
         if (equation[i] == '*') {
-          print(equation);
-          double answer =
-              (double.parse(equation[i - 1]) * double.parse(equation[i + 1]));
-          equation[i] = answer.toString();
-          equation.removeAt(i - 1);
-          equation.removeAt(i);
+          if (exactValue &&
+              (equation[i - 1].contains("/") ||
+                  equation[i + 1].contains("/"))) {
+            List<String> first = ((equation[i - 1].contains("/"))
+                    ? equation[i - 1]
+                    : "${equation[i - 1]}/1")
+                .split("/");
+            List<String> second = ((equation[i + 1].contains("/"))
+                    ? equation[i + 1]
+                    : "${equation[i + 1]}/1")
+                .split("/");
+            equation[i] =
+                "${double.parse(first[0]) * double.parse(second[0])}/${double.parse(first[1]) * double.parse(second[1])}";
+            equation.removeAt(i - 1);
+            equation.removeAt(i);
+          } else {
+            double answer =
+                (double.parse(equation[i - 1]) * double.parse(equation[i + 1]));
+            equation[i] = answer.toString();
+            equation.removeAt(i - 1);
+            equation.removeAt(i);
+          }
 
           // Break to make sure operations are in correct order
           break;
         } else if (equation[i] == '/') {
           if (exactValue) {
-            equation[i] = "${equation[i - 1]}/${equation[i + 1]}";
-            equation.removeAt(i - 1);
-            equation.removeAt(i);
+            if (equation[i - 1].contains("/") ||
+                equation[i + 1].contains("/")) {
+              List<String> first = ((equation[i - 1].contains("/"))
+                      ? equation[i - 1]
+                      : "${equation[i - 1]}/1")
+                  .split("/");
+              List<String> second = ((equation[i + 1].contains("/"))
+                      ? equation[i + 1]
+                      : "${equation[i + 1]}/1")
+                  .split("/");
+              equation[i] =
+                  "${double.parse(first[0]) * double.parse(second[1])}/${double.parse(first[1]) * double.parse(second[0])}";
+              equation.removeAt(i - 1);
+              equation.removeAt(i);
+            } else {
+              equation[i] = "${equation[i - 1]}/${equation[i + 1]}";
+              equation.removeAt(i - 1);
+              equation.removeAt(i);
+            }
           } else {
             double answer =
                 (double.parse(equation[i - 1]) / double.parse(equation[i + 1]));
@@ -250,25 +279,21 @@ class Solver {
           if (exactValue &&
               (equation[i - 1].contains("/") ||
                   equation[i + 1].contains("/"))) {
+            List<String> first = ((equation[i - 1].contains("/"))
+                    ? equation[i - 1]
+                    : "${equation[i - 1]}/1")
+                .split("/");
+            List<String> second = ((equation[i + 1].contains("/"))
+                    ? equation[i + 1]
+                    : "${equation[i + 1]}/1")
+                .split("/");
             List<String> newEquation = [
-              (((equation[i - 1].contains("/"))
-                          ? double.parse(equation[i - 1].split("/")[0])
-                          : double.parse(equation[i - 1])) *
-                      ((equation[i + 1].contains("/"))
-                          ? double.parse(equation[i + 1].split("/")[1])
-                          : 1))
-                  .toString(),
+              (double.parse(first[0]) * double.parse(second[1])).toString(),
               "+",
-              (((equation[i + 1].contains("/"))
-                          ? double.parse(equation[i + 1].split("/")[0])
-                          : double.parse(equation[i + 1])) *
-                      ((equation[i - 1].contains("/"))
-                          ? double.parse(equation[i - 1].split("/")[1])
-                          : 1))
-                  .toString()
+              (double.parse(second[0]) * double.parse(first[1])).toString()
             ];
             equation[i] =
-                "${solve(newEquation, angleMode, exactValue: true)[0]}/${((equation[i - 1].contains("/")) ? double.parse(equation[i - 1].split("/")[1]) : 1) * ((equation[i + 1].contains("/")) ? double.parse(equation[i + 1].split("/")[1]) : 1)}";
+                "${solve(newEquation, angleMode, exactValue: true)[0]}/${double.parse(first[1]) * double.parse(second[1])}";
             equation.removeAt(i - 1);
             equation.removeAt(i);
           } else {
@@ -285,25 +310,21 @@ class Solver {
           if (exactValue &&
               (equation[i - 1].contains("/") ||
                   equation[i + 1].contains("/"))) {
+            List<String> first = ((equation[i - 1].contains("/"))
+                    ? equation[i - 1]
+                    : "${equation[i - 1]}/1")
+                .split("/");
+            List<String> second = ((equation[i + 1].contains("/"))
+                    ? equation[i + 1]
+                    : "${equation[i + 1]}/1")
+                .split("/");
             List<String> newEquation = [
-              (((equation[i - 1].contains("/"))
-                          ? double.parse(equation[i - 1].split("/")[0])
-                          : double.parse(equation[i - 1])) *
-                      ((equation[i + 1].contains("/"))
-                          ? double.parse(equation[i + 1].split("/")[1])
-                          : 1))
-                  .toString(),
+              (double.parse(first[0]) * double.parse(second[1])).toString(),
               "-",
-              (((equation[i + 1].contains("/"))
-                          ? double.parse(equation[i + 1].split("/")[0])
-                          : double.parse(equation[i + 1])) *
-                      ((equation[i - 1].contains("/"))
-                          ? double.parse(equation[i - 1].split("/")[1])
-                          : 1))
-                  .toString()
+              (double.parse(second[0]) * double.parse(first[1])).toString()
             ];
             equation[i] =
-                "${solve(newEquation, angleMode, exactValue: true)[0]}/${((equation[i - 1].contains("/")) ? double.parse(equation[i - 1].split("/")[1]) : 1) * ((equation[i + 1].contains("/")) ? double.parse(equation[i + 1].split("/")[1]) : 1)}";
+                "${solve(newEquation, angleMode, exactValue: true)[0]}/${double.parse(first[1]) * double.parse(second[1])}";
             equation.removeAt(i - 1);
             equation.removeAt(i);
           } else {
@@ -317,6 +338,9 @@ class Solver {
           break;
         }
       }
+    }
+    if (equation[0].contains("/")) {
+      equation = [reduce(equation[0])];
     }
     return equation;
   }
@@ -364,6 +388,14 @@ class Solver {
       return math.tan(number * math.pi / 180);
     }
     return -1;
+  }
+
+  String reduce(String equation) {
+    List splitEquation = equation.split("/");
+    int first = int.parse(double.parse(splitEquation[0]).round().toString());
+    int second = int.parse(double.parse(splitEquation[1]).round().toString());
+    int gcf = first.gcd(second);
+    return "${first / gcf}/${second / gcf}";
   }
 }
 

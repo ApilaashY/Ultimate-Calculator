@@ -4,7 +4,7 @@
             "outputFile": "io.flutter.plugins.firebase.firestore.cloud_firestore-mergeReleaseResources-11:/values-b+sr+Latn/values-b+sr+Latn.xml",
             "map": [
                 {
-                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/4a80ee9fd8d09a6d44776f9cd2f90623/transformed/jetified-play-services-basement-18.1.0/res/values-b+sr+Latn/values.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\4a80ee9fd8d09a6d44776f9cd2f90623\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-b+sr+Latn\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -21,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/694d96cc7a81b58f2c6854bfe15115fc/transformed/jetified-play-services-base-18.0.1/res/values-b+sr+Latn/values.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\694d96cc7a81b58f2c6854bfe15115fc\\transformed\\jetified-play-services-base-18.0.1\\res\\values-b+sr+Latn\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -38,7 +38,7 @@
                     }
                 },
                 {
-                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/040f61d6dba24f26724d49f70cd3bb2f/transformed/core-1.6.0/res/values-b+sr+Latn/values-b+sr+Latn.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\040f61d6dba24f26724d49f70cd3bb2f\\transformed\\core-1.6.0\\res\\values-b+sr+Latn\\values-b+sr+Latn.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
@@ -60,7 +60,7 @@
             "outputFile": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-13:/values-b+sr+Latn/values-b+sr+Latn.xml",
             "map": [
                 {
-                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/4a80ee9fd8d09a6d44776f9cd2f90623/transformed/jetified-play-services-basement-18.1.0/res/values-b+sr+Latn/values.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\4a80ee9fd8d09a6d44776f9cd2f90623\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-b+sr+Latn\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
@@ -77,7 +77,7 @@
                     }
                 },
                 {
-                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/694d96cc7a81b58f2c6854bfe15115fc/transformed/jetified-play-services-base-18.0.1/res/values-b+sr+Latn/values.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\694d96cc7a81b58f2c6854bfe15115fc\\transformed\\jetified-play-services-base-18.0.1\\res\\values-b+sr+Latn\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -94,7 +94,7 @@
                     }
                 },
                 {
-                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/040f61d6dba24f26724d49f70cd3bb2f/transformed/core-1.6.0/res/values-b+sr+Latn/values-b+sr+Latn.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\040f61d6dba24f26724d49f70cd3bb2f\\transformed\\core-1.6.0\\res\\values-b+sr+Latn\\values-b+sr+Latn.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

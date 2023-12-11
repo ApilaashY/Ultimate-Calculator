@@ -96,17 +96,28 @@ class CalculatorState extends State<Calculator> {
                       onLongPress: (() {
                         showDialog(
                           context: context,
-                          builder: (context) => const SimpleDialog(
-                            title: Text('Represent Decimals as Fractions'),
+                          builder: (context) => AlertDialog.adaptive(
+                            title: Padding(
+                              padding: const EdgeInsets.all(15),
+                              child: Text(
+                                'Represent Decimals as Fractions',
+                                style: TextStyle(
+                                    color: (MediaQuery.of(context)
+                                                .platformBrightness ==
+                                            Brightness.light)
+                                        ? Colors.black
+                                        : Colors.white),
+                              ),
+                            ),
                           ),
                         );
                       }),
                       child: FractionallySizedBox(
-                          widthFactor: 0.7,
+                          widthFactor: 0.85,
                           heightFactor: 0.5,
                           child: FittedBox(
                               child: Text(
-                            (deciasfrac == true) ? 'Frac' : 'Deci',
+                            (deciasfrac == true) ? 'Exact' : 'Decimal',
                           ))),
                     ),
                     ElevatedButton(
@@ -340,7 +351,7 @@ class FunctionButton extends StatelessWidget {
       child: FractionallySizedBox(
           heightFactor: 0.5, widthFactor: 0.7, child: FittedBox(child: child)),
       onPressed: () {
-        print(solver.solve(solver.translate("2 - (2/5)"), AngleType.Degrees,
+        print(solver.solve(solver.translate("(2/4) * (2/5)"), AngleType.Degrees,
             exactValue: true));
         if (name == 'Equal') {
           try {
@@ -352,17 +363,11 @@ class FunctionButton extends StatelessWidget {
               history.remove(parseText);
             }
             history.insert(0, parseText);
-            double answer = double.parse(solver.solve(translation,
-                (degreemode) ? AngleType.Degrees : AngleType.Radians)[0]);
-            _controller.text = roundto(answer.toString());
-
-            if (deciasfrac && answer != answer.floorToDouble()) {
-              _controller.text += (answer > 0) ? "+(" : "-(";
-              _controller.text +=
-                  Fraction.fromDouble(answer - answer.floorToDouble())
-                      .toString();
-              _controller.text += ")";
-            }
+            String answer = solver.solve(translation,
+                (degreemode) ? AngleType.Degrees : AngleType.Radians,
+                exactValue: deciasfrac)[0];
+            _controller.text =
+                (answer.contains("/")) ? answer : roundto(answer.toString());
           } catch (e) {
             _controller.text = 'Error';
           }
@@ -386,6 +391,7 @@ class FunctionButton extends StatelessWidget {
             _controller.text += name.toString();
           }
         } else {
+          if (_controller.text == "Error") _controller.text = "";
           _controller.text += name.toString();
         }
         if (stateSetter != null) {

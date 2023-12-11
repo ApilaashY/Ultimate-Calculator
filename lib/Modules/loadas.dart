@@ -23,9 +23,8 @@ void showinter() {
         },
       ),
     );
-    _loadOrSkip++;
-    if (_loadOrSkip == 5) {
-      _loadOrSkip = 0;
-    }
+  } else if (_loadOrSkip == 5) {
+    _loadOrSkip = 0;
   }
+  _loadOrSkip++;
 }

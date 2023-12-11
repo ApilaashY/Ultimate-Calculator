@@ -1393,6 +1393,7 @@ int layout small_template_view_layout 0x7f0a002b
 int layout support_simple_spinner_dropdown_item 0x7f0a002c
 int layout toast_custom 0x7f0a002d
 int mipmap ic_launcher 0x7f0b0000
+int mipmap ic_launcher_monochrome 0x7f0b0001
 int raw firebase_common_keep 0x7f0c0000
 int string abc_action_bar_home_description 0x7f0d0000
 int string abc_action_bar_up_description 0x7f0d0001

@@ -4,7 +4,7 @@
             "outputFile": "app.ultimatecalculator.www.app-mergeReleaseResources-25:/values-port/values-port.xml",
             "map": [
                 {
-                    "source": "/Users/apilaashyoharan/.gradle/caches/transforms-3/988013ee0996dd07b59d10e5840f51e3/transformed/appcompat-1.2.0/res/values-port/values-port.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\988013ee0996dd07b59d10e5840f51e3\\transformed\\appcompat-1.2.0\\res\\values-port\\values-port.xml",
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",
