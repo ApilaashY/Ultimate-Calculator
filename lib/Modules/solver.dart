@@ -53,7 +53,9 @@ class Solver {
           String part = checkEquation.substring(0, 3);
           for (String element in ["sin", "cos", "tan", "log"]) {
             if (part == element) {
-              elements.add("*");
+              if (elements.isNotEmpty && !elements.last.contains("+-*/)")) {
+                elements.add("*");
+              }
               elements.add(element);
               i += 2;
               break;
@@ -157,8 +159,8 @@ class Solver {
         equation.contains("log")) {
       for (int i = 0; i < equation.length; i++) {
         if ("sin cos tan".contains(equation[i])) {
-          String answer = (_adjustableSinCosTan(
-                  double.parse(equation[i + 2]), equation[i], angleMode))
+          String answer = (_adjustableSinCosTan(double.parse(equation[i + 2]),
+                  equation[i], angleMode, exactValue))
               .toString();
           equation[i] = answer;
           equation.removeAt(i + 1);
@@ -340,7 +342,7 @@ class Solver {
       }
     }
     if (equation[0].contains("/")) {
-      equation = [reduce(equation[0])];
+      equation = [_reduce(equation[0])];
     }
     return equation;
   }
@@ -368,34 +370,68 @@ class Solver {
     return indexes[indexes.length - 1];
   }
 
-  double _adjustableSinCosTan(
-      double number, String operation, AngleType angleMode) {
+  String _adjustableSinCosTan(
+      double number, String operation, AngleType angleMode, bool exactValue) {
     operation = operation.toLowerCase();
     if (operation == "sin") {
-      if (angleMode == AngleType.Radians) {
-        return math.sin(number);
-      }
-      return math.sin(number * math.pi / 180);
+      return _sin(number, angleMode, exactValue);
     } else if (operation == "cos") {
-      if (angleMode == AngleType.Radians) {
-        return math.cos(number);
-      }
-      return math.cos(number * math.pi / 180);
+      return _cos(number, angleMode, exactValue);
     } else if (operation == "tan") {
-      if (angleMode == AngleType.Radians) {
-        return math.tan(number);
-      }
-      return math.tan(number * math.pi / 180);
+      return _tan(number, angleMode, exactValue);
+    } else {
+      return "";
     }
-    return -1;
   }
 
-  String reduce(String equation) {
+  String _sin(double number, AngleType angleType, bool exactValue) {
+    Map<double, String> exactValueMap = {
+      0: "0",
+      15: "(√6-√2)/4",
+      30: "1/2",
+      45: "1/√2",
+      60: "√3/2",
+      75: "(√6+√2)/4"
+    };
+
+    if (angleType == AngleType.Radians) {
+      number *= 180 / math.pi;
+    }
+
+    if (exactValue) {
+      double lowestDegree = number % 90;
+      int quadrant = ((number / 90) % 4 + 1).floor();
+
+      if (exactValueMap[lowestDegree] != null) {
+        if (quadrant == 1 || quadrant == 2) {
+          return exactValueMap[lowestDegree].toString();
+        } else {
+          return "-${exactValueMap[lowestDegree].toString()}";
+        }
+      }
+    }
+    return math.sin(number * math.pi / 180).toString();
+  }
+
+  String _cos(number, angleType, exactValue) {
+    return "";
+  }
+
+  String _tan(number, angleType, exactValue) {
+    return "";
+  }
+
+  String _reduce(String equation) {
     List splitEquation = equation.split("/");
-    int first = int.parse(double.parse(splitEquation[0]).round().toString());
-    int second = int.parse(double.parse(splitEquation[1]).round().toString());
-    int gcf = first.gcd(second);
-    return "${first / gcf}/${second / gcf}";
+    double? firstDouble = double.tryParse(splitEquation[0]);
+    double? secondDouble = double.tryParse(splitEquation[1]);
+    if (firstDouble != null && secondDouble != null) {
+      int first = int.parse(firstDouble.round().toString());
+      int second = int.parse(secondDouble.round().toString());
+      int gcf = first.gcd(second);
+      return "${first / gcf}/${second / gcf}";
+    }
+    return equation;
   }
 }
 

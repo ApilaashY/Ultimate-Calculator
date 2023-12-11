@@ -99,10 +99,16 @@ class _MyAppState extends State<MyApp> {
                   ),
             darkTheme: (!webMode)
                 ? ThemeData.dark().copyWith(
+                    elevatedButtonTheme: ElevatedButtonThemeData(
+                        style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white)),
                     primaryColor: const Color.fromARGB(255, 0, 135, 197),
                     textTheme:
                         GoogleFonts.latoTextTheme(Theme.of(context).textTheme))
                 : ThemeData.dark().copyWith(
+                    elevatedButtonTheme: ElevatedButtonThemeData(
+                        style: ElevatedButton.styleFrom(
+                            foregroundColor: Colors.white)),
                     primaryColor: const Color.fromARGB(255, 0, 135, 197),
                   ),
             onGenerateRoute: routes.controller,

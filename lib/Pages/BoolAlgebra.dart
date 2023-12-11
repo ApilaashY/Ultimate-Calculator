@@ -450,17 +450,37 @@ class TestCaseFunctionButton extends StatelessWidget {
             for (int i = 0; i < ans.length; i++) {
               List<Widget> row = [];
               for (int j = 0; j < ans[i].length; j++) {
-                row.add(Center(
+                row.add(
+                  Center(
                     child: Padding(
-                  padding: const EdgeInsets.all(10),
-                  child: Text(ans[i][j]),
-                )));
+                      padding: const EdgeInsets.all(10),
+                      child: Text(
+                        ans[i][j],
+                        style: const TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  ),
+                );
               }
               answers.add(TableRow(children: row));
             }
           } catch (e) {
             answers = [
-              const TableRow(children: [Center(child: Text("Error"))])
+              TableRow(
+                  children: [
+                    Center(
+                      child: Text(
+                        "Error",
+                        style: TextStyle(
+                            color: (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light)
+                                ? Colors.black
+                                : Colors.white),
+                      ),
+                    )
+                  ],
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.white)))
             ];
           }
           showModalBottomSheet(

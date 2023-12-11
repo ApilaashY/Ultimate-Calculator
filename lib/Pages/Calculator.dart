@@ -4,7 +4,7 @@ import 'package:app/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'package:fraction/fraction.dart';
+//import 'package:fraction/fraction.dart';
 import 'package:app/Modules/globalfunctions.dart';
 import 'package:app/Modules/solver.dart';
 
@@ -351,7 +351,7 @@ class FunctionButton extends StatelessWidget {
       child: FractionallySizedBox(
           heightFactor: 0.5, widthFactor: 0.7, child: FittedBox(child: child)),
       onPressed: () {
-        print(solver.solve(solver.translate("(2/4) * (2/5)"), AngleType.Degrees,
+        print(solver.solve(solver.translate("sin(15)"), AngleType.Degrees,
             exactValue: true));
         if (name == 'Equal') {
           try {
