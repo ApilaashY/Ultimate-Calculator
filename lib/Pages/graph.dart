@@ -3,6 +3,7 @@
 import 'package:app/Modules/globalfunctions.dart';
 import 'package:app/Modules/input_field.dart';
 import 'package:app/Modules/solver.dart';
+import 'package:app/Modules/spaced_list_item.dart';
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
@@ -22,28 +23,33 @@ class _GraphsState extends State<Graphs> {
   //   ChartData(2014, 40)
   // ];
 
-  List<ChartData> chartData = [];
+  List<List<ChartData>> chartData = [];
   TextEditingController xMin = TextEditingController(text: "-10"),
       yMin = TextEditingController(text: "-10"),
       xMax = TextEditingController(text: "10"),
-      yMax = TextEditingController(text: "10"),
-      equation = TextEditingController();
+      yMax = TextEditingController(text: "10");
+  List<TextEditingController> equations = [TextEditingController()];
   double prevx = -1;
   double prevy = -1;
 
   void solve(_) {
     try {
       chartData = [];
-      for (double i = double.parse(xMin.text);
-          i < double.parse(xMax.text);
-          i += 0.1) {
-        Solver solver = Solver();
-        List<String> translation = solver.translate(
-            equation.text.replaceAll("x", "(${roundto(i.toString())})"));
-        chartData.add(ChartData(
-            i,
-            double.parse(solver.solve(translation, AngleType.Degrees,
-                exactValue: false)[0])));
+
+      for (int j = 0; j < equations.length; j++) {
+        chartData.add([]);
+        for (double i = double.parse(xMin.text);
+            i < double.parse(xMax.text);
+            i += 0.1) {
+          Solver solver = Solver();
+
+          List<String> translation = solver.translate(
+              equations[j].text.replaceAll("x", "(${roundto(i.toString())})"));
+          chartData[j].add(ChartData(
+              i,
+              double.parse(solver.solve(translation, AngleType.Degrees,
+                  exactValue: false)[0])));
+        }
       }
       setState(() {});
     } catch (e) {}
@@ -64,24 +70,29 @@ class _GraphsState extends State<Graphs> {
       body: Column(
         children: [
           Expanded(
+            flex: 14,
             child: Hero(
               tag: "Graphs",
               child: SfCartesianChart(
                 onChartTouchInteractionMove: (ChartTouchInteractionArgs args) {
                   if (prevy > 0) {
+                    double percentageDif =
+                        args.position.dy / MediaQuery.of(context).size.height;
                     yMin.text = (double.parse(yMin.text) +
-                            (args.position.dy - prevy) / 10)
+                            (args.position.dy - prevy) * percentageDif / 10)
                         .toString();
                     yMax.text = (double.parse(yMax.text) +
-                            (args.position.dy - prevy) / 10)
+                            (args.position.dy - prevy) * percentageDif / 10)
                         .toString();
                   }
                   if (prevx > 0) {
-                    xMin.text = (double.parse(xMin.text) +
-                            (args.position.dx - prevx) / 10)
+                    double percentageDif =
+                        args.position.dx / MediaQuery.of(context).size.width;
+                    xMin.text = (double.parse(xMin.text) -
+                            (args.position.dx - prevx) * percentageDif / 10)
                         .toString();
-                    xMax.text = (double.parse(xMax.text) +
-                            (args.position.dx - prevx) / 10)
+                    xMax.text = (double.parse(xMax.text) -
+                            (args.position.dx - prevx) * percentageDif / 10)
                         .toString();
                   }
                   prevy = args.position.dy;
@@ -97,71 +108,114 @@ class _GraphsState extends State<Graphs> {
                 primaryYAxis: NumericAxis(
                     maximum: double.tryParse(yMax.text),
                     minimum: double.tryParse(yMin.text)),
-                series: <ChartSeries>[
-                  LineSeries<ChartData, double>(
-                      dataSource: chartData,
-                      xValueMapper: (ChartData data, _) => data.x,
-                      yValueMapper: (ChartData data, _) => data.y)
-                ],
+                series: chartData
+                    .map(
+                      (e) => LineSeries<ChartData, double>(
+                          dataSource: e,
+                          xValueMapper: (ChartData data, _) => data.x,
+                          yValueMapper: (ChartData data, _) => data.y),
+                    )
+                    .toList(),
               ),
             ),
           ),
-          Inputfield(
-            onChanged: solve,
-            controller: equation,
-            hintText: "y =",
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text("X:"),
-              ),
-              Expanded(
-                child: Inputfield(
-                  onChanged: (text) => setState(() {}),
-                  hintText: "X Min",
-                  controller: xMin,
+          Expanded(
+            flex: 8,
+            child: ListView(
+              children: [
+                ...equations.map((equation) => SpacedListItem(
+                      spacing: 5,
+                      child: Inputfield(
+                        onChanged: solve,
+                        controller: equation,
+                        hintText: "y =",
+                      ),
+                    )),
+                IconButton(
+                  onPressed: () =>
+                      setState(() => equations.add(TextEditingController())),
+                  icon: const Icon(Icons.add),
                 ),
-              ),
-              const Text("To"),
-              Expanded(
-                child: Inputfield(
-                  onChanged: (text) => setState(() {}),
-                  hintText: "X Max",
-                  controller: xMax,
+                const SizedBox(
+                  height: 5,
                 ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 20,
-          ),
-          Row(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(left: 10),
-                child: Text("Y:"),
-              ),
-              Expanded(
-                child: Inputfield(
-                  onChanged: (text) => setState(() {}),
-                  hintText: "Y Min",
-                  controller: yMin,
+                Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        "X:",
+                        style: TextStyle(
+                            color: (MediaQuery.of(context).platformBrightness ==
+                                    Brightness.light)
+                                ? Colors.black
+                                : Colors.white),
+                      ),
+                    ),
+                    Expanded(
+                      child: Inputfield(
+                        onChanged: (text) => setState(() {}),
+                        hintText: "X Min",
+                        controller: xMin,
+                      ),
+                    ),
+                    Text(
+                      "To",
+                      style: TextStyle(
+                          color: (MediaQuery.of(context).platformBrightness ==
+                                  Brightness.light)
+                              ? Colors.black
+                              : Colors.white),
+                    ),
+                    Expanded(
+                      child: Inputfield(
+                        onChanged: (text) => setState(() {}),
+                        hintText: "X Max",
+                        controller: xMax,
+                      ),
+                    ),
+                  ],
                 ),
-              ),
-              const Text("To"),
-              Expanded(
-                child: Inputfield(
-                  onChanged: (text) => setState(() {}),
-                  hintText: "Y Max",
-                  controller: yMax,
+                const SizedBox(
+                  height: 20,
                 ),
-              ),
-            ],
+                Row(children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text(
+                      "Y:",
+                      style: TextStyle(
+                          color: (MediaQuery.of(context).platformBrightness ==
+                                  Brightness.light)
+                              ? Colors.black
+                              : Colors.white),
+                    ),
+                  ),
+                  Expanded(
+                    child: Inputfield(
+                      onChanged: (text) => setState(() {}),
+                      hintText: "Y Min",
+                      controller: yMin,
+                    ),
+                  ),
+                  Text(
+                    "To",
+                    style: TextStyle(
+                        color: (MediaQuery.of(context).platformBrightness ==
+                                Brightness.light)
+                            ? Colors.black
+                            : Colors.white),
+                  ),
+                  Expanded(
+                    child: Inputfield(
+                      onChanged: (text) => setState(() {}),
+                      hintText: "Y Max",
+                      controller: yMax,
+                    ),
+                  ),
+                ]),
+              ],
+            ),
           ),
         ],
       ),

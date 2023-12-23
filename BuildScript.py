@@ -1,6 +1,6 @@
 import subprocess, shutil, os, sys
 
-LINES = [6, 612, 613, 614, 615]
+LINES = [6, 623, 624, 625, 626]
 ADDIRECTORY = "/lib/main.dart"
 slashPosition = -1
 
@@ -38,10 +38,11 @@ for line in enumerate(adData):
         break
 
 print("Building apk")
-p = subprocess.call(
+p = subprocess.run(
     ["flutter", "build", "apk", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
     encoding="UTF-8",
+    shell=True,
 )
 
 print("\nSetting up project for web")
@@ -68,10 +69,11 @@ os.rename("web/app-release.apk", "web/ultimatecalculator.apk")
 
 
 print("Building web")
-p = subprocess.call(
+p = subprocess.run(
     ["flutter", "build", "web", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
     encoding="UTF-8",
+    shell=True,
 )
 
 
