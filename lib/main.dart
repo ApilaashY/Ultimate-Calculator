@@ -425,7 +425,7 @@ class _HomeState extends State<Home> {
                                     heightFactor: 0.5,
                                     child: FittedBox(
                                         child:
-                                            Text("Get Points by watching Ad")),
+                                            Text("Get Points by watching an Ad")),
                                   ),
                                 ),
                               ),
