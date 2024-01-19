@@ -46,6 +46,7 @@ import 'Modules/card_button.dart';
 import 'firebase_options.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:galaxy_store_in_app_review/galaxy_store_in_app_review.dart';
+import 'package:flutter/foundation.dart' as foundation;
 
 var savedata;
 int roundingnumber = 4;
@@ -136,7 +137,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   _HomeState() {
-    if (!webMode) {
+    if (!webMode && foundation.kReleaseMode) {
       showinter();
     }
   }
@@ -341,91 +342,121 @@ class _HomeState extends State<Home> {
                                         const Color.fromARGB(255, 0, 135, 197)),
                                   ),
                                   onPressed: () {
-                                    try {
-                                      var rewardedAd;
-                                      RewardedAd.load(
-                                        adUnitId: (defaultTargetPlatform ==
-                                                TargetPlatform.android)
-                                            ? 'ca-app-pub-4914732861439858/8814232396'
-                                            : (defaultTargetPlatform ==
-                                                    TargetPlatform.iOS)
-                                                ? 'ca-app-pub-4914732861439858/8194257629'
-                                                : '',
-                                        request: const AdRequest(),
-                                        rewardedAdLoadCallback:
-                                            RewardedAdLoadCallback(
-                                          onAdLoaded: (ad) {
-                                            rewardedAd = ad;
-                                            rewardedAd?.show(
-                                              onUserEarnedReward:
-                                                  ((ad, reward) {
-                                                debugPrint(
-                                                    "My Reward Amount -> ${reward.amount}");
-                                              }),
-                                            );
+                                    showDialog(
+                                      context: context,
+                                      builder: (context) =>
+                                          AlertDialog.adaptive(
+                                        title: const Text(
+                                            "Would you like to watch an ad to get 1-5 points for free?"),
+                                        actions: [
+                                          ElevatedButton(
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                            child: const Text("Cancel"),
+                                          ),
+                                          ElevatedButton(
+                                            onPressed: () {
+                                              //Navigator.pop(context);
+                                              try {
+                                                var rewardedAd;
+                                                RewardedAd.load(
+                                                  adUnitId: (defaultTargetPlatform ==
+                                                          TargetPlatform
+                                                              .android)
+                                                      ? 'ca-app-pub-4914732861439858/8814232396'
+                                                      : (defaultTargetPlatform ==
+                                                              TargetPlatform
+                                                                  .iOS)
+                                                          ? 'ca-app-pub-4914732861439858/8194257629'
+                                                          : '',
+                                                  request: const AdRequest(),
+                                                  rewardedAdLoadCallback:
+                                                      RewardedAdLoadCallback(
+                                                    onAdLoaded: (ad) {
+                                                      rewardedAd = ad;
+                                                      rewardedAd?.show(
+                                                        onUserEarnedReward:
+                                                            ((ad, reward) {
+                                                          debugPrint(
+                                                              "My Reward Amount -> ${reward.amount}");
+                                                        }),
+                                                      );
 
-                                            rewardedAd
-                                                    ?.fullScreenContentCallback =
-                                                FullScreenContentCallback(
-                                                    onAdFailedToShowFullScreenContent:
-                                                        (RewardedAd ad, err) {
-                                              ad.dispose();
-                                            }, onAdDismissedFullScreenContent:
-                                                        (RewardedAd ad) {
-                                              ad.dispose();
-                                              int gotpoints =
-                                                  randomnum.nextInt(5) + 1;
-                                              points += gotpoints;
-                                              savedata.setInt('points', points);
-                                              setState(() {});
-                                              showDialog(
-                                                context: context,
-                                                builder: (builder) =>
-                                                    AlertDialog(
-                                                  title: Text(
-                                                    "You got $gotpoints points",
-                                                    style: TextStyle(
-                                                        color: (MediaQuery.of(
-                                                                        context)
-                                                                    .platformBrightness ==
-                                                                Brightness
-                                                                    .light)
-                                                            ? Colors.black
-                                                            : Colors.white),
+                                                      rewardedAd
+                                                              ?.fullScreenContentCallback =
+                                                          FullScreenContentCallback(
+                                                              onAdFailedToShowFullScreenContent:
+                                                                  (RewardedAd
+                                                                          ad,
+                                                                      err) {
+                                                        ad.dispose();
+                                                      }, onAdDismissedFullScreenContent:
+                                                                  (RewardedAd
+                                                                      ad) {
+                                                        ad.dispose();
+                                                        int gotpoints =
+                                                            randomnum.nextInt(
+                                                                    5) +
+                                                                1;
+                                                        points += gotpoints;
+                                                        savedata.setInt(
+                                                            'points', points);
+                                                        setState(() {});
+                                                        showDialog(
+                                                          context: context,
+                                                          builder: (builder) =>
+                                                              AlertDialog(
+                                                            title: Text(
+                                                              "You got $gotpoints points",
+                                                              style: TextStyle(
+                                                                  color: (MediaQuery.of(context)
+                                                                              .platformBrightness ==
+                                                                          Brightness
+                                                                              .light)
+                                                                      ? Colors
+                                                                          .black
+                                                                      : Colors
+                                                                          .white),
+                                                            ),
+                                                          ),
+                                                        );
+                                                      });
+                                                    },
+                                                    onAdFailedToLoad: (err) {
+                                                      debugPrint(err.message);
+                                                    },
                                                   ),
-                                                ),
-                                              );
-                                            });
-                                          },
-                                          onAdFailedToLoad: (err) {
-                                            debugPrint(err.message);
-                                          },
-                                        ),
-                                      );
-                                    } catch (e) {
-                                      showDialog(
-                                          context: context,
-                                          builder: (context) =>
-                                              AlertDialog.adaptive(
-                                                title: Text(
-                                                  "Ad not avaliable",
-                                                  style: TextStyle(
-                                                      color: (MediaQuery.of(
-                                                                      context)
-                                                                  .platformBrightness ==
-                                                              Brightness.light)
-                                                          ? Colors.black
-                                                          : Colors.white),
-                                                ),
-                                              ));
-                                    }
+                                                );
+                                              } catch (e) {
+                                                showDialog(
+                                                    context: context,
+                                                    builder: (context) =>
+                                                        AlertDialog.adaptive(
+                                                          title: Text(
+                                                            "Ad not avaliable",
+                                                            style: TextStyle(
+                                                                color: (MediaQuery.of(context)
+                                                                            .platformBrightness ==
+                                                                        Brightness
+                                                                            .light)
+                                                                    ? Colors
+                                                                        .black
+                                                                    : Colors
+                                                                        .white),
+                                                          ),
+                                                        ));
+                                              }
+                                            },
+                                            child: const Text("Watch"),
+                                          )
+                                        ],
+                                      ),
+                                    );
                                   },
                                   child: const FractionallySizedBox(
                                     widthFactor: 0.95,
                                     heightFactor: 0.5,
-                                    child: FittedBox(
-                                        child:
-                                            Text("Get Points by watching an Ad")),
+                                    child: FittedBox(child: Text("Get Points")),
                                   ),
                                 ),
                               ),
