@@ -1,6 +1,6 @@
 import subprocess, shutil, os, sys
 
-LINES = [6, 623, 624, 625, 626]
+LINES = [6, 654, 655, 656, 657]
 ADDIRECTORY = "/lib/main.dart"
 slashPosition = -1
 
@@ -42,7 +42,6 @@ p = subprocess.run(
     ["flutter", "build", "apk", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
     encoding="UTF-8",
-    shell=True,
 )
 
 print("\nSetting up project for web")
@@ -73,7 +72,6 @@ p = subprocess.run(
     ["flutter", "build", "web", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
     encoding="UTF-8",
-    shell=True,
 )
 
 
