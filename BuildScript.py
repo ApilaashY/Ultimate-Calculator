@@ -42,6 +42,7 @@ p = subprocess.run(
     ["flutter", "build", "apk", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
     encoding="UTF-8",
+    shell=True,
 )
 
 print("\nSetting up project for web")
@@ -72,6 +73,7 @@ p = subprocess.run(
     ["flutter", "build", "web", "--no-tree-shake-icons"],
     stdout=subprocess.PIPE,
     encoding="UTF-8",
+    shell=True,
 )
 
 
