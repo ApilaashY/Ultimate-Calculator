@@ -331,7 +331,7 @@ class _HomeState extends State<Home> {
                           )),
                         ),
                         (() {
-                          if (!webMode) {
+                          if (!webMode && false) {
                             return Expanded(
                               flex: 1,
                               child: FractionallySizedBox(
