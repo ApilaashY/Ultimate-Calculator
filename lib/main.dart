@@ -31,6 +31,7 @@ import 'package:app/Pages/graph.dart';
 import 'package:app/Pages/periodictable.dart';
 import 'package:app/Pages/prime.dart';
 import 'package:app/Pages/rootfinder.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import 'Modules/loadas.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -138,6 +139,9 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   _HomeState() {
     if (!webMode && foundation.kReleaseMode) {
+      try {
+        Fluttertoast.showToast(msg: "Showing ad");
+      } catch (e) {}
       showinter();
     }
   }
@@ -649,7 +653,7 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     onPressed: () {
-                      // Comment for Mobile Use
+//                       Comment for Mobile Use
 
 //                        html.AnchorElement anchorElement =
 //                            html.AnchorElement(href: 'ultimatecalculator.apk');

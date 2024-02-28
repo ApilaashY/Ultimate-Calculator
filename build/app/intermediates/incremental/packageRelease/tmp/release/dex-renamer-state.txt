@@ -1,4 +1,4 @@
-#Thu Feb 22 17:23:40 EST 2024
+#Wed Feb 28 18:32:56 EST 2024
 base.0=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes.dex
 base.1=D\:\\Creations\\Github\\Ultimate-Calculator\\build\\app\\intermediates\\dex\\release\\minifyReleaseWithR8\\classes2.dex
 path.0=classes.dex

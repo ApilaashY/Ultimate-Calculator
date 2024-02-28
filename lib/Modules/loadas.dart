@@ -4,7 +4,6 @@ import 'package:google_mobile_ads/google_mobile_ads.dart';
 int _loadOrSkip = 0;
 
 void showinter() {
-  return;
   if (_loadOrSkip == 0) {
     String id = '';
     if (defaultTargetPlatform == TargetPlatform.android) {
