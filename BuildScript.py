@@ -1,6 +1,6 @@
 import subprocess, shutil, os, sys
 
-LINES = [6, 658, 659, 660, 661]
+LINES = [6, 654, 655, 656, 657]
 ADDIRECTORY = "/lib/main.dart"
 slashPosition = -1
 

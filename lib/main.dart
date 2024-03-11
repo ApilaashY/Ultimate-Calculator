@@ -3,7 +3,7 @@
 import 'dart:convert';
 import 'dart:io' show Platform;
 import 'dart:math';
-// import 'dart:html' as html;
+//import 'dart:html' as html;
 import 'package:app/Pages/BoolAlgebra.dart';
 import 'package:app/Pages/Converter.dart';
 import 'package:app/Pages/CustomFormulas.dart';
@@ -31,7 +31,6 @@ import 'package:app/Pages/graph.dart';
 import 'package:app/Pages/periodictable.dart';
 import 'package:app/Pages/prime.dart';
 import 'package:app/Pages/rootfinder.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 import 'Modules/loadas.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -139,9 +138,6 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   _HomeState() {
     if (!webMode && foundation.kReleaseMode) {
-      try {
-        Fluttertoast.showToast(msg: "Showing ad");
-      } catch (e) {}
       showinter();
     }
   }
@@ -218,7 +214,7 @@ class _HomeState extends State<Home> {
     }
 
     // Setup banner ad
-    if (!webMode) {
+    if (!webMode && false) {
       bannerAd = BannerAd(
         size: AdSize.banner,
         adUnitId: (defaultTargetPlatform == TargetPlatform.android)
@@ -335,7 +331,7 @@ class _HomeState extends State<Home> {
                           )),
                         ),
                         (() {
-                          if (!webMode && false) {
+                          if (!webMode) {
                             return Expanded(
                               flex: 1,
                               child: FractionallySizedBox(
@@ -351,7 +347,7 @@ class _HomeState extends State<Home> {
                                       builder: (context) =>
                                           AlertDialog.adaptive(
                                         title: const Text(
-                                            "Would you like to watch an ad to get 1-5 points for free?"),
+                                            "Would you like to watch an ad to get a random number of points from 1-5 for free?"),
                                         actions: [
                                           ElevatedButton(
                                             onPressed: () =>
@@ -655,10 +651,10 @@ class _HomeState extends State<Home> {
                     onPressed: () {
 //                       Comment for Mobile Use
 
-//                        html.AnchorElement anchorElement =
-//                            html.AnchorElement(href: 'ultimatecalculator.apk');
-//                        anchorElement.download = 'ultimatecalculator.apk';
-//                        anchorElement.click();
+                      // html.AnchorElement anchorElement =
+                      //     html.AnchorElement(href: 'ultimatecalculator.apk');
+                      // anchorElement.download = 'ultimatecalculator.apk';
+                      // anchorElement.click();
                     },
                     child: const FractionallySizedBox(
                         widthFactor: 0.9,
