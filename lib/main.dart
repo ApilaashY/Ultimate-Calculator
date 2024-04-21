@@ -7,6 +7,7 @@ import 'dart:math';
 import 'package:app/Pages/BoolAlgebra.dart';
 import 'package:app/Pages/Converter.dart';
 import 'package:app/Pages/CustomFormulas.dart';
+import 'package:app/Pages/DataMange.dart';
 import 'package:app/Pages/Finance/AnnuityDue.dart';
 import 'package:app/Pages/Finance/CompoundInterest.dart';
 import 'package:app/Pages/Finance/OrdinaryAnnuity.dart';
@@ -93,8 +94,15 @@ class _MyAppState extends State<MyApp> {
             theme: (!webMode)
                 ? ThemeData.light().copyWith(
                     primaryColor: const Color.fromARGB(255, 0, 135, 197),
+                    elevatedButtonTheme: ElevatedButtonThemeData(
+                      style: ButtonStyle(
+                        foregroundColor:
+                            MaterialStateProperty.all(Colors.white),
+                      ),
+                    ),
                     textTheme:
-                        GoogleFonts.latoTextTheme(Theme.of(context).textTheme))
+                        GoogleFonts.latoTextTheme(Theme.of(context).textTheme),
+                  )
                 : ThemeData.light().copyWith(
                     primaryColor: const Color.fromARGB(255, 0, 135, 197),
                   ),
@@ -268,6 +276,7 @@ class _HomeState extends State<Home> {
     'Test Cases': const TestCases(),
     "Factors": const Factors(),
     "Prime": const Prime(),
+    "Data Management": const DataManage(),
   };
   Random randomnum = Random();
   RewardedAd? ad;
@@ -513,12 +522,9 @@ class _HomeState extends State<Home> {
                   text: 'Custom Formulas',
                   menu: "Create, save, and use your own formulas",
                 ),
-                /*CardButton(
-                  text: 'Surface Area',
-                ),
                 CardButton(
-                  text: 'Volume',
-                ),*/
+                  text: "Data Management",
+                ),
                 CardButton(
                   text: 'Simplifying Radicals',
                 ),

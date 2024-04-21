@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:app/Pages/BoolAlgebra.dart';
 import 'package:app/Pages/CustomFormulas.dart';
+import 'package:app/Pages/DataMange.dart';
 import 'package:app/Pages/Finance/AnnuityDue.dart';
 import 'package:app/Pages/Finance/CompoundInterest.dart';
 import 'package:app/Pages/Finance/SimpleInterest.dart';
@@ -23,14 +24,13 @@ import 'package:app/Pages/prime.dart';
 import 'package:flutter/material.dart';
 
 import 'package:app/main.dart';
-import 'package:app/Pages/calculator.dart';
-import 'package:app/Pages/converter.dart';
-import 'package:app/Pages/gcf.dart';
-import 'package:app/Pages/lcm.dart';
+import 'package:app/Pages/Calculator.dart';
+import 'package:app/Pages/Converter.dart';
+import 'package:app/Pages/GCF.dart';
+import 'package:app/Pages/LCM.dart';
 import 'package:app/Pages/Triangles/Pythagorean.dart';
 import 'package:app/Pages/rootfinder.dart';
 import 'package:app/Pages/Triangles/Trigonometry.dart';
-import 'package:app/Pages/volume.dart';
 import 'package:app/Pages/settings.dart';
 import 'package:app/Pages/periodictable.dart';
 
@@ -66,6 +66,7 @@ Route<dynamic> controller(RouteSettings settings) {
       'Test Cases': 0,
       "Factors": 0,
       "Prime": 0,
+      "Data Management": 0,
     };
     bool? reset = savedata.getBool("Reset");
     String? resetDate = savedata.getString("ResetDate");
@@ -93,10 +94,6 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const Converter());
   } else if (settings.name == 'SurfaceArea') {
     return MaterialPageRoute(builder: (context) => const Home());
-  } else if (settings.name == 'Volume') {
-    return MaterialPageRoute(builder: (context) => const Volume());
-  } else if (settings.name == 'VolumeCalculator') {
-    return MaterialPageRoute(builder: (context) => const VolumeCalculator());
   } else if (settings.name == 'GCF') {
     return MaterialPageRoute(builder: (context) => const GCF());
   } else if (settings.name == 'LCM') {
@@ -163,6 +160,8 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const Factors());
   } else if (settings.name == 'Prime') {
     return MaterialPageRoute(builder: (context) => const Prime());
+  } else if (settings.name == "Data Management") {
+    return MaterialPageRoute(builder: (context) => const DataManage());
   } else {
     throw 'Page Not Found';
   }
