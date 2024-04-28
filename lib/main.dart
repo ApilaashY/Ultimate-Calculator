@@ -515,9 +515,9 @@ class _HomeState extends State<Home> {
                   text: 'Converter',
                   menu: "Converts numbers to different types",
                 ),
-                CardButton(
-                  text: 'Graphs',
-                ),
+                // CardButton(
+                //   text: 'Graphs',
+                // ),
                 CardButton(
                   text: 'Custom Formulas',
                   menu: "Create, save, and use your own formulas",
@@ -539,6 +539,7 @@ class _HomeState extends State<Home> {
                       text: "2D Vector Subtraction",
                       menu: "Subtract multiple vectors",
                     ),
+                    SectionButton(text: 'Electric Fields'),
                     SectionButton(text: 'Work'),
                     SectionButton(text: 'Gravitational Potential Energy'),
                     SectionButton(text: 'Kinetic Energy'),

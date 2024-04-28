@@ -9,6 +9,7 @@ import 'package:app/Pages/Finance/SimpleInterest.dart';
 import 'package:app/Pages/Finance/OrdinaryAnnuity.dart';
 import 'package:app/Pages/Physics/Eg.dart';
 import 'package:app/Pages/Physics/Ek.dart';
+import 'package:app/Pages/Physics/ElectricField.dart';
 import 'package:app/Pages/Physics/cooffriction.dart';
 import 'package:app/Pages/Physics/ohm.dart';
 import 'package:app/Pages/Physics/vectoraddition.dart';
@@ -162,6 +163,8 @@ Route<dynamic> controller(RouteSettings settings) {
     return MaterialPageRoute(builder: (context) => const Prime());
   } else if (settings.name == "Data Management") {
     return MaterialPageRoute(builder: (context) => const DataManage());
+  } else if (settings.name == "Electric Fields") {
+    return MaterialPageRoute(builder: (context) => const ElectricField());
   } else {
     throw 'Page Not Found';
   }

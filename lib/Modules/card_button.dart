@@ -36,10 +36,7 @@ class _CardButtonState extends State<CardButton> {
             : 0,
         style: ElevatedButton.styleFrom(
           elevation: 10,
-          backgroundColor:
-              (MediaQuery.of(context).platformBrightness == Brightness.light)
-                  ? const Color.fromARGB(255, 165, 226, 255)
-                  : const Color.fromARGB(255, 0, 135, 197),
+          backgroundColor: const Color.fromARGB(255, 0, 135, 197),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(Radius.circular(20)),
           ),
@@ -51,11 +48,7 @@ class _CardButtonState extends State<CardButton> {
             child: Text(
               text.replaceAll(' ', '\n'),
               textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: (MediaQuery.of(context).platformBrightness ==
-                          Brightness.light)
-                      ? Colors.black
-                      : Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ),
         ),
@@ -153,9 +146,7 @@ class _ExtendedButtonState extends State<ExtendedButton> {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(20)),
       ),
-      color: (MediaQuery.of(context).platformBrightness == Brightness.light)
-          ? const Color.fromARGB(255, 165, 226, 255)
-          : const Color.fromARGB(255, 0, 135, 197),
+      color: const Color.fromARGB(255, 0, 135, 197),
       child: Column(children: [
         Expanded(
           flex: 1,
@@ -165,12 +156,7 @@ class _ExtendedButtonState extends State<ExtendedButton> {
             child: FittedBox(
               child: Text(
                 text,
-                style: TextStyle(
-                  color: (MediaQuery.of(context).platformBrightness ==
-                          Brightness.light)
-                      ? Colors.black
-                      : Colors.white,
-                ),
+                style: const TextStyle(color: Colors.white),
               ),
             ),
           ),

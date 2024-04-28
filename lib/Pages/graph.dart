@@ -5,7 +5,6 @@ import 'package:app/Modules/input_field.dart';
 import 'package:app/Modules/solver.dart';
 import 'package:app/Modules/spaced_list_item.dart';
 import 'package:flutter/material.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class Graphs extends StatefulWidget {
   const Graphs({super.key});
@@ -69,56 +68,56 @@ class _GraphsState extends State<Graphs> {
       ),
       body: Column(
         children: [
-          Expanded(
-            flex: 14,
-            child: Hero(
-              tag: "Graphs",
-              child: SfCartesianChart(
-                onChartTouchInteractionMove: (ChartTouchInteractionArgs args) {
-                  if (prevy > 0) {
-                    double percentageDif =
-                        args.position.dy / MediaQuery.of(context).size.height;
-                    yMin.text = (double.parse(yMin.text) +
-                            (args.position.dy - prevy) * percentageDif / 10)
-                        .toString();
-                    yMax.text = (double.parse(yMax.text) +
-                            (args.position.dy - prevy) * percentageDif / 10)
-                        .toString();
-                  }
-                  if (prevx > 0) {
-                    double percentageDif =
-                        args.position.dx / MediaQuery.of(context).size.width;
-                    xMin.text = (double.parse(xMin.text) -
-                            (args.position.dx - prevx) * percentageDif / 10)
-                        .toString();
-                    xMax.text = (double.parse(xMax.text) -
-                            (args.position.dx - prevx) * percentageDif / 10)
-                        .toString();
-                  }
-                  prevy = args.position.dy;
-                  prevx = args.position.dx;
-                  solve(-1);
-                  setState(() => {});
-                },
-                onChartTouchInteractionUp: (details) {
-                  print("Cancelled");
-                  prevx = -1;
-                  prevy = -1;
-                },
-                primaryYAxis: NumericAxis(
-                    maximum: double.tryParse(yMax.text),
-                    minimum: double.tryParse(yMin.text)),
-                series: chartData
-                    .map(
-                      (e) => LineSeries<ChartData, double>(
-                          dataSource: e,
-                          xValueMapper: (ChartData data, _) => data.x,
-                          yValueMapper: (ChartData data, _) => data.y),
-                    )
-                    .toList(),
-              ),
-            ),
-          ),
+          // Expanded(
+          //   flex: 14,
+          //   child: Hero(
+          //     tag: "Graphs",
+          //     child: SfCartesianChart(
+          //       onChartTouchInteractionMove: (ChartTouchInteractionArgs args) {
+          //         if (prevy > 0) {
+          //           double percentageDif =
+          //               args.position.dy / MediaQuery.of(context).size.height;
+          //           yMin.text = (double.parse(yMin.text) +
+          //                   (args.position.dy - prevy) * percentageDif / 10)
+          //               .toString();
+          //           yMax.text = (double.parse(yMax.text) +
+          //                   (args.position.dy - prevy) * percentageDif / 10)
+          //               .toString();
+          //         }
+          //         if (prevx > 0) {
+          //           double percentageDif =
+          //               args.position.dx / MediaQuery.of(context).size.width;
+          //           xMin.text = (double.parse(xMin.text) -
+          //                   (args.position.dx - prevx) * percentageDif / 10)
+          //               .toString();
+          //           xMax.text = (double.parse(xMax.text) -
+          //                   (args.position.dx - prevx) * percentageDif / 10)
+          //               .toString();
+          //         }
+          //         prevy = args.position.dy;
+          //         prevx = args.position.dx;
+          //         solve(-1);
+          //         setState(() => {});
+          //       },
+          //       onChartTouchInteractionUp: (details) {
+          //         print("Cancelled");
+          //         prevx = -1;
+          //         prevy = -1;
+          //       },
+          //       primaryYAxis: NumericAxis(
+          //           maximum: double.tryParse(yMax.text),
+          //           minimum: double.tryParse(yMin.text)),
+          //       series: chartData
+          //           .map(
+          //             (e) => LineSeries<ChartData, double>(
+          //                 dataSource: e,
+          //                 xValueMapper: (ChartData data, _) => data.x,
+          //                 yValueMapper: (ChartData data, _) => data.y),
+          //           )
+          //           .toList(),
+          //     ),
+          //   ),
+          // ),
           Expanded(
             flex: 8,
             child: ListView(
