@@ -5,6 +5,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'dart:math';
 
+import 'package:flutter/widgets.dart';
+
 class ElectricField extends StatefulWidget {
   const ElectricField({super.key});
 
@@ -23,11 +25,18 @@ class _ElectricFieldState extends State<ElectricField> {
   TextEditingController xText = TextEditingController();
   TextEditingController yText = TextEditingController();
   TextEditingController chargeText = TextEditingController();
+  Map<String, double> units = {
+    "C": 1,
+    "mC": 0.001,
+    "μC": pow(10, -6).toDouble()
+  };
+  String chargeUnit = "C";
 
   void add() {
     TextEditingController x = TextEditingController();
     TextEditingController y = TextEditingController();
     TextEditingController charge = TextEditingController();
+    String unit = "C";
 
     showDialog(
       context: context,
@@ -39,15 +48,31 @@ class _ElectricFieldState extends State<ElectricField> {
             children: [
               Inputfield(hintText: "X", controller: x),
               Inputfield(hintText: "Y", controller: y),
-              Inputfield(hintText: "Charge", controller: charge),
+              Inputfield(
+                hintText: "Charge",
+                controller: charge,
+                suffix: DropdownButton(
+                  value: unit,
+                  items: units.keys
+                      .toList()
+                      .map((e) => DropdownMenuItem(
+                            value: e,
+                            child: Text(e),
+                          ))
+                      .toList(),
+                  onChanged: (value) {
+                    setState(() => unit = value ?? unit);
+                  },
+                ),
+              ),
               Button(
                 onPressed: () {
                   points.add(
                     Point(
-                      x: double.parse(x.text),
-                      y: double.parse(y.text),
-                      charge: double.parse(charge.text),
-                    ),
+                        x: double.parse(x.text),
+                        y: double.parse(y.text),
+                        charge: double.parse(charge.text),
+                        factor: units[unit] ?? 1),
                   );
                   Navigator.pop(context);
                   setState(() {});
@@ -102,7 +127,7 @@ class _ElectricFieldState extends State<ElectricField> {
                   ),
                 ),
                 DropdownButton(
-                  value: points[selected],
+                  value: (selected >= 0) ? points[selected] : null,
                   items: points
                       .map(
                         (e) => DropdownMenuItem(
@@ -126,40 +151,86 @@ class _ElectricFieldState extends State<ElectricField> {
             ),
           ),
           Expanded(
-            child: Row(
-              children: [
-                Expanded(
-                  child: Inputfield(
-                    controller: xText,
-                    onChanged: (value) {
-                      points[selected].changeX(value);
-                      setState(() {});
-                    },
-                    hintText: "X",
+            child: (!points.isNotEmpty)
+                ? Container()
+                : Column(
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Inputfield(
+                              controller: xText,
+                              onChanged: (value) {
+                                points[selected].changeX(value);
+                                setState(() {});
+                              },
+                              hintText: "X",
+                            ),
+                          ),
+                          Expanded(
+                            child: Inputfield(
+                              controller: yText,
+                              onChanged: (value) {
+                                points[selected].changeY(value);
+                                setState(() {});
+                              },
+                              hintText: "Y",
+                            ),
+                          ),
+                          Expanded(
+                            child: Inputfield(
+                              controller: chargeText,
+                              onChanged: (value) {
+                                points[selected].changeCharge(value);
+                                setState(() {});
+                              },
+                              hintText: "Charge",
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Expanded(child: Container()),
+                          Expanded(
+                            child: IconButton(
+                              onPressed: () {
+                                points.removeAt(selected);
+                                if (selected >= points.length) selected--;
+                                setState(() {});
+                              },
+                              icon: const Icon(Icons.delete),
+                            ),
+                          ),
+                          Expanded(
+                            child: Center(
+                              child: DropdownButton(
+                                alignment: Alignment.centerRight,
+                                value: (selected >= 0)
+                                    ? units.keys.toList()[units.values
+                                        .toList()
+                                        .indexOf(points[selected].factor)]
+                                    : null,
+                                items: units.keys
+                                    .toList()
+                                    .map((e) => DropdownMenuItem(
+                                          value: e,
+                                          child: Text(e),
+                                        ))
+                                    .toList(),
+                                onChanged: (value) {
+                                  points[selected].changeChargeFactor(
+                                      units[value].toString());
+                                  setState(() {});
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ),
-                Expanded(
-                  child: Inputfield(
-                    controller: yText,
-                    onChanged: (value) {
-                      points[selected].changeY(value);
-                      setState(() {});
-                    },
-                    hintText: "Y",
-                  ),
-                ),
-                Expanded(
-                  child: Inputfield(
-                    controller: chargeText,
-                    onChanged: (value) {
-                      points[selected].changeCharge(value);
-                      setState(() {});
-                    },
-                    hintText: "Charge",
-                  ),
-                )
-              ],
-            ),
           ),
           Expanded(
             child: FractionallySizedBox(
@@ -168,6 +239,8 @@ class _ElectricFieldState extends State<ElectricField> {
               child: FittedBox(
                 child: Text(
                   (() {
+                    if (points.isEmpty) return "";
+
                     double xTotal = 0;
                     double yTotal = 0;
 
@@ -178,34 +251,45 @@ class _ElectricFieldState extends State<ElectricField> {
                           (points[i].charge < 0 && points[selected].charge > 0);
 
                       double x = ((points[i].x - points[selected].x) != 0)
-                          ? (k * points[i].charge * points[selected].charge) /
-                              (pow((points[i].x - points[selected].x), 2))
+                          ? abs((k *
+                                  points[i].charge *
+                                  points[i].factor *
+                                  points[selected].charge *
+                                  points[i].factor) /
+                              (pow((points[i].x - points[selected].x), 2)))
                           : 0;
                       double y = ((points[i].y - points[selected].y) != 0)
-                          ? (k * points[i].charge * points[selected].charge) /
-                              (pow((points[i].y - points[selected].y), 2))
+                          ? abs((k *
+                                  points[i].charge *
+                                  points[i].factor *
+                                  points[selected].charge *
+                                  points[i].factor) /
+                              (pow((points[i].y - points[selected].y), 2)))
                           : 0;
 
-                      if ((repel && points[i].x > points[selected].x) ||
-                          (!repel && points[i].x < points[selected].x)) {
+                      if ((repel && points[i].x < points[selected].x) ||
+                          (!repel && points[i].x > points[selected].x)) {
                         x *= -1;
                       }
 
-                      if ((repel && points[i].y > points[selected].y) ||
-                          (!repel && points[i].y < points[selected].y)) {
+                      if ((repel && points[i].y < points[selected].y) ||
+                          (!repel && points[i].y > points[selected].y)) {
                         y *= -1;
                       }
+                      print(x);
+                      print(y);
 
                       xTotal += x;
                       yTotal += y;
                     }
 
-                    double degree = atan((xTotal / yTotal) *
-                            ((xTotal / yTotal < 0) ? -1 : 1)) *
-                        180 /
-                        pi;
+                    String degree = roundto((atan((xTotal / yTotal) *
+                                ((xTotal / yTotal < 0) ? -1 : 1)) *
+                            180 /
+                            pi)
+                        .toString());
 
-                    return "Net Force:\n${roundto((sqrt(pow(xTotal, 2) + pow(yTotal, 2))).toString())}N\n[${(yTotal > 0) ? "N" : "S"}${roundto(degree.toString())}${(xTotal > 0) ? "E" : "W"}]";
+                    return "Net Force:\n${roundto((sqrt(pow(xTotal, 2) + pow(yTotal, 2))).toString())}N\n[${(degree == "90") ? "" : ((yTotal > 0) ? "N" : "S")}${(degree != "0" && degree != "90") ? degree : ""}${(degree == "0") ? "" : ((xTotal > 0) ? "E" : "W")}]";
                   })(),
                   textAlign: TextAlign.center,
                 ),
@@ -219,9 +303,13 @@ class _ElectricFieldState extends State<ElectricField> {
 }
 
 class Point {
-  Point({required this.x, required this.y, required this.charge});
+  Point(
+      {required this.x,
+      required this.y,
+      required this.charge,
+      this.factor = 1});
 
-  double x, y, charge;
+  double x, y, charge, factor;
 
   void changeX(String value) {
     try {
@@ -238,6 +326,12 @@ class Point {
   void changeCharge(String value) {
     try {
       charge = double.parse(value);
+    } catch (e) {}
+  }
+
+  void changeChargeFactor(String value) {
+    try {
+      factor = double.parse(value);
     } catch (e) {}
   }
 }

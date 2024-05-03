@@ -7,7 +7,7 @@ class Inputfield extends StatelessWidget {
     super.key,
     this.controller,
     this.hintText = '',
-    this.suffixText = '',
+    this.suffixText,
     this.prefixText = '',
     this.alignment = TextAlign.left,
     this.keyboardType = TextInputType.name,
@@ -15,17 +15,20 @@ class Inputfield extends StatelessWidget {
     this.onChanged,
     this.maxLength,
     this.width = 0.8,
+    this.suffix,
   }) {
     controller ??= TextEditingController();
   }
   TextEditingController? controller = TextEditingController();
-  final String hintText, suffixText, prefixText;
+  final String hintText, prefixText;
+  final String? suffixText;
   final TextAlign alignment;
   final TextInputType keyboardType;
   final bool enabled;
   final int? maxLength;
   Function(String)? onChanged;
   final double width;
+  final Widget? suffix;
 
   @override
   Widget build(BuildContext context) {
@@ -50,6 +53,7 @@ class Inputfield extends StatelessWidget {
           hintText: hintText,
           suffixText: suffixText,
           prefixText: prefixText,
+          suffix: suffix,
         ),
       ),
     );

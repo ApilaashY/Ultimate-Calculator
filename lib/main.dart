@@ -311,10 +311,7 @@ class _HomeState extends State<Home> {
               children: [
                 Card(
                   elevation: 10,
-                  color: (MediaQuery.of(context).platformBrightness ==
-                          Brightness.light)
-                      ? const Color.fromARGB(255, 165, 226, 255)
-                      : const Color.fromARGB(255, 0, 135, 197),
+                  color: const Color.fromARGB(255, 0, 135, 197),
                   shape: const RoundedRectangleBorder(
                     borderRadius: BorderRadius.all(Radius.circular(20)),
                   ),
@@ -330,12 +327,8 @@ class _HomeState extends State<Home> {
                               child: Text(
                             'Points:\n$points',
                             textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color:
-                                  (MediaQuery.of(context).platformBrightness ==
-                                          Brightness.light)
-                                      ? Colors.black
-                                      : Colors.white,
+                            style: const TextStyle(
+                              color: Colors.white,
                             ),
                           )),
                         ),
@@ -347,6 +340,7 @@ class _HomeState extends State<Home> {
                                 widthFactor: 0.5,
                                 child: ElevatedButton(
                                   style: ButtonStyle(
+                                    elevation: MaterialStateProperty.all(0),
                                     backgroundColor: MaterialStateProperty.all(
                                         const Color.fromARGB(255, 0, 135, 197)),
                                   ),
