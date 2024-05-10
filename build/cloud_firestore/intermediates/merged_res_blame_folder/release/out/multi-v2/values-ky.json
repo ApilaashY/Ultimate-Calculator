@@ -4,23 +4,6 @@
             "outputFile": "io.flutter.plugins.firebase.firestore.cloud_firestore-merged_res-13:/values-ky/values-ky.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\4a80ee9fd8d09a6d44776f9cd2f90623\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-ky\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "153",
-                        "endOffsets": "348"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1042",
-                        "endColumns": "157",
-                        "endOffsets": "1195"
-                    }
-                },
-                {
                     "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\694d96cc7a81b58f2c6854bfe15115fc\\transformed\\jetified-play-services-base-18.0.1\\res\\values-ky\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -35,6 +18,23 @@
                         "startOffsets": "55,161,310,439,546,691,818,933,1200,1369,1476,1626,1756,1893,2060,2124,2184",
                         "endColumns": "105,148,128,106,144,126,114,108,168,106,149,129,136,166,63,59,77",
                         "endOffsets": "156,305,434,541,686,813,928,1037,1364,1471,1621,1751,1888,2055,2119,2179,2257"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\d3c74094d9222ba39f825add9f9c6c01\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-ky\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "153",
+                        "endOffsets": "348"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "1042",
+                        "endColumns": "157",
+                        "endOffsets": "1195"
                     }
                 },
                 {
@@ -60,23 +60,6 @@
             "outputFile": "io.flutter.plugins.firebase.firestore.cloud_firestore-mergeReleaseResources-11:/values-ky/values-ky.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\4a80ee9fd8d09a6d44776f9cd2f90623\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-ky\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "153",
-                        "endOffsets": "348"
-                    },
-                    "to": {
-                        "startLines": "10",
-                        "startColumns": "4",
-                        "startOffsets": "1042",
-                        "endColumns": "157",
-                        "endOffsets": "1195"
-                    }
-                },
-                {
                     "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\694d96cc7a81b58f2c6854bfe15115fc\\transformed\\jetified-play-services-base-18.0.1\\res\\values-ky\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
@@ -91,6 +74,23 @@
                         "startOffsets": "55,161,310,439,546,691,818,933,1200,1369,1476,1626,1756,1893,2060,2124,2184",
                         "endColumns": "105,148,128,106,144,126,114,108,168,106,149,129,136,166,63,59,77",
                         "endOffsets": "156,305,434,541,686,813,928,1037,1364,1471,1621,1751,1888,2055,2119,2179,2257"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\d3c74094d9222ba39f825add9f9c6c01\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-ky\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "153",
+                        "endOffsets": "348"
+                    },
+                    "to": {
+                        "startLines": "10",
+                        "startColumns": "4",
+                        "startOffsets": "1042",
+                        "endColumns": "157",
+                        "endOffsets": "1195"
                     }
                 },
                 {

@@ -32,54 +32,82 @@ class _ElectricFieldState extends State<ElectricField> {
   };
   String chargeUnit = "C";
 
+  String validator(String? value, String x, String y) {
+    print("HFIO");
+    for (int i = 0; i < points.length; i++) {
+      if (i != selected &&
+          points[i].x == double.tryParse(x) &&
+          points[i].y == double.tryParse(y)) {
+        return "A point with these coordinates already exists";
+      }
+    }
+    print("NON");
+    return "";
+  }
+
   void add() {
     TextEditingController x = TextEditingController();
     TextEditingController y = TextEditingController();
     TextEditingController charge = TextEditingController();
     String unit = "C";
+    ObjectKey ke = const ObjectKey("dsa");
 
     showDialog(
       context: context,
       builder: (context) => Dialog(
         child: Padding(
           padding: const EdgeInsets.all(15),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Inputfield(hintText: "X", controller: x),
-              Inputfield(hintText: "Y", controller: y),
-              Inputfield(
-                hintText: "Charge",
-                controller: charge,
-                suffix: DropdownButton(
-                  value: unit,
-                  items: units.keys
-                      .toList()
-                      .map((e) => DropdownMenuItem(
-                            value: e,
-                            child: Text(e),
-                          ))
-                      .toList(),
-                  onChanged: (value) {
-                    setState(() => unit = value ?? unit);
+          child: Form(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                InputFormField(
+                  key: ke,
+                  hintText: "X",
+                  controller: x,
+                  validator: (String? v) {
+                    return validator(v, x.text, y.text);
                   },
+                  autovalidateMode: AutovalidateMode.onUserInteraction,
                 ),
-              ),
-              Button(
-                onPressed: () {
-                  points.add(
-                    Point(
-                        x: double.parse(x.text),
-                        y: double.parse(y.text),
-                        charge: double.parse(charge.text),
-                        factor: units[unit] ?? 1),
-                  );
-                  Navigator.pop(context);
-                  setState(() {});
-                },
-                child: const Text("Add"),
-              )
-            ],
+                InputFormField(
+                  hintText: "Y",
+                  controller: y,
+                  validator: (String? v) => validator(v, x.text, y.text),
+                ),
+                InputFormField(
+                  hintText: "Charge",
+                  controller: charge,
+                  suffix: DropdownButton(
+                    value: unit,
+                    items: units.keys
+                        .toList()
+                        .map((e) => DropdownMenuItem(
+                              value: e,
+                              child: Text(e),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() => unit = value ?? unit);
+                    },
+                  ),
+                ),
+                Button(
+                  onPressed: () {
+                    points.add(
+                      Point(
+                          x: double.parse(x.text),
+                          y: double.parse(y.text),
+                          charge: double.parse(charge.text),
+                          factor: units[unit] ?? 1),
+                    );
+                    Navigator.pop(context);
+                    setState(() {});
+                  },
+                  child: const Text("Add"),
+                )
+              ],
+            ),
           ),
         ),
       ),
@@ -127,7 +155,7 @@ class _ElectricFieldState extends State<ElectricField> {
                   ),
                 ),
                 DropdownButton(
-                  value: (selected >= 0) ? points[selected] : null,
+                  value: (points.isNotEmpty) ? points[selected] : null,
                   items: points
                       .map(
                         (e) => DropdownMenuItem(
@@ -198,6 +226,8 @@ class _ElectricFieldState extends State<ElectricField> {
                               onPressed: () {
                                 points.removeAt(selected);
                                 if (selected >= points.length) selected--;
+                                if (selected < 0) selected = 0;
+
                                 setState(() {});
                               },
                               icon: const Icon(Icons.delete),
@@ -282,6 +312,8 @@ class _ElectricFieldState extends State<ElectricField> {
                       xTotal += x;
                       yTotal += y;
                     }
+
+                    if (xTotal + yTotal == 0) return "Net Force:\nNone";
 
                     String degree = roundto((atan((xTotal / yTotal) *
                                 ((xTotal / yTotal < 0) ? -1 : 1)) *

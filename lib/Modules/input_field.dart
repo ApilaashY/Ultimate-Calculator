@@ -59,3 +59,67 @@ class Inputfield extends StatelessWidget {
     );
   }
 }
+
+class InputFormField extends StatelessWidget {
+  InputFormField({
+    super.key,
+    this.controller,
+    this.hintText = '',
+    this.suffixText,
+    this.prefixText = '',
+    this.alignment = TextAlign.left,
+    this.keyboardType = TextInputType.name,
+    this.enabled = true,
+    this.onChanged,
+    this.maxLength,
+    this.width = 0.8,
+    this.suffix,
+    this.validator,
+    this.autovalidateMode,
+  }) {
+    controller ??= TextEditingController();
+  }
+  TextEditingController? controller = TextEditingController();
+  final String hintText, prefixText;
+  final String? suffixText;
+  final TextAlign alignment;
+  final TextInputType keyboardType;
+  final bool enabled;
+  final int? maxLength;
+  Function(String)? onChanged;
+  final double width;
+  final Widget? suffix;
+  String Function(String?)? validator;
+  final AutovalidateMode? autovalidateMode;
+
+  @override
+  Widget build(BuildContext context) {
+    return FractionallySizedBox(
+      widthFactor: width,
+      child: TextFormField(
+        validator: validator,
+        onChanged: onChanged,
+        controller: controller,
+        keyboardType: keyboardType,
+        textAlign: alignment,
+        enabled: enabled,
+        maxLength: maxLength,
+        autovalidateMode: autovalidateMode,
+        style: TextStyle(
+            color:
+                (MediaQuery.of(context).platformBrightness == Brightness.light)
+                    ? Colors.black
+                    : Colors.white),
+        decoration: InputDecoration(
+          border: const OutlineInputBorder(
+            borderSide: BorderSide(width: 3),
+          ),
+          hintText: hintText,
+          suffixText: suffixText,
+          prefixText: prefixText,
+          suffix: suffix,
+        ),
+      ),
+    );
+  }
+}

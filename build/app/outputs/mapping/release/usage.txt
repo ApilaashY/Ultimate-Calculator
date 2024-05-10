@@ -2564,7 +2564,6 @@ androidx.browser.customtabs.CustomTabsIntent$Builder:
     public androidx.browser.customtabs.CustomTabsIntent$Builder setSecondaryToolbarColor(int)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setSecondaryToolbarViews(android.widget.RemoteViews,int[],android.app.PendingIntent)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setShareState(int)
-    public androidx.browser.customtabs.CustomTabsIntent$Builder setShowTitle(boolean)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setStartAnimations(android.content.Context,int,int)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setToolbarColor(int)
     public androidx.browser.customtabs.CustomTabsIntent$Builder setToolbarCornerRadiusDp(int)
@@ -11558,11 +11557,11 @@ com.google.android.gms.common.api.Response
 com.google.android.gms.common.api.ResultCallbacks
 com.google.android.gms.common.api.ResultTransform
 com.google.android.gms.common.api.Status:
-    public void <init>(int,java.lang.String,android.app.PendingIntent)
     public android.app.PendingIntent getResolution()
     public boolean isCanceled()
     public boolean isInterrupted()
     public void startResolutionForResult(android.app.Activity,int)
+    public void startResolutionForResult(androidx.activity.result.ActivityResultLauncher)
 com.google.android.gms.common.api.TransformedResult
 com.google.android.gms.common.api.internal.ActivityLifecycleObserver
 com.google.android.gms.common.api.internal.BaseImplementation$ApiMethodImpl
@@ -11841,6 +11840,7 @@ com.google.android.gms.common.internal.BaseGmsClient:
     public android.content.Intent getSignInIntent()
     public boolean providesSignIn()
 com.google.android.gms.common.internal.BinderWrapper
+com.google.android.gms.common.internal.CallbackExecutor
 com.google.android.gms.common.internal.ClientIdentity
 com.google.android.gms.common.internal.ClientSettings:
     public void <init>(android.accounts.Account,java.util.Set,java.util.Map,int,android.view.View,java.lang.String,java.lang.String,com.google.android.gms.signin.SignInOptions)
@@ -11862,7 +11862,10 @@ com.google.android.gms.common.internal.GmsClient:
     public com.google.android.gms.common.Feature[] getRequiredFeatures()
 com.google.android.gms.common.internal.GmsClientSupervisor:
     public boolean bindService(android.content.ComponentName,android.content.ServiceConnection,java.lang.String)
+    public boolean bindService(android.content.ComponentName,android.content.ServiceConnection,java.lang.String,java.util.concurrent.Executor)
     public boolean bindService(java.lang.String,android.content.ServiceConnection,java.lang.String)
+    public static android.os.HandlerThread getOrStartHandlerThread(int)
+    public static void setDefaultBindExecutor(java.util.concurrent.Executor)
     public static void setUseHandlerThreadForCallbacks()
     public void unbindService(android.content.ComponentName,android.content.ServiceConnection,java.lang.String)
     public void unbindService(java.lang.String,android.content.ServiceConnection,java.lang.String)
@@ -11886,12 +11889,17 @@ com.google.android.gms.common.internal.PendingResultUtil$ResultConverter
 com.google.android.gms.common.internal.PendingResultUtil
 com.google.android.gms.common.internal.Preconditions:
     private void <init>()
+    public static double checkArgumentInRange(double,double,double,java.lang.String)
+    public static float checkArgumentInRange(float,float,float,java.lang.String)
+    public static int checkArgumentInRange(int,int,int,java.lang.String)
+    public static long checkArgumentInRange(long,long,long,java.lang.String)
     public static void checkHandlerThread(android.os.Handler,java.lang.String)
     public static void checkMainThread()
     public static int checkNotZero(int,java.lang.Object)
     public static long checkNotZero(long)
     public static long checkNotZero(long,java.lang.Object)
     public static varargs void checkState(boolean,java.lang.String,java.lang.Object[])
+    static varargs java.lang.String zza(java.lang.String,java.lang.Object[])
 com.google.android.gms.common.internal.ResourceUtils
 com.google.android.gms.common.internal.ServiceSpecificExtraArgs$CastExtraArgs
 com.google.android.gms.common.internal.ServiceSpecificExtraArgs$GamesExtraArgs
@@ -12025,23 +12033,26 @@ com.google.android.gms.common.internal.zav:
 com.google.android.gms.common.internal.zax
 com.google.android.gms.common.internal.zay
 com.google.android.gms.common.internal.zaz
-com.google.android.gms.common.internal.zzaa
-com.google.android.gms.common.internal.zzad:
+com.google.android.gms.common.internal.zzab
+com.google.android.gms.common.internal.zzae:
     public final boolean zzg()
-com.google.android.gms.common.internal.zzaf:
-    public abstract boolean zzg()
 com.google.android.gms.common.internal.zzag:
+    public abstract boolean zzg()
+com.google.android.gms.common.internal.zzah:
     public static java.lang.String zzb(android.content.Context)
-com.google.android.gms.common.internal.zzaj
 com.google.android.gms.common.internal.zzak
+com.google.android.gms.common.internal.zzal
 com.google.android.gms.common.internal.zzh
 com.google.android.gms.common.internal.zzi
-com.google.android.gms.common.internal.zzn:
+com.google.android.gms.common.internal.zzj
+com.google.android.gms.common.internal.zzo:
     public void <init>(android.content.ComponentName,int)
     public void <init>(java.lang.String,int,boolean)
-com.google.android.gms.common.internal.zzr:
-    final void zzi(android.os.Looper)
-com.google.android.gms.common.internal.zzw
+com.google.android.gms.common.internal.zzs:
+    final void zzi(java.util.concurrent.Executor)
+    final void zzj(android.os.Looper)
+com.google.android.gms.common.internal.zzu
+com.google.android.gms.common.internal.zzx
 com.google.android.gms.common.logging.Logger
 com.google.android.gms.common.providers.PooledExecutorsProvider$PooledExecutorFactory
 com.google.android.gms.common.providers.PooledExecutorsProvider
@@ -12123,6 +12134,7 @@ com.google.android.gms.common.util.Clock:
 com.google.android.gms.common.util.CollectionUtils:
     private void <init>()
     public static boolean isEmpty(java.util.Collection)
+    public static java.util.List listOf()
     public static java.util.Map mapOf(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
     public static java.util.Set mutableSetOfWithSize(int)
 com.google.android.gms.common.util.CrashUtils:
@@ -12134,15 +12146,19 @@ com.google.android.gms.common.util.DeviceProperties:
     private static java.lang.Boolean zza
     private static java.lang.Boolean zzb
     private static java.lang.Boolean zzc
-    private static java.lang.Boolean zzh
-    private static java.lang.Boolean zzj
+    private static java.lang.Boolean zzd
+    private static java.lang.Boolean zzi
     private static java.lang.Boolean zzk
+    private static java.lang.Boolean zzl
+    private static java.lang.Boolean zzn
     private void <init>()
+    public static boolean isFoldable(android.content.Context)
     public static boolean isPhone(android.content.Context)
     public static boolean isSevenInchTablet(android.content.Context)
     public static boolean isTablet(android.content.Context)
     public static boolean isTablet(android.content.res.Resources)
     public static boolean isTv(android.content.Context)
+    public static boolean isXr(android.content.Context)
     public static boolean zzc(android.content.res.Resources)
 com.google.android.gms.common.util.GmsVersion
 com.google.android.gms.common.util.Hex:
@@ -12172,6 +12188,7 @@ com.google.android.gms.common.util.PlatformVersion:
     public static boolean isAtLeastSv2()
     public static boolean isAtLeastT()
     public static boolean isAtLeastU()
+    public static boolean isAtLeastV()
 com.google.android.gms.common.util.ProcessUtils:
     private void <init>()
 com.google.android.gms.common.util.RetainForClient
@@ -12183,7 +12200,6 @@ com.google.android.gms.common.util.Strings:
     public static java.lang.String emptyToNull(java.lang.String)
 com.google.android.gms.common.util.UidVerifier:
     private void <init>()
-com.google.android.gms.common.util.VisibleForTesting
 com.google.android.gms.common.util.WorkSourceUtil
 com.google.android.gms.common.util.concurrent.HandlerExecutor
 com.google.android.gms.common.util.concurrent.NamedThreadFactory
@@ -13148,7 +13164,8 @@ com.google.android.gms.internal.common.zzai
 com.google.android.gms.internal.common.zzaj
 com.google.android.gms.internal.common.zzak
 com.google.android.gms.internal.common.zzc:
-    public static void zze(android.os.Parcel,android.os.Parcelable)
+    public static final synthetic int zza
+    public static void zzd(android.os.Parcel,android.os.Parcelable)
 com.google.android.gms.internal.common.zze
 com.google.android.gms.internal.common.zzf
 com.google.android.gms.internal.common.zzg
@@ -13180,39 +13197,40 @@ com.google.android.gms.internal.consent_sdk.zzx:
     static final synthetic int[] zza
     static final synthetic int[] zzb
     static void <clinit>()
-com.google.android.gms.internal.measurement.zzcp:
+com.google.android.gms.internal.measurement.zzdc:
     public void <init>()
-com.google.android.gms.internal.measurement.zzcw:
+com.google.android.gms.internal.measurement.zzdf:
     public final void clearMeasurementEnabled(long)
-    public final void getAppInstanceId(com.google.android.gms.internal.measurement.zzcv)
-    public final void getSessionId(com.google.android.gms.internal.measurement.zzcv)
-    public final void getTestFlag(com.google.android.gms.internal.measurement.zzcv,int)
+    public final void getAppInstanceId(com.google.android.gms.internal.measurement.zzdi)
+    public final void getSessionId(com.google.android.gms.internal.measurement.zzdi)
+    public final void getTestFlag(com.google.android.gms.internal.measurement.zzdi,int)
     public final void initForTests(java.util.Map)
-    public final void isDataCollectionEnabled(com.google.android.gms.internal.measurement.zzcv)
-    public final void logEventAndBundle(java.lang.String,java.lang.String,android.os.Bundle,com.google.android.gms.internal.measurement.zzcv,long)
-    public final void registerOnMeasurementEventListener(com.google.android.gms.internal.measurement.zzda)
+    public final void isDataCollectionEnabled(com.google.android.gms.internal.measurement.zzdi)
+    public final void logEventAndBundle(java.lang.String,java.lang.String,android.os.Bundle,com.google.android.gms.internal.measurement.zzdi,long)
+    public final void registerOnMeasurementEventListener(com.google.android.gms.internal.measurement.zzdj)
     public final void resetAnalyticsData(long)
     public final void setConsentThirdParty(android.os.Bundle,long)
     public final void setDefaultEventParameters(android.os.Bundle)
-    public final void setEventInterceptor(com.google.android.gms.internal.measurement.zzda)
-    public final void setInstanceIdProvider(com.google.android.gms.internal.measurement.zzdb)
+    public final void setEventInterceptor(com.google.android.gms.internal.measurement.zzdj)
+    public final void setInstanceIdProvider(com.google.android.gms.internal.measurement.zzdo)
     public final void setMeasurementEnabled(boolean,long)
     public final void setMinimumSessionDuration(long)
     public final void setSessionTimeoutDuration(long)
+    public final void setSgtmDebugInfo(android.content.Intent)
     public final void setUserId(java.lang.String,long)
-    public final void unregisterOnMeasurementEventListener(com.google.android.gms.internal.measurement.zzda)
-com.google.android.gms.internal.measurement.zzcz
-com.google.android.gms.internal.measurement.zzdf$zzb
-com.google.android.gms.internal.measurement.zzdf$zzc
-com.google.android.gms.internal.measurement.zzdf:
+    public final void unregisterOnMeasurementEventListener(com.google.android.gms.internal.measurement.zzdj)
+com.google.android.gms.internal.measurement.zzdm
+com.google.android.gms.internal.measurement.zzds$zza
+com.google.android.gms.internal.measurement.zzds$zzd
+com.google.android.gms.internal.measurement.zzds:
     public final java.lang.Object zza(int)
     public final void zza(long)
-    public final void zza(com.google.android.gms.measurement.internal.zzil)
-    public final void zza(com.google.android.gms.measurement.internal.zzim)
+    public final void zza(com.google.android.gms.measurement.internal.zziu)
+    public final void zza(com.google.android.gms.measurement.internal.zzix)
     public final void zza(java.lang.Boolean)
     public final void zza(java.lang.String,android.os.Bundle)
     public final void zza(java.lang.String,java.lang.String,android.os.Bundle,long)
-    public final void zzb(com.google.android.gms.measurement.internal.zzil)
+    public final void zzb(com.google.android.gms.measurement.internal.zzix)
     public final void zzb(java.lang.String,java.lang.String)
     public final java.lang.Long zzc()
     public final void zzc(android.os.Bundle)
@@ -13220,43 +13238,71 @@ com.google.android.gms.internal.measurement.zzdf:
     public final void zzd(java.lang.String)
     public final java.lang.String zze()
     public final void zzj()
-com.google.android.gms.internal.measurement.zzdm
-com.google.android.gms.internal.measurement.zzdo
-com.google.android.gms.internal.measurement.zzdp
-com.google.android.gms.internal.measurement.zzdq
-com.google.android.gms.internal.measurement.zzds
-com.google.android.gms.internal.measurement.zzee
-com.google.android.gms.internal.measurement.zzef
-com.google.android.gms.internal.measurement.zzeg
-com.google.android.gms.internal.measurement.zzei
-com.google.android.gms.internal.measurement.zzej
-com.google.android.gms.internal.measurement.zzek
-com.google.android.gms.internal.measurement.zzem
+com.google.android.gms.internal.measurement.zzdy
+com.google.android.gms.internal.measurement.zzea
+com.google.android.gms.internal.measurement.zzeb
+com.google.android.gms.internal.measurement.zzec
+com.google.android.gms.internal.measurement.zzed
+com.google.android.gms.internal.measurement.zzen
+com.google.android.gms.internal.measurement.zzer
+com.google.android.gms.internal.measurement.zzes
+com.google.android.gms.internal.measurement.zzeu
+com.google.android.gms.internal.measurement.zzev
 com.google.android.gms.internal.measurement.zzew
-com.google.android.gms.internal.measurement.zzfc
-com.google.android.gms.internal.measurement.zzfi
-com.google.android.gms.internal.measurement.zzfp
-com.google.android.gms.internal.measurement.zzhf:
-    public abstract com.google.android.gms.internal.measurement.zzhf zza(com.google.android.gms.internal.measurement.zzib,com.google.android.gms.internal.measurement.zzik)
+com.google.android.gms.internal.measurement.zzey
+com.google.android.gms.internal.measurement.zzfh
+com.google.android.gms.internal.measurement.zzfn
+com.google.android.gms.internal.measurement.zzft
+com.google.android.gms.internal.measurement.zzgb
+com.google.android.gms.internal.measurement.zzgq:
+    public void <init>()
+com.google.android.gms.internal.measurement.zzhy:
+    public abstract com.google.android.gms.internal.measurement.zzhy zza(com.google.android.gms.internal.measurement.zziu,com.google.android.gms.internal.measurement.zzjg)
     private final java.lang.String zza(java.lang.String)
-    public synthetic com.google.android.gms.internal.measurement.zzkm zzb(com.google.android.gms.internal.measurement.zzib,com.google.android.gms.internal.measurement.zzik)
-    public abstract com.google.android.gms.internal.measurement.zzhf zzy()
-com.google.android.gms.internal.measurement.zzhg:
+    public abstract com.google.android.gms.internal.measurement.zzhy zzae()
+    public synthetic com.google.android.gms.internal.measurement.zzlf zzb(com.google.android.gms.internal.measurement.zziu,com.google.android.gms.internal.measurement.zzjg)
+com.google.android.gms.internal.measurement.zzid:
     public void add(int,java.lang.Object)
     public java.lang.Object set(int,java.lang.Object)
-com.google.android.gms.internal.measurement.zzhl:
+com.google.android.gms.internal.measurement.zzie:
     void <init>()
-com.google.android.gms.internal.measurement.zzhm:
-    static com.google.android.gms.internal.measurement.zzhm zza(byte[])
-com.google.android.gms.internal.measurement.zzia:
+com.google.android.gms.internal.measurement.zzij:
+    static com.google.android.gms.internal.measurement.zzij zza(byte[])
+com.google.android.gms.internal.measurement.zziu:
+    int zza
+    com.google.android.gms.internal.measurement.zziy zzc
+    public abstract double zza()
+    public abstract float zzb()
+    public abstract void zzc(int)
+    public abstract int zzd()
+    public abstract void zzd(int)
+    public abstract int zze()
+    public abstract boolean zze(int)
+    public abstract int zzf()
+    public abstract int zzg()
+    public abstract int zzh()
+    public abstract int zzi()
+    public abstract int zzj()
+    public abstract long zzk()
+    public abstract long zzl()
+    abstract long zzm()
+    public abstract long zzn()
+    public abstract long zzo()
+    public abstract long zzp()
+    public abstract com.google.android.gms.internal.measurement.zzij zzq()
+    public abstract java.lang.String zzr()
+    public abstract java.lang.String zzs()
+    public abstract boolean zzt()
+    public abstract boolean zzu()
+com.google.android.gms.internal.measurement.zzix:
     private int zzj
     public final double zza()
     public final float zzb()
-    public final void zzb(int)
     public final void zzc(int)
     public final int zzd()
-    public final boolean zzd(int)
+    public final void zzd(int)
     public final int zze()
+    public final boolean zze(int)
     public final int zzf()
     private final void zzf(int)
     public final int zzg()
@@ -13269,7 +13315,7 @@ com.google.android.gms.internal.measurement.zzia:
     public final long zzn()
     public final long zzo()
     public final long zzp()
-    public final com.google.android.gms.internal.measurement.zzhm zzq()
+    public final com.google.android.gms.internal.measurement.zzij zzq()
     public final java.lang.String zzr()
     public final java.lang.String zzs()
     public final boolean zzt()
@@ -13279,85 +13325,59 @@ com.google.android.gms.internal.measurement.zzia:
     private final int zzx()
     private final long zzy()
     private final long zzz()
-com.google.android.gms.internal.measurement.zzib:
-    int zza
-    com.google.android.gms.internal.measurement.zzif zzc
-    public abstract double zza()
-    public abstract float zzb()
-    public abstract void zzb(int)
-    public abstract void zzc(int)
-    public abstract int zzd()
-    public abstract boolean zzd(int)
-    public abstract int zze()
-    public abstract int zzf()
-    public abstract int zzg()
-    public abstract int zzh()
-    public abstract int zzi()
-    public abstract int zzj()
-    public abstract long zzk()
-    public abstract long zzl()
-    abstract long zzm()
-    public abstract long zzn()
-    public abstract long zzo()
-    public abstract long zzp()
-    public abstract com.google.android.gms.internal.measurement.zzhm zzq()
-    public abstract java.lang.String zzr()
-    public abstract java.lang.String zzs()
-    public abstract boolean zzt()
-    public abstract boolean zzu()
-com.google.android.gms.internal.measurement.zzie
-com.google.android.gms.internal.measurement.zzif
-com.google.android.gms.internal.measurement.zzig$zzb:
+com.google.android.gms.internal.measurement.zziy
+com.google.android.gms.internal.measurement.zzja$zza:
     void <init>()
-com.google.android.gms.internal.measurement.zzim:
-    abstract java.lang.Object zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlc,java.lang.Object,com.google.android.gms.internal.measurement.zzik,com.google.android.gms.internal.measurement.zziq,java.lang.Object,com.google.android.gms.internal.measurement.zzma)
-    abstract void zza(com.google.android.gms.internal.measurement.zzhm,java.lang.Object,com.google.android.gms.internal.measurement.zzik,com.google.android.gms.internal.measurement.zziq)
-    abstract void zza(com.google.android.gms.internal.measurement.zzlc,java.lang.Object,com.google.android.gms.internal.measurement.zzik,com.google.android.gms.internal.measurement.zziq)
-com.google.android.gms.internal.measurement.zzio:
-    final java.lang.Object zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlc,java.lang.Object,com.google.android.gms.internal.measurement.zzik,com.google.android.gms.internal.measurement.zziq,java.lang.Object,com.google.android.gms.internal.measurement.zzma)
-    final void zza(com.google.android.gms.internal.measurement.zzhm,java.lang.Object,com.google.android.gms.internal.measurement.zzik,com.google.android.gms.internal.measurement.zziq)
-    final void zza(com.google.android.gms.internal.measurement.zzlc,java.lang.Object,com.google.android.gms.internal.measurement.zzik,com.google.android.gms.internal.measurement.zziq)
-com.google.android.gms.internal.measurement.zzix$zzb:
-    public final synthetic com.google.android.gms.internal.measurement.zzhf zza(com.google.android.gms.internal.measurement.zzib,com.google.android.gms.internal.measurement.zzik)
-    public final synthetic com.google.android.gms.internal.measurement.zzkm zzb(com.google.android.gms.internal.measurement.zzib,com.google.android.gms.internal.measurement.zzik)
-    private final com.google.android.gms.internal.measurement.zzix$zzb zzc(com.google.android.gms.internal.measurement.zzib,com.google.android.gms.internal.measurement.zzik)
-    public final synthetic com.google.android.gms.internal.measurement.zzkj zzcf()
-    public final synthetic com.google.android.gms.internal.measurement.zzhf zzy()
+com.google.android.gms.internal.measurement.zzjb
+com.google.android.gms.internal.measurement.zzjh:
+    final java.lang.Object zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlv,java.lang.Object,com.google.android.gms.internal.measurement.zzjg,com.google.android.gms.internal.measurement.zzjj,java.lang.Object,com.google.android.gms.internal.measurement.zzmt)
+    final void zza(com.google.android.gms.internal.measurement.zzij,java.lang.Object,com.google.android.gms.internal.measurement.zzjg,com.google.android.gms.internal.measurement.zzjj)
+    final void zza(com.google.android.gms.internal.measurement.zzlv,java.lang.Object,com.google.android.gms.internal.measurement.zzjg,com.google.android.gms.internal.measurement.zzjj)
 com.google.android.gms.internal.measurement.zzji:
-    static com.google.android.gms.internal.measurement.zzji zzb()
-    static com.google.android.gms.internal.measurement.zzji zze()
-com.google.android.gms.internal.measurement.zzjq:
+    abstract java.lang.Object zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlv,java.lang.Object,com.google.android.gms.internal.measurement.zzjg,com.google.android.gms.internal.measurement.zzjj,java.lang.Object,com.google.android.gms.internal.measurement.zzmt)
+    abstract void zza(com.google.android.gms.internal.measurement.zzij,java.lang.Object,com.google.android.gms.internal.measurement.zzjg,com.google.android.gms.internal.measurement.zzjj)
+    abstract void zza(com.google.android.gms.internal.measurement.zzlv,java.lang.Object,com.google.android.gms.internal.measurement.zzjg,com.google.android.gms.internal.measurement.zzjj)
+com.google.android.gms.internal.measurement.zzjt$zza:
+    public final synthetic com.google.android.gms.internal.measurement.zzhy zza(com.google.android.gms.internal.measurement.zziu,com.google.android.gms.internal.measurement.zzjg)
+    public final synthetic com.google.android.gms.internal.measurement.zzhy zzae()
+    public final synthetic com.google.android.gms.internal.measurement.zzlg zzaj()
+    public final synthetic com.google.android.gms.internal.measurement.zzlf zzb(com.google.android.gms.internal.measurement.zziu,com.google.android.gms.internal.measurement.zzjg)
+    private final com.google.android.gms.internal.measurement.zzjt$zza zzc(com.google.android.gms.internal.measurement.zziu,com.google.android.gms.internal.measurement.zzjg)
+com.google.android.gms.internal.measurement.zzkb:
+    static com.google.android.gms.internal.measurement.zzkb zzb()
+    static com.google.android.gms.internal.measurement.zzkb zze()
+com.google.android.gms.internal.measurement.zzkj:
     public void <init>()
-com.google.android.gms.internal.measurement.zzjr:
-    final java.util.List zza(java.lang.Object,long)
-com.google.android.gms.internal.measurement.zzjs:
+com.google.android.gms.internal.measurement.zzkl:
     abstract java.util.List zza(java.lang.Object,long)
-com.google.android.gms.internal.measurement.zzjt:
+com.google.android.gms.internal.measurement.zzko:
     final java.util.List zza(java.lang.Object,long)
-com.google.android.gms.internal.measurement.zzkn:
-    private final void zza(java.lang.Object,int,com.google.android.gms.internal.measurement.zzlc)
-    public final void zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlc,com.google.android.gms.internal.measurement.zzik)
-com.google.android.gms.internal.measurement.zzkp:
-    public final void zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlc,com.google.android.gms.internal.measurement.zzik)
-com.google.android.gms.internal.measurement.zzla:
+com.google.android.gms.internal.measurement.zzkq:
+    final java.util.List zza(java.lang.Object,long)
+com.google.android.gms.internal.measurement.zzlk:
+    private final void zza(java.lang.Object,int,com.google.android.gms.internal.measurement.zzlv)
+    public final void zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlv,com.google.android.gms.internal.measurement.zzjg)
+com.google.android.gms.internal.measurement.zzlm:
+    public final void zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlv,com.google.android.gms.internal.measurement.zzjg)
+com.google.android.gms.internal.measurement.zzlt:
     void <init>()
-com.google.android.gms.internal.measurement.zzlb:
-    public abstract void zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlc,com.google.android.gms.internal.measurement.zzik)
-com.google.android.gms.internal.measurement.zzlc
-com.google.android.gms.internal.measurement.zzma:
+com.google.android.gms.internal.measurement.zzlv
+com.google.android.gms.internal.measurement.zzly:
+    public abstract void zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlv,com.google.android.gms.internal.measurement.zzjg)
+com.google.android.gms.internal.measurement.zzmt:
     abstract java.lang.Object zza()
     abstract void zza(java.lang.Object,int,int)
     abstract void zza(java.lang.Object,int,long)
     abstract void zza(java.lang.Object,int,java.lang.Object)
-    abstract boolean zza(com.google.android.gms.internal.measurement.zzlc)
-    final boolean zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlc)
+    abstract boolean zza(com.google.android.gms.internal.measurement.zzlv)
+    final boolean zza(java.lang.Object,com.google.android.gms.internal.measurement.zzlv)
     abstract java.lang.Object zze(java.lang.Object)
-com.google.android.gms.internal.measurement.zzmc:
+com.google.android.gms.internal.measurement.zzmv:
     final synthetic java.lang.Object zza()
     final synthetic void zza(java.lang.Object,int,int)
     final synthetic void zza(java.lang.Object,int,long)
     final synthetic void zza(java.lang.Object,int,java.lang.Object)
-    final boolean zza(com.google.android.gms.internal.measurement.zzlc)
+    final boolean zza(com.google.android.gms.internal.measurement.zzlv)
     final synthetic java.lang.Object zze(java.lang.Object)
 com.google.android.gms.internal.stats.zza
 com.google.android.gms.internal.stats.zzb
@@ -13375,12 +13395,12 @@ com.google.android.gms.measurement.AppMeasurement$ConditionalUserProperty:
 com.google.android.gms.measurement.AppMeasurement$EventInterceptor
 com.google.android.gms.measurement.AppMeasurement$OnEventListener
 com.google.android.gms.measurement.AppMeasurement$zza:
+    abstract java.lang.Boolean zza()
     abstract java.util.Map zza(boolean)
-    abstract java.lang.Boolean zzb()
-    abstract java.lang.Double zzc()
-    abstract java.lang.Integer zzd()
-    abstract java.lang.Long zze()
-    abstract java.lang.String zzj()
+    abstract java.lang.Double zzb()
+    abstract java.lang.Integer zzc()
+    abstract java.lang.Long zzd()
+    abstract java.lang.String zze()
 com.google.android.gms.measurement.AppMeasurement:
     public static final java.lang.String CRASH_ORIGIN
     public static final java.lang.String FCM_ORIGIN
@@ -13411,48 +13431,48 @@ com.google.android.gms.measurement.api.AppMeasurementSdk:
     public void unregisterOnMeasurementEventListener(com.google.android.gms.measurement.api.AppMeasurementSdk$OnEventListener)
 com.google.android.gms.measurement.api.R$xml
 com.google.android.gms.measurement.api.R
-com.google.android.gms.measurement.internal.zzfm:
-    public final java.util.List zza(com.google.android.gms.measurement.internal.zzo,boolean)
-com.google.android.gms.measurement.internal.zziq:
+com.google.android.gms.measurement.internal.zzfs:
+    public final java.util.List zza(com.google.android.gms.measurement.internal.zzn,boolean)
+com.google.android.gms.measurement.internal.zziy:
     public final java.util.List zza(boolean)
-com.google.android.gms.measurement.internal.zzji
-com.google.android.gms.measurement.internal.zzjz:
+com.google.android.gms.measurement.internal.zzjs
+com.google.android.gms.measurement.internal.zzkn:
     public abstract java.lang.Object zza(int)
-    public abstract void zza(com.google.android.gms.measurement.internal.zzil)
-    public abstract void zza(com.google.android.gms.measurement.internal.zzim)
+    public abstract void zza(com.google.android.gms.measurement.internal.zziu)
+    public abstract void zza(com.google.android.gms.measurement.internal.zzix)
     public abstract void zza(java.lang.String,java.lang.String,android.os.Bundle,long)
-    public abstract void zzb(com.google.android.gms.measurement.internal.zzil)
-com.google.android.gms.measurement.internal.zzkf:
+    public abstract void zzb(com.google.android.gms.measurement.internal.zzix)
+com.google.android.gms.measurement.internal.zzkt:
     public static java.lang.Object zza(java.lang.Object)
-com.google.android.gms.measurement.internal.zzkp:
+com.google.android.gms.measurement.internal.zzla:
     protected final void zza(java.util.concurrent.atomic.AtomicReference,boolean)
-com.google.android.gms.measurement.internal.zzku
+com.google.android.gms.measurement.internal.zzlf
 com.google.android.gms.measurement.sdk.R
 com.google.android.gms.measurement.sdk.api.R
 com.google.android.gms.measurement.zza:
+    public final java.lang.Boolean zza()
     public final java.lang.Object zza(int)
     public final java.util.Map zza(boolean)
-    public final void zza(com.google.android.gms.measurement.internal.zzil)
-    public final void zza(com.google.android.gms.measurement.internal.zzim)
+    public final void zza(com.google.android.gms.measurement.internal.zziu)
+    public final void zza(com.google.android.gms.measurement.internal.zzix)
     public final void zza(java.lang.String,java.lang.String,android.os.Bundle,long)
-    public final java.lang.Boolean zzb()
-    public final void zzb(com.google.android.gms.measurement.internal.zzil)
-    public final java.lang.Double zzc()
-    public final java.lang.Integer zzd()
-    public final java.lang.Long zze()
-    public final java.lang.String zzj()
-com.google.android.gms.measurement.zzc:
+    public final java.lang.Double zzb()
+    public final void zzb(com.google.android.gms.measurement.internal.zzix)
+    public final java.lang.Integer zzc()
+    public final java.lang.Long zzd()
+    public final java.lang.String zze()
+com.google.android.gms.measurement.zzb:
+    public final java.lang.Boolean zza()
     public final java.lang.Object zza(int)
     public final java.util.Map zza(boolean)
-    public final void zza(com.google.android.gms.measurement.internal.zzil)
-    public final void zza(com.google.android.gms.measurement.internal.zzim)
+    public final void zza(com.google.android.gms.measurement.internal.zziu)
+    public final void zza(com.google.android.gms.measurement.internal.zzix)
     public final void zza(java.lang.String,java.lang.String,android.os.Bundle,long)
-    public final java.lang.Boolean zzb()
-    public final void zzb(com.google.android.gms.measurement.internal.zzil)
-    public final java.lang.Double zzc()
-    public final java.lang.Integer zzd()
-    public final java.lang.Long zze()
-    public final java.lang.String zzj()
+    public final java.lang.Double zzb()
+    public final void zzb(com.google.android.gms.measurement.internal.zzix)
+    public final java.lang.Integer zzc()
+    public final java.lang.Long zzd()
+    public final java.lang.String zze()
 com.google.android.gms.measurement_base.R
 com.google.android.gms.security.ProviderInstaller$ProviderInstallListener
 com.google.android.gms.security.ProviderInstaller:
@@ -13506,8 +13526,12 @@ com.google.android.gms.tasks.Tasks:
     public static com.google.android.gms.tasks.Task call(java.util.concurrent.Callable)
     public static com.google.android.gms.tasks.Task forCanceled()
     public static com.google.android.gms.tasks.Task whenAllComplete(java.util.Collection)
+    public static com.google.android.gms.tasks.Task whenAllComplete(java.util.concurrent.Executor,java.util.Collection)
+    public static varargs com.google.android.gms.tasks.Task whenAllComplete(java.util.concurrent.Executor,com.google.android.gms.tasks.Task[])
     public static varargs com.google.android.gms.tasks.Task whenAllComplete(com.google.android.gms.tasks.Task[])
     public static com.google.android.gms.tasks.Task whenAllSuccess(java.util.Collection)
+    public static com.google.android.gms.tasks.Task whenAllSuccess(java.util.concurrent.Executor,java.util.Collection)
+    public static varargs com.google.android.gms.tasks.Task whenAllSuccess(java.util.concurrent.Executor,com.google.android.gms.tasks.Task[])
     public static varargs com.google.android.gms.tasks.Task whenAllSuccess(com.google.android.gms.tasks.Task[])
     public static com.google.android.gms.tasks.Task withTimeout(com.google.android.gms.tasks.Task,long,java.util.concurrent.TimeUnit)
 com.google.android.gms.tasks.zza
@@ -13925,6 +13949,7 @@ com.google.cloud.datastore.core.number.NumberComparisonHelper:
 com.google.common.annotations.Beta
 com.google.common.annotations.GwtCompatible
 com.google.common.annotations.GwtIncompatible
+com.google.common.annotations.J2ktIncompatible
 com.google.common.annotations.VisibleForTesting
 com.google.common.base.Absent:
     private static final long serialVersionUID
@@ -14387,7 +14412,6 @@ com.google.common.cache.AbstractLoadingCache
 com.google.common.cache.Cache
 com.google.common.cache.CacheBuilder$1
 com.google.common.cache.CacheBuilder$2
-com.google.common.cache.CacheBuilder$3
 com.google.common.cache.CacheBuilder$NullListener
 com.google.common.cache.CacheBuilder$OneWeigher
 com.google.common.cache.CacheBuilder
@@ -14407,7 +14431,6 @@ com.google.common.cache.CacheBuilderSpec$ValueParser
 com.google.common.cache.CacheBuilderSpec$ValueStrengthParser
 com.google.common.cache.CacheBuilderSpec$WriteDurationParser
 com.google.common.cache.CacheBuilderSpec
-com.google.common.cache.CacheLoader$1$1
 com.google.common.cache.CacheLoader$1
 com.google.common.cache.CacheLoader$FunctionToCacheLoader
 com.google.common.cache.CacheLoader$InvalidCacheLoadException
@@ -14443,14 +14466,12 @@ com.google.common.cache.LocalCache$HashIterator
 com.google.common.cache.LocalCache$KeyIterator
 com.google.common.cache.LocalCache$KeySet
 com.google.common.cache.LocalCache$LoadingSerializationProxy
-com.google.common.cache.LocalCache$LoadingValueReference$1
 com.google.common.cache.LocalCache$LoadingValueReference
 com.google.common.cache.LocalCache$LocalLoadingCache
 com.google.common.cache.LocalCache$LocalManualCache$1
 com.google.common.cache.LocalCache$LocalManualCache
 com.google.common.cache.LocalCache$ManualSerializationProxy
 com.google.common.cache.LocalCache$NullEntry
-com.google.common.cache.LocalCache$Segment$1
 com.google.common.cache.LocalCache$Segment
 com.google.common.cache.LocalCache$SoftValueReference
 com.google.common.cache.LocalCache$Strength$1
@@ -14830,6 +14851,7 @@ com.google.common.collect.ImmutableCollection$Builder:
 com.google.common.collect.ImmutableCollection:
     public com.google.common.collect.ImmutableList asList()
     public synthetic bridge java.util.Iterator iterator()
+    private void readObject(java.io.ObjectInputStream)
     java.lang.Object writeReplace()
 com.google.common.collect.ImmutableEntry
 com.google.common.collect.ImmutableEnumMap$1
@@ -14909,6 +14931,7 @@ com.google.common.collect.ImmutableMap:
     public static com.google.common.collect.ImmutableMap of(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
     public static com.google.common.collect.ImmutableMap of(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
     public static varargs com.google.common.collect.ImmutableMap ofEntries(java.util.Map$Entry[])
+    private void readObject(java.io.ObjectInputStream)
     java.lang.Object writeReplace()
 com.google.common.collect.ImmutableMapEntrySet$EntrySetSerializedForm
 com.google.common.collect.ImmutableMapEntrySet$RegularEntrySet
@@ -15023,6 +15046,7 @@ com.google.common.collect.ImmutableSet:
     public static com.google.common.collect.ImmutableSet of(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
     public static com.google.common.collect.ImmutableSet of(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object)
     public static varargs com.google.common.collect.ImmutableSet of(java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object,java.lang.Object[])
+    private void readObject(java.io.ObjectInputStream)
     java.lang.Object writeReplace()
 com.google.common.collect.ImmutableSetMultimap$Builder:
     public synthetic bridge com.google.common.collect.ImmutableMultimap build()
@@ -15083,7 +15107,6 @@ com.google.common.collect.ImmutableSetMultimap:
     java.util.Comparator valueComparator()
     private static com.google.common.collect.ImmutableSet$Builder valuesBuilder(java.util.Comparator)
     private void writeObject(java.io.ObjectOutputStream)
-com.google.common.collect.ImmutableSortedMap$1
 com.google.common.collect.ImmutableSortedMap$1EntrySet$1
 com.google.common.collect.ImmutableSortedMap$1EntrySet
 com.google.common.collect.ImmutableSortedMap$Builder
@@ -15137,7 +15160,6 @@ com.google.common.collect.Interners$InternerBuilder
 com.google.common.collect.Interners$InternerFunction
 com.google.common.collect.Interners$InternerImpl
 com.google.common.collect.Interners
-com.google.common.collect.Iterables$10
 com.google.common.collect.Iterables$1
 com.google.common.collect.Iterables$2
 com.google.common.collect.Iterables$3
@@ -15192,7 +15214,6 @@ com.google.common.collect.Iterables:
     private static void slowRemoveIfForRemainingElements(java.util.List,com.google.common.base.Predicate,int,int)
     public static java.lang.Object[] toArray(java.lang.Iterable,java.lang.Class)
     static java.lang.Object[] toArray(java.lang.Iterable,java.lang.Object[])
-    static com.google.common.base.Function toIterator()
     public static java.lang.String toString(java.lang.Iterable)
     public static java.lang.Iterable transform(java.lang.Iterable,com.google.common.base.Function)
     public static com.google.common.base.Optional tryFind(java.lang.Iterable,com.google.common.base.Predicate)
@@ -15356,24 +15377,30 @@ com.google.common.collect.MapMakerInternalMap$Strength$1
 com.google.common.collect.MapMakerInternalMap$Strength$2
 com.google.common.collect.MapMakerInternalMap$Strength
 com.google.common.collect.MapMakerInternalMap$StrongKeyDummyValueEntry$Helper
+com.google.common.collect.MapMakerInternalMap$StrongKeyDummyValueEntry$LinkedStrongKeyDummyValueEntry
 com.google.common.collect.MapMakerInternalMap$StrongKeyDummyValueEntry
 com.google.common.collect.MapMakerInternalMap$StrongKeyDummyValueSegment
 com.google.common.collect.MapMakerInternalMap$StrongKeyStrongValueEntry$Helper
+com.google.common.collect.MapMakerInternalMap$StrongKeyStrongValueEntry$LinkedStrongKeyStrongValueEntry
 com.google.common.collect.MapMakerInternalMap$StrongKeyStrongValueEntry
 com.google.common.collect.MapMakerInternalMap$StrongKeyStrongValueSegment
 com.google.common.collect.MapMakerInternalMap$StrongKeyWeakValueEntry$Helper
+com.google.common.collect.MapMakerInternalMap$StrongKeyWeakValueEntry$LinkedStrongKeyWeakValueEntry
 com.google.common.collect.MapMakerInternalMap$StrongKeyWeakValueEntry
 com.google.common.collect.MapMakerInternalMap$StrongKeyWeakValueSegment
 com.google.common.collect.MapMakerInternalMap$StrongValueEntry
 com.google.common.collect.MapMakerInternalMap$ValueIterator
 com.google.common.collect.MapMakerInternalMap$Values
 com.google.common.collect.MapMakerInternalMap$WeakKeyDummyValueEntry$Helper
+com.google.common.collect.MapMakerInternalMap$WeakKeyDummyValueEntry$LinkedWeakKeyDummyValueEntry
 com.google.common.collect.MapMakerInternalMap$WeakKeyDummyValueEntry
 com.google.common.collect.MapMakerInternalMap$WeakKeyDummyValueSegment
 com.google.common.collect.MapMakerInternalMap$WeakKeyStrongValueEntry$Helper
+com.google.common.collect.MapMakerInternalMap$WeakKeyStrongValueEntry$LinkedWeakKeyStrongValueEntry
 com.google.common.collect.MapMakerInternalMap$WeakKeyStrongValueEntry
 com.google.common.collect.MapMakerInternalMap$WeakKeyStrongValueSegment
 com.google.common.collect.MapMakerInternalMap$WeakKeyWeakValueEntry$Helper
+com.google.common.collect.MapMakerInternalMap$WeakKeyWeakValueEntry$LinkedWeakKeyWeakValueEntry
 com.google.common.collect.MapMakerInternalMap$WeakKeyWeakValueEntry
 com.google.common.collect.MapMakerInternalMap$WeakKeyWeakValueSegment
 com.google.common.collect.MapMakerInternalMap$WeakValueEntry
@@ -15520,6 +15547,7 @@ com.google.common.collect.Maps:
     public static java.util.SortedMap transformValues(java.util.SortedMap,com.google.common.base.Function)
     public static com.google.common.collect.ImmutableMap uniqueIndex(java.lang.Iterable,com.google.common.base.Function)
     public static com.google.common.collect.ImmutableMap uniqueIndex(java.util.Iterator,com.google.common.base.Function)
+    private static com.google.common.collect.ImmutableMap uniqueIndex(java.util.Iterator,com.google.common.base.Function,com.google.common.collect.ImmutableMap$Builder)
     public static com.google.common.collect.BiMap unmodifiableBiMap(com.google.common.collect.BiMap)
     static java.util.Map$Entry unmodifiableEntry(java.util.Map$Entry)
     static com.google.common.collect.UnmodifiableIterator unmodifiableEntryIterator(java.util.Iterator)
@@ -15577,7 +15605,6 @@ com.google.common.collect.MultimapBuilder$SetMultimapBuilder
 com.google.common.collect.MultimapBuilder$SortedSetMultimapBuilder
 com.google.common.collect.MultimapBuilder$TreeSetSupplier
 com.google.common.collect.MultimapBuilder
-com.google.common.collect.Multimaps$AsMap$EntrySet$1
 com.google.common.collect.Multimaps$AsMap$EntrySet
 com.google.common.collect.Multimaps$AsMap
 com.google.common.collect.Multimaps$CustomListMultimap
@@ -15592,10 +15619,8 @@ com.google.common.collect.Multimaps$MapMultimap$1$1
 com.google.common.collect.Multimaps$MapMultimap$1
 com.google.common.collect.Multimaps$MapMultimap
 com.google.common.collect.Multimaps$TransformedEntriesListMultimap
-com.google.common.collect.Multimaps$TransformedEntriesMultimap$1
 com.google.common.collect.Multimaps$TransformedEntriesMultimap
 com.google.common.collect.Multimaps$UnmodifiableListMultimap
-com.google.common.collect.Multimaps$UnmodifiableMultimap$1
 com.google.common.collect.Multimaps$UnmodifiableMultimap
 com.google.common.collect.Multimaps$UnmodifiableSetMultimap
 com.google.common.collect.Multimaps$UnmodifiableSortedSetMultimap
@@ -15752,6 +15777,7 @@ com.google.common.collect.PeekingIterator
 com.google.common.collect.Platform:
     private void <init>()
     static void checkGwtRpcEnabled()
+    static java.lang.Class getDeclaringClassOrObjectForJ2cl(java.lang.Enum)
     static java.util.Map newHashMapWithExpectedSize(int)
     static java.util.Set newHashSetWithExpectedSize(int)
     static java.util.Map newLinkedHashMapWithExpectedSize(int)
@@ -16080,15 +16106,12 @@ com.google.common.graph.AbstractDirectedNetworkConnections$1
 com.google.common.graph.AbstractDirectedNetworkConnections
 com.google.common.graph.AbstractGraph
 com.google.common.graph.AbstractGraphBuilder
-com.google.common.graph.AbstractNetwork$1$1$1
 com.google.common.graph.AbstractNetwork$1$1
 com.google.common.graph.AbstractNetwork$1
 com.google.common.graph.AbstractNetwork$2
-com.google.common.graph.AbstractNetwork$3
 com.google.common.graph.AbstractNetwork
 com.google.common.graph.AbstractUndirectedNetworkConnections
 com.google.common.graph.AbstractValueGraph$1
-com.google.common.graph.AbstractValueGraph$2
 com.google.common.graph.AbstractValueGraph
 com.google.common.graph.BaseGraph
 com.google.common.graph.DirectedGraphConnections$1$1
@@ -16131,7 +16154,6 @@ com.google.common.graph.GraphConnections
 com.google.common.graph.GraphConstants$Presence
 com.google.common.graph.GraphConstants
 com.google.common.graph.Graphs$NodeVisitState
-com.google.common.graph.Graphs$TransposedGraph$1$1
 com.google.common.graph.Graphs$TransposedGraph$1
 com.google.common.graph.Graphs$TransposedGraph
 com.google.common.graph.Graphs$TransposedNetwork
@@ -16251,7 +16273,6 @@ com.google.common.hash.LittleEndianByteArray$JavaLittleEndianBytes
 com.google.common.hash.LittleEndianByteArray$LittleEndianBytes
 com.google.common.hash.LittleEndianByteArray$UnsafeByteArray$1
 com.google.common.hash.LittleEndianByteArray$UnsafeByteArray$2
-com.google.common.hash.LittleEndianByteArray$UnsafeByteArray$3
 com.google.common.hash.LittleEndianByteArray$UnsafeByteArray
 com.google.common.hash.LittleEndianByteArray
 com.google.common.hash.LongAddable
@@ -16293,6 +16314,7 @@ com.google.common.io.BaseEncoding$Alphabet:
     boolean canDecode(char)
     private boolean hasLowerCase()
     private boolean hasUpperCase()
+    com.google.common.io.BaseEncoding$Alphabet ignoreCase()
     com.google.common.io.BaseEncoding$Alphabet lowerCase()
     com.google.common.io.BaseEncoding$Alphabet upperCase()
 com.google.common.io.BaseEncoding$DecodingException:
@@ -16301,11 +16323,13 @@ com.google.common.io.BaseEncoding$SeparatedBaseEncoding
 com.google.common.io.BaseEncoding$StandardBaseEncoding$1
 com.google.common.io.BaseEncoding$StandardBaseEncoding$2
 com.google.common.io.BaseEncoding$StandardBaseEncoding:
-    private transient com.google.common.io.BaseEncoding lowerCase
-    private transient com.google.common.io.BaseEncoding upperCase
+    private volatile com.google.common.io.BaseEncoding ignoreCase
+    private volatile com.google.common.io.BaseEncoding lowerCase
+    private volatile com.google.common.io.BaseEncoding upperCase
     public boolean canDecode(java.lang.CharSequence)
     public java.io.InputStream decodingStream(java.io.Reader)
     public java.io.OutputStream encodingStream(java.io.Writer)
+    public com.google.common.io.BaseEncoding ignoreCase()
     public com.google.common.io.BaseEncoding lowerCase()
     public com.google.common.io.BaseEncoding upperCase()
     public com.google.common.io.BaseEncoding withPadChar(char)
@@ -16320,6 +16344,7 @@ com.google.common.io.BaseEncoding:
     public abstract java.io.InputStream decodingStream(java.io.Reader)
     public final com.google.common.io.ByteSink encodingSink(com.google.common.io.CharSink)
     public abstract java.io.OutputStream encodingStream(java.io.Writer)
+    public abstract com.google.common.io.BaseEncoding ignoreCase()
     static java.io.Reader ignoringReader(java.io.Reader,java.lang.String)
     public abstract com.google.common.io.BaseEncoding lowerCase()
     static java.lang.Appendable separatingAppendable(java.lang.Appendable,java.lang.String,int)
@@ -16399,6 +16424,7 @@ com.google.common.io.Files$FilePredicate$2
 com.google.common.io.Files$FilePredicate
 com.google.common.io.Files
 com.google.common.io.Flushables
+com.google.common.io.IgnoreJRERequirement
 com.google.common.io.Java8Compatibility
 com.google.common.io.LineBuffer
 com.google.common.io.LineProcessor
@@ -16414,6 +16440,13 @@ com.google.common.io.ReaderInputStream
 com.google.common.io.Resources$1
 com.google.common.io.Resources$UrlByteSource
 com.google.common.io.Resources
+com.google.common.io.TempFileCreator$1
+com.google.common.io.TempFileCreator$JavaIoCreator
+com.google.common.io.TempFileCreator$JavaNioCreator$1
+com.google.common.io.TempFileCreator$JavaNioCreator$PermissionSupplier
+com.google.common.io.TempFileCreator$JavaNioCreator
+com.google.common.io.TempFileCreator$ThrowingCreator
+com.google.common.io.TempFileCreator
 com.google.common.io.package-info
 com.google.common.math.BigDecimalMath$BigDecimalToDoubleRounder
 com.google.common.math.BigDecimalMath
@@ -16590,6 +16623,8 @@ com.google.common.primitives.Ints:
     public static varargs int min(int[])
     public static void reverse(int[])
     public static void reverse(int[],int,int)
+    public static void rotate(int[],int)
+    public static void rotate(int[],int,int,int)
     public static void sortDescending(int[])
     public static void sortDescending(int[],int,int)
     public static com.google.common.base.Converter stringConverter()
@@ -16634,6 +16669,7 @@ com.google.common.reflect.ClassPath$LocationInfo
 com.google.common.reflect.ClassPath$ResourceInfo
 com.google.common.reflect.ClassPath
 com.google.common.reflect.ElementTypesAreNonnullByDefault
+com.google.common.reflect.IgnoreJRERequirement
 com.google.common.reflect.ImmutableTypeToInstanceMap$1
 com.google.common.reflect.ImmutableTypeToInstanceMap$Builder
 com.google.common.reflect.ImmutableTypeToInstanceMap
@@ -16701,10 +16737,7 @@ com.google.common.reflect.package-info
 com.google.common.util.concurrent.AbstractCatchingFuture$AsyncCatchingFuture
 com.google.common.util.concurrent.AbstractCatchingFuture$CatchingFuture
 com.google.common.util.concurrent.AbstractCatchingFuture
-com.google.common.util.concurrent.AbstractExecutionThreadService$1$1
-com.google.common.util.concurrent.AbstractExecutionThreadService$1$2
 com.google.common.util.concurrent.AbstractExecutionThreadService$1
-com.google.common.util.concurrent.AbstractExecutionThreadService$2
 com.google.common.util.concurrent.AbstractExecutionThreadService
 com.google.common.util.concurrent.AbstractFuture$1
 com.google.common.util.concurrent.AbstractFuture$AtomicHelper
@@ -16742,7 +16775,7 @@ com.google.common.util.concurrent.AbstractFuture:
     static synthetic java.lang.Object access$300(com.google.common.util.concurrent.AbstractFuture)
     static synthetic java.lang.Object access$302(com.google.common.util.concurrent.AbstractFuture,java.lang.Object)
     static synthetic java.lang.Object access$400(com.google.common.util.concurrent.ListenableFuture)
-    static synthetic void access$500(com.google.common.util.concurrent.AbstractFuture)
+    static synthetic void access$500(com.google.common.util.concurrent.AbstractFuture,boolean)
     static synthetic com.google.common.util.concurrent.AbstractFuture$Listener access$700(com.google.common.util.concurrent.AbstractFuture)
     static synthetic com.google.common.util.concurrent.AbstractFuture$Listener access$702(com.google.common.util.concurrent.AbstractFuture,com.google.common.util.concurrent.AbstractFuture$Listener)
     static synthetic com.google.common.util.concurrent.AbstractFuture$Waiter access$800(com.google.common.util.concurrent.AbstractFuture)
@@ -16756,7 +16789,7 @@ com.google.common.util.concurrent.AbstractFuture:
     public boolean cancel(boolean)
     private static java.util.concurrent.CancellationException cancellationExceptionWithCause(java.lang.String,java.lang.Throwable)
     private com.google.common.util.concurrent.AbstractFuture$Listener clearListeners(com.google.common.util.concurrent.AbstractFuture$Listener)
-    private static void complete(com.google.common.util.concurrent.AbstractFuture)
+    private static void complete(com.google.common.util.concurrent.AbstractFuture,boolean)
     private static void executeListener(java.lang.Runnable,java.util.concurrent.Executor)
     public java.lang.Object get()
     public java.lang.Object get(long,java.util.concurrent.TimeUnit)
@@ -16777,8 +16810,6 @@ com.google.common.util.concurrent.AbstractFuture:
     protected final java.lang.Throwable tryInternalFastPathGetFailure()
     protected final boolean wasInterrupted()
 com.google.common.util.concurrent.AbstractIdleService$1
-com.google.common.util.concurrent.AbstractIdleService$DelegateService$1
-com.google.common.util.concurrent.AbstractIdleService$DelegateService$2
 com.google.common.util.concurrent.AbstractIdleService$DelegateService
 com.google.common.util.concurrent.AbstractIdleService$ThreadNameSupplier
 com.google.common.util.concurrent.AbstractIdleService
@@ -16794,9 +16825,6 @@ com.google.common.util.concurrent.AbstractScheduledService$FutureAsCancellable
 com.google.common.util.concurrent.AbstractScheduledService$Scheduler$1
 com.google.common.util.concurrent.AbstractScheduledService$Scheduler$2
 com.google.common.util.concurrent.AbstractScheduledService$Scheduler
-com.google.common.util.concurrent.AbstractScheduledService$ServiceDelegate$1
-com.google.common.util.concurrent.AbstractScheduledService$ServiceDelegate$2
-com.google.common.util.concurrent.AbstractScheduledService$ServiceDelegate$3
 com.google.common.util.concurrent.AbstractScheduledService$ServiceDelegate$Task
 com.google.common.util.concurrent.AbstractScheduledService$ServiceDelegate
 com.google.common.util.concurrent.AbstractScheduledService
@@ -16832,7 +16860,6 @@ com.google.common.util.concurrent.Atomics
 com.google.common.util.concurrent.Callables
 com.google.common.util.concurrent.ClosingFuture$10
 com.google.common.util.concurrent.ClosingFuture$11
-com.google.common.util.concurrent.ClosingFuture$12
 com.google.common.util.concurrent.ClosingFuture$1
 com.google.common.util.concurrent.ClosingFuture$2
 com.google.common.util.concurrent.ClosingFuture$3
@@ -16849,7 +16876,6 @@ com.google.common.util.concurrent.ClosingFuture$ClosingCallable
 com.google.common.util.concurrent.ClosingFuture$ClosingFunction
 com.google.common.util.concurrent.ClosingFuture$Combiner$1
 com.google.common.util.concurrent.ClosingFuture$Combiner$2
-com.google.common.util.concurrent.ClosingFuture$Combiner$3
 com.google.common.util.concurrent.ClosingFuture$Combiner$AsyncCombiningCallable
 com.google.common.util.concurrent.ClosingFuture$Combiner$CombiningCallable
 com.google.common.util.concurrent.ClosingFuture$Combiner2$1
@@ -16927,8 +16953,6 @@ com.google.common.util.concurrent.ForwardingListenableFuture
 com.google.common.util.concurrent.ForwardingListeningExecutorService
 com.google.common.util.concurrent.ForwardingLock
 com.google.common.util.concurrent.Futures$1
-com.google.common.util.concurrent.Futures$2
-com.google.common.util.concurrent.Futures$3
 com.google.common.util.concurrent.Futures$FutureCombiner$1
 com.google.common.util.concurrent.Futures$FutureCombiner
 com.google.common.util.concurrent.Futures$InCompletionOrderFuture
@@ -16949,6 +16973,8 @@ com.google.common.util.concurrent.Futures:
     public static com.google.common.util.concurrent.ListenableFuture immediateFuture(java.lang.Object)
     public static com.google.common.util.concurrent.ListenableFuture immediateVoidFuture()
     public static com.google.common.collect.ImmutableList inCompletionOrder(java.lang.Iterable)
+    private static synthetic void lambda$inCompletionOrder$1(com.google.common.util.concurrent.Futures$InCompletionOrderState,com.google.common.collect.ImmutableList,int)
+    private static synthetic void lambda$scheduleAsync$0(java.util.concurrent.Future)
     public static java.util.concurrent.Future lazyTransform(java.util.concurrent.Future,com.google.common.base.Function)
     public static com.google.common.util.concurrent.ListenableFuture nonCancellationPropagating(com.google.common.util.concurrent.ListenableFuture)
     public static com.google.common.util.concurrent.ListenableFuture scheduleAsync(com.google.common.util.concurrent.AsyncCallable,long,java.util.concurrent.TimeUnit,java.util.concurrent.ScheduledExecutorService)
@@ -16965,7 +16991,6 @@ com.google.common.util.concurrent.Futures:
     public static varargs com.google.common.util.concurrent.Futures$FutureCombiner whenAllSucceed(com.google.common.util.concurrent.ListenableFuture[])
     public static com.google.common.util.concurrent.ListenableFuture withTimeout(com.google.common.util.concurrent.ListenableFuture,long,java.util.concurrent.TimeUnit,java.util.concurrent.ScheduledExecutorService)
     private static void wrapAndThrowUnchecked(java.lang.Throwable)
-com.google.common.util.concurrent.FuturesGetChecked$1
 com.google.common.util.concurrent.FuturesGetChecked$GetCheckedTypeValidator
 com.google.common.util.concurrent.FuturesGetChecked$GetCheckedTypeValidatorHolder$WeakSetValidator
 com.google.common.util.concurrent.FuturesGetChecked$GetCheckedTypeValidatorHolder
@@ -17225,7 +17250,7 @@ com.google.firebase.analytics.FirebaseAnalytics:
     public final void setSessionTimeoutDuration(long)
     public final void setUserId(java.lang.String)
     public final void setUserProperty(java.lang.String,java.lang.String)
-    static synthetic bridge com.google.android.gms.internal.measurement.zzdf zza(com.google.firebase.analytics.FirebaseAnalytics)
+    static synthetic bridge com.google.android.gms.internal.measurement.zzds zza(com.google.firebase.analytics.FirebaseAnalytics)
     private final java.util.concurrent.ExecutorService zza()
 com.google.firebase.analytics.ParametersBuilder
 com.google.firebase.analytics.connector.AnalyticsConnector$AnalyticsConnectorHandle
@@ -17256,7 +17281,7 @@ com.google.firebase.analytics.connector.AnalyticsConnectorImpl:
     private final boolean zza(java.lang.String)
 com.google.firebase.analytics.connector.R
 com.google.firebase.analytics.connector.internal.zza
-com.google.firebase.analytics.connector.internal.zzb
+com.google.firebase.analytics.connector.internal.zzc
 com.google.firebase.analytics.connector.internal.zzd
 com.google.firebase.analytics.connector.internal.zze
 com.google.firebase.analytics.connector.internal.zzf
@@ -17268,13 +17293,13 @@ com.google.firebase.analytics.ktx.ktxtesting.TestingKt
 com.google.firebase.analytics.ktxtesting.TestingKt
 com.google.firebase.analytics.zza
 com.google.firebase.analytics.zzb
-com.google.firebase.analytics.zzc:
+com.google.firebase.analytics.zzc
+com.google.firebase.analytics.zzd:
     public final java.lang.Object zza(int)
-    public final void zza(com.google.android.gms.measurement.internal.zzil)
-    public final void zza(com.google.android.gms.measurement.internal.zzim)
+    public final void zza(com.google.android.gms.measurement.internal.zziu)
+    public final void zza(com.google.android.gms.measurement.internal.zzix)
     public final void zza(java.lang.String,java.lang.String,android.os.Bundle,long)
-    public final void zzb(com.google.android.gms.measurement.internal.zzil)
-com.google.firebase.analytics.zzd
+    public final void zzb(com.google.android.gms.measurement.internal.zzix)
 com.google.firebase.annotations.DeferredApi
 com.google.firebase.annotations.PreviewApi
 com.google.firebase.annotations.PublicApi
@@ -17444,24 +17469,13 @@ com.google.firebase.events.Subscriber:
     public abstract void subscribe(java.lang.Class,com.google.firebase.events.EventHandler)
     public abstract void unsubscribe(java.lang.Class,com.google.firebase.events.EventHandler)
 com.google.firebase.firebase_analytics.R
-com.google.firebase.firestore.AggregateField$AverageAggregateField:
-    private void <init>(com.google.firebase.firestore.FieldPath)
-    synthetic void <init>(com.google.firebase.firestore.FieldPath,com.google.firebase.firestore.AggregateField$1)
-com.google.firebase.firestore.AggregateField$SumAggregateField:
-    private void <init>(com.google.firebase.firestore.FieldPath)
-    synthetic void <init>(com.google.firebase.firestore.FieldPath,com.google.firebase.firestore.AggregateField$1)
 com.google.firebase.firestore.AggregateField:
     public static com.google.firebase.firestore.AggregateField$AverageAggregateField average(com.google.firebase.firestore.FieldPath)
-    public static com.google.firebase.firestore.AggregateField$AverageAggregateField average(java.lang.String)
     public static com.google.firebase.firestore.AggregateField$SumAggregateField sum(com.google.firebase.firestore.FieldPath)
-    public static com.google.firebase.firestore.AggregateField$SumAggregateField sum(java.lang.String)
 com.google.firebase.firestore.AggregateQuery:
     public java.util.List getAggregateFields()
 com.google.firebase.firestore.AggregateQuerySnapshot:
     static com.google.firebase.firestore.AggregateQuerySnapshot createWithCount(com.google.firebase.firestore.AggregateQuery,long)
-    public java.lang.Double get(com.google.firebase.firestore.AggregateField$AverageAggregateField)
-    public java.lang.Object get(com.google.firebase.firestore.AggregateField)
-    public java.lang.Double getDouble(com.google.firebase.firestore.AggregateField)
     public com.google.firebase.firestore.AggregateQuery getQuery()
 com.google.firebase.firestore.BuildConfig
 com.google.firebase.firestore.CollectionReference:
@@ -17476,11 +17490,14 @@ com.google.firebase.firestore.DocumentReference:
     public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(android.app.Activity,com.google.firebase.firestore.EventListener)
     public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(android.app.Activity,com.google.firebase.firestore.MetadataChanges,com.google.firebase.firestore.EventListener)
     public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(com.google.firebase.firestore.EventListener)
+    public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(com.google.firebase.firestore.MetadataChanges,com.google.firebase.firestore.EventListener)
     public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(java.util.concurrent.Executor,com.google.firebase.firestore.EventListener)
+    public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(java.util.concurrent.Executor,com.google.firebase.firestore.MetadataChanges,com.google.firebase.firestore.EventListener)
     public com.google.firebase.firestore.CollectionReference collection(java.lang.String)
     public com.google.android.gms.tasks.Task get()
     public java.lang.String getId()
     public com.google.firebase.firestore.CollectionReference getParent()
+    private static com.google.firebase.firestore.core.EventManager$ListenOptions internalOptions(com.google.firebase.firestore.MetadataChanges)
     public varargs com.google.android.gms.tasks.Task update(java.lang.String,java.lang.Object,java.lang.Object[])
     public com.google.android.gms.tasks.Task update(java.util.Map)
 com.google.firebase.firestore.DocumentSnapshot:
@@ -17588,17 +17605,19 @@ com.google.firebase.firestore.MemoryLruGcSettings:
     synthetic void <init>(long,com.google.firebase.firestore.MemoryLruGcSettings$1)
     public static com.google.firebase.firestore.MemoryLruGcSettings$Builder newBuilder()
 com.google.firebase.firestore.PersistentCacheIndexManager
-com.google.firebase.firestore.Query$1
 com.google.firebase.firestore.Query:
     public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(android.app.Activity,com.google.firebase.firestore.EventListener)
     public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(android.app.Activity,com.google.firebase.firestore.MetadataChanges,com.google.firebase.firestore.EventListener)
     public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(com.google.firebase.firestore.EventListener)
+    public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(com.google.firebase.firestore.MetadataChanges,com.google.firebase.firestore.EventListener)
     public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(java.util.concurrent.Executor,com.google.firebase.firestore.EventListener)
-    public varargs com.google.firebase.firestore.AggregateQuery aggregate(com.google.firebase.firestore.AggregateField,com.google.firebase.firestore.AggregateField[])
+    public com.google.firebase.firestore.ListenerRegistration addSnapshotListener(java.util.concurrent.Executor,com.google.firebase.firestore.MetadataChanges,com.google.firebase.firestore.EventListener)
     private com.google.firebase.firestore.core.Bound boundFromDocumentSnapshot(java.lang.String,com.google.firebase.firestore.DocumentSnapshot,boolean)
+    public com.google.firebase.firestore.AggregateQuery count()
     public com.google.firebase.firestore.Query endAt(com.google.firebase.firestore.DocumentSnapshot)
     public com.google.firebase.firestore.Query endBefore(com.google.firebase.firestore.DocumentSnapshot)
     public com.google.android.gms.tasks.Task get()
+    private static com.google.firebase.firestore.core.EventManager$ListenOptions internalOptions(com.google.firebase.firestore.MetadataChanges)
     public com.google.firebase.firestore.Query orderBy(com.google.firebase.firestore.FieldPath)
     public com.google.firebase.firestore.Query orderBy(java.lang.String)
     public com.google.firebase.firestore.Query orderBy(java.lang.String,com.google.firebase.firestore.Query$Direction)
@@ -17638,6 +17657,9 @@ com.google.firebase.firestore.R
 com.google.firebase.firestore.SetOptions:
     public static com.google.firebase.firestore.SetOptions mergeFields(java.util.List)
     public static varargs com.google.firebase.firestore.SetOptions mergeFields(java.lang.String[])
+com.google.firebase.firestore.SnapshotListenOptions$Builder:
+    public com.google.firebase.firestore.SnapshotListenOptions$Builder setActivity(android.app.Activity)
+    public com.google.firebase.firestore.SnapshotListenOptions$Builder setExecutor(java.util.concurrent.Executor)
 com.google.firebase.firestore.Transaction:
     public varargs com.google.firebase.firestore.Transaction update(com.google.firebase.firestore.DocumentReference,com.google.firebase.firestore.FieldPath,java.lang.Object,java.lang.Object[])
     public varargs com.google.firebase.firestore.Transaction update(com.google.firebase.firestore.DocumentReference,java.lang.String,java.lang.Object,java.lang.Object[])
@@ -18483,6 +18505,12 @@ com.google.firebase.ktx.R$string
 com.google.firebase.ktx.R$style
 com.google.firebase.ktx.R$styleable
 com.google.firebase.ktx.R
+com.google.firebase.logger.Logger$AndroidLogger$WhenMappings
+com.google.firebase.logger.Logger$AndroidLogger
+com.google.firebase.logger.Logger$Companion
+com.google.firebase.logger.Logger$FakeLogger
+com.google.firebase.logger.Logger$Level
+com.google.firebase.logger.Logger
 com.google.firebase.measurement.R
 com.google.firebase.measurement_impl.R
 com.google.firebase.platforminfo.GlobalLibraryVersionRegistrar:
@@ -19746,6 +19774,7 @@ com.google.firestore.v1.ExistenceFilter:
 com.google.firestore.v1.ExistenceFilterOrBuilder
 com.google.firestore.v1.FirestoreGrpc$2
 com.google.firestore.v1.FirestoreGrpc$3
+com.google.firestore.v1.FirestoreGrpc$AsyncService
 com.google.firestore.v1.FirestoreGrpc$FirestoreBlockingStub
 com.google.firestore.v1.FirestoreGrpc$FirestoreFutureStub
 com.google.firestore.v1.FirestoreGrpc$FirestoreImplBase
@@ -19791,6 +19820,7 @@ com.google.firestore.v1.FirestoreGrpc:
     private static volatile io.grpc.MethodDescriptor getRunQueryMethod
     private static volatile io.grpc.MethodDescriptor getUpdateDocumentMethod
     private static volatile io.grpc.ServiceDescriptor serviceDescriptor
+    public static final io.grpc.ServerServiceDefinition bindService(com.google.firestore.v1.FirestoreGrpc$AsyncService)
     public static io.grpc.MethodDescriptor getBeginTransactionMethod()
     public static io.grpc.MethodDescriptor getCreateDocumentMethod()
     public static io.grpc.MethodDescriptor getDeleteDocumentMethod()
@@ -21814,6 +21844,12 @@ com.google.gson.JsonSyntaxException
 com.google.gson.LongSerializationPolicy$1
 com.google.gson.LongSerializationPolicy$2
 com.google.gson.LongSerializationPolicy
+com.google.gson.ReflectionAccessFilter$1
+com.google.gson.ReflectionAccessFilter$2
+com.google.gson.ReflectionAccessFilter$3
+com.google.gson.ReflectionAccessFilter$4
+com.google.gson.ReflectionAccessFilter$FilterResult
+com.google.gson.ReflectionAccessFilter
 com.google.gson.ToNumberPolicy$1
 com.google.gson.ToNumberPolicy$2
 com.google.gson.ToNumberPolicy$3
@@ -21828,6 +21864,7 @@ com.google.gson.annotations.JsonAdapter
 com.google.gson.annotations.SerializedName
 com.google.gson.annotations.Since
 com.google.gson.annotations.Until
+com.google.gson.annotations.package-info
 com.google.gson.internal.$Gson$Preconditions
 com.google.gson.internal.$Gson$Types$GenericArrayTypeImpl
 com.google.gson.internal.$Gson$Types$ParameterizedTypeImpl
@@ -21841,7 +21878,10 @@ com.google.gson.internal.ConstructorConstructor$14
 com.google.gson.internal.ConstructorConstructor$15
 com.google.gson.internal.ConstructorConstructor$16
 com.google.gson.internal.ConstructorConstructor$17
+com.google.gson.internal.ConstructorConstructor$18
+com.google.gson.internal.ConstructorConstructor$19
 com.google.gson.internal.ConstructorConstructor$1
+com.google.gson.internal.ConstructorConstructor$20
 com.google.gson.internal.ConstructorConstructor$2
 com.google.gson.internal.ConstructorConstructor$3
 com.google.gson.internal.ConstructorConstructor$4
@@ -21866,9 +21906,16 @@ com.google.gson.internal.LinkedTreeMap$KeySet
 com.google.gson.internal.LinkedTreeMap$LinkedTreeMapIterator
 com.google.gson.internal.LinkedTreeMap$Node
 com.google.gson.internal.LinkedTreeMap
+com.google.gson.internal.NonNullElementWrapperList
 com.google.gson.internal.ObjectConstructor
 com.google.gson.internal.PreJava9DateFormatProvider
 com.google.gson.internal.Primitives
+com.google.gson.internal.ReflectionAccessFilterHelper$1
+com.google.gson.internal.ReflectionAccessFilterHelper$AccessChecker$1
+com.google.gson.internal.ReflectionAccessFilterHelper$AccessChecker$2
+com.google.gson.internal.ReflectionAccessFilterHelper$AccessChecker
+com.google.gson.internal.ReflectionAccessFilterHelper
+com.google.gson.internal.Streams$1
 com.google.gson.internal.Streams$AppendableWriter$CurrentWrite
 com.google.gson.internal.Streams$AppendableWriter
 com.google.gson.internal.Streams
@@ -21889,6 +21936,7 @@ com.google.gson.internal.bind.DefaultDateTypeAdapter$DateType
 com.google.gson.internal.bind.DefaultDateTypeAdapter
 com.google.gson.internal.bind.JsonAdapterAnnotationTypeAdapterFactory
 com.google.gson.internal.bind.JsonTreeReader$1
+com.google.gson.internal.bind.JsonTreeReader$2
 com.google.gson.internal.bind.JsonTreeReader
 com.google.gson.internal.bind.JsonTreeWriter$1
 com.google.gson.internal.bind.JsonTreeWriter
@@ -21903,7 +21951,10 @@ com.google.gson.internal.bind.ObjectTypeAdapter
 com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$1
 com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$Adapter
 com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$BoundField
+com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$FieldReflectionAdapter
+com.google.gson.internal.bind.ReflectiveTypeAdapterFactory$RecordAdapter
 com.google.gson.internal.bind.ReflectiveTypeAdapterFactory
+com.google.gson.internal.bind.SerializationDelegatingTypeAdapter
 com.google.gson.internal.bind.TreeTypeAdapter$1
 com.google.gson.internal.bind.TreeTypeAdapter$GsonContextImpl
 com.google.gson.internal.bind.TreeTypeAdapter$SingleTypeFactory
@@ -21949,6 +22000,11 @@ com.google.gson.internal.bind.TypeAdapters$EnumTypeAdapter$1
 com.google.gson.internal.bind.TypeAdapters$EnumTypeAdapter
 com.google.gson.internal.bind.TypeAdapters
 com.google.gson.internal.bind.util.ISO8601Utils
+com.google.gson.internal.package-info
+com.google.gson.internal.reflect.ReflectionHelper$1
+com.google.gson.internal.reflect.ReflectionHelper$RecordHelper
+com.google.gson.internal.reflect.ReflectionHelper$RecordNotSupportedHelper
+com.google.gson.internal.reflect.ReflectionHelper$RecordSupportedHelper
 com.google.gson.internal.reflect.ReflectionHelper
 com.google.gson.internal.sql.SqlDateTypeAdapter$1
 com.google.gson.internal.sql.SqlDateTypeAdapter
@@ -21959,7 +22015,9 @@ com.google.gson.internal.sql.SqlTimestampTypeAdapter
 com.google.gson.internal.sql.SqlTypesSupport$1
 com.google.gson.internal.sql.SqlTypesSupport$2
 com.google.gson.internal.sql.SqlTypesSupport
+com.google.gson.package-info
 com.google.gson.reflect.TypeToken
+com.google.gson.reflect.package-info
 com.google.gson.stream.JsonReader$1:
     public void promoteNameToValue(com.google.gson.stream.JsonReader)
 com.google.gson.stream.JsonReader:
@@ -22005,11 +22063,13 @@ com.google.gson.stream.MalformedJsonException:
     private static final long serialVersionUID
     public void <init>(java.lang.String,java.lang.Throwable)
     public void <init>(java.lang.Throwable)
+com.google.gson.stream.package-info
 com.google.j2objc.annotations.AutoreleasePool
 com.google.j2objc.annotations.J2ObjCIncompatible
 com.google.j2objc.annotations.LoopTranslation$LoopStyle
 com.google.j2objc.annotations.LoopTranslation
 com.google.j2objc.annotations.ObjectiveCName
+com.google.j2objc.annotations.OnDealloc
 com.google.j2objc.annotations.Property
 com.google.j2objc.annotations.ReflectionSupport$Level
 com.google.j2objc.annotations.ReflectionSupport
@@ -22226,6 +22286,7 @@ com.google.protobuf.ByteString$BoundedByteString:
     private void readObject(java.io.ObjectInputStream)
     java.lang.Object writeReplace()
 com.google.protobuf.ByteString$LeafByteString:
+    private static final long serialVersionUID
     void writeToReverse(com.google.protobuf.ByteOutput)
 com.google.protobuf.ByteString$LiteralByteString:
     private static final long serialVersionUID
@@ -22240,6 +22301,7 @@ com.google.protobuf.ByteString:
     static final int MAX_READ_FROM_CHUNK_SIZE
     static final int MIN_READ_FROM_CHUNK_SIZE
     private static final int UNSIGNED_BYTE_MASK
+    private static final long serialVersionUID
     public abstract java.util.List asReadOnlyByteBufferList()
     public static com.google.protobuf.ByteString copyFrom(java.lang.String,java.lang.String)
     public static com.google.protobuf.ByteString copyFrom(java.lang.String,java.nio.charset.Charset)
@@ -22361,7 +22423,6 @@ com.google.protobuf.CodedInputStream:
     abstract long readRawVarint64SlowPath()
     public abstract void readUnknownGroup(int,com.google.protobuf.MessageLite$Builder)
     public abstract void resetSizeCounter()
-    public final int setRecursionLimit(int)
     final boolean shouldDiscardUnknownFields()
     public abstract boolean skipField(int,com.google.protobuf.CodedOutputStream)
     public abstract void skipMessage()
@@ -22748,7 +22809,7 @@ com.google.protobuf.GeneratedMessageLite:
     protected static com.google.protobuf.Internal$DoubleList emptyDoubleList()
     protected static com.google.protobuf.Internal$FloatList emptyFloatList()
     protected static com.google.protobuf.Internal$LongList emptyLongList()
-    private final void ensureUnknownFieldsInitialized()
+    private void ensureUnknownFieldsInitialized()
     static varargs java.lang.reflect.Method getMethodOrDie(java.lang.Class,java.lang.String,java.lang.Class[])
     protected void mergeLengthDelimitedField(int,com.google.protobuf.ByteString)
     protected final void mergeUnknownFields(com.google.protobuf.UnknownFieldSetLite)
@@ -22827,21 +22888,25 @@ com.google.protobuf.Internal$BooleanList:
     public abstract void addBoolean(boolean)
     public abstract boolean getBoolean(int)
     public abstract com.google.protobuf.Internal$BooleanList mutableCopyWithCapacity(int)
+    public synthetic bridge com.google.protobuf.Internal$ProtobufList mutableCopyWithCapacity(int)
     public abstract boolean setBoolean(int,boolean)
 com.google.protobuf.Internal$DoubleList:
     public abstract void addDouble(double)
     public abstract double getDouble(int)
     public abstract com.google.protobuf.Internal$DoubleList mutableCopyWithCapacity(int)
+    public synthetic bridge com.google.protobuf.Internal$ProtobufList mutableCopyWithCapacity(int)
     public abstract double setDouble(int,double)
 com.google.protobuf.Internal$FloatList:
     public abstract void addFloat(float)
     public abstract float getFloat(int)
     public abstract com.google.protobuf.Internal$FloatList mutableCopyWithCapacity(int)
+    public synthetic bridge com.google.protobuf.Internal$ProtobufList mutableCopyWithCapacity(int)
     public abstract float setFloat(int,float)
 com.google.protobuf.Internal$IntList:
     public abstract void addInt(int)
     public abstract int getInt(int)
     public abstract com.google.protobuf.Internal$IntList mutableCopyWithCapacity(int)
+    public synthetic bridge com.google.protobuf.Internal$ProtobufList mutableCopyWithCapacity(int)
     public abstract int setInt(int,int)
 com.google.protobuf.Internal$ListAdapter$Converter
 com.google.protobuf.Internal$ListAdapter
@@ -22849,6 +22914,7 @@ com.google.protobuf.Internal$LongList:
     public abstract void addLong(long)
     public abstract long getLong(int)
     public abstract com.google.protobuf.Internal$LongList mutableCopyWithCapacity(int)
+    public synthetic bridge com.google.protobuf.Internal$ProtobufList mutableCopyWithCapacity(int)
     public abstract long setLong(int,long)
 com.google.protobuf.Internal$MapAdapter$1
 com.google.protobuf.Internal$MapAdapter$Converter
@@ -22884,6 +22950,12 @@ com.google.protobuf.InvalidProtocolBufferException:
     public void <init>(java.lang.String,java.lang.Exception)
     public com.google.protobuf.MessageLite getUnfinishedMessage()
     public java.io.IOException unwrapIOException()
+com.google.protobuf.Java8Compatibility:
+    private void <init>()
+    static void clear(java.nio.Buffer)
+    static void flip(java.nio.Buffer)
+    static void mark(java.nio.Buffer)
+    static void reset(java.nio.Buffer)
 com.google.protobuf.JavaType:
     public java.lang.Object getDefaultDefault()
     public java.lang.Class getType()
@@ -22923,7 +22995,7 @@ com.google.protobuf.LazyStringArrayList:
     public java.util.List asByteArrayList()
     private static com.google.protobuf.ByteString asByteString(java.lang.Object)
     public java.util.List asByteStringList()
-    static com.google.protobuf.LazyStringArrayList emptyList()
+    public static com.google.protobuf.LazyStringArrayList emptyList()
     public byte[] getByteArray(int)
     public com.google.protobuf.ByteString getByteString(int)
     public void mergeFrom(com.google.protobuf.LazyStringList)
@@ -23069,7 +23141,6 @@ com.google.protobuf.Protobuf:
     public void writeTo(java.lang.Object,com.google.protobuf.Writer)
 com.google.protobuf.ProtobufArrayList:
     void <init>()
-com.google.protobuf.ProtobufLists
 com.google.protobuf.ProtocolStringList
 com.google.protobuf.Reader:
     public static final int READ_DONE
@@ -23629,10 +23700,12 @@ io.flutter.embedding.android.AndroidTouchProcessor$PointerDeviceKind
 io.flutter.embedding.android.AndroidTouchProcessor$PointerSignalKind
 io.flutter.embedding.android.AndroidTouchProcessor:
     static final int BYTES_PER_FIELD
+    static final int DEFAULT_HORIZONTAL_SCROLL_FACTOR
+    static final int DEFAULT_VERTICAL_SCROLL_FACTOR
+    private static final int IMPLICIT_VIEW_ID
     private static final int POINTER_DATA_FIELD_COUNT
     private static final int POINTER_DATA_FLAG_BATCHED
-io.flutter.embedding.android.DrawableSplashScreen$DrawableSplashScreenView:
-    public void <init>(android.content.Context,android.util.AttributeSet)
+    private static final java.lang.String TAG
 io.flutter.embedding.android.FlutterActivity$CachedEngineIntentBuilder
 io.flutter.embedding.android.FlutterActivity$NewEngineInGroupIntentBuilder
 io.flutter.embedding.android.FlutterActivity$NewEngineIntentBuilder
@@ -23673,8 +23746,6 @@ io.flutter.embedding.android.FlutterImageView:
     public void <init>(android.content.Context)
     public void <init>(android.content.Context,android.util.AttributeSet)
 io.flutter.embedding.android.FlutterPlayStoreSplitApplication
-io.flutter.embedding.android.FlutterSplashView:
-    public void <init>(android.content.Context,android.util.AttributeSet)
 io.flutter.embedding.android.FlutterSurfaceView:
     private static final java.lang.String TAG
     public void <init>(android.content.Context)
@@ -23690,10 +23761,15 @@ io.flutter.embedding.android.FlutterView:
     public void <init>(android.content.Context,io.flutter.embedding.android.RenderMode)
     public void <init>(android.content.Context,io.flutter.embedding.android.RenderMode,io.flutter.embedding.android.TransparencyMode)
     public void <init>(android.content.Context,io.flutter.embedding.android.TransparencyMode)
+    public void addFlutterEngineAttachmentListener(io.flutter.embedding.android.FlutterView$FlutterEngineAttachmentListener)
     private android.view.View findViewByAccessibilityIdRootedAtCurrentView(int,android.view.View)
     public android.view.View findViewByAccessibilityIdTraversal(int)
+    public boolean hasRenderedFirstFrame()
+    public void removeFlutterEngineAttachmentListener(io.flutter.embedding.android.FlutterView$FlutterEngineAttachmentListener)
 io.flutter.embedding.android.KeyChannelResponder:
     private static final java.lang.String TAG
+io.flutter.embedding.android.KeyData$DeviceType:
+    static io.flutter.embedding.android.KeyData$DeviceType fromLong(long)
 io.flutter.embedding.android.KeyData$Type:
     static io.flutter.embedding.android.KeyData$Type fromLong(long)
 io.flutter.embedding.android.KeyData:
@@ -23715,7 +23791,8 @@ io.flutter.embedding.android.KeyboardMap:
     public static final long kUnicodePlane
     public static final long kValueMask
     public void <init>()
-io.flutter.embedding.android.SplashScreenProvider
+io.flutter.embedding.android.MotionEventTracker:
+    private static final java.lang.String TAG
 io.flutter.embedding.engine.FlutterEngine:
     private static final java.lang.String TAG
     public void <init>(android.content.Context)
@@ -23740,7 +23817,6 @@ io.flutter.embedding.engine.FlutterEngineConnectionRegistry$DefaultFlutterAssets
     public java.lang.String getAssetFilePathBySubpath(java.lang.String)
     public java.lang.String getAssetFilePathBySubpath(java.lang.String,java.lang.String)
 io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineActivityPluginBinding:
-    public void addActivityResultListener(io.flutter.plugin.common.PluginRegistry$ActivityResultListener)
     public void addOnNewIntentListener(io.flutter.plugin.common.PluginRegistry$NewIntentListener)
     public void addOnSaveStateListener(io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding$OnSaveInstanceStateListener)
     public void addOnUserLeaveHintListener(io.flutter.plugin.common.PluginRegistry$UserLeaveHintListener)
@@ -23748,7 +23824,6 @@ io.flutter.embedding.engine.FlutterEngineConnectionRegistry$FlutterEngineActivit
     public void addRequestPermissionsResultListener(io.flutter.plugin.common.PluginRegistry$RequestPermissionsResultListener)
     public java.lang.Object getLifecycle()
     void onWindowFocusChanged(boolean)
-    public void removeActivityResultListener(io.flutter.plugin.common.PluginRegistry$ActivityResultListener)
     public void removeOnNewIntentListener(io.flutter.plugin.common.PluginRegistry$NewIntentListener)
     public void removeOnSaveStateListener(io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding$OnSaveInstanceStateListener)
     public void removeOnUserLeaveHintListener(io.flutter.plugin.common.PluginRegistry$UserLeaveHintListener)
@@ -23823,6 +23898,7 @@ io.flutter.embedding.engine.FlutterShellArgs:
     public static final java.lang.String ARG_KEY_TRACE_SKIA_ALLOWLIST
     public static final java.lang.String ARG_KEY_TRACE_STARTUP
     public static final java.lang.String ARG_KEY_TRACE_SYSTRACE
+    public static final java.lang.String ARG_KEY_TRACE_TO_FILE
     public static final java.lang.String ARG_KEY_USE_TEST_FONTS
     public static final java.lang.String ARG_KEY_VERBOSE_LOGGING
     public static final java.lang.String ARG_KEY_VM_SERVICE_PORT
@@ -23834,6 +23910,7 @@ io.flutter.embedding.engine.FlutterShellArgs:
     public static final java.lang.String ARG_TRACE_SKIA_ALLOWLIST
     public static final java.lang.String ARG_TRACE_STARTUP
     public static final java.lang.String ARG_TRACE_SYSTRACE
+    public static final java.lang.String ARG_TRACE_TO_FILE
     public static final java.lang.String ARG_USE_TEST_FONTS
     public static final java.lang.String ARG_VERBOSE_LOGGING
     public static final java.lang.String ARG_VM_SERVICE_PORT
@@ -23852,6 +23929,7 @@ io.flutter.embedding.engine.dart.DartExecutor:
     public void executeDartCallback(io.flutter.embedding.engine.dart.DartExecutor$DartCallback)
     public void executeDartEntrypoint(io.flutter.embedding.engine.dart.DartExecutor$DartEntrypoint)
     public io.flutter.plugin.common.BinaryMessenger getBinaryMessenger()
+    public java.lang.String getIsolateServiceId()
     public int getPendingChannelResponseCount()
     public void setIsolateServiceIdListener(io.flutter.embedding.engine.dart.DartExecutor$IsolateServiceIdListener)
 io.flutter.embedding.engine.dart.DartMessenger:
@@ -23886,6 +23964,7 @@ io.flutter.embedding.engine.loader.FlutterLoader:
     private static final java.lang.String ENABLE_VULKAN_VALIDATION_META_DATA_KEY
     static final java.lang.String FLUTTER_ASSETS_DIR_KEY
     private static final java.lang.String IMPELLER_BACKEND_META_DATA_KEY
+    private static final java.lang.String IMPELLER_OPENGL_GPU_TRACING_DATA_KEY
     static final java.lang.String ISOLATE_SNAPSHOT_DATA_KEY
     private static final java.lang.String LEAK_VM_META_DATA_KEY
     private static final java.lang.String OLD_GEN_HEAP_SIZE_META_DATA_KEY
@@ -23952,14 +24031,12 @@ io.flutter.embedding.engine.plugins.PluginRegistry:
     public abstract void remove(java.util.Set)
     public abstract void removeAll()
 io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding:
-    public abstract void addActivityResultListener(io.flutter.plugin.common.PluginRegistry$ActivityResultListener)
     public abstract void addOnNewIntentListener(io.flutter.plugin.common.PluginRegistry$NewIntentListener)
     public abstract void addOnSaveStateListener(io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding$OnSaveInstanceStateListener)
     public abstract void addOnUserLeaveHintListener(io.flutter.plugin.common.PluginRegistry$UserLeaveHintListener)
     public abstract void addOnWindowFocusChangedListener(io.flutter.plugin.common.PluginRegistry$WindowFocusChangedListener)
     public abstract void addRequestPermissionsResultListener(io.flutter.plugin.common.PluginRegistry$RequestPermissionsResultListener)
     public abstract java.lang.Object getLifecycle()
-    public abstract void removeActivityResultListener(io.flutter.plugin.common.PluginRegistry$ActivityResultListener)
     public abstract void removeOnNewIntentListener(io.flutter.plugin.common.PluginRegistry$NewIntentListener)
     public abstract void removeOnSaveStateListener(io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding$OnSaveInstanceStateListener)
     public abstract void removeOnUserLeaveHintListener(io.flutter.plugin.common.PluginRegistry$UserLeaveHintListener)
@@ -23985,21 +24062,16 @@ io.flutter.embedding.engine.plugins.shim.ShimRegistrar
 io.flutter.embedding.engine.plugins.util.GeneratedPluginRegister:
     private static final java.lang.String TAG
     public void <init>()
-io.flutter.embedding.engine.renderer.FlutterRenderer$SurfaceTextureRegistryEntry:
-    public void release()
-    private void removeListener()
 io.flutter.embedding.engine.renderer.FlutterRenderer$ViewportMetrics:
     public static final int unsetValue
 io.flutter.embedding.engine.renderer.FlutterRenderer:
     private static final java.lang.String TAG
-    static synthetic void access$600(io.flutter.embedding.engine.renderer.FlutterRenderer,long)
     public void dispatchSemanticsAction(int,int,java.nio.ByteBuffer,int)
     public android.graphics.Bitmap getBitmap()
-    void removeOnTrimMemoryListener(io.flutter.view.TextureRegistry$OnTrimMemoryListener)
     public void setAccessibilityFeatures(int)
-    private void unregisterTexture(long)
 io.flutter.embedding.engine.systemchannels.AccessibilityChannel:
     private static final java.lang.String TAG
+    public void <init>(io.flutter.plugin.common.BasicMessageChannel,io.flutter.embedding.engine.FlutterJNI)
 io.flutter.embedding.engine.systemchannels.DeferredComponentChannel:
     private static final java.lang.String TAG
     public void completeInstallError(java.lang.String,java.lang.String)
@@ -24028,12 +24100,18 @@ io.flutter.embedding.engine.systemchannels.PlatformViewsChannel$PlatformViewsHan
     public static final long NON_TEXTURE_FALLBACK
 io.flutter.embedding.engine.systemchannels.PlatformViewsChannel:
     private static final java.lang.String TAG
+io.flutter.embedding.engine.systemchannels.ProcessTextChannel:
+    private static final java.lang.String CHANNEL_NAME
+    private static final java.lang.String METHOD_PROCESS_TEXT_ACTION
+    private static final java.lang.String METHOD_QUERY_TEXT_ACTIONS
+    private static final java.lang.String TAG
 io.flutter.embedding.engine.systemchannels.RestorationChannel:
     private static final java.lang.String TAG
 io.flutter.embedding.engine.systemchannels.SettingsChannel:
     private static final java.lang.String ALWAYS_USE_24_HOUR_FORMAT
     private static final java.lang.String BRIEFLY_SHOW_PASSWORD
     public static final java.lang.String CHANNEL_NAME
+    private static final java.lang.String CONFIGURATION_ID
     private static final java.lang.String NATIVE_SPELL_CHECK_SERVICE_DEFINED
     private static final java.lang.String PLATFORM_BRIGHTNESS
     private static final java.lang.String TAG
@@ -24048,8 +24126,11 @@ io.flutter.plugin.common.ActivityLifecycleListener
 io.flutter.plugin.common.BasicMessageChannel:
     public static final java.lang.String CHANNEL_BUFFERS_CHANNEL
     private static final java.lang.String TAG
+    private static java.nio.ByteBuffer packetFromEncodedMessage(java.nio.ByteBuffer)
     public void resizeChannelBuffer(int)
-    static void resizeChannelBuffer(io.flutter.plugin.common.BinaryMessenger,java.lang.String,int)
+    public static void resizeChannelBuffer(io.flutter.plugin.common.BinaryMessenger,java.lang.String,int)
+    public static void setWarnsOnChannelOverflow(io.flutter.plugin.common.BinaryMessenger,java.lang.String,boolean)
+    public void setWarnsOnChannelOverflow(boolean)
 io.flutter.plugin.common.BinaryCodec
 io.flutter.plugin.common.BinaryMessenger$TaskQueueOptions:
     public io.flutter.plugin.common.BinaryMessenger$TaskQueueOptions setIsSerial(boolean)
@@ -24069,6 +24150,7 @@ io.flutter.plugin.common.MethodCall:
 io.flutter.plugin.common.MethodChannel:
     private static final java.lang.String TAG
     public void resizeChannelBuffer(int)
+    public void setWarnsOnChannelOverflow(boolean)
 io.flutter.plugin.common.PluginRegistry$PluginRegistrantCallback
 io.flutter.plugin.common.PluginRegistry$Registrar
 io.flutter.plugin.common.PluginRegistry$ViewDestroyListener
@@ -24124,6 +24206,10 @@ io.flutter.plugin.editing.TextInputPlugin:
     public android.view.inputmethod.InputConnection getLastInputConnection()
 io.flutter.plugin.mouse.MouseCursorPlugin$2:
     private static final long serialVersionUID
+io.flutter.plugin.platform.ImageReaderPlatformViewRenderTarget:
+    private static final int MAX_IMAGES
+    private static final java.lang.String TAG
+    public boolean isReleased()
 io.flutter.plugin.platform.PlatformOverlayView:
     public void <init>(android.content.Context)
     public void <init>(android.content.Context,android.util.AttributeSet)
@@ -24131,19 +24217,28 @@ io.flutter.plugin.platform.PlatformPlugin:
     public static final int DEFAULT_SYSTEM_UI
     private static final java.lang.String TAG
     public void <init>(android.app.Activity,io.flutter.embedding.engine.systemchannels.PlatformChannel)
+io.flutter.plugin.platform.PlatformViewRenderTarget:
+    public abstract boolean isReleased()
 io.flutter.plugin.platform.PlatformViewWrapper:
     private static final java.lang.String TAG
-    public android.graphics.SurfaceTexture getTexture()
 io.flutter.plugin.platform.PlatformViewsController:
     private static final java.lang.String TAG
     public void disposePlatformView(int)
     public android.util.SparseArray getOverlayLayerViews()
 io.flutter.plugin.platform.SingleViewPresentation$WindowManagerHandler:
     private static final java.lang.String TAG
+io.flutter.plugin.platform.SurfaceProducerPlatformViewRenderTarget:
+    private static final java.lang.String TAG
+    public boolean isReleased()
+io.flutter.plugin.platform.SurfaceTexturePlatformViewRenderTarget:
+    private static final java.lang.String TAG
+    public boolean isReleased()
 io.flutter.plugin.platform.VirtualDisplayController:
-    public void dispose()
     void onFlutterViewAttached(android.view.View)
     void onFlutterViewDetached()
+io.flutter.plugin.text.ProcessTextPlugin:
+    private static final java.lang.String TAG
+    public void destroy()
 io.flutter.plugins.firebase.core.BuildConfig
 io.flutter.plugins.firebase.core.GeneratedAndroidFirebaseCore$FlutterError:
     public void <init>(java.lang.String,java.lang.String,java.lang.Object)
@@ -24158,7 +24253,6 @@ io.flutter.plugins.firebase.core.GeneratedAndroidFirebaseCore$PigeonFirebaseOpti
 io.flutter.plugins.firebase.core.GeneratedAndroidFirebaseCore$PigeonFirebaseOptions:
     public java.lang.String getAndroidClientId()
     public java.lang.String getAppGroupId()
-    public java.lang.String getAuthDomain()
     public java.lang.String getDeepLinkURLScheme()
     public java.lang.String getIosBundleId()
     public java.lang.String getIosClientId()
@@ -24223,6 +24317,11 @@ io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestoreMessageCodec:
 io.flutter.plugins.firebase.firestore.FlutterFirebaseFirestorePlugin:
     public static final java.lang.String DEFAULT_ERROR_CODE
     private static final java.lang.String METHOD_CHANNEL_NAME
+io.flutter.plugins.firebase.firestore.GeneratedAndroidFirebaseFirestore$AggregateQuery$Builder
+io.flutter.plugins.firebase.firestore.GeneratedAndroidFirebaseFirestore$AggregateQueryResponse:
+    public java.lang.String getField()
+    public io.flutter.plugins.firebase.firestore.GeneratedAndroidFirebaseFirestore$AggregateType getType()
+    public java.lang.Double getValue()
 io.flutter.plugins.firebase.firestore.GeneratedAndroidFirebaseFirestore$DocumentReferenceRequest$Builder
 io.flutter.plugins.firebase.firestore.GeneratedAndroidFirebaseFirestore$FirestorePigeonFirebaseApp$Builder
 io.flutter.plugins.firebase.firestore.GeneratedAndroidFirebaseFirestore$PigeonDocumentChange:
@@ -26000,6 +26099,7 @@ io.flutter.plugins.sharedpreferences.SharedPreferencesPlugin:
     private static final java.lang.String TAG
     public static void registerWith(io.flutter.plugin.common.PluginRegistry$Registrar)
 io.flutter.plugins.urllauncher.BuildConfig
+io.flutter.plugins.urllauncher.Messages$BrowserOptions$Builder
 io.flutter.plugins.urllauncher.Messages$WebViewOptions$Builder
 io.flutter.plugins.urllauncher.Messages:
     public void <init>()
@@ -26032,8 +26132,6 @@ io.flutter.util.PathUtils:
 io.flutter.util.Preconditions:
     private void <init>()
     public static void checkState(boolean)
-io.flutter.util.TraceSection:
-    public void <init>()
 io.flutter.util.ViewUtils:
     public void <init>()
 io.flutter.view.AccessibilityBridge$SemanticsNode:
@@ -26065,8 +26163,7 @@ io.flutter.view.FlutterView$SurfaceTextureRegistryEntry
 io.flutter.view.FlutterView$ViewportMetrics
 io.flutter.view.FlutterView$ZeroSides
 io.flutter.view.FlutterView
-io.flutter.view.TextureRegistry$SurfaceTextureEntry:
-    public abstract void release()
+io.flutter.view.TextureRegistry$TextureEntry
 io.flutter.view.TextureRegistry:
     public void onTrimMemory(int)
     public abstract io.flutter.view.TextureRegistry$SurfaceTextureEntry registerSurfaceTexture(android.graphics.SurfaceTexture)
@@ -26201,9 +26298,8 @@ io.grpc.CallCredentials$RequestInfo:
     public abstract io.grpc.SecurityLevel getSecurityLevel()
     public abstract io.grpc.Attributes getTransportAttrs()
 io.grpc.CallCredentials:
-    public abstract void thisUsesUnstableApi()
+    public void thisUsesUnstableApi()
 io.grpc.CallOptions$Key:
-    public static io.grpc.CallOptions$Key createWithDefault(java.lang.String,java.lang.Object)
     public java.lang.Object getDefault()
     public static io.grpc.CallOptions$Key of(java.lang.String,java.lang.Object)
 io.grpc.CallOptions:
@@ -26243,8 +26339,6 @@ io.grpc.ClientStreamTracer$StreamInfo:
     public int getPreviousAttempts()
     public boolean isTransparentRetry()
     public io.grpc.ClientStreamTracer$StreamInfo$Builder toBuilder()
-io.grpc.CompositeCallCredentials:
-    public void thisUsesUnstableApi()
 io.grpc.CompositeChannelCredentials
 io.grpc.CompressorRegistry:
     public static io.grpc.CompressorRegistry newEmptyInstance()
@@ -26524,7 +26618,6 @@ io.grpc.LoadBalancer$Helper:
     public void updateOobChannelAddresses(io.grpc.ManagedChannel,java.util.List)
 io.grpc.LoadBalancer$Subchannel:
     public io.grpc.Channel asChannel()
-    public io.grpc.ChannelLogger getChannelLogger()
 io.grpc.LoadBalancer:
     public void handleSubchannelState(io.grpc.LoadBalancer$Subchannel,io.grpc.ConnectivityStateInfo)
 io.grpc.LoadBalancerRegistry:
@@ -26635,10 +26728,7 @@ io.grpc.MethodDescriptor:
 io.grpc.NameResolver$Args:
     public io.grpc.ChannelLogger getChannelLogger()
     public java.lang.String getOverrideAuthority()
-    public java.util.concurrent.ScheduledExecutorService getScheduledExecutorService()
     public io.grpc.NameResolver$Args$Builder toBuilder()
-io.grpc.NameResolver$ResolutionResult:
-    public io.grpc.NameResolver$ResolutionResult$Builder toBuilder()
 io.grpc.NameResolver$ResolutionResultAttr
 io.grpc.NameResolverProvider:
     protected java.util.Collection getProducedSocketAddressTypes()
@@ -26731,6 +26821,13 @@ io.grpc.android.AndroidChannelBuilder:
     public static io.grpc.android.AndroidChannelBuilder fromBuilder(io.grpc.ManagedChannelBuilder)
 io.grpc.android.BuildConfig
 io.grpc.android.R
+io.grpc.android.UdsChannelBuilder
+io.grpc.android.UdsSocket$1
+io.grpc.android.UdsSocket$2
+io.grpc.android.UdsSocket$3
+io.grpc.android.UdsSocket$4
+io.grpc.android.UdsSocket
+io.grpc.android.UdsSocketFactory
 io.grpc.inprocess.AnonymousInProcessSocketAddress
 io.grpc.inprocess.InProcessChannelBuilder$1
 io.grpc.inprocess.InProcessChannelBuilder$1InProcessChannelTransportFactoryBuilder
@@ -26951,8 +27048,6 @@ io.grpc.internal.ForwardingManagedChannel:
     public boolean isShutdown()
     public boolean isTerminated()
     public void resetConnectBackoff()
-io.grpc.internal.ForwardingNameResolver:
-    public java.lang.String getServiceAuthority()
 io.grpc.internal.ForwardingReadableBuffer:
     public byte[] array()
     public int arrayOffset()
@@ -27025,6 +27120,7 @@ io.grpc.internal.JndiResourceResolverFactory$JndiResourceResolver:
 io.grpc.internal.JsonUtil:
     private static final long DURATION_SECONDS_MAX
     private static final long DURATION_SECONDS_MIN
+    public static java.lang.Float getNumberAsFloat(java.util.Map,java.lang.String)
     public static java.lang.Long getNumberAsLong(java.util.Map,java.lang.String)
 io.grpc.internal.KeepAliveEnforcer$SystemTicker
 io.grpc.internal.KeepAliveEnforcer$Ticker
@@ -27057,24 +27153,23 @@ io.grpc.internal.ManagedChannelImpl$LbHelperImpl:
     public void updateOobChannelAddresses(io.grpc.ManagedChannel,java.util.List)
 io.grpc.internal.ManagedChannelImpl$SubchannelImpl:
     public io.grpc.Channel asChannel()
-    public io.grpc.ChannelLogger getChannelLogger()
     io.grpc.InternalInstrumented getInstrumentedInternalSubchannel()
 io.grpc.internal.ManagedChannelImpl:
     static final long IDLE_TIMEOUT_MILLIS_DISABLE
     static final long SUBCHANNEL_SHUTDOWN_DELAY_SECONDS
-    static synthetic boolean access$4900(io.grpc.internal.ManagedChannelImpl)
-    static synthetic io.grpc.internal.ObjectPool access$5500(io.grpc.internal.ManagedChannelImpl)
-    static synthetic io.grpc.internal.ClientTransportFactory access$5600(io.grpc.internal.ManagedChannelImpl)
+    static synthetic boolean access$4600(io.grpc.internal.ManagedChannelImpl)
+    static synthetic io.grpc.internal.ObjectPool access$5200(io.grpc.internal.ManagedChannelImpl)
+    static synthetic io.grpc.internal.ClientTransportFactory access$5300(io.grpc.internal.ManagedChannelImpl)
+    static synthetic void access$5700(io.grpc.internal.ManagedChannelImpl,io.grpc.ConnectivityStateInfo)
     static synthetic java.lang.String access$600(io.grpc.internal.ManagedChannelImpl)
-    static synthetic void access$6000(io.grpc.internal.ManagedChannelImpl,io.grpc.ConnectivityStateInfo)
-    static synthetic io.grpc.internal.ClientTransportFactory access$6400(io.grpc.internal.ManagedChannelImpl)
-    static synthetic io.grpc.NameResolver$Args access$6500(io.grpc.internal.ManagedChannelImpl)
-    static synthetic io.grpc.NameResolver$Factory access$6600(io.grpc.internal.ManagedChannelImpl)
-    static synthetic io.grpc.internal.ManagedChannelImpl$ExecutorHolder access$6700(io.grpc.internal.ManagedChannelImpl)
-    static synthetic io.grpc.ChannelCredentials access$6800(io.grpc.internal.ManagedChannelImpl)
-    static synthetic io.grpc.NameResolverRegistry access$6900(io.grpc.internal.ManagedChannelImpl)
+    static synthetic io.grpc.internal.ClientTransportFactory access$6100(io.grpc.internal.ManagedChannelImpl)
+    static synthetic io.grpc.NameResolver$Args access$6200(io.grpc.internal.ManagedChannelImpl)
+    static synthetic io.grpc.NameResolver$Factory access$6300(io.grpc.internal.ManagedChannelImpl)
+    static synthetic io.grpc.internal.ManagedChannelImpl$ExecutorHolder access$6400(io.grpc.internal.ManagedChannelImpl)
+    static synthetic io.grpc.ChannelCredentials access$6500(io.grpc.internal.ManagedChannelImpl)
+    static synthetic io.grpc.NameResolverRegistry access$6600(io.grpc.internal.ManagedChannelImpl)
+    static synthetic io.grpc.internal.ManagedChannelImpl$ExecutorHolder access$7700(io.grpc.internal.ManagedChannelImpl)
     static synthetic java.util.Set access$800(io.grpc.internal.ManagedChannelImpl)
-    static synthetic io.grpc.internal.ManagedChannelImpl$ExecutorHolder access$8100(io.grpc.internal.ManagedChannelImpl)
     io.grpc.InternalConfigSelector getConfigSelector()
     public com.google.common.util.concurrent.ListenableFuture getStats()
     private void handleInternalSubchannelState(io.grpc.ConnectivityStateInfo)
@@ -27217,7 +27312,9 @@ io.grpc.internal.OobChannel:
     void setSubchannel(io.grpc.internal.InternalSubchannel)
     void updateAddresses(java.util.List)
 io.grpc.internal.PickFirstLoadBalancerProvider:
+    private static final java.lang.String CONFIG_FLAG_NAME
     private static final java.lang.String NO_CONFIG
+    private static final java.lang.String SHUFFLE_ADDRESS_LIST_KEY
 io.grpc.internal.ProxyDetectorImpl:
     private static final java.lang.String GRPC_PROXY_ENV_VAR
     static final java.lang.String PROXY_SCHEME
@@ -27256,6 +27353,8 @@ io.grpc.internal.RetriableStream:
     public final io.grpc.Attributes getAttributes()
     public final void setMessageCompression(boolean)
     static void setRandom(java.util.Random)
+io.grpc.internal.RetryingNameResolver:
+    io.grpc.NameResolver getRetriedNameResolver()
 io.grpc.internal.SerializingExecutor:
     private static final int RUNNING
     private static final int STOPPED
@@ -27583,6 +27682,7 @@ io.grpc.protobuf.lite.ProtoLiteUtils:
     private static final int BUF_SIZE
     static final int DEFAULT_MAX_MESSAGE_SIZE
     private void <init>()
+    public static io.grpc.MethodDescriptor$Marshaller marshallerWithRecursionLimit(com.google.protobuf.MessageLite,int)
     public static io.grpc.Metadata$BinaryMarshaller metadataMarshaller(com.google.protobuf.MessageLite)
     public static void setExtensionRegistry(com.google.protobuf.ExtensionRegistryLite)
 io.grpc.stub.AbstractBlockingStub
@@ -27671,7 +27771,8 @@ io.grpc.util.AdvancedTlsX509TrustManager$SslSocketAndEnginePeerVerifier
 io.grpc.util.AdvancedTlsX509TrustManager$Verification
 io.grpc.util.AdvancedTlsX509TrustManager
 io.grpc.util.CertificateUtils
-io.grpc.util.ForwardingClientStreamTracer
+io.grpc.util.ForwardingClientStreamTracer:
+    public void streamClosed(io.grpc.Status)
 io.grpc.util.ForwardingLoadBalancer:
     public void handleSubchannelState(io.grpc.LoadBalancer$Subchannel,io.grpc.ConnectivityStateInfo)
     public void shutdown()
@@ -27693,7 +27794,7 @@ io.grpc.util.ForwardingLoadBalancerHelper:
 io.grpc.util.ForwardingSubchannel:
     public io.grpc.Channel asChannel()
     public io.grpc.Attributes getAttributes()
-    public io.grpc.ChannelLogger getChannelLogger()
+    public java.lang.String toString()
     public void updateAddresses(java.util.List)
 io.grpc.util.GracefulSwitchLoadBalancer:
     public void handleSubchannelState(io.grpc.LoadBalancer$Subchannel,io.grpc.ConnectivityStateInfo)
@@ -27724,7 +27825,6 @@ io.perfmark.Impl:
     private static final long NO_LINK_ID
     static final long NO_TAG_ID
     static final java.lang.String NO_TAG_NAME
-    protected void attachTag(io.perfmark.Tag)
     protected void attachTag(java.lang.String,long)
     protected void attachTag(java.lang.String,long,long)
     protected void attachTag(java.lang.String,java.lang.Object,io.perfmark.StringFunction)
@@ -27734,9 +27834,12 @@ io.perfmark.Impl:
     protected static io.perfmark.Link packLink(long)
     protected static io.perfmark.Tag packTag(java.lang.String,long)
     protected void setEnabled(boolean)
+    protected boolean setEnabled(boolean,boolean)
     protected void startTask(java.lang.Object,io.perfmark.StringFunction)
+    protected void startTask(java.lang.String,io.perfmark.Tag)
     protected void startTask(java.lang.String,java.lang.String)
-    protected void stopTask()
+    protected void stopTask(java.lang.String)
+    protected void stopTask(java.lang.String,io.perfmark.Tag)
     protected void stopTask(java.lang.String,java.lang.String)
     protected static long unpackLinkId(io.perfmark.Link)
     protected static long unpackTagId(io.perfmark.Tag)
@@ -27744,7 +27847,6 @@ io.perfmark.Impl:
 io.perfmark.Link:
     public void link()
 io.perfmark.PerfMark:
-    public static void attachTag(io.perfmark.Tag)
     public static void attachTag(java.lang.String,long)
     public static void attachTag(java.lang.String,long,long)
     public static void attachTag(java.lang.String,java.lang.Object,io.perfmark.StringFunction)
@@ -27754,15 +27856,16 @@ io.perfmark.PerfMark:
     public static void event(java.lang.String)
     public static void event(java.lang.String,java.lang.String)
     public static io.perfmark.Link link()
-    public static void setEnabled(boolean)
+    public static boolean setEnabled(boolean)
     public static void startTask(java.lang.Object,io.perfmark.StringFunction)
+    public static void startTask(java.lang.String)
+    public static void startTask(java.lang.String,io.perfmark.Tag)
     public static void startTask(java.lang.String,java.lang.String)
-    public static void stopTask()
+    public static void stopTask(java.lang.String)
+    public static void stopTask(java.lang.String,io.perfmark.Tag)
     public static void stopTask(java.lang.String,java.lang.String)
     public static io.perfmark.TaskCloseable traceTask(java.lang.Object,io.perfmark.StringFunction)
-    public static io.perfmark.TaskCloseable traceTask(java.lang.String)
 io.perfmark.StringFunction
-io.perfmark.TaskCloseable
 io.perfmark.package-info
 javax.annotation.CheckForNull
 javax.annotation.CheckForSigned
@@ -33866,9 +33969,6 @@ kotlinx.coroutines.future.FutureKt$await$2$1
 kotlinx.coroutines.future.FutureKt
 kotlinx.coroutines.internal.AtomicOp:
     public kotlinx.coroutines.internal.AtomicOp getAtomicOp()
-kotlinx.coroutines.internal.ClassValueCtorCache$cache$1:
-    public synthetic bridge java.lang.Object computeValue(java.lang.Class)
-    protected kotlin.jvm.functions.Function1 computeValue(java.lang.Class)
 kotlinx.coroutines.internal.ConcurrentKt:
     public static synthetic void ReentrantLock$annotations()
     public static final java.util.Set identitySet(int)
@@ -34557,9 +34657,13 @@ org.checkerframework.checker.builder.qual.ReturnsReceiver
 org.checkerframework.checker.calledmethods.qual.CalledMethods
 org.checkerframework.checker.calledmethods.qual.CalledMethodsBottom
 org.checkerframework.checker.calledmethods.qual.CalledMethodsPredicate
+org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods$List
 org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethods
 org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethodsIf$List
 org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethodsIf
+org.checkerframework.checker.calledmethods.qual.EnsuresCalledMethodsVarArgs
+org.checkerframework.checker.calledmethods.qual.RequiresCalledMethods$List
+org.checkerframework.checker.calledmethods.qual.RequiresCalledMethods
 org.checkerframework.checker.compilermsgs.qual.CompilerMessageKey
 org.checkerframework.checker.compilermsgs.qual.CompilerMessageKeyBottom
 org.checkerframework.checker.compilermsgs.qual.UnknownCompilerMessageKey
@@ -34648,6 +34752,7 @@ org.checkerframework.checker.index.qual.SubstringIndexBottom
 org.checkerframework.checker.index.qual.SubstringIndexFor
 org.checkerframework.checker.index.qual.SubstringIndexUnknown
 org.checkerframework.checker.index.qual.UpperBoundBottom
+org.checkerframework.checker.index.qual.UpperBoundLiteral
 org.checkerframework.checker.index.qual.UpperBoundUnknown
 org.checkerframework.checker.initialization.qual.FBCBottom
 org.checkerframework.checker.initialization.qual.Initialized
@@ -34676,7 +34781,17 @@ org.checkerframework.checker.lock.qual.LockHeld
 org.checkerframework.checker.lock.qual.LockPossiblyHeld
 org.checkerframework.checker.lock.qual.LockingFree
 org.checkerframework.checker.lock.qual.MayReleaseLocks
+org.checkerframework.checker.lock.qual.NewObject
 org.checkerframework.checker.lock.qual.ReleasesNoLocks
+org.checkerframework.checker.mustcall.qual.CreatesMustCallFor$List
+org.checkerframework.checker.mustcall.qual.CreatesMustCallFor
+org.checkerframework.checker.mustcall.qual.InheritableMustCall
+org.checkerframework.checker.mustcall.qual.MustCall
+org.checkerframework.checker.mustcall.qual.MustCallAlias
+org.checkerframework.checker.mustcall.qual.MustCallUnknown
+org.checkerframework.checker.mustcall.qual.NotOwning
+org.checkerframework.checker.mustcall.qual.Owning
+org.checkerframework.checker.mustcall.qual.PolyMustCall
 org.checkerframework.checker.nullness.qual.AssertNonNullIfNonNull
 org.checkerframework.checker.nullness.qual.EnsuresKeyFor$List
 org.checkerframework.checker.nullness.qual.EnsuresKeyFor
@@ -34693,6 +34808,7 @@ org.checkerframework.checker.nullness.qual.NonNull
 org.checkerframework.checker.nullness.qual.Nullable
 org.checkerframework.checker.nullness.qual.PolyKeyFor
 org.checkerframework.checker.nullness.qual.PolyNull
+org.checkerframework.checker.nullness.qual.RequiresNonNull$List
 org.checkerframework.checker.nullness.qual.RequiresNonNull
 org.checkerframework.checker.nullness.qual.UnknownKeyFor
 org.checkerframework.checker.optional.qual.MaybePresent
@@ -34749,11 +34865,13 @@ org.checkerframework.checker.units.qual.Angle
 org.checkerframework.checker.units.qual.Area
 org.checkerframework.checker.units.qual.C
 org.checkerframework.checker.units.qual.Current
+org.checkerframework.checker.units.qual.Force
 org.checkerframework.checker.units.qual.K
 org.checkerframework.checker.units.qual.Length
 org.checkerframework.checker.units.qual.Luminance
 org.checkerframework.checker.units.qual.Mass
 org.checkerframework.checker.units.qual.MixedUnits
+org.checkerframework.checker.units.qual.N
 org.checkerframework.checker.units.qual.PolyUnit
 org.checkerframework.checker.units.qual.Prefix
 org.checkerframework.checker.units.qual.Speed
@@ -34764,24 +34882,30 @@ org.checkerframework.checker.units.qual.UnitsBottom
 org.checkerframework.checker.units.qual.UnitsMultiple
 org.checkerframework.checker.units.qual.UnitsRelations
 org.checkerframework.checker.units.qual.UnknownUnits
+org.checkerframework.checker.units.qual.Volume
 org.checkerframework.checker.units.qual.cd
 org.checkerframework.checker.units.qual.degrees
 org.checkerframework.checker.units.qual.g
 org.checkerframework.checker.units.qual.h
+org.checkerframework.checker.units.qual.kN
 org.checkerframework.checker.units.qual.kg
 org.checkerframework.checker.units.qual.km2
+org.checkerframework.checker.units.qual.km3
 org.checkerframework.checker.units.qual.km
 org.checkerframework.checker.units.qual.kmPERh
 org.checkerframework.checker.units.qual.m2
+org.checkerframework.checker.units.qual.m3
 org.checkerframework.checker.units.qual.m
 org.checkerframework.checker.units.qual.mPERs2
 org.checkerframework.checker.units.qual.mPERs
 org.checkerframework.checker.units.qual.min
 org.checkerframework.checker.units.qual.mm2
+org.checkerframework.checker.units.qual.mm3
 org.checkerframework.checker.units.qual.mm
 org.checkerframework.checker.units.qual.mol
 org.checkerframework.checker.units.qual.radians
 org.checkerframework.checker.units.qual.s
+org.checkerframework.checker.units.qual.t
 org.checkerframework.common.aliasing.qual.LeakedToResult
 org.checkerframework.common.aliasing.qual.MaybeAliased
 org.checkerframework.common.aliasing.qual.MaybeLeaked
@@ -34822,6 +34946,7 @@ org.checkerframework.common.value.qual.ArrayLen
 org.checkerframework.common.value.qual.ArrayLenRange
 org.checkerframework.common.value.qual.BoolVal
 org.checkerframework.common.value.qual.BottomVal
+org.checkerframework.common.value.qual.DoesNotMatchRegex
 org.checkerframework.common.value.qual.DoubleVal
 org.checkerframework.common.value.qual.EnsuresMinLenIf$List
 org.checkerframework.common.value.qual.EnsuresMinLenIf
@@ -35645,34 +35770,34 @@ com.google.android.gms.internal.consent_sdk.zzcj
 com.google.android.gms.internal.measurement.zzbx:
     private static com.google.android.gms.internal.measurement.zzbz zza
 com.google.android.gms.internal.measurement.zzbz
-com.google.android.gms.internal.measurement.zzcp:
-    private static com.google.android.gms.internal.measurement.zzcr zza
-com.google.android.gms.internal.measurement.zzcq:
+com.google.android.gms.internal.measurement.zzcz:
     private static final enum int zzb
     private static final enum int zzc
-com.google.android.gms.internal.measurement.zzcr
-com.google.android.gms.internal.measurement.zzgn:
+com.google.android.gms.internal.measurement.zzdb
+com.google.android.gms.internal.measurement.zzdc:
+    private static com.google.android.gms.internal.measurement.zzdb zza
+com.google.android.gms.internal.measurement.zzhg:
     private static volatile boolean zzc
-com.google.android.gms.internal.measurement.zzig$zza:
+com.google.android.gms.internal.measurement.zzja$zzb:
     public final void zzb(byte[],int,int)
-com.google.android.gms.internal.measurement.zzig:
+com.google.android.gms.internal.measurement.zzja:
     abstract void zzb(byte[],int,int)
-com.google.android.gms.internal.measurement.zzik:
+com.google.android.gms.internal.measurement.zzjg:
     private static volatile boolean zzb
     private static boolean zzc
-com.google.android.gms.internal.measurement.zziq:
-    static void zza(com.google.android.gms.internal.measurement.zzig,com.google.android.gms.internal.measurement.zzmn,int,java.lang.Object)
-com.google.android.gms.internal.measurement.zzke:
-    public final com.google.android.gms.internal.measurement.zzmn zza
+com.google.android.gms.internal.measurement.zzjj:
+    static void zza(com.google.android.gms.internal.measurement.zzja,com.google.android.gms.internal.measurement.zzng,int,java.lang.Object)
+com.google.android.gms.internal.measurement.zzkx:
+    public final com.google.android.gms.internal.measurement.zzng zza
     public final java.lang.Object zzb
-    public final com.google.android.gms.internal.measurement.zzmn zzc
+    public final com.google.android.gms.internal.measurement.zzng zzc
     public final java.lang.Object zzd
-com.google.android.gms.internal.measurement.zzkn:
-    private static int zza(byte[],int,int,com.google.android.gms.internal.measurement.zzmn,java.lang.Class,com.google.android.gms.internal.measurement.zzhl)
-com.google.android.gms.internal.measurement.zzkq
-com.google.android.gms.internal.measurement.zzmn:
+com.google.android.gms.internal.measurement.zzlj
+com.google.android.gms.internal.measurement.zzlk:
+    private static int zza(byte[],int,int,com.google.android.gms.internal.measurement.zzng,java.lang.Class,com.google.android.gms.internal.measurement.zzie)
+com.google.android.gms.internal.measurement.zzng:
     public final int zza()
-com.google.android.gms.measurement.internal.zzhb
+com.google.android.gms.measurement.internal.zzhk
 com.google.android.gms.signin.internal.SignInClientImpl:
     public static final synthetic int zaa
 com.google.common.util.concurrent.AbstractFuture$TrustedFuture
@@ -35681,8 +35806,6 @@ com.google.common.util.concurrent.SettableFuture
 com.google.firebase.emulators.EmulatedServiceSettings:
     public java.lang.String getHost()
     public int getPort()
-com.google.firebase.firestore.AggregateField$AverageAggregateField
-com.google.firebase.firestore.AggregateField$SumAggregateField
 com.google.firebase.firestore.FirebaseFirestore:
     private com.google.firebase.emulators.EmulatedServiceSettings emulatorSettings
 com.google.firebase.firestore.FirebaseFirestoreSettings$Builder:
@@ -35696,26 +35819,6 @@ com.google.firebase.firestore.FirebaseFirestoreSettings:
 com.google.firebase.heartbeatinfo.HeartBeatInfoStorage:
     private static com.google.firebase.heartbeatinfo.HeartBeatInfoStorage instance
 com.google.firebase.internal.api.FirebaseNoSignedInUserException
-com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Avg$Builder:
-    public com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Avg$Builder setField(com.google.firestore.v1.StructuredQuery$FieldReference)
-com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Avg:
-    static synthetic void access$1100(com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Avg,com.google.firestore.v1.StructuredQuery$FieldReference)
-    public static com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Avg$Builder newBuilder()
-    private void setField(com.google.firestore.v1.StructuredQuery$FieldReference)
-com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Builder:
-    public com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Builder setAvg(com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Avg)
-    public com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Builder setSum(com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Sum)
-com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Sum$Builder:
-    public com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Sum$Builder setField(com.google.firestore.v1.StructuredQuery$FieldReference)
-com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Sum:
-    static synthetic void access$600(com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Sum,com.google.firestore.v1.StructuredQuery$FieldReference)
-    public static com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Sum$Builder newBuilder()
-    private void setField(com.google.firestore.v1.StructuredQuery$FieldReference)
-com.google.firestore.v1.StructuredAggregationQuery$Aggregation:
-    static synthetic void access$2000(com.google.firestore.v1.StructuredAggregationQuery$Aggregation,com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Sum)
-    static synthetic void access$2300(com.google.firestore.v1.StructuredAggregationQuery$Aggregation,com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Avg)
-    private void setAvg(com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Avg)
-    private void setSum(com.google.firestore.v1.StructuredAggregationQuery$Aggregation$Sum)
 com.google.protobuf.ExtensionRegistryLite:
     private static volatile boolean eagerlyParseMessageSets
 com.google.protobuf.FieldInfo:
@@ -35759,6 +35862,8 @@ io.flutter.embedding.engine.FlutterEngineConnectionRegistry:
 io.flutter.embedding.engine.loader.ResourceExtractor:
     void waitForCompletion()
 io.flutter.embedding.engine.systemchannels.PlatformChannel$PlatformMessageHandler$-CC
+io.flutter.embedding.engine.systemchannels.SettingsChannel:
+    static final synthetic boolean $assertionsDisabled
 io.flutter.plugin.common.BinaryMessenger$-CC:
     public static io.flutter.plugin.common.BinaryMessenger$TaskQueue $default$makeBackgroundTaskQueue(io.flutter.plugin.common.BinaryMessenger,io.flutter.plugin.common.BinaryMessenger$TaskQueueOptions)
     public static void $default$setMessageHandler(io.flutter.plugin.common.BinaryMessenger,java.lang.String,io.flutter.plugin.common.BinaryMessenger$BinaryMessageHandler,io.flutter.plugin.common.BinaryMessenger$TaskQueue)
@@ -35772,7 +35877,6 @@ io.flutter.plugins.firebase.firestore.utils.PigeonParser:
     public void <init>()
 io.flutter.plugins.urllauncher.UrlLauncher:
     static final synthetic boolean $assertionsDisabled
-io.flutter.view.TextureRegistry$SurfaceTextureEntry$-CC
 io.flutter.view.VsyncWaiter:
     public static io.flutter.view.VsyncWaiter getInstance(float,io.flutter.embedding.engine.FlutterJNI)
 io.grpc.Attributes$Builder:

@@ -5,10 +5,10 @@ library {
   maven_library {
     groupId: "io.flutter"
     artifactId: "flutter_embedding_release"
-    version: "1.0.0-0545f8705df301877d787107bac1a6e9fc9ee1ad"
+    version: "1.0.0-c4cd48e186460b32d44585ce3c103271ab676355"
   }
   digests {
-    sha256: "\a\315\337\304HKl\357s\004*\315\334i\2156\225\271c\276\342*9\213\364\216_\210\230\3360n"
+    sha256: "\225\223\241\310\t \251\317\354C\257\232@\266\222=\017\350\365M\325\321\230\370\273{f:\036\nu\356"
   }
   repo_index {
     value: 2
@@ -30,7 +30,7 @@ library {
   maven_library {
     groupId: "androidx.annotation"
     artifactId: "annotation"
-    version: "1.7.0"
+    version: "1.7.1"
   }
   repo_index {
   }
@@ -39,7 +39,7 @@ library {
   maven_library {
     groupId: "androidx.annotation"
     artifactId: "annotation-jvm"
-    version: "1.7.0"
+    version: "1.7.1"
   }
   digests {
     sha256: "\343k\216K\203\223\244\255\307N=J\262*\325\243c\226\360\316\242\344\vW4\352\341I7\337\322$"
@@ -449,10 +449,10 @@ library {
   maven_library {
     groupId: "com.google.android.gms"
     artifactId: "play-services-tasks"
-    version: "18.0.2"
+    version: "18.1.0"
   }
   digests {
-    sha256: "\003F\\\3656\200\332#\323\324\243\231\\\003)\267\367;!\0358y\036\3136\345\221\376\273\211fd"
+    sha256: "\326\005u\352\343\223P\346#HX\274\235}wSupz\350*hNl\257\177>A\241.%\242"
   }
   repo_index {
   }
@@ -461,10 +461,10 @@ library {
   maven_library {
     groupId: "com.google.android.gms"
     artifactId: "play-services-basement"
-    version: "18.1.0"
+    version: "18.3.0"
   }
   digests {
-    sha256: "\003\272\025\363\206\317&\v\336r\374@\020\373\211\250 \304}Q\316c\274\t)~\253\346\314\340\233\335"
+    sha256: "l\021\256>\262\335\177\0277?\221\234LUzp\344\317\211\033\300\311\266i&\240\246D]eCR"
   }
   repo_index {
   }
@@ -485,7 +485,7 @@ library {
   maven_library {
     groupId: "com.google.firebase"
     artifactId: "firebase-bom"
-    version: "32.6.0"
+    version: "32.8.0"
   }
   repo_index {
   }
@@ -494,10 +494,10 @@ library {
   maven_library {
     groupId: "com.google.firebase"
     artifactId: "firebase-analytics"
-    version: "21.5.0"
+    version: "21.6.1"
   }
   digests {
-    sha256: "\025\230\346\252q\231\302\370k\210R\326\212Nx\f-%\221\002b\353\255)\221\236\232r?\200\212Y"
+    sha256: "\306\310\003\316\031\234\225\250\272\263\366<2:>\231\377\251\225\177\335\337\256\021\273\001}ub\300\2404"
   }
   repo_index {
   }
@@ -506,10 +506,10 @@ library {
   maven_library {
     groupId: "com.google.android.gms"
     artifactId: "play-services-measurement"
-    version: "21.5.0"
+    version: "21.6.1"
   }
   digests {
-    sha256: "\333k\274\222\365\342\311~^\273\320\263\3335`S\363p\311\377w\354\366\017\242\216\240\2356A\366\335"
+    sha256: "\\\22576\351ZF\325DZ\250\203*hL\r\266\202\354\233S\324\351\206\224\313\020\303\2106\263\324"
   }
   repo_index {
   }
@@ -578,10 +578,10 @@ library {
   maven_library {
     groupId: "com.google.android.gms"
     artifactId: "play-services-measurement-base"
-    version: "21.5.0"
+    version: "21.6.1"
   }
   digests {
-    sha256: "\321\'\334D-\031\"OE\234\032o\002\367\365!\356M\236*Lc\306\037y\337\252F\253\236\316\253"
+    sha256: "X6]\364\205\326e\352i\222\3629)mgO\230\220\214$M`\312|\335O\311\250\224\221\311\301"
   }
   repo_index {
   }
@@ -590,10 +590,10 @@ library {
   maven_library {
     groupId: "com.google.android.gms"
     artifactId: "play-services-measurement-impl"
-    version: "21.5.0"
+    version: "21.6.1"
   }
   digests {
-    sha256: "\345E\352J>\257\306}\025U{\330\221\277i\207\254\351\344\300A\302\362\220\200\377D\243R\200\256\245"
+    sha256: "\324\330\v\250\266\320\235|x\030D\212\256\221\370vsj\207\341\256\373\0252\302\267\374\223\033\344\026\222"
   }
   repo_index {
   }
@@ -626,10 +626,10 @@ library {
   maven_library {
     groupId: "com.google.guava"
     artifactId: "guava"
-    version: "31.1-android"
+    version: "32.0.1-android"
   }
   digests {
-    sha256: "2\254.\327\t\331m\'\213].>\\\352\027\217\244\223\2319\305%\373du2\360\0230\215\263\t"
+    sha256: "\022B\237\371\2543\267\257\330\261\245\a\021yu|\364\323\304\177\017@\231\274\003\204\346D\354\277\202\335"
   }
   repo_index {
     value: 1
@@ -665,10 +665,10 @@ library {
   maven_library {
     groupId: "org.checkerframework"
     artifactId: "checker-qual"
-    version: "3.12.0"
+    version: "3.33.0"
   }
   digests {
-    sha256: "\377\020xZ\302\243W\354]\351\302\223\313\230*,\273`\\\003\t\352L\301\313\233\233\306\333\347\363\313"
+    sha256: "\343\026%[\277\315\237\345\r\026S\024\270Z\273+3\313*f\251<I\035\266H\344\230\250,-\341"
   }
   repo_index {
     value: 1
@@ -678,10 +678,10 @@ library {
   maven_library {
     groupId: "com.google.errorprone"
     artifactId: "error_prone_annotations"
-    version: "2.16"
+    version: "2.18.0"
   }
   digests {
-    sha256: "&hSj5L\332c\321\230\205\374\253\336\315\215b\230\256\304&\f\337\3374\267\"\351d\326\003\226"
+    sha256: "\236h\024\313q\201i\210\244\375\033\a\251\223\250\362\033\267\005\215R,\026+\035\350I\341\233\352T\256"
   }
   repo_index {
     value: 1
@@ -691,10 +691,10 @@ library {
   maven_library {
     groupId: "com.google.j2objc"
     artifactId: "j2objc-annotations"
-    version: "1.3"
+    version: "2.8"
   }
   digests {
-    sha256: "!\2570\311\"g\275a\"\300\340\264\322\f\314\266d\0327\352\371V\306T\016\304q\325\204\346J{"
+    sha256: "\360*\225\372\032^\225\355\263\355\205\237\320\373}\367\t\321!\243R\220\357\370\267M\316*\267\364\326\355"
   }
   repo_index {
     value: 1
@@ -716,10 +716,10 @@ library {
   maven_library {
     groupId: "com.google.android.gms"
     artifactId: "play-services-measurement-api"
-    version: "21.5.0"
+    version: "21.6.1"
   }
   digests {
-    sha256: "hL\225\312\377K\005>9\237\265\0275\351\364\310\334.\2307\212I\b\003/\310\256qy\v3\260"
+    sha256: ".\270\302\313\276=P\251I\2002c[\f\333\215\231RJ\202HF\204P\017}\024/\306\000\022J"
   }
   repo_index {
   }
@@ -728,10 +728,10 @@ library {
   maven_library {
     groupId: "com.google.android.gms"
     artifactId: "play-services-measurement-sdk-api"
-    version: "21.5.0"
+    version: "21.6.1"
   }
   digests {
-    sha256: "\354\364\356\210\351to\371\ff\312\247\a\363\356\216\275;\254G\325\203!\034\264\316\256\2158\341x\203"
+    sha256: "A\\lGP\356\321\372\333\200ut\006\0279\350&\022r\257F\332@(\231\331e\030\222\260\003\301"
   }
   repo_index {
   }
@@ -740,10 +740,10 @@ library {
   maven_library {
     groupId: "com.google.firebase"
     artifactId: "firebase-common"
-    version: "20.4.2"
+    version: "20.4.3"
   }
   digests {
-    sha256: "7x.?6\033lBKT9\243\363=V\2243\327\342f\005X\001\365\037\374\240\272\335\250\230\332"
+    sha256: "ww1qI\334\b9z\203`-\373R~\317\211(\225C\357\032\274\335V\336}DM\252\337\213"
   }
   repo_index {
   }
@@ -789,10 +789,10 @@ library {
   maven_library {
     groupId: "com.google.firebase"
     artifactId: "firebase-common-ktx"
-    version: "20.4.2"
+    version: "20.4.3"
   }
   digests {
-    sha256: "\027\vDi\016H\r\035\336y\250\321cXj\020%\253UB\356\n\2548t\267n}\034\'q\217"
+    sha256: "\325\253 &2M\0378+\277\304e\215\037\217d\n\352\337[\341+:\037\a\352{M$a<\253"
   }
   repo_index {
   }
@@ -837,10 +837,10 @@ library {
   maven_library {
     groupId: "com.google.android.gms"
     artifactId: "play-services-measurement-sdk"
-    version: "21.5.0"
+    version: "21.6.1"
   }
   digests {
-    sha256: "\233\325\323\025\031\212^\200\377\\T\2008\206\325\203H\025\366bM\002\331N7\262\353\257#\375\000\v"
+    sha256: ")\032\312\f\\u\213\233\302\361\237[\035%\264N[{\223\267\370\201_\250\216j\003^\313\033\215\317"
   }
   repo_index {
   }
@@ -849,10 +849,10 @@ library {
   maven_library {
     groupId: "com.google.firebase"
     artifactId: "firebase-firestore"
-    version: "24.9.1"
+    version: "24.11.0"
   }
   digests {
-    sha256: "s\211\351\241\267/\261\361b\275\334A\246\016\313\270\243\242\204(\034\374\326\335\177\032\365\375\361\304Hp"
+    sha256: "\006x\313\017j\200\360V\223\327&\362~\207\335v`{R\325?d\244\360\327vsW(\372\200\344"
   }
   repo_index {
   }
@@ -861,10 +861,10 @@ library {
   maven_library {
     groupId: "io.grpc"
     artifactId: "grpc-android"
-    version: "1.52.1"
+    version: "1.57.2"
   }
   digests {
-    sha256: "H\351.\357\257\241\253(\365\320\025(\272\0066\025\272T\350Y\274d\240hrpss\212\205\"\266"
+    sha256: "\344B\005\271\346\325\355\233c<h\250\305qa\201\244\327\036\240 \245\330\216\343e\244\246\221\210!B"
   }
   repo_index {
     value: 1
@@ -874,10 +874,10 @@ library {
   maven_library {
     groupId: "io.grpc"
     artifactId: "grpc-core"
-    version: "1.52.1"
+    version: "1.57.2"
   }
   digests {
-    sha256: "\235\361\215-\231FF\314m\330G\371\020\t\272\3339\020\211\250\262\000|\3531\204\350P\"Mc\016"
+    sha256: "Z\020\a\n\277\353If\354MX\ta\334\304\347\366\237\250:\262RB\371,\027e\357\260{\206\006"
   }
   repo_index {
     value: 1
@@ -887,23 +887,10 @@ library {
   maven_library {
     groupId: "io.grpc"
     artifactId: "grpc-api"
-    version: "1.52.1"
+    version: "1.57.2"
   }
   digests {
-    sha256: "3\264\312\312m\"d\336Uh\020$r3u:\326\303`\303\323\037\254Y\312\002\343$\bL\363\366"
-  }
-  repo_index {
-    value: 1
-  }
-}
-library {
-  maven_library {
-    groupId: "io.grpc"
-    artifactId: "grpc-context"
-    version: "1.52.1"
-  }
-  digests {
-    sha256: "F\032\273\256\246\377&\312R%\321\251\305\222\243\273\342\246rH\262\006.\257\237P\323\032\017\350\213\253"
+    sha256: "B\267.er\300\204\005Z\303\316\003\346\357\3443\353\005\357b\v=\257Q6\2445\237\307,\303\341"
   }
   repo_index {
     value: 1
@@ -913,10 +900,10 @@ library {
   maven_library {
     groupId: "com.google.code.gson"
     artifactId: "gson"
-    version: "2.9.0"
+    version: "2.10.1"
   }
   digests {
-    sha256: "\311m`U\0231\241\226\332\305KtZ\246B\315\a\216\370\233o&qF\267\005\362\302\313\357\005-"
+    sha256: "BA\301Jw\'\303O\356\246P~\310\0011\212=J\220\360p\344RV\201\a\237\271N\344\305\223"
   }
   repo_index {
     value: 1
@@ -939,10 +926,10 @@ library {
   maven_library {
     groupId: "org.codehaus.mojo"
     artifactId: "animal-sniffer-annotations"
-    version: "1.21"
+    version: "1.23"
   }
   digests {
-    sha256: "/%\204\034\223~$\225\232W\2660\342\304\270R[=\017So.Q\034\233+\3550\261e\035T"
+    sha256: "\237\376Rk\364:cH\351\330\263;\234\326\365\200\247\365\356\320\317\005Y\023\000~\332&=\351t\320"
   }
   repo_index {
     value: 1
@@ -952,10 +939,23 @@ library {
   maven_library {
     groupId: "io.perfmark"
     artifactId: "perfmark-api"
-    version: "0.25.0"
+    version: "0.26.0"
   }
   digests {
-    sha256: " DT)3\374\337@\255\030D\033\3547dm\025\fI\030q\025\177(\210G\342\234\270\035\344\313"
+    sha256: "\267\322>\223\243E7\3163\'\b&\232\r\024\004x\212[^\031I\350/U5\374\345\033>\251["
+  }
+  repo_index {
+    value: 1
+  }
+}
+library {
+  maven_library {
+    groupId: "io.grpc"
+    artifactId: "grpc-context"
+    version: "1.57.2"
+  }
+  digests {
+    sha256: "\233\212\310\215\234\357(\031\332\377\355{\333\322\362&\200#}H,lg\037\340-6\332?\b\317\000"
   }
   repo_index {
     value: 1
@@ -965,10 +965,10 @@ library {
   maven_library {
     groupId: "io.grpc"
     artifactId: "grpc-okhttp"
-    version: "1.52.1"
+    version: "1.57.2"
   }
   digests {
-    sha256: "\265\223\327\341\303\b\370\324\307\241\215K_\317\033\226@-\020\245\323\324\322\352^\245\220\346\220\210\303\367"
+    sha256: "\330\216\341p\205\2557\030\357\201\034L\017b\274;\233;\251\2701N\223\301\215\0206,\344\266\313\263"
   }
   repo_index {
     value: 1
@@ -991,10 +991,10 @@ library {
   maven_library {
     groupId: "io.grpc"
     artifactId: "grpc-protobuf-lite"
-    version: "1.52.1"
+    version: "1.57.2"
   }
   digests {
-    sha256: "\371@B[4\221%\220Y\355x\255F\370\375\311c\324\263\266\302_cx\177\376\002\344\246+\261\326"
+    sha256: "\374I\027\334]A\232\310\020\373?\'R<\024\347^\037\345\003r\025O\253)2B\025\356j\225Z"
   }
   repo_index {
     value: 1
@@ -1004,10 +1004,10 @@ library {
   maven_library {
     groupId: "com.google.protobuf"
     artifactId: "protobuf-javalite"
-    version: "3.21.7"
+    version: "3.22.3"
   }
   digests {
-    sha256: "C\224]y\036\316 \022\273\220\206\220~\022O\370\024\257\324\001B\t\366|\310\236\1772C\220\300a"
+    sha256: "\235&\276\275&\a\375\005S\316\333\374>J=?\006\306\347\242\a\322\267L\207\372a\201\203\216\321\277"
   }
   repo_index {
     value: 1
@@ -1017,10 +1017,10 @@ library {
   maven_library {
     groupId: "io.grpc"
     artifactId: "grpc-stub"
-    version: "1.52.1"
+    version: "1.57.2"
   }
   digests {
-    sha256: "\337\223\313\026Nt\263n\206\006\203%\244\"\207\362\211F\200N\n\361\251\250\352\217\254\022zl\376\r"
+    sha256: "\204\322\257\022q\221h\367cu\362\257\337\326\353Q3\250e\355\272\222D\324\016k\226\216:\335\341\323"
   }
   repo_index {
     value: 1
@@ -1364,10 +1364,10 @@ library {
   maven_library {
     groupId: "io.flutter"
     artifactId: "arm64_v8a_release"
-    version: "1.0.0-0545f8705df301877d787107bac1a6e9fc9ee1ad"
+    version: "1.0.0-c4cd48e186460b32d44585ce3c103271ab676355"
   }
   digests {
-    sha256: "Do\202\3343\027\a\373\t\006Y\t\330\024\035\376\237\265[\006\026\343>\313\017\260\3431)\362\360?"
+    sha256: "\b\360g\316\005z;\003Y\035\f\204D\242\002lW\025Ga\005\242\177\224\243z\0010\026\000\337\344"
   }
   repo_index {
     value: 2
@@ -1375,7 +1375,7 @@ library {
 }
 library {
   digests {
-    sha256: "Sm\227\250>\030\230$\2234\\\336\003\3051\261\272E\025\340\t\252\222\254u\335\037\252R[\002F"
+    sha256: "T\357\327\322Z1\"\275\216r?\370\370P\312\376\347L\313\340\037*\360)\250\340\317\267p\342\346\301"
   }
 }
 library_dependencies {
@@ -1712,7 +1712,7 @@ library_dependencies {
   library_dep_index: 67
   library_dep_index: 68
   library_dep_index: 52
-  library_dep_index: 6
+  library_dep_index: 4
 }
 library_dependencies {
   library_index: 60
@@ -1803,26 +1803,30 @@ library_dependencies {
 library_dependencies {
   library_index: 72
   library_dep_index: 73
+  library_dep_index: 74
   library_dep_index: 75
   library_dep_index: 76
-  library_dep_index: 77
   library_dep_index: 56
   library_dep_index: 52
+  library_dep_index: 77
   library_dep_index: 78
 }
 library_dependencies {
   library_index: 73
-  library_dep_index: 74
   library_dep_index: 54
   library_dep_index: 56
   library_dep_index: 52
+}
+library_dependencies {
+  library_index: 78
+  library_dep_index: 73
 }
 library_dependencies {
   library_index: 79
   library_dep_index: 72
   library_dep_index: 80
   library_dep_index: 52
-  library_dep_index: 78
+  library_dep_index: 77
 }
 library_dependencies {
   library_index: 81

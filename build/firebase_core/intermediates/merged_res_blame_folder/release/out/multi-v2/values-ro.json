@@ -15,26 +15,26 @@
                     "to": {
                         "startLines": "3",
                         "startColumns": "4",
-                        "startOffsets": "200",
+                        "startOffsets": "199",
                         "endColumns": "100",
-                        "endOffsets": "296"
+                        "endOffsets": "295"
                     }
                 },
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\4a80ee9fd8d09a6d44776f9cd2f90623\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-ro\\values.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\d3c74094d9222ba39f825add9f9c6c01\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-ro\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
                         "startOffsets": "195",
-                        "endColumns": "140",
-                        "endOffsets": "335"
+                        "endColumns": "139",
+                        "endOffsets": "334"
                     },
                     "to": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endColumns": "144",
-                        "endOffsets": "195"
+                        "endColumns": "143",
+                        "endOffsets": "194"
                     }
                 }
             ]
@@ -54,26 +54,26 @@
                     "to": {
                         "startLines": "3",
                         "startColumns": "4",
-                        "startOffsets": "200",
+                        "startOffsets": "199",
                         "endColumns": "100",
-                        "endOffsets": "296"
+                        "endOffsets": "295"
                     }
                 },
                 {
-                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\4a80ee9fd8d09a6d44776f9cd2f90623\\transformed\\jetified-play-services-basement-18.1.0\\res\\values-ro\\values.xml",
+                    "source": "C:\\Users\\apila\\.gradle\\caches\\transforms-3\\d3c74094d9222ba39f825add9f9c6c01\\transformed\\jetified-play-services-basement-18.3.0\\res\\values-ro\\values.xml",
                     "from": {
                         "startLines": "4",
                         "startColumns": "0",
                         "startOffsets": "195",
-                        "endColumns": "140",
-                        "endOffsets": "335"
+                        "endColumns": "139",
+                        "endOffsets": "334"
                     },
                     "to": {
                         "startLines": "2",
                         "startColumns": "4",
                         "startOffsets": "55",
-                        "endColumns": "144",
-                        "endOffsets": "195"
+                        "endColumns": "143",
+                        "endOffsets": "194"
                     }
                 }
             ]
